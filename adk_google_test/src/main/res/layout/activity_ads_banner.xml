@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".AdsBannerActivity">
+
+        <Button
+            android:id="@+id/btn_show_banner_ad"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="show banner"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toStartOf="@id/btn_hide_banner_ad"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="HardcodedText"
+            tools:visibility="visible" />
+
+        <Button
+            android:id="@+id/btn_hide_banner_ad"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="hide banner"
+            android:visibility="invisible"
+            app:layout_constraintStart_toEndOf="@id/btn_show_banner_ad"
+            app:layout_constraintTop_toTopOf="@id/btn_show_banner_ad"
+            tools:ignore="HardcodedText"
+            tools:visibility="visible" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
