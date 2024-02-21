@@ -9,7 +9,7 @@ import com.google.android.gms.ads.FullScreenContentCallback
 import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
-import com.mozhimen.adk.google.AdKGoogle
+import com.mozhimen.adk.google.AdKGoogleMgr
 import com.mozhimen.basick.elemk.androidx.lifecycle.bases.BaseWakeBefDestroyLifecycleObserver
 import com.mozhimen.basick.lintk.optins.OApiCall_BindLifecycle
 import com.mozhimen.basick.lintk.optins.OApiInit_ByLazy
@@ -120,7 +120,7 @@ class AdKGoogleInterstitialSimpleProxy<A>(private var _activityRef: WeakReferenc
 
 
     private fun initAdsInterstitial() {
-        if (AdKGoogle.isInitSuccess()) {
+        if (AdKGoogleMgr.isInitSuccess()) {
             loadInterstitialAd()
         }
     }

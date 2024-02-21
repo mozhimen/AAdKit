@@ -4,11 +4,8 @@ import android.content.Context
 import android.util.Log
 import com.google.android.gms.ads.MobileAds
 import com.google.android.gms.ads.initialization.AdapterStatus
-import com.google.android.gms.ads.initialization.OnInitializationCompleteListener
 import com.mozhimen.adk.google.optins.OMetaData_GMS_ADS_APPLICATION_ID
 import com.mozhimen.adk.google.utils.CacheUtil
-import com.mozhimen.basick.cachek.datastore.temps.CacheKDSVarPropertyBoolean
-import com.mozhimen.basick.elemk.commons.IA_BListener
 import com.mozhimen.basick.elemk.commons.IA_Listener
 import com.mozhimen.basick.utilk.bases.IUtilK
 
@@ -19,7 +16,7 @@ import com.mozhimen.basick.utilk.bases.IUtilK
  * @Date 2024/2/4
  * @Version 1.0
  */
-object AdKGoogle : IUtilK {
+object AdKGoogleMgr : IUtilK {
 //    @JvmStatic
 //    @OMetaData_GMS_ADS_APPLICATION_ID
 //    fun init(context: Context) {

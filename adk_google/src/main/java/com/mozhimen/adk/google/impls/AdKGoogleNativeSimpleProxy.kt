@@ -25,7 +25,7 @@ import com.google.android.gms.ads.nativead.MediaView
 import com.google.android.gms.ads.nativead.NativeAd
 import com.google.android.gms.ads.nativead.NativeAdOptions
 import com.google.android.gms.ads.nativead.NativeAdView
-import com.mozhimen.adk.google.AdKGoogle
+import com.mozhimen.adk.google.AdKGoogleMgr
 import com.mozhimen.adk.google.R
 import com.mozhimen.basick.elemk.androidx.lifecycle.bases.BaseWakeBefPauseLifecycleObserver
 import com.mozhimen.basick.lintk.optins.OApiCall_BindLifecycle
@@ -138,7 +138,7 @@ class AdKGoogleNativeSimpleProxy<A>(private val _activity: A, private val _adUni
     }
 
     private fun initAdsNative() {
-        if (AdKGoogle.isInitSuccess()) {
+        if (AdKGoogleMgr.isInitSuccess()) {
             loadNativeAd()
         }
     }

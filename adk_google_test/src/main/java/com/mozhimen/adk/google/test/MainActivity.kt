@@ -1,14 +1,11 @@
 package com.mozhimen.adk.google.test
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import com.google.android.gms.ads.initialization.AdapterStatus
-import com.mozhimen.adk.google.AdKGoogle
+import com.mozhimen.adk.google.AdKGoogleMgr
 import com.mozhimen.adk.google.optins.OMetaData_GMS_ADS_APPLICATION_ID
 import com.mozhimen.adk.google.test.databinding.ActivityMainBinding
 import com.mozhimen.basick.elemk.androidx.appcompat.bases.databinding.BaseActivityVB
-import com.mozhimen.basick.elemk.commons.IA_AListener
 import com.mozhimen.basick.elemk.commons.I_Listener
 import com.mozhimen.basick.utilk.android.content.startContext
 import com.mozhimen.basick.utilk.android.widget.showToast
@@ -18,7 +15,7 @@ class MainActivity : BaseActivityVB<ActivityMainBinding>() {
 
     @OptIn(OMetaData_GMS_ADS_APPLICATION_ID::class)
     override fun initView(savedInstanceState: Bundle?) {
-        AdKGoogle.init(this) { res ->
+        AdKGoogleMgr.init(this) { res ->
             _isInitSuccess = res
         }
     }

@@ -10,7 +10,7 @@ import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdSize
 import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.LoadAdError
-import com.mozhimen.adk.google.AdKGoogle
+import com.mozhimen.adk.google.AdKGoogleMgr
 import com.mozhimen.basick.elemk.androidx.lifecycle.bases.BaseWakeBefPauseLifecycleObserver
 import com.mozhimen.basick.elemk.commons.IA_Listener
 import com.mozhimen.basick.lintk.optins.OApiCall_BindLifecycle
@@ -97,7 +97,7 @@ class AdKGoogleBannerSimpleProxy<A>(private val _activity: A, private val _adUni
     //////////////////////////////////////////////////////////////////////////////////
 
     private fun initAdsBanner() {
-        if (AdKGoogle.isInitSuccess()) {
+        if (AdKGoogleMgr.isInitSuccess()) {
             initBannerAdView()
         }
     }

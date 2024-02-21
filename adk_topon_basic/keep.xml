@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--如果您开启了shrinkResource，则需要在res/raw路径下加一个keep.xml，然后内容是SDK的压缩包的keep.xml文件的内容，例子如下（点击查看Android资源优化处理)：-->
+<resources xmlns:tools="http://schemas.android.com/tools"
+    tools:keep="@string/anythink_*,@drawable/anythink_*,@layout/anythink_*,@id/anythink_*,@dimen/anythink_*,@style/anythink_*,@color/anythink_*,@string/mbridge*,@layout/mbridge*,@drawable/mbridge*,@anim/mbridge*,@color/mbridge*,@style/mbridge*,@id/mbridge*"
+    tools:shrinkMode="safe" />

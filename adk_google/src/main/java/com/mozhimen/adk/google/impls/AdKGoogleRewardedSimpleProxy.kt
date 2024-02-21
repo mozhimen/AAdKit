@@ -10,7 +10,7 @@ import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.OnUserEarnedRewardListener
 import com.google.android.gms.ads.rewarded.RewardedAd
 import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback
-import com.mozhimen.adk.google.AdKGoogle
+import com.mozhimen.adk.google.AdKGoogleMgr
 import com.mozhimen.basick.elemk.androidx.lifecycle.bases.BaseWakeBefDestroyLifecycleObserver
 import com.mozhimen.basick.lintk.optins.OApiCall_BindLifecycle
 import com.mozhimen.basick.lintk.optins.OApiInit_ByLazy
@@ -128,7 +128,7 @@ class AdKGoogleRewardedSimpleProxy<A>(private val _activityRef: WeakReference<A>
     //////////////////////////////////////////////////////////////////////////////
 
     private fun initAdsRewarded() {
-        if (AdKGoogle.isInitSuccess()) {
+        if (AdKGoogleMgr.isInitSuccess()) {
             loadRewardedVideoAd()
         }
     }
