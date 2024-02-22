@@ -40,7 +40,9 @@ dependencies {
     implementation project(':AUICoreKit:bark_title')
     implementation project(':SwiftKit:basick')
     implementation project(':adk_topon_basic')
-    implementation 'androidx.activity:activity:1.8.0'
+
+    // Debugger UI Tools
+//    implementation 'com.anythink.sdk:debugger-ui:1.0.3'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
 
     testImplementation 'junit:junit:4.13.2'

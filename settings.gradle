@@ -17,6 +17,9 @@ dependencyResolutionManagement {
         maven { url "https://jfrog.anythinktech.com/artifactory/overseas_sdk" }
         //Mintegral
         maven { url "https://dl-maven-android.mintegral.com/repository/mbridge_android_sdk_oversea" }
+        //test
+        maven { url "https://jfrog.anythinktech.com/artifactory/debugger" }
+
         mavenCentral()
         google()
     }

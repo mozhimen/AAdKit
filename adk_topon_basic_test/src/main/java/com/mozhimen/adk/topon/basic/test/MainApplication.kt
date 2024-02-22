@@ -20,5 +20,8 @@ class MainApplication : BaseApplication() {
         super.onCreate()
 
         AdKTopOnBasicMgr.init(this, PlacementIdUtil.getAppId(), PlacementIdUtil.getAppKey())
+
+        //test
+//        ATDebuggerUITest.showDebuggerUI(this)
     }
 }

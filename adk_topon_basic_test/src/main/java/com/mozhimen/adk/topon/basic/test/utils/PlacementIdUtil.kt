@@ -38,6 +38,15 @@ object PlacementIdUtil : IUtilK {
         return placementInfoObject
     }
 
+    fun getListPlacementId(): String {
+        try {
+            val jsonObject = getPlacementJSONObject()
+            return jsonObject!!.getString("list_placement_id")
+        } catch (e: Throwable) {
+        }
+        return ""
+    }
+
     private fun getPlacementIdMap(placementIdJsonFileName: String, format: String): Map<String, String> {
         val result: MutableMap<String, String> = LinkedHashMap()
         var jsonObject: JSONObject? = null
@@ -66,7 +75,7 @@ object PlacementIdUtil : IUtilK {
         if (splashPlacements == null) {
             splashPlacements = getPlacementIdMap(placementIdJson, "splash")
         }
-        return splashPlacements ?: emptyMap()
+        return (splashPlacements ?: emptyMap()).also { Log.d(TAG, "getSplashPlacements: $it") }
     }
 
     @JvmStatic

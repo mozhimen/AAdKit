@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <application
+        android:name=".MainApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -17,6 +18,37 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".uis.SplashAdActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".uis.SplashAdShowActivity"
+            android:configChanges="orientation|screenSize"
+            android:exported="false"
+            android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen" />
+
+        <activity
+            android:name=".uis.NativeMainActivity"
+            android:configChanges="keyboardHidden|orientation|keyboard|smallestScreenSize|screenSize|screenLayout"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".uis.NativeAdActivity"
+            android:exported="false"
+            android:label="Native" />
+        <activity
+            android:name=".uis.NativeListActivity"
+            android:configChanges="keyboardHidden|orientation|keyboard|smallestScreenSize|screenSize|screenLayout"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Holo.NoActionBar" />
+
+        <activity
+            android:name=".uis.BannerAdActivity"
+            android:exported="false"
+            android:label="Banner" />
     </application>
 
 </manifest>

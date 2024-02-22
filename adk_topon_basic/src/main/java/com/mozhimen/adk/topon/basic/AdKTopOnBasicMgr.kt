@@ -5,7 +5,6 @@ import android.util.Log
 import com.anythink.core.api.ATSDK
 import com.mozhimen.basick.lintk.optins.OApiInit_InApplication
 import com.mozhimen.basick.utilk.android.app.UtilKRunningAppProcessInfo
-import com.mozhimen.adk.topon.basic.BuildConfig
 import com.mozhimen.basick.utilk.bases.IUtilK
 import com.mozhimen.webk.basic.WebKMgr
 
@@ -25,11 +24,12 @@ object AdKTopOnBasicMgr : IUtilK {
             Log.e(TAG, "init: fail")
             return
         }
+        Log.d(TAG, "init: topOnAppId $topOnAppId topOnAppKey $topOnAppKey")
 
         WebKMgr.init(context)
 
         if (UtilKRunningAppProcessInfo.isMainProcess(context)) {
-            ATSDK.setNetworkLogDebug(BuildConfig.DEBUG)
+            ATSDK.setNetworkLogDebug(true)
             ATSDK.integrationChecking(context)
 
 //        国内隐私政策

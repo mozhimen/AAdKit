@@ -20,15 +20,17 @@ import com.mozhimen.adk.topon.basic.test.annors.AnnotationAdType
 import com.mozhimen.adk.topon.basic.test.mos.CommonViewBean
 import com.mozhimen.adk.topon.basic.test.utils.PlacementIdUtil
 import com.mozhimen.basick.utilk.android.widget.applyPrintLog
+import com.mozhimen.basick.utilk.bases.IUtilK
 import com.mozhimen.uicorek.bark.title.BarKTitle
 import java.lang.ref.WeakReference
 
-abstract class BaseActivity : Activity() {
+abstract class BaseActivity : Activity(), IUtilK {
     protected var mCurrentPlacementName: String? = null
     protected var mCurrentPlacementId: String? = null
     private var mPlacementIdMap: Map<String, String>? = null
     private var mCommonViewBean: CommonViewBean? = null
     protected var mTVShowLog: TextView? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         requestWindowFeature(Window.FEATURE_NO_TITLE)
@@ -44,11 +46,13 @@ abstract class BaseActivity : Activity() {
     protected abstract val adType: Int
 
     protected abstract fun onSelectPlacementId(placementId: String?)
-    protected fun initView() {
-        initViewWithCommonView(commonViewBean)
+
+    @CallSuper
+    protected open fun initView() {
+        initViewWithCommonView(getCommonViewBean())
     }
 
-    protected fun initListener() {}
+    protected open fun initListener() {}
 
     @CallSuper
     protected fun initData() {
@@ -58,8 +62,9 @@ abstract class BaseActivity : Activity() {
         }
     }
 
-    protected val commonViewBean: CommonViewBean?
-        protected get() = null
+    protected open fun getCommonViewBean(): CommonViewBean? {
+        return null
+    }
 
     private fun setTitleBar(titleBar: BarKTitle?, titleResId: Int) {
         if (titleBar != null && titleResId != 0) {
@@ -71,6 +76,7 @@ abstract class BaseActivity : Activity() {
     private fun initViewWithCommonView(commonViewBean: CommonViewBean?) {
         mCommonViewBean = commonViewBean
         if (commonViewBean != null) {
+            Log.d(TAG, "initViewWithCommonView: ")
             val titleBar: BarKTitle? = commonViewBean.getTitleBar()
             if (titleBar != null) {
                 setTitleBar(titleBar, commonViewBean.getTitleResId())
@@ -83,7 +89,7 @@ abstract class BaseActivity : Activity() {
         }
     }
 
-    protected val nativeAdType: String
+    protected open val nativeAdType: String
         protected get() = AAdNativeType.NATIVE_SELF_RENDER_TYPE
 
     private fun initPlacementIdMap(@AnnotationAdType adType: Int) {
@@ -100,6 +106,7 @@ abstract class BaseActivity : Activity() {
 
     protected fun initPlacementListAdapter(spinner: Spinner?) {
         if (spinner == null || mPlacementIdMap == null || mPlacementIdMap!!.size == 0) return
+        Log.d(TAG, "initPlacementListAdapter: mPlacementIdMap ${mPlacementIdMap!!.size}")
         val placementNameList: List<String> = ArrayList(mPlacementIdMap!!.keys)
         val adapter = ArrayAdapter(
             this, android.R.layout.simple_spinner_dropdown_item, placementNameList
@@ -158,6 +165,8 @@ abstract class BaseActivity : Activity() {
 
     companion object {
         private var mTVShowLogWR: WeakReference<TextView?>? = null
+
+        @JvmStatic
         protected fun printLogOnUI(msg: String?) {
             if (mTVShowLogWR == null || mTVShowLogWR!!.get() == null || TextUtils.isEmpty(msg)) return
             msg?.let { mTVShowLogWR!!.get()!!.applyPrintLog(it) }
