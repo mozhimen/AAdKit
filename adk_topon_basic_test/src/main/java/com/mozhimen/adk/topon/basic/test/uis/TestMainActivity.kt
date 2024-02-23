@@ -13,6 +13,7 @@ import android.widget.TextView
 import com.anythink.splashad.api.ATSplashEyeAdListener
 import com.mozhimen.adk.topon.basic.test.helpers.SplashEyeAdHolder
 import com.mozhimen.adk.topon.basic.test.helpers.SplashZoomOutManager
+import com.mozhimen.basick.utilk.bases.IUtilK
 
 /**
  * @ClassName TestMainActivity
@@ -22,7 +23,7 @@ import com.mozhimen.adk.topon.basic.test.helpers.SplashZoomOutManager
  * @Version 1.0
  */
 
-class TestMainActivity : Activity() {
+class TestMainActivity : Activity(), IUtilK {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val rootLayout = getRootLayout()
@@ -77,10 +78,6 @@ class TestMainActivity : Activity() {
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
         showSplashEyeAd()
-    }
-
-    companion object {
-        val TAG = TestMainActivity::class.java.getSimpleName()
     }
 }
 

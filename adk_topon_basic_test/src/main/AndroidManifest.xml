@@ -49,6 +49,11 @@
             android:name=".uis.BannerAdActivity"
             android:exported="false"
             android:label="Banner" />
+
+        <activity
+            android:name=".uis.RewardVideoAdActivity"
+            android:exported="false"
+            android:label="RewardedVideo" />
     </application>
 
 </manifest>

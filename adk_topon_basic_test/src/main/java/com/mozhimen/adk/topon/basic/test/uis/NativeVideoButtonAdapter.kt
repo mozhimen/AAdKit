@@ -16,7 +16,6 @@ import com.mozhimen.adk.topon.basic.test.R
  */
 
 class NativeVideoButtonAdapter(data: MutableList<String>?, callback: OnNativeVideoButtonCallback?) : RecyclerView.Adapter<RecyclerView.ViewHolder?>() {
-    private val TAG = NativeVideoButtonAdapter::class.java.getSimpleName()
     private val mData: MutableList<String>?
     private val mOnNativeVideoButtonCallback: OnNativeVideoButtonCallback?
 

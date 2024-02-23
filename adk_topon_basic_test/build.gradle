@@ -17,9 +17,17 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
-
+    signingConfigs{
+        signingConfig{
+            keyAlias 'mozhimen.keystore'
+            keyPassword 'android'
+            storeFile file('../mozhimen.keystore')
+            storePassword 'android'
+        }
+    }
     buildTypes {
         release {
+            signingConfig signingConfigs.signingConfig
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
@@ -40,6 +48,7 @@ dependencies {
     implementation project(':AUICoreKit:bark_title')
     implementation project(':SwiftKit:basick')
     implementation project(':adk_topon_basic')
+    implementation project(':ADebugKit:debugk_leakcanary')
 
     // Debugger UI Tools
 //    implementation 'com.anythink.sdk:debugger-ui:1.0.3'

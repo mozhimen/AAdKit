@@ -1,31 +1,35 @@
 package com.mozhimen.adk.topon.basic.test.bases
 
-import android.app.Activity
+import android.R
 import android.os.Bundle
 import android.text.TextUtils
 import android.text.method.ScrollingMovementMethod
 import android.util.Log
 import android.view.View
-import android.view.Window
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.TextView
 import androidx.annotation.CallSuper
-import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.ViewDataBinding
 import com.anythink.core.api.ATAdConst
-import com.anythink.core.api.ATAdInfo
-import com.anythink.core.api.ATAdSourceStatusListener
 import com.mozhimen.adk.topon.basic.test.annors.AAdNativeType
 import com.mozhimen.adk.topon.basic.test.annors.AnnotationAdType
 import com.mozhimen.adk.topon.basic.test.mos.CommonViewBean
 import com.mozhimen.adk.topon.basic.test.utils.PlacementIdUtil
+import com.mozhimen.basick.elemk.androidx.appcompat.bases.databinding.BaseActivityVB
 import com.mozhimen.basick.utilk.android.widget.applyPrintLog
-import com.mozhimen.basick.utilk.bases.IUtilK
 import com.mozhimen.uicorek.bark.title.BarKTitle
 import java.lang.ref.WeakReference
 
-abstract class BaseActivity : AppCompatActivity(), IUtilK {
+/**
+ * @ClassName BaseActivityVB
+ * @Description TODO
+ * @Author Mozhimen & Kolin Zhao
+ * @Date 2024/2/23
+ * @Version 1.0
+ */
+abstract class BaseActivityVB<VB : ViewDataBinding> : BaseActivityVB<VB>() {
     companion object {
         private var mTVShowLogWR: WeakReference<TextView?>? = null
 
@@ -54,42 +58,50 @@ abstract class BaseActivity : AppCompatActivity(), IUtilK {
     /////////////////////////////////////////////////////////////////
 
     @CallSuper
-    protected open fun initView() {
+    override fun initView(savedInstanceState: Bundle?) {
         initViewWithCommonView(getCommonViewBean())
-    }
-
-    protected open fun initListener() {}
-
-    @CallSuper
-    protected fun initData() {
         initPlacementIdMap(adType)
         if (mCommonViewBean != null) {
             initPlacementListAdapter(mCommonViewBean!!.getSpinnerSelectPlacement())
         }
     }
 
-    protected open fun getCommonViewBean(): CommonViewBean? {
-        return null
-    }
+    /////////////////////////////////////////////////////////////////
 
     protected open val nativeAdType: String
         protected get() = AAdNativeType.NATIVE_SELF_RENDER_TYPE
 
-    ////////////////////////////////////////////////////////////////////
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        requestWindowFeature(Window.FEATURE_NO_TITLE)
-        setContentView(contentViewId)
-        initView()
-        initListener()
-        initData()
+    protected open fun getCommonViewBean(): CommonViewBean? {
+        return null
     }
 
-    ////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////
 
-    private var mPlacementIdMap: Map<String, String>? = null
     private var mCommonViewBean: CommonViewBean? = null
+    private var mPlacementIdMap: Map<String, String>? = null
+
+    private fun initPlacementListAdapter(spinner: Spinner?) {
+        if (spinner == null || mPlacementIdMap == null || mPlacementIdMap!!.size == 0) return
+        Log.d(TAG, "initPlacementListAdapter: mPlacementIdMap ${mPlacementIdMap!!.size}")
+        val placementNameList: List<String> = ArrayList(mPlacementIdMap!!.keys)
+        val adapter = ArrayAdapter(
+            this, R.layout.simple_spinner_dropdown_item, placementNameList
+        )
+        spinner.setAdapter(adapter)
+        spinner.onItemSelectedListener = PlacementSelectListenerImpl()
+    }
+
+    private fun initPlacementIdMap(@AnnotationAdType adType: Int) {
+        when (adType) {
+            ATAdConst.ATMixedFormatAdType.SPLASH -> mPlacementIdMap = PlacementIdUtil.getSplashPlacements()
+            ATAdConst.ATMixedFormatAdType.NATIVE -> mPlacementIdMap =
+                if (nativeAdType == AAdNativeType.NATIVE_SELF_RENDER_TYPE) PlacementIdUtil.getNativeSelfrenderPlacements() else PlacementIdUtil.getNativeExpressPlacements()
+
+            ATAdConst.ATMixedFormatAdType.BANNER -> mPlacementIdMap = PlacementIdUtil.getBannerPlacements()
+            ATAdConst.ATMixedFormatAdType.INTERSTITIAL -> mPlacementIdMap = PlacementIdUtil.getInterstitialPlacements()
+            ATAdConst.ATMixedFormatAdType.REWARDED_VIDEO -> mPlacementIdMap = PlacementIdUtil.getRewardedVideoPlacements()
+        }
+    }
 
     private fun setTitleBar(titleBar: BarKTitle?, titleResId: Int) {
         if (titleBar != null && titleResId != 0) {
@@ -112,29 +124,6 @@ abstract class BaseActivity : AppCompatActivity(), IUtilK {
                 mTVShowLog!!.movementMethod = ScrollingMovementMethod.getInstance()
             }
         }
-    }
-
-    private fun initPlacementIdMap(@AnnotationAdType adType: Int) {
-        when (adType) {
-            ATAdConst.ATMixedFormatAdType.SPLASH -> mPlacementIdMap = PlacementIdUtil.getSplashPlacements()
-            ATAdConst.ATMixedFormatAdType.NATIVE -> mPlacementIdMap =
-                if (nativeAdType == AAdNativeType.NATIVE_SELF_RENDER_TYPE) PlacementIdUtil.getNativeSelfrenderPlacements() else PlacementIdUtil.getNativeExpressPlacements()
-
-            ATAdConst.ATMixedFormatAdType.BANNER -> mPlacementIdMap = PlacementIdUtil.getBannerPlacements()
-            ATAdConst.ATMixedFormatAdType.INTERSTITIAL -> mPlacementIdMap = PlacementIdUtil.getInterstitialPlacements()
-            ATAdConst.ATMixedFormatAdType.REWARDED_VIDEO -> mPlacementIdMap = PlacementIdUtil.getRewardedVideoPlacements()
-        }
-    }
-
-    private fun initPlacementListAdapter(spinner: Spinner?) {
-        if (spinner == null || mPlacementIdMap == null || mPlacementIdMap!!.size == 0) return
-        Log.d(TAG, "initPlacementListAdapter: mPlacementIdMap ${mPlacementIdMap!!.size}")
-        val placementNameList: List<String> = ArrayList(mPlacementIdMap!!.keys)
-        val adapter = ArrayAdapter(
-            this, android.R.layout.simple_spinner_dropdown_item, placementNameList
-        )
-        spinner.setAdapter(adapter)
-        spinner.onItemSelectedListener = PlacementSelectListenerImpl()
     }
 
     private inner class PlacementSelectListenerImpl : AdapterView.OnItemSelectedListener {

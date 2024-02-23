@@ -15,7 +15,8 @@ import com.anythink.nativead.api.ATNativePrepareExInfo
 import com.anythink.nativead.api.ATNativePrepareInfo
 import com.anythink.nativead.unitgroup.api.CustomNativeAd
 import com.mozhimen.adk.topon.basic.test.R
-import com.mozhimen.adk.topon.basic.test.widgets.MutiImageView
+import com.mozhimen.adk.topon.basic.widgets.LayoutKATImageGroup
+import com.mozhimen.basick.utilk.bases.IUtilK
 
 /**
  * @ClassName SelfRenderViewUtil
@@ -25,8 +26,8 @@ import com.mozhimen.adk.topon.basic.test.widgets.MutiImageView
  * @Version 1.0
  */
 
-object SelfRenderViewUtil {
-    private val TAG = SelfRenderViewUtil::class.java.getSimpleName()
+object SelfRenderViewUtil : IUtilK {
+    @JvmStatic
     fun bindSelfRenderView(context: Context, adMaterial: ATNativeMaterial, selfRenderView: View, nativePrepareInfo: ATNativePrepareInfo?) {
         var nativePrepareInfo = nativePrepareInfo
         printNativeAdMaterial(adMaterial)
@@ -181,11 +182,11 @@ object SelfRenderViewUtil {
             clickViewList.add(mediaView)
             contentArea.visibility = View.VISIBLE
         } else if (imageList != null && imageList.size > 1) {
-            val mutiImageView = MutiImageView(context)
-            mutiImageView.setImageList(imageList, mainImageWidth, mainImageHeight)
-            nativePrepareInfo.mainImageView = mutiImageView //bind main image
-            contentArea.addView(mutiImageView, FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT))
-            clickViewList.add(mutiImageView)
+            val layoutKATImageGroup = LayoutKATImageGroup(context)
+            layoutKATImageGroup.applyATImageGroup(imageList, mainImageWidth, mainImageHeight)
+            nativePrepareInfo.mainImageView = layoutKATImageGroup //bind main image
+            contentArea.addView(layoutKATImageGroup, FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT))
+            clickViewList.add(layoutKATImageGroup)
         } else if (!TextUtils.isEmpty(adMaterial.mainImageUrl)) {
             val imageView = ATNativeImageView(context)
             imageView.setImage(adMaterial.mainImageUrl)

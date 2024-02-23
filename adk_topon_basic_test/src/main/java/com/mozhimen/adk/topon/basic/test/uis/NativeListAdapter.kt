@@ -24,6 +24,7 @@ import com.mozhimen.adk.topon.basic.test.R
 import com.mozhimen.adk.topon.basic.test.mos.RecycleViewDataBean
 import com.mozhimen.adk.topon.basic.test.utils.SelfRenderViewUtil
 import com.mozhimen.basick.utilk.android.util.dp2px
+import com.mozhimen.basick.utilk.bases.IUtilK
 import java.util.concurrent.ConcurrentHashMap
 
 /**
@@ -34,8 +35,7 @@ import java.util.concurrent.ConcurrentHashMap
  * @Version 1.0
  */
 
-class NativeListAdapter(data: MutableList<RecycleViewDataBean>, onNativeListCallback: OnNativeListCallback?) : RecyclerView.Adapter<RecyclerView.ViewHolder?>() {
-    private val TAG = NativeListAdapter::class.java.getSimpleName()
+class NativeListAdapter(data: MutableList<RecycleViewDataBean>, onNativeListCallback: OnNativeListCallback?) : RecyclerView.Adapter<RecyclerView.ViewHolder?>(), IUtilK {
     private var mData: MutableList<RecycleViewDataBean>?
     val limitAdSize = 20
     private val mNativeAdBeanList: MutableList<RecycleViewDataBean>

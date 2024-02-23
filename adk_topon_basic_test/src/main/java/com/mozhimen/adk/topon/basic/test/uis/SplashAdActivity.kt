@@ -14,6 +14,7 @@ import com.anythink.core.api.AdError
 import com.anythink.splashad.api.ATSplashAd
 import com.anythink.splashad.api.ATSplashAdExtraInfo
 import com.anythink.splashad.api.ATSplashExListener
+import com.mozhimen.adk.topon.basic.bases.BaseATAdSourceStatusCallback
 import com.mozhimen.adk.topon.basic.test.R
 import com.mozhimen.adk.topon.basic.test.bases.BaseActivity
 import com.mozhimen.adk.topon.basic.test.cons.AdConst
@@ -89,7 +90,7 @@ class SplashAdActivity : BaseActivity(), View.OnClickListener, IUtilK {
         mSplashAd = ATSplashAd(this, placementId, ATSplashExListenerImpl(), 5000, defaultConfig)
         val localMap: Map<String, Any> = HashMap()
         mSplashAd!!.setLocalExtra(localMap)
-        mSplashAd!!.setAdSourceStatusListener(ATAdSourceStatusListenerImpl())
+        mSplashAd!!.setAdSourceStatusListener(BaseATAdSourceStatusCallback())
     }
 
     private fun loadAd() {

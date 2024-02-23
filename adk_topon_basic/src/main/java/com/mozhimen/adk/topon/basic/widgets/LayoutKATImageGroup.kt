@@ -1,4 +1,4 @@
-package com.mozhimen.adk.topon.basic.test.widgets
+package com.mozhimen.adk.topon.basic.widgets
 
 import android.content.Context
 import android.view.ViewGroup
@@ -14,7 +14,7 @@ import com.mozhimen.basick.utilk.android.util.dp2px
  * @Version 1.0
  */
 
-class MutiImageView(context: Context?) : LinearLayout(context) {
+class LayoutKATImageGroup(context: Context?) : LinearLayout(context) {
     var padding: Int
 
     init {
@@ -23,7 +23,7 @@ class MutiImageView(context: Context?) : LinearLayout(context) {
         //        setPadding(padding, padding, padding, padding);
     }
 
-    fun setImageList(imageList: List<String?>, imageWidth: Int, imageHeight: Int) {
+    fun applyATImageGroup(imageList: List<String?>, imageWidth: Int, imageHeight: Int) {
         removeAllViews()
         val size = imageList.size
         for (url in imageList) {

@@ -1,4 +1,4 @@
-package com.mozhimen.adk.topon.basic.test.utils;
+package com.mozhimen.adk.topon.basic.utils;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -18,14 +18,14 @@ import com.anythink.core.api.IATAdvertiserInfoOperate;
 import com.anythink.core.api.IATThirdPartyMaterial;
 import com.anythink.nativead.api.ATNativeImageView;
 import com.anythink.nativead.unitgroup.api.CustomNativeAd;
-import com.mozhimen.adk.topon.basic.test.R;
-import com.mozhimen.adk.topon.basic.test.widgets.MutiImageView;
+import com.mozhimen.adk.topon.basic.R;
+import com.mozhimen.adk.topon.basic.widgets.LayoutKATImageGroup;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MediationNativeAdUtil {
-    private static final String TAG = MediationNativeAdUtil.class.getSimpleName();
+    private static final String TAG = MediationNativeAdUtil.class.getSimpleName()+">>>>>";
 
     public static View getViewFromNativeAd(Context context, ATNativeAdInfo mixNativeAd, ATAdInfo atAdInfo, boolean isInterstitialAd) {
         if (mixNativeAd == null || atAdInfo == null) {
@@ -194,8 +194,8 @@ public class MediationNativeAdUtil {
             clickViewList.add(mediaView);
             contentArea.setVisibility(View.VISIBLE);
         } else if (imageList != null && imageList.size() > 1) {
-            MutiImageView mutiImageView = new MutiImageView(context);
-            mutiImageView.setImageList(imageList, mainImageWidth, mainImageHeight);
+            LayoutKATImageGroup mutiImageView = new LayoutKATImageGroup(context);
+            mutiImageView.applyATImageGroup(imageList, mainImageWidth, mainImageHeight);
             nativePrepareInfo.setMainImageView(mutiImageView);//bind main image
             contentArea.addView(mutiImageView, new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
             clickViewList.add(mutiImageView);

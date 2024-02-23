@@ -19,7 +19,7 @@ import com.mozhimen.webk.basic.WebKMgr
 object AdKTopOnBasicMgr : IUtilK {
     @JvmStatic
     @OApiInit_InApplication
-    fun init(context: Context, topOnAppId: String, topOnAppKey: String) {
+    fun init(context: Context, topOnAppId: String, topOnAppKey: String, isDebug: Boolean = true) {
         if (topOnAppId.isEmpty() || topOnAppKey.isEmpty()) {
             Log.e(TAG, "init: fail")
             return
@@ -29,8 +29,10 @@ object AdKTopOnBasicMgr : IUtilK {
         WebKMgr.init(context)
 
         if (UtilKRunningAppProcessInfo.isMainProcess(context)) {
-            ATSDK.setNetworkLogDebug(true)
-            ATSDK.integrationChecking(context)
+            if (isDebug) {
+                ATSDK.setNetworkLogDebug(true)
+                ATSDK.integrationChecking(context)
+            }
 
 //        国内隐私政策
 //        ATSDK.deniedUploadDeviceInfo(

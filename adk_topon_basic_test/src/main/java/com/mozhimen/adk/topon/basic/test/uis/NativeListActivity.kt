@@ -12,6 +12,7 @@ import com.anythink.nativead.api.ATNativeNetworkListener
 import com.mozhimen.adk.topon.basic.test.R
 import com.mozhimen.adk.topon.basic.test.mos.RecycleViewDataBean
 import com.mozhimen.adk.topon.basic.test.utils.PlacementIdUtil
+import com.mozhimen.basick.utilk.bases.IUtilK
 
 /**
  * @ClassName NativeListActivity
@@ -21,7 +22,7 @@ import com.mozhimen.adk.topon.basic.test.utils.PlacementIdUtil
  * @Version 1.0
  */
 
-class NativeListActivity : Activity() {
+class NativeListActivity : Activity(), IUtilK {
     private var dataRecycleView: RecyclerView? = null
     private var mAdapter: NativeListAdapter? = null
     private var mPage = -1
@@ -127,10 +128,6 @@ class NativeListActivity : Activity() {
         //load ad
         mATNative!!.makeAdRequest()
         Log.i(TAG, "native ad start to load ad------------- ")
-    }
-
-    companion object {
-        val TAG = NativeListActivity::class.java.getSimpleName()
     }
 }
 

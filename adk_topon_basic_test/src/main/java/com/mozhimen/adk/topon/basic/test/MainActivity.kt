@@ -8,7 +8,9 @@ import android.view.View
 import com.anythink.core.api.ATSDK
 import com.mozhimen.adk.topon.basic.test.databinding.ActivityMainBinding
 import com.mozhimen.adk.topon.basic.test.uis.BannerAdActivity
+import com.mozhimen.adk.topon.basic.test.uis.InterstitialAdActivity
 import com.mozhimen.adk.topon.basic.test.uis.NativeMainActivity
+import com.mozhimen.adk.topon.basic.test.uis.RewardVideoAdActivity
 import com.mozhimen.adk.topon.basic.test.uis.SplashAdActivity
 import com.mozhimen.adk.topon.basic.test.utils.PlacementIdUtil
 import com.mozhimen.basick.elemk.androidx.appcompat.bases.databinding.BaseActivityVB
@@ -55,9 +57,9 @@ class MainActivity : BaseActivityVB<ActivityMainBinding>(), View.OnClickListener
         when (v.id) {
             R.id.nativeBtn -> adPageClass = NativeMainActivity::class.java
             R.id.splashBtn -> adPageClass = SplashAdActivity::class.java
-//            R.id.interstitialBtn -> adPageClass = InterstitialAdActivity::class.java
+            R.id.interstitialBtn -> adPageClass = InterstitialAdActivity::class.java
             R.id.bannerBtn -> adPageClass = BannerAdActivity::class.java
-//            R.id.rewardedVideoBtn -> adPageClass = RewardVideoAdActivity::class.java
+            R.id.rewardedVideoBtn -> adPageClass = RewardVideoAdActivity::class.java
         }
         adPageClass?.let { startContext(it) }
     }

@@ -21,6 +21,7 @@ import com.anythink.nativead.api.ATNativePrepareInfo
 import com.anythink.nativead.api.ATNativeView
 import com.anythink.nativead.api.NativeAd
 import com.anythink.nativead.unitgroup.api.CustomNativeAd
+import com.mozhimen.adk.topon.basic.bases.BaseATAdSourceStatusCallback
 import com.mozhimen.adk.topon.basic.test.R
 import com.mozhimen.adk.topon.basic.test.annors.AAdNativeType
 import com.mozhimen.adk.topon.basic.test.bases.BaseActivity
@@ -141,7 +142,7 @@ class NativeAdActivity : BaseActivity(), View.OnClickListener {
                 printLogOnUI("load fail...：" + adError.fullErrorInfo)
             }
         })
-        mATNative!!.setAdSourceStatusListener(ATAdSourceStatusListenerImpl())
+        mATNative!!.setAdSourceStatusListener(BaseATAdSourceStatusCallback())
     }
 
     private fun loadAd(adViewWidth: Int, adViewHeight: Int) {
@@ -329,7 +330,6 @@ class NativeAdActivity : BaseActivity(), View.OnClickListener {
     }
 
     companion object {
-        private val TAG = NativeAdActivity::class.java.getSimpleName()
         const val NATIVE_SELF_RENDER_TYPE = "1"
         const val NATIVE_EXPRESS_TYPE = "2"
     }
