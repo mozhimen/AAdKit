@@ -10,6 +10,7 @@ import com.anythink.banner.api.ATBannerView
 import com.anythink.core.api.ATAdConst
 import com.anythink.core.api.ATAdSourceStatusListener
 import com.mozhimen.basick.elemk.androidx.lifecycle.bases.BaseWakeBefDestroyLifecycleObserver
+import com.mozhimen.basick.elemk.commons.I_Listener
 import com.mozhimen.basick.lintk.optins.OApiCall_BindLifecycle
 import com.mozhimen.basick.lintk.optins.OApiCall_BindViewLifecycle
 import com.mozhimen.basick.lintk.optins.OApiInit_ByLazy
@@ -27,37 +28,44 @@ import com.mozhimen.basick.utilk.android.view.applyVisible
 @OApiCall_BindViewLifecycle
 @OApiCall_BindLifecycle
 @OApiInit_ByLazy
-class BannerAdProxy(private var _activity: Context?, private val _owner: LifecycleOwner) : BaseWakeBefDestroyLifecycleObserver() {
+class BannerAdProxy : BaseWakeBefDestroyLifecycleObserver() {
     private var mBannerView: ATBannerView? = null
+    private var _onInitBanner: I_Listener? = null
 
     ///////////////////////////////////////////////////////////////////////
 
+    fun setOnInitListener(listener: I_Listener) {
+        _onInitBanner = listener
+    }
+
     fun initBanner(placementId: String, scenarioId: String) {
-        mBannerView!!.setPlacementId(placementId)
+        mBannerView?.setPlacementId(placementId)
         ATBannerView.entryAdScenario(placementId, scenarioId)
     }
 
-    fun initBannerView(atBannerExListener: ATBannerExListener, adSourceStatusListener: ATAdSourceStatusListener) {
-        mBannerView = ATBannerView(_activity)
+    fun initBannerView(context: Context, atBannerExListener: ATBannerExListener, adSourceStatusListener: ATAdSourceStatusListener) {
+        mBannerView = ATBannerView(context)
         //Loading and displaying ads should keep the container and BannerView visible all the time
-        mBannerView!!.applyVisible()
-        mBannerView!!.setBannerAdListener(atBannerExListener)
-        mBannerView!!.setAdSourceStatusListener(adSourceStatusListener)
+        mBannerView?.apply {
+            applyVisible()
+            setBannerAdListener(atBannerExListener)
+            setAdSourceStatusListener(adSourceStatusListener)
+        }
     }
 
     fun loadBannerAd(container: ViewGroup) {
         //Loading and displaying ads should keep the container and BannerView visible all the time
-        mBannerView!!.applyVisible()
+        mBannerView?.applyVisible()
         container.applyVisible()
         val padding = 12f.dp2px.toInt()
         val localMap: MutableMap<String, Any> = HashMap()
         localMap[ATAdConst.KEY.AD_WIDTH] = UtilKDisplayMetrics.getSysWidthPixels() - 2 * padding
         localMap[ATAdConst.KEY.AD_HEIGHT] = 50f.dp2px.toInt()
-        mBannerView!!.setLocalExtra(localMap)
+        mBannerView?.setLocalExtra(localMap)
 
         //横幅广告使用原生自渲染广告，只需要在发起请求时额外设置setNativeAdCustomRender即可，请求、展示广告流程同横幅广告接入流程相同。
 //        mBannerView!!.setNativeAdCustomRender { mixNativeAd, atAdInfo -> MediationNativeAdUtil.getViewFromNativeAd(_activity, mixNativeAd, atAdInfo, false) }
-        mBannerView!!.loadAd()
+        mBannerView?.loadAd()
     }
 
     fun addBannerViewToContainer(container: ViewGroup) {
@@ -68,11 +76,14 @@ class BannerAdProxy(private var _activity: Context?, private val _owner: Lifecyc
 
     ///////////////////////////////////////////////////////////////////////
 
-    override fun onDestroy(owner: LifecycleOwner) {
+    override fun onStart(owner: LifecycleOwner) {
+        _onInitBanner?.invoke()
+    }
+
+    override fun onStop(owner: LifecycleOwner) {
         Log.d(TAG, "onDestroy: ")
         mBannerView?.destroy()
         mBannerView = null
-        _activity = null
-        super.onDestroy(owner)
+        _onInitBanner = null
     }
 }
