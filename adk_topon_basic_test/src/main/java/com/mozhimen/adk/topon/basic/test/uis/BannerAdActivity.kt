@@ -10,7 +10,7 @@ import com.anythink.core.api.ATAdInfo
 import com.anythink.core.api.AdError
 import com.mozhimen.adk.topon.basic.bases.BaseATAdSourceStatusCallback
 import com.mozhimen.adk.topon.basic.bases.BaseATBannerExCallback
-import com.mozhimen.adk.topon.basic.helpers.BannerAdProxy
+import com.mozhimen.adk.topon.basic.helpers.AdKTopOnBannerProxy
 import com.mozhimen.adk.topon.basic.test.R
 import com.mozhimen.adk.topon.basic.test.bases.BaseActivityVB
 import com.mozhimen.adk.topon.basic.test.databinding.ActivityBannerBinding
@@ -30,7 +30,7 @@ import com.mozhimen.basick.utilk.android.view.applyVisible
 @OptIn(OApiCall_BindViewLifecycle::class, OApiCall_BindLifecycle::class, OApiInit_ByLazy::class)
 class BannerAdActivity : BaseActivityVB<ActivityBannerBinding>() {
 
-    private val _bannerAdProxy by lazy { BannerAdProxy(this, this) }
+    private val _adKTopOnBannerProxy by lazy { AdKTopOnBannerProxy() }
     private val _atBannerExListener = object : BaseATBannerExCallback() {
         override fun onBannerLoaded() {
             super.onBannerLoaded()
@@ -78,7 +78,7 @@ class BannerAdActivity : BaseActivityVB<ActivityBannerBinding>() {
         get() = ATAdConst.ATMixedFormatAdType.BANNER
 
     override fun onSelectPlacementId(placementId: String?) {
-        _bannerAdProxy.apply {
+        _adKTopOnBannerProxy.apply {
             bindLifecycle(this@BannerAdActivity)
             placementId?.let { initBanner(placementId, "") }
         }
@@ -92,8 +92,8 @@ class BannerAdActivity : BaseActivityVB<ActivityBannerBinding>() {
         //Loading and displaying ads should keep the container and BannerView visible all the time
         vb.adviewContainer.applyVisible()
 
-        _bannerAdProxy.initBannerView(_atBannerExListener, BaseATAdSourceStatusCallback())
-        _bannerAdProxy.addBannerViewToContainer(vb.adviewContainer)
+        _adKTopOnBannerProxy.initBannerView(this, _atBannerExListener, BaseATAdSourceStatusCallback())
+        _adKTopOnBannerProxy.addBannerViewToContainer(vb.adviewContainer)
 
         if (mTVShowLog != null) {
             mTVShowLog!!.setOnTouchListener(OnTouchListener { view, motionEvent ->
@@ -108,7 +108,7 @@ class BannerAdActivity : BaseActivityVB<ActivityBannerBinding>() {
         }
         vb.bannerLoadAdBtn.setOnClickListener {
             printLogOnUI(getString(R.string.anythink_ad_status_loading))
-            _bannerAdProxy.loadBannerAd(vb.adviewContainer)
+            _adKTopOnBannerProxy.loadBannerAd(vb.adviewContainer)
         }
     }
 

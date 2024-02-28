@@ -6,17 +6,19 @@
   ~ https://github.com/toponteam/TopOn-Android-SDK/blob/master/LICENSE
   -->
 
-<merge xmlns:android="http://schemas.android.com/apk/res/android">
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <TextView
         android:id="@+id/tv_show_log"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/rl_include_select_network"
+        android:layout_below="@id/include_select_net"
         android:layout_above="@+id/load_ad_btn"
         android:layout_marginBottom="@dimen/anythink_12dp"
         android:scrollbars="vertical"
         android:fadeScrollbars="false"
+        tools:background="@color/black"
         android:padding="@dimen/anythink_10dp"
         android:layout_marginTop="@dimen/anythink_12dp"
         android:lineSpacingExtra="@dimen/anythink_padding_5dp"

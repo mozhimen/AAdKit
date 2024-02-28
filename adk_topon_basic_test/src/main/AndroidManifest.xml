@@ -44,7 +44,10 @@
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Holo.NoActionBar" />
-
+        <activity
+            android:name=".uis.InterstitialAdActivity"
+            android:exported="false"
+            android:label="Interstitial" />
         <activity
             android:name=".uis.BannerAdActivity"
             android:exported="false"

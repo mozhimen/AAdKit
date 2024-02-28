@@ -1,25 +1,27 @@
 package com.mozhimen.adk.topon.basic.test.uis
 
-import android.annotation.SuppressLint
 import android.content.Context
+import android.os.Bundle
 import android.util.Log
-import android.view.View
-import android.widget.CheckBox
-import android.widget.TextView
 import com.anythink.core.api.ATAdConst
 import com.anythink.core.api.ATAdInfo
 import com.anythink.core.api.ATNetworkConfirmInfo
 import com.anythink.core.api.AdError
-import com.anythink.interstitial.api.ATInterstitial
-import com.anythink.interstitial.api.ATInterstitialAutoAd
-import com.anythink.interstitial.api.ATInterstitialAutoEventListener
-import com.anythink.interstitial.api.ATInterstitialAutoLoadListener
-import com.anythink.interstitial.api.ATInterstitialExListener
 import com.mozhimen.adk.topon.basic.bases.BaseATAdSourceStatusCallback
+import com.mozhimen.adk.topon.basic.bases.BaseATInterstitialAutoEventCallback
+import com.mozhimen.adk.topon.basic.bases.BaseATInterstitialAutoLoadCallback
+import com.mozhimen.adk.topon.basic.bases.BaseATInterstitialExCallback
+import com.mozhimen.adk.topon.basic.helpers.AdKTopOnInterstitialProxy
 import com.mozhimen.adk.topon.basic.test.R
-import com.mozhimen.adk.topon.basic.test.bases.BaseActivity
-import com.mozhimen.adk.topon.basic.test.cons.AdConst
+import com.mozhimen.adk.topon.basic.test.bases.BaseActivityVB
 import com.mozhimen.adk.topon.basic.test.mos.CommonViewBean
+import com.mozhimen.basick.lintk.optins.OApiCall_BindLifecycle
+import com.mozhimen.basick.lintk.optins.OApiCall_BindViewLifecycle
+import com.mozhimen.basick.lintk.optins.OApiCall_ViewReady
+import com.mozhimen.basick.lintk.optins.OApiInit_ByLazy
+import com.mozhimen.basick.utilk.android.view.applyGone
+import com.mozhimen.basick.utilk.android.view.applyOnGlobalLayoutObserver
+import com.mozhimen.basick.utilk.android.view.applyVisible
 import com.mozhimen.basick.utilk.bases.IUtilK
 
 /**
@@ -29,28 +31,130 @@ import com.mozhimen.basick.utilk.bases.IUtilK
  * @Date 2024/2/23
  * @Version 1.0
  */
-
-class InterstitialAdActivity : BaseActivity(), View.OnClickListener,IUtilK {
-    private var mInterstitialAd: ATInterstitial? = null
-    private var mIsAutoLoad = false
-    private val mAutoLoadPlacementIdMap: MutableMap<String, Boolean> = HashMap()
-    private var mCBAutoLoad: CheckBox? = null
-    private var mTVLoadAdBtn: TextView? = null
-    private var mTVIsAdReadyBtn: TextView? = null
-    private var mTVShowAdBtn: TextView? = null
+@OptIn(OApiCall_BindViewLifecycle::class, OApiCall_BindLifecycle::class, OApiInit_ByLazy::class)
+class InterstitialAdActivity : BaseActivityVB<com.mozhimen.adk.topon.basic.test.databinding.ActivityInterstitialBinding>(), IUtilK {
 
     override val contentViewId: Int
         get() = R.layout.activity_interstitial
     override val adType: Int
         get() = ATAdConst.ATMixedFormatAdType.INTERSTITIAL
 
-    override fun onSelectPlacementId(placementId: String?) {
-        val isAutoLoad = java.lang.Boolean.TRUE == mAutoLoadPlacementIdMap[placementId]
-        if (mCBAutoLoad != null) {
-            mCBAutoLoad!!.setChecked(isAutoLoad)
+    private val atInterstitialAutoLoadCallback = object : BaseATInterstitialAutoLoadCallback() {
+        override fun onInterstitialAutoLoaded(placementId: String) {
+            super.onInterstitialAutoLoaded(placementId)
+            printLogOnUI("onInterstitialAutoLoaded PlacementId:$placementId: onInterstitialAutoLoaded")
         }
+
+        override fun onInterstitialAutoLoadFail(placementId: String, adError: AdError) {
+            super.onInterstitialAutoLoadFail(placementId, adError)
+            printLogOnUI("onInterstitialAutoLoadFail PlacementId:$placementId: onInterstitialAutoLoadFail:${adError.fullErrorInfo}")
+        }
+    }
+    private val atInterstitialAutoEventCallback = object : BaseATInterstitialAutoEventCallback() {
+        override fun onInterstitialAdClicked(adInfo: ATAdInfo) {
+            super.onInterstitialAdClicked(adInfo)
+            printLogOnUI("onInterstitialAdClicked:")
+        }
+
+        override fun onInterstitialAdShow(adInfo: ATAdInfo) {
+            super.onInterstitialAdShow(adInfo)
+            printLogOnUI("onInterstitialAdShow")
+        }
+
+        override fun onInterstitialAdClose(adInfo: ATAdInfo) {
+            super.onInterstitialAdClose(adInfo)
+            printLogOnUI("onInterstitialAdClose")
+        }
+
+        override fun onInterstitialAdVideoStart(adInfo: ATAdInfo) {
+            super.onInterstitialAdVideoStart(adInfo)
+            printLogOnUI("onInterstitialAdVideoStart")
+        }
+
+        override fun onInterstitialAdVideoEnd(adInfo: ATAdInfo) {
+            super.onInterstitialAdVideoEnd(adInfo)
+            printLogOnUI("onInterstitialAdVideoEnd")
+        }
+
+        override fun onInterstitialAdVideoError(adError: AdError) {
+            super.onInterstitialAdVideoError(adError)
+            printLogOnUI("onInterstitialAdVideoError:" + adError.fullErrorInfo)
+        }
+
+        override fun onDeeplinkCallback(adInfo: ATAdInfo, isSuccess: Boolean) {
+            super.onDeeplinkCallback(adInfo, isSuccess)
+            printLogOnUI("onDeeplinkCallback: isSuccess=$isSuccess")
+        }
+
+        override fun onDownloadConfirm(context: Context, adInfo: ATAdInfo, networkConfirmInfo: ATNetworkConfirmInfo) {
+            super.onDownloadConfirm(context, adInfo, networkConfirmInfo)
+            printLogOnUI("onDownloadConfirm")
+        }
+    }
+    private val atInterstitialExCallback = object : BaseATInterstitialExCallback() {
+        override fun onDeeplinkCallback(adInfo: ATAdInfo, isSuccess: Boolean) {
+            super.onDeeplinkCallback(adInfo, isSuccess)
+            printLogOnUI("onDeeplinkCallback")
+        }
+
+        override fun onDownloadConfirm(context: Context, adInfo: ATAdInfo, networkConfirmInfo: ATNetworkConfirmInfo) {
+            super.onDownloadConfirm(context, adInfo, networkConfirmInfo)
+            printLogOnUI("onDownloadConfirm")
+        }
+
+        override fun onInterstitialAdLoaded() {
+            super.onInterstitialAdLoaded()
+            printLogOnUI("onInterstitialAdLoaded")
+        }
+
+        override fun onInterstitialAdLoadFail(adError: AdError) {
+            super.onInterstitialAdLoadFail(adError)
+            printLogOnUI("onInterstitialAdLoadFail:" + adError.fullErrorInfo)
+        }
+
+        override fun onInterstitialAdClicked(entity: ATAdInfo) {
+            super.onInterstitialAdClicked(entity)
+            printLogOnUI("onInterstitialAdClicked")
+        }
+
+        override fun onInterstitialAdShow(entity: ATAdInfo) {
+            super.onInterstitialAdShow(entity)
+            printLogOnUI("onInterstitialAdShow")
+        }
+
+        override fun onInterstitialAdClose(entity: ATAdInfo) {
+            super.onInterstitialAdClose(entity)
+            printLogOnUI("onInterstitialAdClose")
+        }
+
+        override fun onInterstitialAdVideoStart(entity: ATAdInfo) {
+            super.onInterstitialAdVideoStart(entity)
+            printLogOnUI("onInterstitialAdVideoStart")
+        }
+
+        override fun onInterstitialAdVideoEnd(entity: ATAdInfo) {
+            super.onInterstitialAdVideoEnd(entity)
+            printLogOnUI("onInterstitialAdVideoEnd")
+        }
+
+        override fun onInterstitialAdVideoError(adError: AdError) {
+            super.onInterstitialAdVideoError(adError)
+            printLogOnUI("onInterstitialAdVideoError")
+        }
+    }
+    private val atAdSourceStatusListener = object : BaseATAdSourceStatusCallback() {}
+    private val _adkTopOnInterstitialProxy: AdKTopOnInterstitialProxy by lazy { AdKTopOnInterstitialProxy() }
+
+    @OptIn(OApiCall_ViewReady::class)
+    override fun onSelectPlacementId(placementId: String?) {
+        val isAutoLoad = placementId?.let { _adkTopOnInterstitialProxy.isAutoLoad(it) } ?: false
+        vb.includeSelectNet?.ckAutoLoad?.setChecked(isAutoLoad)
         if (placementId != null) {
-            initInterstitialAd(placementId)
+            _adkTopOnInterstitialProxy.apply {
+                initInterstitialAd(this@InterstitialAdActivity, placementId, "", atInterstitialExCallback, atAdSourceStatusListener, atInterstitialAutoEventCallback)
+                loadAd()
+                showAd(this@InterstitialAdActivity)
+            }
         }
     }
 
@@ -63,237 +167,63 @@ class InterstitialAdActivity : BaseActivity(), View.OnClickListener,IUtilK {
         return commonViewBean
     }
 
-    override fun initView() {
-        super.initView()
-        mTVLoadAdBtn = findViewById(R.id.load_ad_btn)
-        mTVIsAdReadyBtn = findViewById(R.id.is_ad_ready_btn)
-        mTVShowAdBtn = findViewById(R.id.show_ad_btn)
-        initAutoLoad()
-    }
+    ///////////////////////////////////////////////////////////////////////
 
-    override fun initListener() {
-        super.initListener()
-        mTVLoadAdBtn!!.setOnClickListener(this)
-        mTVIsAdReadyBtn!!.setOnClickListener(this)
-        mTVShowAdBtn!!.setOnClickListener(this)
-    }
+    @OptIn(OApiCall_ViewReady::class)
+    override fun initView(savedInstanceState: Bundle?) {
+        super.initView(savedInstanceState)
+        _adkTopOnInterstitialProxy.apply {
+            bindLifecycle(this@InterstitialAdActivity)
+            initAutoLoad(this@InterstitialAdActivity, atInterstitialAutoLoadCallback)
+        }
 
-    private fun initInterstitialAd(placementId: String) {
-        mInterstitialAd = ATInterstitial(this, placementId)
-        mInterstitialAd!!.setAdListener(object : ATInterstitialExListener {
-            override fun onDeeplinkCallback(adInfo: ATAdInfo, isSuccess: Boolean) {
-                Log.i(TAG, "onDeeplinkCallback:$adInfo--status:$isSuccess")
-                printLogOnUI("onDeeplinkCallback")
-            }
-
-            override fun onDownloadConfirm(context: Context, adInfo: ATAdInfo, networkConfirmInfo: ATNetworkConfirmInfo) {
-                Log.i(TAG, "onDownloadConfirm: adInfo=$adInfo")
-                printLogOnUI("onDownloadConfirm")
-            }
-
-            override fun onInterstitialAdLoaded() {
-                Log.i(TAG, "onInterstitialAdLoaded")
-                printLogOnUI("onInterstitialAdLoaded")
-            }
-
-            override fun onInterstitialAdLoadFail(adError: AdError) {
-                Log.i(
-                    TAG, """
-     onInterstitialAdLoadFail:
-     ${adError.fullErrorInfo}
-     """.trimIndent()
-                )
-                printLogOnUI("onInterstitialAdLoadFail:" + adError.fullErrorInfo)
-            }
-
-            override fun onInterstitialAdClicked(entity: ATAdInfo) {
-                Log.i(TAG, "onInterstitialAdClicked:\n$entity")
-                printLogOnUI("onInterstitialAdClicked")
-            }
-
-            override fun onInterstitialAdShow(entity: ATAdInfo) {
-                Log.i(TAG, "onInterstitialAdShow:\n$entity")
-                printLogOnUI("onInterstitialAdShow")
-            }
-
-            override fun onInterstitialAdClose(entity: ATAdInfo) {
-                Log.i(TAG, "onInterstitialAdClose:\n$entity")
-                printLogOnUI("onInterstitialAdClose")
-            }
-
-            override fun onInterstitialAdVideoStart(entity: ATAdInfo) {
-                Log.i(TAG, "onInterstitialAdVideoStart:\n$entity")
-                printLogOnUI("onInterstitialAdVideoStart")
-            }
-
-            override fun onInterstitialAdVideoEnd(entity: ATAdInfo) {
-                Log.i(TAG, "onInterstitialAdVideoEnd:\n$entity")
-                printLogOnUI("onInterstitialAdVideoEnd")
-            }
-
-            override fun onInterstitialAdVideoError(adError: AdError) {
-                Log.i(
-                    TAG, """
-     onInterstitialAdVideoError:
-     ${adError.fullErrorInfo}
-     """.trimIndent()
-                )
-                printLogOnUI("onInterstitialAdVideoError")
-            }
-        })
-        mInterstitialAd!!.setAdSourceStatusListener(BaseATAdSourceStatusCallback())
-    }
-
-    private fun initAutoLoad() {
-        ATInterstitialAutoAd.init(this, null, autoLoadListener)
-        mCBAutoLoad = findViewById(R.id.ck_auto_load)
-        mCBAutoLoad!!.visibility = View.VISIBLE
-        mCBAutoLoad!!.setOnCheckedChangeListener { buttonView, isChecked ->
-            if (isChecked) {
-                mIsAutoLoad = true
-                val curPlacementId: String = mCurrentPlacementId!!
-                mAutoLoadPlacementIdMap[curPlacementId] = true
-                ATInterstitialAutoAd.addPlacementId(curPlacementId)
-                mTVLoadAdBtn!!.visibility = View.GONE
-            } else {
-                mIsAutoLoad = false
-                val curPlacementId: String = mCurrentPlacementId!!
-                mAutoLoadPlacementIdMap[curPlacementId] = false
-                ATInterstitialAutoAd.removePlacementId(curPlacementId)
-                mTVLoadAdBtn!!.visibility = View.VISIBLE
+        vb.includeSelectNet?.ckAutoLoad?.apply {
+            applyVisible()
+            setOnCheckedChangeListener { buttonView, isChecked ->
+                if (isChecked) {
+                    val curPlacementId: String = mCurrentPlacementId!!
+                    _adkTopOnInterstitialProxy.isAutoLoad(curPlacementId, true)
+                    vb.includeBtn?.loadAdBtn?.applyGone()
+                } else {
+                    val curPlacementId: String = mCurrentPlacementId!!
+                    _adkTopOnInterstitialProxy.isAutoLoad(curPlacementId, false)
+                    vb.includeBtn?.loadAdBtn?.applyVisible()
+                }
             }
         }
-    }
 
-    private fun loadAd() {
-        if (mInterstitialAd == null) {
-            printLogOnUI("ATInterstitial is not init.")
-            return
+        vb.includeBtn?.loadAdBtn?.setOnClickListener {
+            if (!_adkTopOnInterstitialProxy.isInit()) {
+                printLogOnUI("ATInterstitial is not init.")
+                return@setOnClickListener
+            }
+            printLogOnUI(getString(R.string.anythink_ad_status_loading))
+            _adkTopOnInterstitialProxy.loadAd()
         }
-        printLogOnUI(getString(R.string.anythink_ad_status_loading))
-        val localMap: Map<String, Any> = HashMap()
 
-//        localMap.put(ATAdConst.KEY.AD_WIDTH, getResources().getDisplayMetrics().widthPixels);
-//        localMap.put(ATAdConst.KEY.AD_HEIGHT, getResources().getDisplayMetrics().heightPixels);
-        mInterstitialAd!!.setLocalExtra(localMap)
-        mInterstitialAd!!.load()
-    }
-
-    private fun isAdReady() {
-        if (mIsAutoLoad) {
-            printLogOnUI("interstitial auto load ad ready status:" + ATInterstitialAutoAd.isAdReady(mCurrentPlacementId))
-        } else {
+        vb.includeBtn?.isAdReadyBtn?.setOnClickListener {
+            mCurrentPlacementId?.let { placementId ->
+                if (_adkTopOnInterstitialProxy.isAutoLoad(placementId)) {
+                    printLogOnUI("interstitial auto load ad ready status:" + _adkTopOnInterstitialProxy.isAutoLoadReady(placementId))
+                } else {
 //         boolean isReady = mInterstitialAd.isAdReady();
-            val atAdStatusInfo = mInterstitialAd!!.checkAdStatus()
-            printLogOnUI("interstitial ad ready status:" + atAdStatusInfo.isReady)
-            val atAdInfoList = mInterstitialAd!!.checkValidAdCaches()
-            Log.i(TAG, "Valid Cahce size:" + (atAdInfoList?.size ?: 0))
-            if (atAdInfoList != null) {
-                for (adInfo in atAdInfoList) {
-                    Log.i(TAG, "\nCahce detail:$adInfo")
+                    val atAdStatusInfo = _adkTopOnInterstitialProxy.atInterstitial?.checkAdStatus()
+                    printLogOnUI("interstitial ad ready status:" + atAdStatusInfo?.isReady)
+                    val atAdInfoList = _adkTopOnInterstitialProxy.atInterstitial?.checkValidAdCaches()
+                    Log.i(TAG, "Valid Cahce size:" + (atAdInfoList?.size ?: 0))
+                    if (atAdInfoList != null) {
+                        for (adInfo in atAdInfoList) {
+                            Log.i(TAG, " Cahce detail:$adInfo")
+                        }
+                    }
                 }
             }
         }
-    }
 
-    private fun showAd() {
-        if (mIsAutoLoad) {
-//            ATInterstitialAutoAd.show(this, mCurrentPlacementId, autoEventListener);
-            ATInterstitialAutoAd.show(this, mCurrentPlacementId, AdConst.SCENARIO_ID.INTERSTITIAL_AD_SCENARIO, autoEventListener)
-        } else {
-//            mInterstitialAd.show(InterstitialAdActivity.this);
-            mInterstitialAd!!.show(this@InterstitialAdActivity, AdConst.SCENARIO_ID.INTERSTITIAL_AD_SCENARIO)
-        }
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        for ((key) in mAutoLoadPlacementIdMap) {
-            ATInterstitialAutoAd.removePlacementId(key)
-        }
-        if (mInterstitialAd != null) {
-            mInterstitialAd!!.setAdSourceStatusListener(null)
-            mInterstitialAd!!.setAdDownloadListener(null)
-            mInterstitialAd!!.setAdListener(null)
-        }
-    }
-
-    @SuppressLint("NonConstantResourceId")
-    override fun onClick(v: View?) {
-        if (v == null) return
-        when (v.id) {
-            R.id.load_ad_btn -> loadAd()
-            R.id.is_ad_ready_btn -> isAdReady()
-            R.id.show_ad_btn -> {
-                ATInterstitial.entryAdScenario(mCurrentPlacementId, AdConst.SCENARIO_ID.INTERSTITIAL_AD_SCENARIO)
-                if (mInterstitialAd!!.isAdReady) {
-                    showAd()
-                }
+        vb.includeBtn?.showAdBtn?.setOnClickListener {
+            mCurrentPlacementId?.let { placementId ->
+                _adkTopOnInterstitialProxy.showAd(this)
             }
-        }
-    }
-
-
-    private val autoLoadListener: ATInterstitialAutoLoadListener = object : ATInterstitialAutoLoadListener {
-        override fun onInterstitialAutoLoaded(placementId: String) {
-            Log.i(TAG, "PlacementId:$placementId: onInterstitialAutoLoaded")
-            printLogOnUI("PlacementId:$placementId: onInterstitialAutoLoaded")
-        }
-
-        override fun onInterstitialAutoLoadFail(placementId: String, adError: AdError) {
-            Log.i(
-                TAG, """
-     PlacementId:$placementId: onInterstitialAutoLoadFail:
-     ${adError.fullErrorInfo}
-     """.trimIndent()
-            )
-            printLogOnUI(
-                """
-                        PlacementId:$placementId: onInterstitialAutoLoadFail:
-                        ${adError.fullErrorInfo}
-                        """.trimIndent()
-            )
-        }
-    }
-    private val autoEventListener: ATInterstitialAutoEventListener = object : ATInterstitialAutoEventListener() {
-        override fun onInterstitialAdClicked(adInfo: ATAdInfo) {
-            Log.i(TAG, "onInterstitialAdClicked:$adInfo")
-            printLogOnUI("onInterstitialAdClicked:")
-        }
-
-        override fun onInterstitialAdShow(adInfo: ATAdInfo) {
-            Log.i(TAG, "onInterstitialAdShow:$adInfo")
-            printLogOnUI("onInterstitialAdShow")
-        }
-
-        override fun onInterstitialAdClose(adInfo: ATAdInfo) {
-            Log.i(TAG, "onInterstitialAdClose:$adInfo")
-            printLogOnUI("onInterstitialAdClose")
-        }
-
-        override fun onInterstitialAdVideoStart(adInfo: ATAdInfo) {
-            Log.i(TAG, "onInterstitialAdVideoStart:$adInfo")
-            printLogOnUI("onInterstitialAdVideoStart")
-        }
-
-        override fun onInterstitialAdVideoEnd(adInfo: ATAdInfo) {
-            Log.i(TAG, "onInterstitialAdVideoEnd:$adInfo")
-            printLogOnUI("onInterstitialAdVideoEnd")
-        }
-
-        override fun onInterstitialAdVideoError(adError: AdError) {
-            Log.i(TAG, "onInterstitialAdVideoError:" + adError.fullErrorInfo)
-            printLogOnUI("onInterstitialAdVideoError:" + adError.fullErrorInfo)
-        }
-
-        override fun onDeeplinkCallback(adInfo: ATAdInfo, isSuccess: Boolean) {
-            Log.i(TAG, "onDeeplinkCallback:\n$adInfo| isSuccess:$isSuccess")
-            printLogOnUI("onDeeplinkCallback: isSuccess=$isSuccess")
-        }
-
-        override fun onDownloadConfirm(context: Context, adInfo: ATAdInfo, networkConfirmInfo: ATNetworkConfirmInfo) {
-            Log.i(TAG, "onDownloadConfirm:\n$adInfo")
-            printLogOnUI("onDownloadConfirm")
         }
     }
 }

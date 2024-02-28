@@ -60,6 +60,10 @@ abstract class BaseActivityVB<VB : ViewDataBinding> : BaseActivityVB<VB>() {
     @CallSuper
     override fun initView(savedInstanceState: Bundle?) {
         initViewWithCommonView(getCommonViewBean())
+    }
+
+    @CallSuper
+    override fun initObserver() {
         initPlacementIdMap(adType)
         if (mCommonViewBean != null) {
             initPlacementListAdapter(mCommonViewBean!!.getSpinnerSelectPlacement())
