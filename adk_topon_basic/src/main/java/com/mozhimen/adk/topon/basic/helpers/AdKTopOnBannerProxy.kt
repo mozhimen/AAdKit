@@ -34,13 +34,9 @@ import com.mozhimen.basick.utilk.android.view.applyVisible
 @OApiInit_ByLazy
 class AdKTopOnBannerProxy : BaseWakeBefDestroyLifecycleObserver() {
     private var mBannerView: ATBannerView? = null
-    private var _onInitBanner: I_Listener? = null
 
     ///////////////////////////////////////////////////////////////////////
 
-    fun setOnInitListener(listener: I_Listener) {
-        _onInitBanner = listener
-    }
 
     @ACallFirstApi
     fun initBannerView(atBannerExListener: ATBannerExListener, adSourceStatusListener: ATAdSourceStatusListener) {
@@ -70,11 +66,10 @@ class AdKTopOnBannerProxy : BaseWakeBefDestroyLifecycleObserver() {
     }
 
     @OApiCall_ViewReady
-    fun loadBannerAd(container: ViewGroup, @Px paddingHorizontal: Int = 23f.dp2px.toInt()) {
+    fun loadBannerAd(@Px paddingHorizontal: Int = 23f.dp2px.toInt()) {
         Log.d(TAG, "loadBannerAd: ")
         //Loading and displaying ads should keep the container and BannerView visible all the time
         mBannerView?.applyVisible()
-        container.applyVisible()
         val localMap: MutableMap<String, Any> = HashMap()
         localMap[ATAdConst.KEY.AD_WIDTH] = UtilKDisplayMetrics.getSysWidthPixels() - 2 * paddingHorizontal
         localMap[ATAdConst.KEY.AD_HEIGHT] = 50f.dp2px.toInt()
@@ -87,16 +82,15 @@ class AdKTopOnBannerProxy : BaseWakeBefDestroyLifecycleObserver() {
 
     ///////////////////////////////////////////////////////////////////////
 
-    override fun onStart(owner: LifecycleOwner) {
-        _onInitBanner?.invoke()
-    }
-
-    override fun onPause(owner: LifecycleOwner) {
+    override fun onDestroy(owner: LifecycleOwner) {
         mBannerView?.apply {
             Log.d(TAG, "onPause: destroy")
+            setBannerAdListener(null)
+            setAdDownloadListener(null)
+            setAdSourceStatusListener(null)
             destroy()
         }
         mBannerView = null
-        _onInitBanner = null
+        super.onDestroy(owner)
     }
 }
