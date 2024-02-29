@@ -34,10 +34,10 @@ open class BaseATAdSourceStatusCallback : ATAdSourceStatusListener, IUtilK {
     }
 
     override fun onAdSourceLoadFilled(adInfo: ATAdInfo) {
-        Log.e(TAG, "onAdSourceLoadFilled: 广告源广告填充回调 $adInfo")
+        Log.i(TAG, "onAdSourceLoadFilled: 广告源广告填充回调 $adInfo")
     }
 
     override fun onAdSourceBiddingFilled(adInfo: ATAdInfo) {
-        Log.e(TAG, "onAdSourceBiddingFilled: 竞价广告源竞价成功回调 $adInfo")
+        Log.i(TAG, "onAdSourceBiddingFilled: 竞价广告源竞价成功回调 $adInfo")
     }
 }

@@ -1,6 +1,5 @@
 package com.mozhimen.adk.topon.basic.helpers
 
-import android.content.Context
 import android.util.Log
 import android.view.ViewGroup
 import android.widget.FrameLayout
@@ -44,9 +43,9 @@ class AdKTopOnBannerProxy : BaseWakeBefDestroyLifecycleObserver() {
     }
 
     @ACallFirstApi
-    fun initBannerView(context: Context, atBannerExListener: ATBannerExListener, adSourceStatusListener: ATAdSourceStatusListener) {
+    fun initBannerView(atBannerExListener: ATBannerExListener, adSourceStatusListener: ATAdSourceStatusListener) {
         Log.d(TAG, "initBannerView: ")
-        mBannerView = ATBannerView(context)
+        mBannerView = ATBannerView(_context)
         //Loading and displaying ads should keep the container and BannerView visible all the time
         mBannerView?.apply {
             applyVisible()

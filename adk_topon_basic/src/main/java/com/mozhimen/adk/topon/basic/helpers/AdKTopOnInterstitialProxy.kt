@@ -116,7 +116,7 @@ class AdKTopOnInterstitialProxy(private var _activity: Activity? = null) : BaseW
     }
 
     override fun onResume(owner: LifecycleOwner) {
-        Log.d(TAG, "onResume: ")
+        Log.d(TAG, "onResume: _placementId $_placementId")
         if (_activity != null && _placementId.isNotEmpty()) {
             showAd(_activity!!)
             Log.d(TAG, "onResume: showAd")
