@@ -5,12 +5,12 @@ import android.view.View
 import com.mozhimen.adk.google.AdKGoogleMgr
 import com.mozhimen.adk.google.optins.OMetaData_GMS_ADS_APPLICATION_ID
 import com.mozhimen.adk.google.test.databinding.ActivityMainBinding
-import com.mozhimen.basick.elemk.androidx.appcompat.bases.databinding.BaseActivityVB
+import com.mozhimen.basick.elemk.androidx.appcompat.bases.databinding.BaseActivityVDB
 import com.mozhimen.basick.elemk.commons.I_Listener
 import com.mozhimen.basick.utilk.android.content.startContext
 import com.mozhimen.basick.utilk.android.widget.showToast
 
-class MainActivity : BaseActivityVB<ActivityMainBinding>() {
+class MainActivity : BaseActivityVDB<ActivityMainBinding>() {
     private var _isInitSuccess = false
 
     @OptIn(OMetaData_GMS_ADS_APPLICATION_ID::class)

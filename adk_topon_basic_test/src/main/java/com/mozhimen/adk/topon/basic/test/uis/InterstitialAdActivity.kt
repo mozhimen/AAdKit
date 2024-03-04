@@ -13,7 +13,7 @@ import com.mozhimen.adk.topon.basic.bases.BaseATInterstitialAutoLoadCallback
 import com.mozhimen.adk.topon.basic.bases.BaseATInterstitialExCallback
 import com.mozhimen.adk.topon.basic.helpers.AdKTopOnInterstitialProxy
 import com.mozhimen.adk.topon.basic.test.R
-import com.mozhimen.adk.topon.basic.test.bases.BaseActivityVB
+import com.mozhimen.adk.topon.basic.test.bases.BaseActivityVDB
 import com.mozhimen.adk.topon.basic.test.mos.CommonViewBean
 import com.mozhimen.basick.lintk.optins.OApiCall_BindLifecycle
 import com.mozhimen.basick.lintk.optins.OApiCall_BindViewLifecycle
@@ -32,7 +32,7 @@ import com.mozhimen.basick.utilk.bases.IUtilK
  * @Version 1.0
  */
 @OptIn(OApiCall_BindViewLifecycle::class, OApiCall_BindLifecycle::class, OApiInit_ByLazy::class)
-class InterstitialAdActivity : BaseActivityVB<com.mozhimen.adk.topon.basic.test.databinding.ActivityInterstitialBinding>(), IUtilK {
+class InterstitialAdActivity : BaseActivityVDB<com.mozhimen.adk.topon.basic.test.databinding.ActivityInterstitialBinding>(), IUtilK {
 
     override val contentViewId: Int
         get() = R.layout.activity_interstitial
@@ -148,7 +148,7 @@ class InterstitialAdActivity : BaseActivityVB<com.mozhimen.adk.topon.basic.test.
     @OptIn(OApiCall_ViewReady::class)
     override fun onSelectPlacementId(placementId: String?) {
         val isAutoLoad = placementId?.let { _adkTopOnInterstitialProxy.isAutoLoad(it) } ?: false
-        vb.includeSelectNet?.ckAutoLoad?.setChecked(isAutoLoad)
+        vdb.includeSelectNet?.ckAutoLoad?.setChecked(isAutoLoad)
         if (placementId != null) {
             _adkTopOnInterstitialProxy.apply {
                 initInterstitialAd(this@InterstitialAdActivity, placementId, "", atInterstitialExCallback, atAdSourceStatusListener, atInterstitialAutoEventCallback)
@@ -177,22 +177,22 @@ class InterstitialAdActivity : BaseActivityVB<com.mozhimen.adk.topon.basic.test.
             initAutoLoad(this@InterstitialAdActivity, atInterstitialAutoLoadCallback)
         }
 
-        vb.includeSelectNet?.ckAutoLoad?.apply {
+        vdb.includeSelectNet?.ckAutoLoad?.apply {
             applyVisible()
             setOnCheckedChangeListener { buttonView, isChecked ->
                 if (isChecked) {
                     val curPlacementId: String = mCurrentPlacementId!!
                     _adkTopOnInterstitialProxy.isAutoLoad(curPlacementId, true)
-                    vb.includeBtn?.loadAdBtn?.applyGone()
+                    vdb.includeBtn?.loadAdBtn?.applyGone()
                 } else {
                     val curPlacementId: String = mCurrentPlacementId!!
                     _adkTopOnInterstitialProxy.isAutoLoad(curPlacementId, false)
-                    vb.includeBtn?.loadAdBtn?.applyVisible()
+                    vdb.includeBtn?.loadAdBtn?.applyVisible()
                 }
             }
         }
 
-        vb.includeBtn?.loadAdBtn?.setOnClickListener {
+        vdb.includeBtn?.loadAdBtn?.setOnClickListener {
             if (!_adkTopOnInterstitialProxy.isInit()) {
                 printLogOnUI("ATInterstitial is not init.")
                 return@setOnClickListener
@@ -201,7 +201,7 @@ class InterstitialAdActivity : BaseActivityVB<com.mozhimen.adk.topon.basic.test.
             _adkTopOnInterstitialProxy.loadAd()
         }
 
-        vb.includeBtn?.isAdReadyBtn?.setOnClickListener {
+        vdb.includeBtn?.isAdReadyBtn?.setOnClickListener {
             mCurrentPlacementId?.let { placementId ->
                 if (_adkTopOnInterstitialProxy.isAutoLoad(placementId)) {
                     printLogOnUI("interstitial auto load ad ready status:" + _adkTopOnInterstitialProxy.isAutoLoadReady(placementId))
@@ -220,7 +220,7 @@ class InterstitialAdActivity : BaseActivityVB<com.mozhimen.adk.topon.basic.test.
             }
         }
 
-        vb.includeBtn?.showAdBtn?.setOnClickListener {
+        vdb.includeBtn?.showAdBtn?.setOnClickListener {
             mCurrentPlacementId?.let { placementId ->
                 _adkTopOnInterstitialProxy.showAd(this)
             }

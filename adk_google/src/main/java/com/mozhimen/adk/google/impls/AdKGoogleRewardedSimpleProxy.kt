@@ -46,7 +46,7 @@ class AdKGoogleRewardedSimpleProxy<A>(private val _activityRef: WeakReference<A>
             // 展示广告
 //            this@AdsRewardedActivity.rewardedAd?.show(this@AdsRewardedActivity, rewardedVideoAdEarnedCallback)
 
-//            vb.btnShowRewardedAd.applyVisible()
+//            vdb.btnShowRewardedAd.applyVisible()
             _adKGoogleRewardedListener?.onAdLoaded()
         }
 
@@ -80,7 +80,7 @@ class AdKGoogleRewardedSimpleProxy<A>(private val _activityRef: WeakReference<A>
             super.onAdDismissedFullScreenContent()
             // 隐藏时调用，此时销毁当前的激励视频广告对象，重新加载激励视频广告
             _rewardedAd = null
-//            vb.btnShowRewardedAd.applyInVisible()
+//            vdb.btnShowRewardedAd.applyInVisible()
             _adKGoogleRewardedListener?.onAdDismissedFullScreenContent()
             loadRewardedVideoAd()
         }
@@ -90,7 +90,7 @@ class AdKGoogleRewardedSimpleProxy<A>(private val _activityRef: WeakReference<A>
             // 展示失败时调用，此时销毁当前的激励视频广告对象，重新加载激励视频广告
             Log.e(TAG, "rewardedVideo onAdFailedToShowFullScreenContent error:${adError.message}")
             _rewardedAd = null
-//            vb.btnShowRewardedAd.applyInVisible()
+//            vdb.btnShowRewardedAd.applyInVisible()
             _adKGoogleRewardedListener?.onAdFailedToShowFullScreenContent()
             loadRewardedVideoAd()
         }

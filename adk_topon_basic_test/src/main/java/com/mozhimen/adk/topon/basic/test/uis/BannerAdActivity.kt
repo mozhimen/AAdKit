@@ -12,7 +12,7 @@ import com.mozhimen.adk.topon.basic.bases.BaseATAdSourceStatusCallback
 import com.mozhimen.adk.topon.basic.bases.BaseATBannerExCallback
 import com.mozhimen.adk.topon.basic.helpers.AdKTopOnBannerProxy
 import com.mozhimen.adk.topon.basic.test.R
-import com.mozhimen.adk.topon.basic.test.bases.BaseActivityVB
+import com.mozhimen.adk.topon.basic.test.bases.BaseActivityVDB
 import com.mozhimen.adk.topon.basic.test.databinding.ActivityBannerBinding
 import com.mozhimen.adk.topon.basic.test.mos.CommonViewBean
 import com.mozhimen.basick.lintk.optins.OApiCall_BindLifecycle
@@ -28,14 +28,14 @@ import com.mozhimen.basick.utilk.android.view.applyVisible
  * @Version 1.0
  */
 @OptIn(OApiCall_BindViewLifecycle::class, OApiCall_BindLifecycle::class, OApiInit_ByLazy::class)
-class BannerAdActivity : BaseActivityVB<ActivityBannerBinding>() {
+class BannerAdActivity : BaseActivityVDB<ActivityBannerBinding>() {
 
     private val _adKTopOnBannerProxy by lazy { AdKTopOnBannerProxy() }
     private val _atBannerExListener = object : BaseATBannerExCallback() {
         override fun onBannerLoaded() {
             super.onBannerLoaded()
             printLogOnUI("onBannerLoaded")
-            vb.scrollView.fullScroll(ScrollView.FOCUS_DOWN)
+            vdb.scrollView.fullScroll(ScrollView.FOCUS_DOWN)
         }
 
         override fun onBannerFailed(adError: AdError) {
@@ -87,13 +87,13 @@ class BannerAdActivity : BaseActivityVB<ActivityBannerBinding>() {
     @SuppressLint("ClickableViewAccessibility")
     override fun initView(savedInstanceState: Bundle?) {
         super.initView(savedInstanceState)
-        vb.rlType.setSelected(true)
+        vdb.rlType.setSelected(true)
 
         //Loading and displaying ads should keep the container and BannerView visible all the time
-        vb.adviewContainer.applyVisible()
+        vdb.adviewContainer.applyVisible()
 
         _adKTopOnBannerProxy.initBannerView(this, _atBannerExListener, BaseATAdSourceStatusCallback())
-        _adKTopOnBannerProxy.addBannerViewToContainer(vb.adviewContainer)
+        _adKTopOnBannerProxy.addBannerViewToContainer(vdb.adviewContainer)
 
         if (mTVShowLog != null) {
             mTVShowLog!!.setOnTouchListener(OnTouchListener { view, motionEvent ->
@@ -106,9 +106,9 @@ class BannerAdActivity : BaseActivityVB<ActivityBannerBinding>() {
                 false
             })
         }
-        vb.bannerLoadAdBtn.setOnClickListener {
+        vdb.bannerLoadAdBtn.setOnClickListener {
             printLogOnUI(getString(R.string.anythink_ad_status_loading))
-            _adKTopOnBannerProxy.loadBannerAd(vb.adviewContainer)
+            _adKTopOnBannerProxy.loadBannerAd(vdb.adviewContainer)
         }
     }
 
@@ -122,7 +122,7 @@ class BannerAdActivity : BaseActivityVB<ActivityBannerBinding>() {
     }
 
     override fun onDestroy() {
-        vb.adviewContainer.removeAllViews()
+        vdb.adviewContainer.removeAllViews()
         super.onDestroy()
     }
 }

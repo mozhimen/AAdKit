@@ -48,7 +48,7 @@ class AdKGoogleInterstitialSimpleProxy<A>(private var _activityRef: WeakReferenc
             // 显示插屏广告
 //            this@AdsInterstitialActivity.interstitialAd?.show(this@AdsInterstitialActivity)
 
-            _adkGoogleInterstitialListener?.onAdLoaded()//vb.btnShowInterstitialAd.applyVisible()
+            _adkGoogleInterstitialListener?.onAdLoaded()//vdb.btnShowInterstitialAd.applyVisible()
         }
 
         override fun onAdFailedToLoad(loadAdError: LoadAdError) {
@@ -82,7 +82,7 @@ class AdKGoogleInterstitialSimpleProxy<A>(private var _activityRef: WeakReferenc
             super.onAdDismissedFullScreenContent()
             // 隐藏时调用，此时销毁当前的插屏广告对象，重新加载插屏广告
             _interstitialAd = null
-//            vb.btnShowInterstitialAd.applyInVisible()
+//            vdb.btnShowInterstitialAd.applyInVisible()
             _adkGoogleInterstitialListener?.onAdDismissedFullScreenContent()
             loadInterstitialAd()
         }
@@ -92,7 +92,7 @@ class AdKGoogleInterstitialSimpleProxy<A>(private var _activityRef: WeakReferenc
             // 展示失败时调用，此时销毁当前的插屏广告对象，重新加载插屏广告
             Log.e(TAG, "interstitial onAdFailedToShowFullScreenContent error:${adError.message}")
             _interstitialAd = null
-//            vb.btnShowInterstitialAd.applyInVisible()
+//            vdb.btnShowInterstitialAd.applyInVisible()
             _adkGoogleInterstitialListener?.onAdFailedToShowFullScreenContent()
             loadInterstitialAd()
         }

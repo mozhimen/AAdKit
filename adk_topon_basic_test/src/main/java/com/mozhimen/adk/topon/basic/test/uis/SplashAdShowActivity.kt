@@ -21,7 +21,7 @@ import com.mozhimen.adk.topon.basic.test.cons.AdConst
 import com.mozhimen.adk.topon.basic.test.databinding.SplashAdShowBinding
 import com.mozhimen.adk.topon.basic.test.helpers.SplashEyeAdHolder
 import com.mozhimen.adk.topon.basic.test.helpers.SplashZoomOutManager
-import com.mozhimen.basick.elemk.androidx.appcompat.bases.databinding.BaseActivityVB
+import com.mozhimen.basick.elemk.androidx.appcompat.bases.databinding.BaseActivityVDB
 
 /**
  * @ClassName SplashAdShowActivity
@@ -30,7 +30,7 @@ import com.mozhimen.basick.elemk.androidx.appcompat.bases.databinding.BaseActivi
  * @Date 2024/2/22
  * @Version 1.0
  */
-class SplashAdShowActivity : BaseActivityVB<SplashAdShowBinding>(), ATSplashExListener {
+class SplashAdShowActivity : BaseActivityVDB<SplashAdShowBinding>(), ATSplashExListener {
     private var splashAd: ATSplashAd? = null
     private val container: FrameLayout? = null
     var inForeBackground = false
@@ -128,7 +128,7 @@ class SplashAdShowActivity : BaseActivityVB<SplashAdShowBinding>(), ATSplashExLi
     private fun showAdWithCustomSkipView() {
         val countDownDuration: Long = 5000
         val callbackInterval: Long = 1000
-        vb.splashAdSkip.text = (countDownDuration / 1000).toInt().toString() + "s | Skip"
+        vdb.splashAdSkip.text = (countDownDuration / 1000).toInt().toString() + "s | Skip"
 
 //        splashAd.show(this, container, new ATSplashSkipInfo(skipView, countDownDuration, callbackInterval, new ATSplashSkipAdListener() {
 //            @Override
@@ -144,15 +144,15 @@ class SplashAdShowActivity : BaseActivityVB<SplashAdShowBinding>(), ATSplashExLi
 //                }
 //            }
 //        }));
-        splashAd!!.show(this, container, ATSplashSkipInfo(vb.splashAdSkip, countDownDuration, callbackInterval, object : ATSplashSkipAdListener {
+        splashAd!!.show(this, container, ATSplashSkipInfo(vdb.splashAdSkip, countDownDuration, callbackInterval, object : ATSplashSkipAdListener {
             override fun onAdTick(duration: Long, remainder: Long) {
-                vb.splashAdSkip.text = (remainder / 1000).toInt().toString() + "s | Skip"
+                vdb.splashAdSkip.text = (remainder / 1000).toInt().toString() + "s | Skip"
             }
 
             override fun isSupportCustomSkipView(isSupport: Boolean) {
                 Log.i(TAG, "isSupportCustomSkipView: $isSupport")
                 if (isSupport) {
-                    vb.splashAdSkip.visibility = View.VISIBLE
+                    vdb.splashAdSkip.visibility = View.VISIBLE
                 }
             }
         }), AdConst.SCENARIO_ID.SPLASH_AD_SCENARIO)

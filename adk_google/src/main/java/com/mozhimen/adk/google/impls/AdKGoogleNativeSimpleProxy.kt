@@ -67,7 +67,7 @@ class AdKGoogleNativeSimpleProxy<A>(private val _activity: A, private val _adUni
             super.onAdLoaded()
             // 广告加载成功
             Log.i(TAG, "nativeAd onAdLoaded")
-//            nativeAdView?.let { vb.flNativeAdContainer.addView(it) }
+//            nativeAdView?.let { vdb.flNativeAdContainer.addView(it) }
             _adKGoogleNativeListener?.onAdLoaded(nativeAdView)
         }
 
@@ -134,7 +134,7 @@ class AdKGoogleNativeSimpleProxy<A>(private val _activity: A, private val _adUni
         nativeAdView?.destroy()
         currentNativeAd?.destroy()
         _adKGoogleNativeListener?.onMuteNativeAd()
-//        vb.flNativeAdContainer.removeAllViews()
+//        vdb.flNativeAdContainer.removeAllViews()
     }
 
     private fun initAdsNative() {
@@ -160,7 +160,7 @@ class AdKGoogleNativeSimpleProxy<A>(private val _activity: A, private val _adUni
                     muteThisAdReason.addAll(nativeAd.muteThisAdReasons)
                 }
                 _adKGoogleNativeListener?.onLoadNativeAd(nativeAd)
-//                vb.btnStopNativeAd.visibility = if (nativeAd.isCustomMuteThisAdEnabled) View.VISIBLE else View.GONE
+//                vdb.btnStopNativeAd.visibility = if (nativeAd.isCustomMuteThisAdEnabled) View.VISIBLE else View.GONE
                 populateNativeAdView()
             }
             .withNativeAdOptions(
@@ -179,7 +179,7 @@ class AdKGoogleNativeSimpleProxy<A>(private val _activity: A, private val _adUni
     @SuppressLint("InflateParams")
     private fun populateNativeAdView() {
         currentNativeAd?.let { nativeAd ->
-//            nativeAdView?.let { vb.flNativeAdContainer.removeView(it) }
+//            nativeAdView?.let { vdb.flNativeAdContainer.removeView(it) }
             _adKGoogleNativeListener?.onPopulateNativeAdView(nativeAdView)
             (LayoutInflater.from(_activity).inflate(R.layout.layout_admob_native_ad, null) as? NativeAdView)?.run {
                 iconView = findViewById<AppCompatImageView>(R.id.iv_ad_app_icon).apply {

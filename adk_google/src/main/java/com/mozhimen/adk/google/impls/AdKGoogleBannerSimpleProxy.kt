@@ -38,8 +38,8 @@ class AdKGoogleBannerSimpleProxy<A>(private val _activity: A, private val _adUni
             super.onAdLoaded()
             // 广告加载成功
             Log.i(TAG, "banner onAdLoaded")
-//            vb.btnShowBannerAd.applyVisible()
-//            vb.btnHideBannerAd.applyVisible()
+//            vdb.btnShowBannerAd.applyVisible()
+//            vdb.btnHideBannerAd.applyVisible()
             _onLoadListener?.invoke(true)
         }
 

@@ -7,7 +7,7 @@ import android.view.View
 import android.view.Window
 import com.mozhimen.adk.topon.basic.test.R
 import com.mozhimen.adk.topon.basic.test.databinding.ActivityNativeMainBinding
-import com.mozhimen.basick.elemk.androidx.appcompat.bases.databinding.BaseActivityVB
+import com.mozhimen.basick.elemk.androidx.appcompat.bases.databinding.BaseActivityVDB
 
 /**
  * @ClassName NativeMainActivity
@@ -17,17 +17,17 @@ import com.mozhimen.basick.elemk.androidx.appcompat.bases.databinding.BaseActivi
  * @Version 1.0
  */
 
-class NativeMainActivity : BaseActivityVB<ActivityNativeMainBinding>(), View.OnClickListener {
+class NativeMainActivity : BaseActivityVDB<ActivityNativeMainBinding>(), View.OnClickListener {
     override fun initFlag() {
         requestWindowFeature(Window.FEATURE_NO_TITLE)
     }
 
     override fun initView(savedInstanceState: Bundle?) {
-        vb.titleBar.setTitle(R.string.anythink_title_native)
-        vb.titleBar.setListener { finish() }
-        vb.nativeBtn.setOnClickListener(this)
-        vb.nativeExpressBtn.setOnClickListener(this)
-        vb.nativeListBtn.setOnClickListener(this)
+        vdb.titleBar.setTitle(R.string.anythink_title_native)
+        vdb.titleBar.setListener { finish() }
+        vdb.nativeBtn.setOnClickListener(this)
+        vdb.nativeExpressBtn.setOnClickListener(this)
+        vdb.nativeListBtn.setOnClickListener(this)
     }
 
     @SuppressLint("NonConstantResourceId")

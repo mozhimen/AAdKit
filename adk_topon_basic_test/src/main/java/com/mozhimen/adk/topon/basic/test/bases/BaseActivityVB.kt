@@ -17,19 +17,19 @@ import com.mozhimen.adk.topon.basic.test.annors.AAdNativeType
 import com.mozhimen.adk.topon.basic.test.annors.AnnotationAdType
 import com.mozhimen.adk.topon.basic.test.mos.CommonViewBean
 import com.mozhimen.adk.topon.basic.test.utils.PlacementIdUtil
-import com.mozhimen.basick.elemk.androidx.appcompat.bases.databinding.BaseActivityVB
+import com.mozhimen.basick.elemk.androidx.appcompat.bases.databinding.BaseActivityVDB
 import com.mozhimen.basick.utilk.android.widget.applyPrintLog
 import com.mozhimen.uicorek.bark.title.BarKTitle
 import java.lang.ref.WeakReference
 
 /**
- * @ClassName BaseActivityVB
+ * @ClassName BaseActivityVDB
  * @Description TODO
  * @Author Mozhimen & Kolin Zhao
  * @Date 2024/2/23
  * @Version 1.0
  */
-abstract class BaseActivityVB<VB : ViewDataBinding> : BaseActivityVB<VB>() {
+abstract class BaseActivityVDB<VB : ViewDataBinding> : BaseActivityVDB<VB>() {
     companion object {
         private var mTVShowLogWR: WeakReference<TextView?>? = null
 
