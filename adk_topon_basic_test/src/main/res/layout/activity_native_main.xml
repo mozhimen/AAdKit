@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.mozhimen.uicorek.bark.title.BarKTitle
+        <com.mozhimen.xmlk.bark.title.BarKTitle
             android:id="@+id/title_bar"
             android:layout_width="match_parent"
             android:layout_height="@dimen/anythink_45dp" />

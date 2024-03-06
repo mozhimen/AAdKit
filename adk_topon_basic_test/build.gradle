@@ -45,7 +45,7 @@ android {
 }
 
 dependencies {
-    implementation project(':AUICoreKit:bark_title')
+    implementation project(':AXmlKit:bark_title')
     implementation project(':SwiftKit:basick')
     implementation project(':adk_topon_basic')
     implementation project(':ADebugKit:debugk_leakcanary')

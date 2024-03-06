@@ -31,15 +31,15 @@ include ':adk_google'
 include ':adk_google_test'
 include ':adk_topon_basic'
 include ':adk_topon_basic_test'
-//AUICoreKit
-include ':AUICoreKit'
-project(':AUICoreKit').projectDir = new File("D:\\WorkSpace\\GitHub\\AUICoreKit")
-include ':AUICoreKit:bark_title'
+//AXmlKit
+include ':AXmlKit'
+project(':AXmlKit').projectDir = new File("D:\\WorkSpace\\GitHub\\AXmlKit")
+include ':AXmlKit:bark_title'
 //SwiftKit
 include ':SwiftKit'
 project(':SwiftKit').projectDir = new File("C:\\Users\\${System.getenv().get("USERNAME")}\\Documents\\GitHub\\SwiftKit")
 include ':SwiftKit:basick'
-include ':SwiftKit:uicorek'
+include ':SwiftKit:xmlk'
 //ADebugKit
 include ':ADebugKit'
 project(':ADebugKit').projectDir = new File("D:\\WorkSpace\\GitHub\\ADebugKit")

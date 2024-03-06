@@ -17,7 +17,7 @@
         android:background="@color/anythink_F5F5F5">
 
         <!--    <include layout="@layout/include_title_bar" />-->
-        <com.mozhimen.uicorek.bark.title.BarKTitle
+        <com.mozhimen.xmlk.bark.title.BarKTitle
             android:id="@+id/title_bar"
             android:layout_width="320dp"
             android:layout_height="@dimen/anythink_45dp" />

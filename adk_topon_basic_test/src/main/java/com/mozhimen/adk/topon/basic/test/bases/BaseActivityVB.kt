@@ -19,7 +19,7 @@ import com.mozhimen.adk.topon.basic.test.mos.CommonViewBean
 import com.mozhimen.adk.topon.basic.test.utils.PlacementIdUtil
 import com.mozhimen.basick.elemk.androidx.appcompat.bases.databinding.BaseActivityVDB
 import com.mozhimen.basick.utilk.android.widget.applyPrintLog
-import com.mozhimen.uicorek.bark.title.BarKTitle
+import com.mozhimen.xmlk.bark.title.BarKTitle
 import java.lang.ref.WeakReference
 
 /**
