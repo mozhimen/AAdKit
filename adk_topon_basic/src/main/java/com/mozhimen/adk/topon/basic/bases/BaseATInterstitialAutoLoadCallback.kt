@@ -3,7 +3,7 @@ package com.mozhimen.adk.topon.basic.bases
 import android.util.Log
 import com.anythink.core.api.AdError
 import com.anythink.interstitial.api.ATInterstitialAutoLoadListener
-import com.mozhimen.basick.utilk.bases.IUtilK
+import com.mozhimen.basick.utilk.commons.IUtilK
 
 /**
  * @ClassName BaseATInterstitialAutoLoadCallback

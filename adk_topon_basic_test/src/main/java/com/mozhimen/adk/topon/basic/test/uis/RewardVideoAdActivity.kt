@@ -21,7 +21,7 @@ import com.mozhimen.adk.topon.basic.test.R
 import com.mozhimen.adk.topon.basic.test.bases.BaseActivity
 import com.mozhimen.adk.topon.basic.test.cons.AdConst
 import com.mozhimen.adk.topon.basic.test.mos.CommonViewBean
-import com.mozhimen.basick.utilk.bases.IUtilK
+import com.mozhimen.basick.utilk.commons.IUtilK
 
 /**
  * @ClassName RewardVideoAdActivity

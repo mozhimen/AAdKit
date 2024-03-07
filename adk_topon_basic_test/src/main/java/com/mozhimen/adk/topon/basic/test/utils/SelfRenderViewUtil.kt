@@ -16,7 +16,7 @@ import com.anythink.nativead.api.ATNativePrepareInfo
 import com.anythink.nativead.unitgroup.api.CustomNativeAd
 import com.mozhimen.adk.topon.basic.test.R
 import com.mozhimen.adk.topon.basic.widgets.LayoutKATImageGroup
-import com.mozhimen.basick.utilk.bases.IUtilK
+import com.mozhimen.basick.utilk.commons.IUtilK
 
 /**
  * @ClassName SelfRenderViewUtil

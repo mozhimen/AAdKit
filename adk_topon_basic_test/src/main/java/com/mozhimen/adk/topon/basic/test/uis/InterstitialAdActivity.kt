@@ -22,7 +22,7 @@ import com.mozhimen.basick.lintk.optins.OApiInit_ByLazy
 import com.mozhimen.basick.utilk.android.view.applyGone
 import com.mozhimen.basick.utilk.android.view.applyOnGlobalLayoutObserver
 import com.mozhimen.basick.utilk.android.view.applyVisible
-import com.mozhimen.basick.utilk.bases.IUtilK
+import com.mozhimen.basick.utilk.commons.IUtilK
 
 /**
  * @ClassName InterstitialAdActivity

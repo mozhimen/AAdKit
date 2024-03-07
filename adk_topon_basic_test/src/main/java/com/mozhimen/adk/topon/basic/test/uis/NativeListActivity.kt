@@ -12,7 +12,7 @@ import com.anythink.nativead.api.ATNativeNetworkListener
 import com.mozhimen.adk.topon.basic.test.R
 import com.mozhimen.adk.topon.basic.test.mos.RecycleViewDataBean
 import com.mozhimen.adk.topon.basic.test.utils.PlacementIdUtil
-import com.mozhimen.basick.utilk.bases.IUtilK
+import com.mozhimen.basick.utilk.commons.IUtilK
 
 /**
  * @ClassName NativeListActivity

@@ -7,7 +7,7 @@ import com.google.android.gms.ads.initialization.AdapterStatus
 import com.mozhimen.adk.google.optins.OMetaData_GMS_ADS_APPLICATION_ID
 import com.mozhimen.adk.google.utils.CacheUtil
 import com.mozhimen.basick.elemk.commons.IA_Listener
-import com.mozhimen.basick.utilk.bases.IUtilK
+import com.mozhimen.basick.utilk.commons.IUtilK
 
 /**
  * @ClassName AdKGoogle

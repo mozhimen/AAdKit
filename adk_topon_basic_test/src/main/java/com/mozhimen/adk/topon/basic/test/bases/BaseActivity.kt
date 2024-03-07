@@ -21,7 +21,7 @@ import com.mozhimen.adk.topon.basic.test.annors.AnnotationAdType
 import com.mozhimen.adk.topon.basic.test.mos.CommonViewBean
 import com.mozhimen.adk.topon.basic.test.utils.PlacementIdUtil
 import com.mozhimen.basick.utilk.android.widget.applyPrintLog
-import com.mozhimen.basick.utilk.bases.IUtilK
+import com.mozhimen.basick.utilk.commons.IUtilK
 import com.mozhimen.xmlk.bark.title.BarKTitle
 import java.lang.ref.WeakReference
 

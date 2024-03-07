@@ -5,7 +5,7 @@ import android.util.Log
 import com.anythink.core.api.ATSDK
 import com.mozhimen.basick.lintk.optins.OApiInit_InApplication
 import com.mozhimen.basick.utilk.android.app.UtilKRunningAppProcessInfo
-import com.mozhimen.basick.utilk.bases.IUtilK
+import com.mozhimen.basick.utilk.commons.IUtilK
 import com.mozhimen.webk.basic.WebKMgr
 
 /**

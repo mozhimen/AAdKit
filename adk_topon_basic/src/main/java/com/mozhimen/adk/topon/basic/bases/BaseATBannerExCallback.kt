@@ -7,7 +7,7 @@ import com.anythink.banner.api.ATBannerExListener
 import com.anythink.core.api.ATAdInfo
 import com.anythink.core.api.ATNetworkConfirmInfo
 import com.anythink.core.api.AdError
-import com.mozhimen.basick.utilk.bases.IUtilK
+import com.mozhimen.basick.utilk.commons.IUtilK
 
 /**
  * @ClassName BaseATBannerExCallback

@@ -2,7 +2,7 @@ package com.mozhimen.adk.topon.basic.test.utils
 
 import android.text.TextUtils
 import android.util.Log
-import com.mozhimen.basick.utilk.bases.IUtilK
+import com.mozhimen.basick.utilk.commons.IUtilK
 import com.mozhimen.basick.utilk.kotlin.UtilKStrAsset
 import org.json.JSONObject
 

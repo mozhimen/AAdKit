@@ -24,7 +24,7 @@ import com.mozhimen.adk.topon.basic.test.R
 import com.mozhimen.adk.topon.basic.test.mos.RecycleViewDataBean
 import com.mozhimen.adk.topon.basic.test.utils.SelfRenderViewUtil
 import com.mozhimen.basick.utilk.android.util.dp2px
-import com.mozhimen.basick.utilk.bases.IUtilK
+import com.mozhimen.basick.utilk.commons.IUtilK
 import java.util.concurrent.ConcurrentHashMap
 
 /**
