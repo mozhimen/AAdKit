@@ -19,7 +19,7 @@ object CMetaData {
      * BannerUnitId:"ca-app-pub-3940256099942544/6300978111"
      */
     const val GMS_ADS_APPLICATION_ID = """
-        <manifest>
+<manifest>
   <application>
     <!-- Sample AdMob app ID: ca-app-pub-3940256099942544~3347511713 -->
     <meta-data

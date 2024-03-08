@@ -1,0 +1,24 @@
+package com.mozhimen.adk.yandex.bases
+
+import android.util.Log
+import com.mozhimen.basick.utilk.commons.IUtilK
+import com.yandex.mobile.ads.common.AdRequestError
+import com.yandex.mobile.ads.interstitial.InterstitialAd
+import com.yandex.mobile.ads.interstitial.InterstitialAdLoadListener
+
+/**
+ * @ClassName BaseInterstitialAdLoadCallback
+ * @Description TODO
+ * @Author Mozhimen & Kolin Zhao
+ * @Date 2024/3/8
+ * @Version 1.0
+ */
+open class BaseInterstitialAdLoadCallback : InterstitialAdLoadListener, IUtilK {
+    override fun onAdLoaded(p0: InterstitialAd) {
+        Log.d(TAG, "onAdLoaded: ")
+    }
+
+    override fun onAdFailedToLoad(p0: AdRequestError) {
+        Log.d(TAG, "onAdFailedToLoad: AdRequestError $p0")
+    }
+}

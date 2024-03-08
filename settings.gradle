@@ -1,27 +1,39 @@
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
-        maven { url 'https://maven.aliyun.com/repository/central' }
-        maven { url 'https://maven.aliyun.com/repository/google' }
-        maven { url 'https://maven.aliyun.com/repository/jcenter' }
-        maven { url 'https://maven.aliyun.com/repository/public' }
-        maven { url 'https://maven.aliyun.com/repository/gradle-plugin' }
-        maven { url 'https://maven.aliyun.com/repository/grails-core' }
-        maven { url 'https://raw.githubusercontent.com/saki4510t/libcommon/master/repository/' }
-        maven { url 'https://gitee.com/liuchaoya/libcommon/raw/master/repository/' }
-        maven { url "https://repo.eclipse.org/content/repositories/paho-snapshots/" }
-        maven { url 'https://developer.huawei.com/repo/' }
-        maven { url "https://jitpack.io" }
-        maven { url 'https://www.jitpack.io' }
+
+//        maven { url 'https://maven.aliyun.com/repository/central' }
+//        maven { url 'https://maven.aliyun.com/repository/google' }
+//        maven { url 'https://maven.aliyun.com/repository/jcenter' }
+//        maven { url 'https://maven.aliyun.com/repository/public' }
+//        maven { url 'https://maven.aliyun.com/repository/gradle-plugin' }
+//        maven { url 'https://maven.aliyun.com/repository/grails-core' }
+//        maven { url 'https://raw.githubusercontent.com/saki4510t/libcommon/master/repository/' }
+//        maven { url 'https://gitee.com/liuchaoya/libcommon/raw/master/repository/' }
+//        maven { url "https://repo.eclipse.org/content/repositories/paho-snapshots/" }
+//        maven { url 'https://developer.huawei.com/repo/' }
+//        maven { url "https://jitpack.io" }
+//        maven { url 'https://www.jitpack.io' }
+
+        google()
+        mavenCentral()
+
         //Anythink(Core)
         maven { url "https://jfrog.anythinktech.com/artifactory/overseas_sdk" }
-        //Mintegral
-        maven { url "https://dl-maven-android.mintegral.com/repository/mbridge_android_sdk_oversea" }
         //test
         maven { url "https://jfrog.anythinktech.com/artifactory/debugger" }
-
-        mavenCentral()
-        google()
+        // IronSource
+        maven { url "https://android-sdk.is.com/" }
+        // Pangle
+        maven { url "https://artifact.bytedance.com/repository/pangle" }
+        // Tapjoy
+        maven { url "https://sdk.tapjoy.com/" }
+        // Mintegral
+        maven { url "https://dl-maven-android.mintegral.com/repository/mbridge_android_sdk_oversea" }
+        // Chartboos
+        maven { url "https://cboost.jfrog.io/artifactory/chartboost-ads/" }
+        // AppNext
+        maven { url "https://dl.appnext.com/" }
     }
 }
 
@@ -50,3 +62,5 @@ project(':AWebKit').projectDir = new File("D:\\WorkSpace\\GitHub\\AWebKit")
 include ':AWebKit:webk_basic'
 
 
+include ':adk_yandex'
+include ':adk_yandex_test'

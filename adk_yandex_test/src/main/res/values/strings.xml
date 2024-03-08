@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">AAdKit</string>
+
+    <string name="show_ad">Show Ad</string>
+    <string name="logs">Logs</string>
+    <string name="list_item_icon">List item icon</string>
+    <string name="network">Network</string>
+    <string name="interstitial_title">Interstitial</string>
+
+    <!--  Other  -->
+    <string name="log_format">%1$s\n%2$s</string>
+
+    <!--  Mediation networks  -->
+    <string name="yandex_title">Yandex</string>
+    <string name="adcolony_title">AdColony</string>
+    <string name="admob_title">AdMob</string>
+    <string name="applovin_title">AppLovin</string>
+    <string name="chartboost_title">Chartboost</string>
+    <string name="inmobi_title">InMobi</string>
+    <string name="mintegral_title">Mintegral</string>
+    <string name="my_target_title">MyTarget</string>
+    <string name="startapp_title">StartApp</string>
+    <string name="vungle_title">Vungle</string>
+    <string name="ironsource_title">IronSource</string>
+    <string name="pangle_title">Pangle</string>
+    <string name="tapjoy_title">Tapjoy</string>
+    <string name="unity_ads_title">Unity Ads</string>
+    <string name="adfox_title">AdFox</string>
+</resources>
