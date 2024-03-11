@@ -13,12 +13,10 @@ import com.yandex.mobile.ads.interstitial.InterstitialAdLoadListener
  * @Date 2024/3/8
  * @Version 1.0
  */
-open class BaseInterstitialAdLoadCallback : InterstitialAdLoadListener, IUtilK {
+open class BaseInterstitialAdLoadCallback : InterstitialAdLoadListener {
     override fun onAdLoaded(p0: InterstitialAd) {
-        Log.d(TAG, "onAdLoaded: ")
     }
 
     override fun onAdFailedToLoad(p0: AdRequestError) {
-        Log.d(TAG, "onAdFailedToLoad: AdRequestError $p0")
     }
 }

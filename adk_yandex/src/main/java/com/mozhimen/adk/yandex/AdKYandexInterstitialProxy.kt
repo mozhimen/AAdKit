@@ -29,16 +29,21 @@ import com.yandex.mobile.ads.interstitial.InterstitialAdLoader
 @OApiCall_BindLifecycle
 @OApiCall_BindViewLifecycle
 class AdKYandexInterstitialProxy<A>(
-    private var _activity: A?,
-    private var _interstitialAdEventListener: InterstitialAdEventListener?,
-    private var _interstitialAdLoadListener: InterstitialAdLoadListener?
+    private var _activity: A?
 ) : BaseWakeBefDestroyLifecycleObserver(), InterstitialAdLoadListener, InterstitialAdEventListener where A : LifecycleOwner, A : Activity {
     private var _interstitialAdLoader: InterstitialAdLoader? = null
     private var interstitialAd: InterstitialAd? = null
     private var _adUnitId: String = ""
     private var _adFoxRequestParameters: Map<String, String>? = null
+    private var _interstitialAdEventListener: InterstitialAdEventListener? = null
+    private var _interstitialAdLoadListener: InterstitialAdLoadListener? = null
 
     //////////////////////////////////////////////////////////////////////
+
+    fun initInterstitialAdListener(interstitialAdEventListener: InterstitialAdEventListener, interstitialAdLoadListener: InterstitialAdLoadListener) {
+        _interstitialAdEventListener = interstitialAdEventListener
+        _interstitialAdLoadListener = interstitialAdLoadListener
+    }
 
     fun initInterstitialAd(adUnitId: String, adFoxRequestParameters: Map<String, String>? = null) {
         _adUnitId = adUnitId
@@ -97,7 +102,7 @@ class AdKYandexInterstitialProxy<A>(
     }
 
     override fun onAdFailedToLoad(adRequestError: AdRequestError) {
-        Log.d(TAG, "onAdFailedToLoad: AdRequestError $adRequestError")
+        Log.e(TAG, "onAdFailedToLoad: AdRequestError $adRequestError")
         _interstitialAdLoadListener?.onAdFailedToLoad(adRequestError)
     }
 
@@ -109,14 +114,13 @@ class AdKYandexInterstitialProxy<A>(
     }
 
     override fun onAdFailedToShow(p0: AdError) {
-        Log.d(TAG, "onAdFailedToShow: AdError $p0")
+        Log.e(TAG, "onAdFailedToShow: AdError $p0")
         _interstitialAdEventListener?.onAdFailedToShow(p0)
     }
 
     override fun onAdDismissed() {
         Log.d(TAG, "onAdDismissed: ")
-        destroyInterstitialAdd()
-        loadInterstitialAd()// Now you can preload the next interstitial ad.
+        destroyInterstitialAdd()// Now you can preload the next interstitial ad.
         _interstitialAdEventListener?.onAdDismissed()
     }
 

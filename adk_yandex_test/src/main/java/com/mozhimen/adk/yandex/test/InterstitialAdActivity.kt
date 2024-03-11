@@ -65,7 +65,7 @@ class InterstitialAdActivity : BaseActivityVB<ActivityInterstitialAdBinding>() {
     }
 
     @OptIn(OApiInit_ByLazy::class, OApiCall_BindLifecycle::class, OApiCall_BindViewLifecycle::class, OMetaData_YANDEX_ADS_APPLICATION_ID::class)
-    private val _adKYandexInterstitialProxy by lazy { AdKYandexInterstitialProxy(this, _interstitialAdEventListener, _interstitialAdLoadListener) }
+    private val _adKYandexInterstitialProxy by lazy { AdKYandexInterstitialProxy(this) }
 
     ////////////////////////////////////////////////////////////////
 
@@ -73,6 +73,7 @@ class InterstitialAdActivity : BaseActivityVB<ActivityInterstitialAdBinding>() {
     override fun initView(savedInstanceState: Bundle?) {
         Log.d(TAG, "initView: ")
         _adKYandexInterstitialProxy.apply {
+            initInterstitialAdListener(_interstitialAdEventListener, _interstitialAdLoadListener)
             initInterstitialAd(selectedNetwork.adUnitId)
             bindLifecycle(this@InterstitialAdActivity)
             disableShowAdButton()

@@ -2,12 +2,19 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:orientation="vertical"
     android:layout_height="match_parent">
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/main_btn_interstitial"
         style="@style/StyleK_MaterialBtn"
         android:text="InterstitialAd"
-        tools:ignore="HardcodedText" />
+        android:onClick="InterstitialAd"
+        tools:ignore="HardcodedText,UsingOnClickInXml" />
+
+    <com.google.android.material.button.MaterialButton
+        style="@style/StyleK_MaterialBtn"
+        android:text="InlineBannerAd"
+        android:onClick="InlineBannerAd"
+        tools:ignore="HardcodedText,UsingOnClickInXml" />
 
 </LinearLayout>

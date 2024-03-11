@@ -13,24 +13,19 @@ import com.yandex.mobile.ads.interstitial.InterstitialAdEventListener
  * @Date 2024/3/8
  * @Version 1.0
  */
-open class BaseInterstitialAdEventCallback : InterstitialAdEventListener, IUtilK {
+open class BaseInterstitialAdEventCallback : InterstitialAdEventListener {
     override fun onAdShown() {
-        Log.d(TAG, "onAdShown: ")
     }
 
     override fun onAdFailedToShow(p0: AdError) {
-        Log.d(TAG, "onAdFailedToShow: AdError $p0")
     }
 
     override fun onAdDismissed() {
-        Log.d(TAG, "onAdDismissed: ")
     }
 
     override fun onAdClicked() {
-        Log.d(TAG, "onAdClicked: ")
     }
 
     override fun onAdImpression(p0: ImpressionData?) {
-        Log.d(TAG, "onAdImpression: ImpressionData $p0")
     }
 }

@@ -37,7 +37,6 @@ class AdKTopOnBannerProxy : BaseWakeBefDestroyLifecycleObserver() {
 
     ///////////////////////////////////////////////////////////////////////
 
-
     @ACallFirstApi
     fun initBannerView(atBannerExListener: ATBannerExListener, adSourceStatusListener: ATAdSourceStatusListener) {
         Log.d(TAG, "initBannerView: ")
@@ -54,7 +53,7 @@ class AdKTopOnBannerProxy : BaseWakeBefDestroyLifecycleObserver() {
     fun addBannerViewToContainer(container: ViewGroup) {
         Log.d(TAG, "addBannerViewToContainer: ")
         if (mBannerView != null) {
-            container.addView(mBannerView, FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT))
+            container.addView(mBannerView, ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT))
         }
     }
 
