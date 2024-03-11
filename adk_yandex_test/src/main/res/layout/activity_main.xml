@@ -16,5 +16,9 @@
         android:text="InlineBannerAd"
         android:onClick="InlineBannerAd"
         tools:ignore="HardcodedText,UsingOnClickInXml" />
-
+    <com.google.android.material.button.MaterialButton
+        style="@style/StyleK_MaterialBtn"
+        android:text="OpenAd"
+        android:onClick="OpenAd"
+        tools:ignore="HardcodedText,UsingOnClickInXml" />
 </LinearLayout>

@@ -32,7 +32,7 @@ class AdKYandexInterstitialProxy<A>(
     private var _activity: A?
 ) : BaseWakeBefDestroyLifecycleObserver(), InterstitialAdLoadListener, InterstitialAdEventListener where A : LifecycleOwner, A : Activity {
     private var _interstitialAdLoader: InterstitialAdLoader? = null
-    private var interstitialAd: InterstitialAd? = null
+    private var _interstitialAd: InterstitialAd? = null
     private var _adUnitId: String = ""
     private var _adFoxRequestParameters: Map<String, String>? = null
     private var _interstitialAdEventListener: InterstitialAdEventListener? = null
@@ -57,8 +57,8 @@ class AdKYandexInterstitialProxy<A>(
     }
 
     fun showInterstitialAd() {
-        if (_activity != null && interstitialAd != null) {
-            interstitialAd!!.apply {
+        if (_activity != null && _interstitialAd != null) {
+            _interstitialAd!!.apply {
                 setAdEventListener(this@AdKYandexInterstitialProxy)
                 show(_activity!!)
             }
@@ -67,8 +67,8 @@ class AdKYandexInterstitialProxy<A>(
 
     fun destroyInterstitialAdd() {
         // don't forget to clean up event listener to null?
-        interstitialAd?.setAdEventListener(null)
-        interstitialAd = null
+        _interstitialAd?.setAdEventListener(null)
+        _interstitialAd = null
     }
 
     //////////////////////////////////////////////////////////////////////
@@ -95,9 +95,11 @@ class AdKYandexInterstitialProxy<A>(
         super.onDestroy(owner)
     }
 
+    //////////////////////////////////////////////////////////////////////
+
     override fun onAdLoaded(interstitialAd: InterstitialAd) {
         Log.d(TAG, "onAdLoaded: ")
-        this.interstitialAd = interstitialAd
+        _interstitialAd = interstitialAd
         _interstitialAdLoadListener?.onAdLoaded(interstitialAd)
     }
 

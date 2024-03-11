@@ -1,0 +1,153 @@
+package com.mozhimen.adk.yandex
+
+import android.app.Activity
+import android.util.Log
+import androidx.lifecycle.LifecycleOwner
+import com.mozhimen.basick.elemk.androidx.lifecycle.bases.BaseWakeBefDestroyLifecycleObserver
+import com.mozhimen.basick.lintk.optins.OApiCall_BindLifecycle
+import com.mozhimen.basick.lintk.optins.OApiInit_ByLazy
+import com.yandex.mobile.ads.appopenad.AppOpenAd
+import com.yandex.mobile.ads.appopenad.AppOpenAdEventListener
+import com.yandex.mobile.ads.appopenad.AppOpenAdLoadListener
+import com.yandex.mobile.ads.appopenad.AppOpenAdLoader
+import com.yandex.mobile.ads.common.AdError
+import com.yandex.mobile.ads.common.AdRequestConfiguration
+import com.yandex.mobile.ads.common.AdRequestError
+import com.yandex.mobile.ads.common.ImpressionData
+import java.util.concurrent.atomic.AtomicBoolean
+
+/**
+ * @ClassName AdKYandexOpenProxy
+ * @Description TODO
+ * @Author Mozhimen & Kolin Zhao
+ * @Date 2024/3/11
+ * @Version 1.0
+ */
+@OApiInit_ByLazy
+@OApiCall_BindLifecycle
+class AdKYandexOpenProxy<A>(private val _activity: A?) : BaseWakeBefDestroyLifecycleObserver(), AppOpenAdLoadListener, AppOpenAdEventListener where A : Activity, A : LifecycleOwner {
+    private var _appOpenAdLoader: AppOpenAdLoader? = null
+    private var _appOpenAd: AppOpenAd? = null
+    private var _appOpenAdLoadListener: AppOpenAdLoadListener? = null
+    private var _appOpenAdEventListener: AppOpenAdEventListener? = null
+//    private var _loadingInProgress = AtomicBoolean(false)
+    private var _adUnitId = ""
+
+    ///////////////////////////////////////////////////////////////////////////////
+
+    fun initOpenAdListener(appOpenAdLoadListener: AppOpenAdLoadListener?, appOpenAdEventListener: AppOpenAdEventListener?) {
+        _appOpenAdLoadListener = appOpenAdLoadListener
+        _appOpenAdEventListener = appOpenAdEventListener
+    }
+
+    fun initOpenAd(adUnitId: String) {
+        _adUnitId = adUnitId
+    }
+
+    fun loadOpenAd() {
+        // load new Ad if there is no loaded Ad and new ad isn't loading
+//        if (_loadingInProgress.compareAndSet(false, true)) {
+            _appOpenAdLoader?.loadAd(AdRequestConfiguration.Builder(_adUnitId).build()) ?: run {
+                Log.d(TAG, "loadOpenAd: null")
+            }
+//        }
+    }
+
+    fun showAppOpenAd() {
+        // show AppOpenAd when Application comes foreground if there is opened specific Activity
+        if (_activity != null && _appOpenAd != null) {
+//            showAdIfAvailable(_activity)
+            _appOpenAd!!.apply {
+                setAdEventListener(this@AdKYandexOpenProxy)
+                show(_activity)
+            }
+        }
+    }
+
+    fun destroyOpenAd() {
+        _appOpenAd?.setAdEventListener(null)
+        _appOpenAd = null
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////
+
+    override fun onCreate(owner: LifecycleOwner) {
+        if (_activity != null) {
+            Log.d(TAG, "onCreate: ")
+            _appOpenAdLoader = AppOpenAdLoader(_activity).apply {
+                setAdLoadListener(this@AdKYandexOpenProxy)
+            }
+            loadOpenAd()
+        }
+    }
+
+    override fun onDestroy(owner: LifecycleOwner) {
+        _appOpenAdLoader?.setAdLoadListener(null)
+        _appOpenAdLoader = null
+        destroyOpenAd()
+        super.onDestroy(owner)
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////
+
+    override fun onAdLoaded(appOpenAd: AppOpenAd) {
+        Log.d(TAG, "onAdLoaded: ")
+//        _loadingInProgress.set(false)
+        _appOpenAd = appOpenAd
+        // save appOpenAd for future use
+        _appOpenAdLoadListener?.onAdLoaded(appOpenAd)
+    }
+
+    override fun onAdFailedToLoad(adRequestError: AdRequestError) {
+        Log.d(TAG, "onAdFailedToLoad: AdRequestError $adRequestError")
+//        _loadingInProgress.set(false)
+        // use your own reload logic
+        // NOTE: avoid continuous reloading when load errors occur
+        _appOpenAdLoadListener?.onAdFailedToLoad(adRequestError)
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////
+
+    override fun onAdShown() {
+        Log.d(TAG, "onAdShown: ")
+        // Called when an app open ad has been shown
+        _appOpenAdEventListener?.onAdShown()
+    }
+
+    override fun onAdFailedToShow(p0: AdError) {
+        Log.d(TAG, "onAdFailedToShow: AdError $p0")
+        // Called when an app open ad failed to show
+        _appOpenAdEventListener?.onAdFailedToShow(p0)
+    }
+
+    override fun onAdDismissed() {
+        // Called when an app open ad has been dismissed
+        Log.d(TAG, "onAdDismissed: ")
+        destroyOpenAd()
+        _appOpenAdEventListener?.onAdDismissed()
+    }
+
+    override fun onAdClicked() {
+        Log.d(TAG, "onAdClicked: ")
+        // Called when user clicked on the ad
+        _appOpenAdEventListener?.onAdClicked()
+    }
+
+    override fun onAdImpression(p0: ImpressionData?) {
+        Log.d(TAG, "onAdImpression: ")
+        // Called when an impression was observed
+        _appOpenAdEventListener?.onAdImpression(p0)
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////
+
+//    private fun showAdIfAvailable(activity: Activity) {
+//        val appOpenAd = _appOpenAd
+//        if (appOpenAd != null) {
+//            appOpenAd.setAdEventListener(this)
+//            appOpenAd.show(activity)
+//        } else {
+//            loadOpenAd()
+//        }
+//    }
+}

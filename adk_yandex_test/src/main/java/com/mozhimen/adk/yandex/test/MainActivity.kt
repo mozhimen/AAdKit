@@ -16,4 +16,8 @@ class MainActivity : BaseActivityVB<ActivityMainBinding>() {
     fun InlineBannerAd(view: View) {
         startContext<InlineBannerAdActivity>()
     }
+
+    fun OpenAd(view: View) {
+        startContext<OpenAdActivity>()
+    }
 }
