@@ -14,7 +14,6 @@ import com.yandex.mobile.ads.common.AdError
 import com.yandex.mobile.ads.common.AdRequestConfiguration
 import com.yandex.mobile.ads.common.AdRequestError
 import com.yandex.mobile.ads.common.ImpressionData
-import java.util.concurrent.atomic.AtomicBoolean
 
 /**
  * @ClassName AdKYandexOpenProxy
@@ -25,12 +24,13 @@ import java.util.concurrent.atomic.AtomicBoolean
  */
 @OApiInit_ByLazy
 @OApiCall_BindLifecycle
-class AdKYandexOpenProxy<A>(private val _activity: A?) : BaseWakeBefDestroyLifecycleObserver(), AppOpenAdLoadListener, AppOpenAdEventListener where A : Activity, A : LifecycleOwner {
+class AdKYandexOpenProxy<A>(private var _activity: A?) : BaseWakeBefDestroyLifecycleObserver(), AppOpenAdLoadListener, AppOpenAdEventListener where A : Activity, A : LifecycleOwner {
     private var _appOpenAdLoader: AppOpenAdLoader? = null
     private var _appOpenAd: AppOpenAd? = null
     private var _appOpenAdLoadListener: AppOpenAdLoadListener? = null
     private var _appOpenAdEventListener: AppOpenAdEventListener? = null
-//    private var _loadingInProgress = AtomicBoolean(false)
+
+    //    private var _loadingInProgress = AtomicBoolean(false)
     private var _adUnitId = ""
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -40,16 +40,24 @@ class AdKYandexOpenProxy<A>(private val _activity: A?) : BaseWakeBefDestroyLifec
         _appOpenAdEventListener = appOpenAdEventListener
     }
 
-    fun initOpenAd(adUnitId: String) {
+    fun initOpenAdParams(adUnitId: String) {
         _adUnitId = adUnitId
+    }
+
+    fun initOpenAd() {
+        if (_activity != null) {
+            _appOpenAdLoader = AppOpenAdLoader(_activity!!).apply {
+                setAdLoadListener(this@AdKYandexOpenProxy)
+            }
+        }
     }
 
     fun loadOpenAd() {
         // load new Ad if there is no loaded Ad and new ad isn't loading
 //        if (_loadingInProgress.compareAndSet(false, true)) {
-            _appOpenAdLoader?.loadAd(AdRequestConfiguration.Builder(_adUnitId).build()) ?: run {
-                Log.d(TAG, "loadOpenAd: null")
-            }
+        _appOpenAdLoader?.loadAd(AdRequestConfiguration.Builder(_adUnitId).build()) ?: run {
+            Log.d(TAG, "loadOpenAd: null")
+        }
 //        }
     }
 
@@ -59,9 +67,14 @@ class AdKYandexOpenProxy<A>(private val _activity: A?) : BaseWakeBefDestroyLifec
 //            showAdIfAvailable(_activity)
             _appOpenAd!!.apply {
                 setAdEventListener(this@AdKYandexOpenProxy)
-                show(_activity)
+                show(_activity!!)
             }
         }
+    }
+
+    fun destroyOpenAdLoader() {
+        _appOpenAdLoader?.setAdLoadListener(null)
+        _appOpenAdLoader = null
     }
 
     fun destroyOpenAd() {
@@ -72,19 +85,14 @@ class AdKYandexOpenProxy<A>(private val _activity: A?) : BaseWakeBefDestroyLifec
     ///////////////////////////////////////////////////////////////////////////////
 
     override fun onCreate(owner: LifecycleOwner) {
-        if (_activity != null) {
-            Log.d(TAG, "onCreate: ")
-            _appOpenAdLoader = AppOpenAdLoader(_activity).apply {
-                setAdLoadListener(this@AdKYandexOpenProxy)
-            }
-            loadOpenAd()
-        }
+        initOpenAd()
+        loadOpenAd()
     }
 
     override fun onDestroy(owner: LifecycleOwner) {
-        _appOpenAdLoader?.setAdLoadListener(null)
-        _appOpenAdLoader = null
+        destroyOpenAdLoader()
         destroyOpenAd()
+        _activity = null
         super.onDestroy(owner)
     }
 
@@ -93,9 +101,11 @@ class AdKYandexOpenProxy<A>(private val _activity: A?) : BaseWakeBefDestroyLifec
     override fun onAdLoaded(appOpenAd: AppOpenAd) {
         Log.d(TAG, "onAdLoaded: ")
 //        _loadingInProgress.set(false)
-        _appOpenAd = appOpenAd
+
         // save appOpenAd for future use
         _appOpenAdLoadListener?.onAdLoaded(appOpenAd)
+
+        _appOpenAd = appOpenAd
     }
 
     override fun onAdFailedToLoad(adRequestError: AdRequestError) {
@@ -138,16 +148,4 @@ class AdKYandexOpenProxy<A>(private val _activity: A?) : BaseWakeBefDestroyLifec
         // Called when an impression was observed
         _appOpenAdEventListener?.onAdImpression(p0)
     }
-
-    ///////////////////////////////////////////////////////////////////////////////
-
-//    private fun showAdIfAvailable(activity: Activity) {
-//        val appOpenAd = _appOpenAd
-//        if (appOpenAd != null) {
-//            appOpenAd.setAdEventListener(this)
-//            appOpenAd.show(activity)
-//        } else {
-//            loadOpenAd()
-//        }
-//    }
 }

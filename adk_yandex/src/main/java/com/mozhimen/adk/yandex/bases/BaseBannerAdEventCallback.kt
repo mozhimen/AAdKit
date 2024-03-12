@@ -11,7 +11,7 @@ import com.yandex.mobile.ads.common.ImpressionData
  * @Date 2024/3/9 0:24
  * @Version 1.0
  */
-open class BaseBannerAdEventListener : BannerAdEventListener {
+open class BaseBannerAdEventCallback : BannerAdEventListener {
     override fun onAdLoaded() {
     }
 

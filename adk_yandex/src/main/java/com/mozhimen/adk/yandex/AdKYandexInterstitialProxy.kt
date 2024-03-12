@@ -45,9 +45,18 @@ class AdKYandexInterstitialProxy<A>(
         _interstitialAdLoadListener = interstitialAdLoadListener
     }
 
-    fun initInterstitialAd(adUnitId: String, adFoxRequestParameters: Map<String, String>? = null) {
+    fun initInterstitialAdParams(adUnitId: String, adFoxRequestParameters: Map<String, String>? = null) {
         _adUnitId = adUnitId
         _adFoxRequestParameters = adFoxRequestParameters
+    }
+
+    fun initInterstitialAd() {
+        if (_activity != null) {
+            Log.d(TAG, "onCreate: InterstitialAdLoader")
+            _interstitialAdLoader = InterstitialAdLoader(_activity!!).apply {
+                setAdLoadListener(this@AdKYandexInterstitialProxy)
+            }
+        }
     }
 
     fun loadInterstitialAd() {
@@ -56,6 +65,8 @@ class AdKYandexInterstitialProxy<A>(
         }
     }
 
+    //////////////////////////////////////////////////////////////////////
+
     fun showInterstitialAd() {
         if (_activity != null && _interstitialAd != null) {
             _interstitialAd!!.apply {
@@ -63,6 +74,12 @@ class AdKYandexInterstitialProxy<A>(
                 show(_activity!!)
             }
         }
+    }
+
+    fun destroyInterstitialAddLoader() {
+        // set listener to null to avoid memory leaks
+        _interstitialAdLoader?.setAdLoadListener(null)
+        _interstitialAdLoader = null
     }
 
     fun destroyInterstitialAdd() {
@@ -78,20 +95,14 @@ class AdKYandexInterstitialProxy<A>(
         // Initialize SDK as early as possible, for example in Application.onCreate or at least Activity.onCreate
         // It's recommended to use the same instance of InterstitialAdLoader for every load for
         // achieve better performance
-        if (_activity != null) {
-            Log.d(TAG, "onCreate: InterstitialAdLoader")
-            _interstitialAdLoader = InterstitialAdLoader(_activity!!).apply {
-                setAdLoadListener(this@AdKYandexInterstitialProxy)
-            }
-            loadInterstitialAd()
-        }
+        initInterstitialAd()
+        loadInterstitialAd()
     }
 
     override fun onDestroy(owner: LifecycleOwner) {
-        // set listener to null to avoid memory leaks
-        _interstitialAdLoader?.setAdLoadListener(null)
-        _interstitialAdLoader = null
+        destroyInterstitialAddLoader()
         destroyInterstitialAdd()
+        _activity = null
         super.onDestroy(owner)
     }
 
@@ -99,8 +110,9 @@ class AdKYandexInterstitialProxy<A>(
 
     override fun onAdLoaded(interstitialAd: InterstitialAd) {
         Log.d(TAG, "onAdLoaded: ")
-        _interstitialAd = interstitialAd
         _interstitialAdLoadListener?.onAdLoaded(interstitialAd)
+
+        _interstitialAd = interstitialAd
     }
 
     override fun onAdFailedToLoad(adRequestError: AdRequestError) {
@@ -122,8 +134,9 @@ class AdKYandexInterstitialProxy<A>(
 
     override fun onAdDismissed() {
         Log.d(TAG, "onAdDismissed: ")
-        destroyInterstitialAdd()// Now you can preload the next interstitial ad.
         _interstitialAdEventListener?.onAdDismissed()
+
+        destroyInterstitialAdd()// Now you can preload the next interstitial ad.
     }
 
     override fun onAdClicked() {
@@ -146,6 +159,4 @@ class AdKYandexInterstitialProxy<A>(
             AdRequestConfiguration.Builder(adUnitId)
         }.build()
     }
-
-
 }
