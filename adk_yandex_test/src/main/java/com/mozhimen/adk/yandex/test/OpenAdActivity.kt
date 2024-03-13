@@ -18,17 +18,17 @@ import com.yandex.mobile.ads.appopenad.AppOpenAd
  */
 class OpenAdActivity : BaseActivityVB<ActivityOpenAdBinding>() {
     @OptIn(OApiInit_ByLazy::class, OApiCall_BindLifecycle::class)
-    private val _adKYandexOpenProxy: AdKYandexOpenProxy<OpenAdActivity> by lazy { AdKYandexOpenProxy(this) }
+    private val _adKYandexOpenProxy: AdKYandexOpenProxy<OpenAdActivity> by lazy { AdKYandexOpenProxy() }
 
     @OptIn(OApiInit_ByLazy::class, OApiCall_BindLifecycle::class)
     override fun initView(savedInstanceState: Bundle?) {
         _adKYandexOpenProxy.apply {
             initOpenAdListener(object : BaseAppOpenAdLoadCallback() {
                 override fun onAdLoaded(p0: AppOpenAd) {
-                    _adKYandexOpenProxy.showAppOpenAd()
+                    _adKYandexOpenProxy.showAppOpenAd(this@OpenAdActivity)
                 }
             }, null)
-            initOpenAd("demo-appopenad-yandex")
+            initOpenAdParams("demo-appopenad-yandex")
             bindLifecycle(this@OpenAdActivity)
         }
     }

@@ -24,7 +24,7 @@ import com.yandex.mobile.ads.common.ImpressionData
  */
 @OApiInit_ByLazy
 @OApiCall_BindLifecycle
-class AdKYandexOpenProxy<A>(private var _activity: A?) : BaseWakeBefDestroyLifecycleObserver(), AppOpenAdLoadListener, AppOpenAdEventListener where A : Activity, A : LifecycleOwner {
+class AdKYandexOpenProxy : BaseWakeBefDestroyLifecycleObserver(), AppOpenAdLoadListener, AppOpenAdEventListener {
     private var _appOpenAdLoader: AppOpenAdLoader? = null
     private var _appOpenAd: AppOpenAd? = null
     private var _appOpenAdLoadListener: AppOpenAdLoadListener? = null
@@ -45,10 +45,8 @@ class AdKYandexOpenProxy<A>(private var _activity: A?) : BaseWakeBefDestroyLifec
     }
 
     fun initOpenAd() {
-        if (_activity != null) {
-            _appOpenAdLoader = AppOpenAdLoader(_activity!!).apply {
-                setAdLoadListener(this@AdKYandexOpenProxy)
-            }
+        _appOpenAdLoader = AppOpenAdLoader(_context).apply {
+            setAdLoadListener(this@AdKYandexOpenProxy)
         }
     }
 
@@ -61,13 +59,13 @@ class AdKYandexOpenProxy<A>(private var _activity: A?) : BaseWakeBefDestroyLifec
 //        }
     }
 
-    fun showAppOpenAd() {
+    fun showAppOpenAd(activity: Activity?) {
         // show AppOpenAd when Application comes foreground if there is opened specific Activity
-        if (_activity != null && _appOpenAd != null) {
+        if (activity != null && _appOpenAd != null) {
 //            showAdIfAvailable(_activity)
             _appOpenAd!!.apply {
                 setAdEventListener(this@AdKYandexOpenProxy)
-                show(_activity!!)
+                show(activity)
             }
         }
     }
@@ -82,7 +80,7 @@ class AdKYandexOpenProxy<A>(private var _activity: A?) : BaseWakeBefDestroyLifec
         _appOpenAd = null
     }
 
-    ///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
 
     override fun onCreate(owner: LifecycleOwner) {
         initOpenAd()
@@ -92,20 +90,19 @@ class AdKYandexOpenProxy<A>(private var _activity: A?) : BaseWakeBefDestroyLifec
     override fun onDestroy(owner: LifecycleOwner) {
         destroyOpenAdLoader()
         destroyOpenAd()
-        _activity = null
         super.onDestroy(owner)
     }
 
-    ///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
 
     override fun onAdLoaded(appOpenAd: AppOpenAd) {
         Log.d(TAG, "onAdLoaded: ")
 //        _loadingInProgress.set(false)
-
         // save appOpenAd for future use
+        _appOpenAd = appOpenAd
+
         _appOpenAdLoadListener?.onAdLoaded(appOpenAd)
 
-        _appOpenAd = appOpenAd
     }
 
     override fun onAdFailedToLoad(adRequestError: AdRequestError) {
@@ -116,7 +113,7 @@ class AdKYandexOpenProxy<A>(private var _activity: A?) : BaseWakeBefDestroyLifec
         _appOpenAdLoadListener?.onAdFailedToLoad(adRequestError)
     }
 
-    ///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
 
     override fun onAdShown() {
         Log.d(TAG, "onAdShown: ")
