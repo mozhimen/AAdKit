@@ -19,6 +19,7 @@ import com.mozhimen.basick.lintk.optins.OApiCall_BindViewLifecycle
 import com.mozhimen.basick.lintk.optins.OApiInit_ByLazy
 import com.mozhimen.basick.utilk.android.util.UtilKDisplayMetrics
 import com.mozhimen.basick.utilk.android.util.dp2px
+import com.mozhimen.basick.utilk.android.view.applyAddViewMatchParent
 
 /**
  * @ClassName BannerAdProxy
@@ -32,6 +33,7 @@ import com.mozhimen.basick.utilk.android.util.dp2px
 @OApiInit_ByLazy
 class AdKTopOnBannerProxy : BaseWakeBefDestroyLifecycleObserver(), ATBannerExListener, ATAdSourceStatusListener {
     private var _atBannerView: ATBannerView? = null
+    val atBannerView get() = _atBannerView
     private var _atBannerExListener: ATBannerExListener? = null
     private var _adSourceStatusListener: ATAdSourceStatusListener? = null
     private var _placementId = ""
@@ -79,13 +81,13 @@ class AdKTopOnBannerProxy : BaseWakeBefDestroyLifecycleObserver(), ATBannerExLis
     fun addBannerViewToContainer(container: ViewGroup) {
         Log.d(TAG, "addBannerViewToContainer: ")
         if (_atBannerView != null) {
-            container.addView(_atBannerView, ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT))
+            container.applyAddViewMatchParent(_atBannerView!!)
         }
     }
 
     //////////////////////////////////////////////////////////////////////
 
-    fun destroyBannerAd(){
+    fun destroyBannerAd() {
         _atBannerView?.apply {
             setBannerAdListener(null)
             setAdDownloadListener(null)

@@ -11,6 +11,7 @@ import com.mozhimen.basick.lintk.optins.OApiCall_BindViewLifecycle
 import com.mozhimen.basick.lintk.optins.OApiInit_ByLazy
 import com.mozhimen.basick.utilk.android.util.px2dp
 import com.mozhimen.basick.utilk.android.view.UtilKScreen
+import com.mozhimen.basick.utilk.android.view.applyAddViewMatchParent
 import com.yandex.mobile.ads.banner.BannerAdEventListener
 import com.yandex.mobile.ads.banner.BannerAdSize
 import com.yandex.mobile.ads.banner.BannerAdView
@@ -33,6 +34,7 @@ import kotlin.math.min
 @OApiInit_ByLazy
 class AdKYandexInlineBannerProxy : BaseWakeBefDestroyLifecycleObserver(), BannerAdEventListener {
     private var _bannerAdView: BannerAdView? = null
+    val bannerAdView get() = _bannerAdView
     private var _bannerAdSize: BannerAdSize? = null
     private var _bannerAdEventListener: BannerAdEventListener? = null
     private var _adUnitId = ""
@@ -41,6 +43,7 @@ class AdKYandexInlineBannerProxy : BaseWakeBefDestroyLifecycleObserver(), Banner
     ///////////////////////////////////////////////////////////////////////
 
     fun initBannerAdListener(bannerAdEventListener: BannerAdEventListener) {
+        Log.d(TAG, "initBannerAdListener: ")
         _bannerAdEventListener = bannerAdEventListener
     }
 
@@ -99,7 +102,7 @@ class AdKYandexInlineBannerProxy : BaseWakeBefDestroyLifecycleObserver(), Banner
 //        }
 //        binding.root.addView(bannerAd, params)
         if (_bannerAdView != null) {
-            container.addView(_bannerAdView, ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT))
+            container.applyAddViewMatchParent(_bannerAdView!!)
         }
     }
 
@@ -113,11 +116,13 @@ class AdKYandexInlineBannerProxy : BaseWakeBefDestroyLifecycleObserver(), Banner
     ///////////////////////////////////////////////////////////////////////
 
     override fun onCreate(owner: LifecycleOwner) {
+        Log.d(TAG, "onCreate: ")
         initBannerAd()
         loadBannerAd()
     }
 
     override fun onDestroy(owner: LifecycleOwner) {
+        Log.d(TAG, "onDestroy: ")
         destroyBannerAd()
         super.onDestroy(owner)
     }
