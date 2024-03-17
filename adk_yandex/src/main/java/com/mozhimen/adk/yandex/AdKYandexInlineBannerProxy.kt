@@ -11,7 +11,7 @@ import com.mozhimen.basick.lintk.optins.OApiCall_BindViewLifecycle
 import com.mozhimen.basick.lintk.optins.OApiInit_ByLazy
 import com.mozhimen.basick.utilk.android.util.px2dp
 import com.mozhimen.basick.utilk.android.view.UtilKScreen
-import com.mozhimen.basick.utilk.android.view.applyAddViewMatchParent
+import com.mozhimen.basick.utilk.android.view.addViewMatchParent
 import com.yandex.mobile.ads.banner.BannerAdEventListener
 import com.yandex.mobile.ads.banner.BannerAdSize
 import com.yandex.mobile.ads.banner.BannerAdView
@@ -102,7 +102,7 @@ class AdKYandexInlineBannerProxy : BaseWakeBefDestroyLifecycleObserver(), Banner
 //        }
 //        binding.root.addView(bannerAd, params)
         if (_bannerAdView != null) {
-            container.applyAddViewMatchParent(_bannerAdView!!)
+            container.addViewMatchParent(_bannerAdView!!)
         }
     }
 

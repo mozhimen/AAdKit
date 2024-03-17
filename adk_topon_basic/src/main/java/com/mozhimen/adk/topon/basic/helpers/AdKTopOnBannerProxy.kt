@@ -13,13 +13,12 @@ import com.anythink.core.api.ATAdSourceStatusListener
 import com.anythink.core.api.ATNetworkConfirmInfo
 import com.anythink.core.api.AdError
 import com.mozhimen.basick.elemk.androidx.lifecycle.bases.BaseWakeBefDestroyLifecycleObserver
-import com.mozhimen.basick.lintk.annors.ACallSecondApi
 import com.mozhimen.basick.lintk.optins.OApiCall_BindLifecycle
 import com.mozhimen.basick.lintk.optins.OApiCall_BindViewLifecycle
 import com.mozhimen.basick.lintk.optins.OApiInit_ByLazy
 import com.mozhimen.basick.utilk.android.util.UtilKDisplayMetrics
 import com.mozhimen.basick.utilk.android.util.dp2px
-import com.mozhimen.basick.utilk.android.view.applyAddViewMatchParent
+import com.mozhimen.basick.utilk.android.view.addViewMatchParent
 
 /**
  * @ClassName BannerAdProxy
@@ -81,7 +80,7 @@ class AdKTopOnBannerProxy : BaseWakeBefDestroyLifecycleObserver(), ATBannerExLis
     fun addBannerViewToContainer(container: ViewGroup) {
         Log.d(TAG, "addBannerViewToContainer: ")
         if (_atBannerView != null) {
-            container.applyAddViewMatchParent(_atBannerView!!)
+            container.addViewMatchParent(_atBannerView!!)
         }
     }
 
