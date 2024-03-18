@@ -43,8 +43,9 @@ include ':adk_google'
 include ':adk_google_test'
 include ':adk_topon_basic'
 include ':adk_topon_basic_test'
-include ':adk_yandex'
-include ':adk_yandex_test'
+include ':adk_yandex_basic'
+include ':adk_yandex_basic_test'
+
 //AXmlKit
 include ':AXmlKit'
 project(':AXmlKit').projectDir = new File("D:\\WorkSpace\\GitHub\\AXmlKit")
@@ -62,6 +63,5 @@ include ':ADebugKit:debugk_leakcanary'
 include ':AWebKit'
 project(':AWebKit').projectDir = new File("D:\\WorkSpace\\GitHub\\AWebKit")
 include ':AWebKit:webk_basic'
-
 
 
