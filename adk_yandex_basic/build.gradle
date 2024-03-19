@@ -35,12 +35,85 @@ android {
 
 dependencies {
     implementation project(':SwiftKit:basick')
-    api('com.yandex.android:mobileads-mediation:6.4.0.0'){
-        exclude group: 'com.unity3d.ads'
-        exclude group: 'com.anythink.sdk'
-        exclude group: 'com.bytedance'
-        exclude group: 'com.huawei'
-    }
+    api 'com.yandex.android:mobileads:6.4.1'
+//    api('com.yandex.android:mobileads-mediation:6.4.0.0') {
+//        //adcolony
+////        exclude group: 'com.adcolony', module: 'sdk'
+//
+//        //appnext
+//        exclude group: 'com.appnext.sdk', module: 'ads'
+//        exclude group: 'com.appnext.sdk', module: 'core'
+//        exclude group: 'com.appnext.sdk', module: 'banners'
+//        exclude group: 'com.appnext.sdk', module: 'native-ads2'
+//
+//        //google
+//        exclude group: 'com.google.android.gms', module: 'play-services-basement'
+//        exclude group: 'com.google.android.gms', module: 'play-services-base'
+//        exclude group: 'com.google.android.gms', module: 'play-services-tasks'
+//        exclude group: 'com.google.android.gms', module: 'play-services-ads'
+//        exclude group: 'com.google.android.gms', module: 'play-services-ads-identifier'
+//        exclude group: 'com.google.android.gms', module: 'play-services-ads-base'
+//        exclude group: 'com.google.android.gms', module: 'play-services-ads-lite'
+//        exclude group: 'com.google.android.gms', module: 'play-services-measurement-sdk-api'
+//        exclude group: 'com.google.android.gms', module: 'play-services-measurement-base'
+//        exclude group: 'com.google.android.gms', module: 'play-services-auth'
+//        exclude group: 'com.google.android.gms', module: 'play-services-auth-api-phone'
+//        exclude group: 'com.google.android.gms', module: 'play-services-auth-base'
+//        exclude group: 'com.google.android.gms', module: 'play-services-fido'
+//        exclude group: 'com.google.android.gms', module: 'play-services-location'
+//        exclude group: 'com.google.android.gms', module: 'play-services-places-placereport'
+//        exclude group: 'com.google.android.gms', module: 'play-services-cronet'
+//
+//        //applovin
+////        exclude group: 'com.applovin', module: 'applovin-sdk'
+//
+//        //chartboost
+//        exclude group: 'com.chartboost', module: 'chartboost-sdk'
+//
+//        //ironsource
+//        exclude group: 'com.ironsource.sdk', module: 'mediationsdk'
+//
+//        //mintegral
+//        exclude group: 'com.mbridge.msdk.oversea', module: 'mbnative'
+//        exclude group: 'com.mbridge.msdk.oversea', module: 'same'
+//        exclude group: 'com.mbridge.msdk.oversea', module: 'nativeex'
+//        exclude group: 'com.mbridge.msdk.oversea', module: 'mbjscommon'
+//        exclude group: 'com.mbridge.msdk.oversea', module: 'playercommon'
+//        exclude group: 'com.mbridge.msdk.oversea', module: 'videocommon'
+//        exclude group: 'com.mbridge.msdk.oversea', module: 'mbbanner'
+//        exclude group: 'com.mbridge.msdk.oversea', module: 'reward'
+//        exclude group: 'com.mbridge.msdk.oversea', module: 'videojs'
+//        exclude group: 'com.mbridge.msdk.oversea', module: 'dycreator'
+//        exclude group: 'com.mbridge.msdk.oversea', module: 'mbbid'
+//        exclude group: 'com.mbridge.msdk.oversea', module: 'interstitialvideo'
+//
+//        //mytarget
+//        exclude group: 'com.my.target', module: 'mytarget-sdk'
+//
+//        //pangle
+//        exclude group: 'com.pangle.global', module: 'ads-sdk'
+//        exclude group: 'com.pangle.global', module: 'crash_monitor'
+//        exclude group: 'com.pangle.global', module: 'encryptor'
+//        exclude group: 'com.pangle.global', module: 'metasec_pgl'
+//        exclude group: 'com.pangle.global', module: 'gecko'
+//
+//        //startapp
+////        exclude group: 'com.startapp', module: 'inapp-sdk'
+//
+//        //tapjoy
+//        exclude group: 'com.tapjoy', module: 'tapjoy-android-sdk'
+//
+//        //unityads
+//        exclude group: 'com.unity3d.ads', module: 'unity-ads'
+//
+//        //vungle
+//        exclude group: 'com.vungle', module: 'vungle-ads'
+//
+//        //inmobi
+////        exclude group: 'com.inmobi.monetization', module: 'inmobi-ads-kotlin'
+////        exclude group: 'com.inmobi.omsdk', module: 'inmobi-omsdk'
+//
+//    }
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'

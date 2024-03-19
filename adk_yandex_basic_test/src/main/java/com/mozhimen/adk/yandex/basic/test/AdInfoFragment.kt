@@ -15,7 +15,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import com.mozhimen.adk.yandex.basic.test.R
 import com.mozhimen.adk.yandex.basic.test.databinding.FragmentAdInfoBinding
 import com.mozhimen.adk.yandex.basic.test.network.Network
 import com.mozhimen.adk.yandex.basic.test.network.NetworkAdapter

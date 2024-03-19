@@ -65,12 +65,12 @@ class InterstitialAdActivity : BaseActivityVB<ActivityInterstitialAdBinding>() {
         }
     }
 
-    @OptIn(OApiInit_ByLazy::class, OApiCall_BindLifecycle::class, OApiCall_BindViewLifecycle::class, OMetaData_YANDEX_ADS_APPLICATION_ID::class)
+    @OptIn(OApiInit_ByLazy::class, OApiCall_BindLifecycle::class, OApiCall_BindViewLifecycle::class)
     private val _adKYandexInterstitialProxy by lazy { AdKYandexInterstitialProxy(this) }
 
     ////////////////////////////////////////////////////////////////
 
-    @OptIn(OApiInit_ByLazy::class, OApiCall_BindLifecycle::class, OApiCall_BindViewLifecycle::class, OMetaData_YANDEX_ADS_APPLICATION_ID::class)
+    @OptIn(OApiInit_ByLazy::class, OApiCall_BindLifecycle::class, OApiCall_BindViewLifecycle::class)
     override fun initView(savedInstanceState: Bundle?) {
         Log.d(TAG, "initView: ")
         _adKYandexInterstitialProxy.apply {
@@ -100,7 +100,7 @@ class InterstitialAdActivity : BaseActivityVB<ActivityInterstitialAdBinding>() {
         vb.log.text = getString(R.string.log_format, vb.log.text, message)
     }
 
-    @OptIn(OApiInit_ByLazy::class, OApiCall_BindLifecycle::class, OApiCall_BindViewLifecycle::class, OMetaData_YANDEX_ADS_APPLICATION_ID::class)
+    @OptIn(OApiInit_ByLazy::class, OApiCall_BindLifecycle::class, OApiCall_BindViewLifecycle::class)
     private fun ActivityInterstitialAdBinding.setupUiBidding() {
         showAdButton.setOnClickListener {
             disableShowAdButton()

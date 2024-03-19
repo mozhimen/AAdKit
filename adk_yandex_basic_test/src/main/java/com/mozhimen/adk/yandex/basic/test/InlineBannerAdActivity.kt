@@ -15,7 +15,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.commit
 import com.mozhimen.adk.yandex.basic.AdKYandexInlineBannerProxy
 import com.mozhimen.adk.yandex.basic.optins.OMetaData_YANDEX_ADS_APPLICATION_ID
-import com.mozhimen.adk.yandex.basic.test.R
 import com.mozhimen.adk.yandex.basic.test.databinding.ActivityInlineBannerAdBinding
 import com.mozhimen.adk.yandex.basic.test.network.Network
 import com.mozhimen.basick.lintk.optins.OApiCall_BindLifecycle
@@ -54,7 +53,7 @@ class InlineBannerAdActivity : AppCompatActivity(R.layout.activity_inline_banner
 
     private lateinit var binding: ActivityInlineBannerAdBinding
 
-    @OptIn(OApiCall_BindViewLifecycle::class, OApiCall_BindLifecycle::class, OApiInit_ByLazy::class, OMetaData_YANDEX_ADS_APPLICATION_ID::class)
+    @OptIn(OApiCall_BindViewLifecycle::class, OApiCall_BindLifecycle::class, OApiInit_ByLazy::class)
     private val _adKYandexInlineBannerProxy by lazy { AdKYandexInlineBannerProxy() }
 
     private val _bannerAdEventListener = object : BannerAdEventListener {
@@ -89,7 +88,7 @@ class InlineBannerAdActivity : AppCompatActivity(R.layout.activity_inline_banner
 
     ///////////////////////////////////////////////////////////////////////
 
-    @OptIn(OApiCall_BindViewLifecycle::class, OApiCall_BindLifecycle::class, OApiInit_ByLazy::class, OMetaData_YANDEX_ADS_APPLICATION_ID::class)
+    @OptIn(OApiCall_BindViewLifecycle::class, OApiCall_BindLifecycle::class, OApiInit_ByLazy::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityInlineBannerAdBinding.inflate(layoutInflater)

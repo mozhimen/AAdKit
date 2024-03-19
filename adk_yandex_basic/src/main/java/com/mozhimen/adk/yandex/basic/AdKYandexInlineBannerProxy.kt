@@ -28,7 +28,6 @@ import kotlin.math.min
  * @Date 2024/3/9 0:02
  * @Version 1.0
  */
-@OMetaData_YANDEX_ADS_APPLICATION_ID
 @OApiCall_BindViewLifecycle
 @OApiCall_BindLifecycle
 @OApiInit_ByLazy

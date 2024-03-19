@@ -27,7 +27,7 @@
             android:name="com.mozhimen.adk.yandex.basic.test.OpenAdActivity"
             android:exported="false" />
 
-        <meta-data
+<!--        <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
         <meta-data
@@ -36,7 +36,7 @@
 
         <receiver
             android:name="com.vungle.warren.NetworkProviderReceiver"
-            android:exported="true" />
+            android:exported="true" />-->
     </application>
 
 </manifest>

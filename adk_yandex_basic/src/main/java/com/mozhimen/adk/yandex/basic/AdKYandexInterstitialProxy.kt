@@ -24,7 +24,6 @@ import com.yandex.mobile.ads.interstitial.InterstitialAdLoader
  * @Date 2024/3/8
  * @Version 1.0
  */
-@OMetaData_YANDEX_ADS_APPLICATION_ID
 @OApiInit_ByLazy
 @OApiCall_BindLifecycle
 @OApiCall_BindViewLifecycle
