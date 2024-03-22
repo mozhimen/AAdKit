@@ -4,13 +4,12 @@ import android.util.Log
 import android.view.ViewGroup
 import androidx.annotation.Px
 import androidx.lifecycle.LifecycleOwner
-import com.mozhimen.adk.yandex.basic.optins.OMetaData_YANDEX_ADS_APPLICATION_ID
 import com.mozhimen.basick.elemk.androidx.lifecycle.bases.BaseWakeBefDestroyLifecycleObserver
 import com.mozhimen.basick.lintk.optins.OApiCall_BindLifecycle
 import com.mozhimen.basick.lintk.optins.OApiCall_BindViewLifecycle
 import com.mozhimen.basick.lintk.optins.OApiInit_ByLazy
 import com.mozhimen.basick.utilk.android.util.px2dp
-import com.mozhimen.basick.utilk.android.view.UtilKScreen
+import com.mozhimen.basick.utilk.wrapper.UtilKScreen
 import com.mozhimen.basick.utilk.android.view.addViewMatchParent
 import com.yandex.mobile.ads.banner.BannerAdEventListener
 import com.yandex.mobile.ads.banner.BannerAdSize
