@@ -97,8 +97,8 @@ class AdKTopOnInterstitialProxy(private var _activity: Activity? = null) : BaseW
         Log.d(TAG, "loadAd: ")
         if (width > 0 && height > 0) {
             val localMap: HashMap<String, Any> = HashMap()
-            val widthOffset = Math.min(width, UtilKScreen.getWidth_ofSysMetrics())
-            val heightOffset = Math.min(height, UtilKScreen.getHeight_ofSysMetrics())
+            val widthOffset = Math.min(width, UtilKScreen.getWidth_ofDisplayMetrics_ofSys())
+            val heightOffset = Math.min(height, UtilKScreen.getHeight_ofDisplayMetrics_ofSys())
             localMap.put(ATAdConst.KEY.AD_WIDTH, widthOffset /*getResources().getDisplayMetrics().widthPixels*/)
             localMap.put(ATAdConst.KEY.AD_HEIGHT, heightOffset/*getResources().getDisplayMetrics().heightPixels*/)
             _interstitialAd?.setLocalExtra(localMap)

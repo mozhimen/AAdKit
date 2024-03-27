@@ -56,8 +56,8 @@ class AdKYandexInlineBannerProxy : BaseWakeBefDestroyLifecycleObserver(), Banner
 //        val adWidthPixels = binding.coordinatorLayout.width
 //        val adWidth = (adWidthPixels / resources.displayMetrics.density).roundToInt()
 //        val maxAdHeight = screenHeight / 3
-        val screenWidth = min(UtilKScreen.getWidth_ofSysMetrics(), UtilKScreen.getHeight_ofSysMetrics())
-        val screenHeight = max(UtilKScreen.getWidth_ofSysMetrics(), UtilKScreen.getHeight_ofSysMetrics())
+        val screenWidth = min(UtilKScreen.getWidth_ofDisplayMetrics_ofSys(), UtilKScreen.getHeight_ofDisplayMetrics_ofSys())
+        val screenHeight = max(UtilKScreen.getWidth_ofDisplayMetrics_ofSys(), UtilKScreen.getHeight_ofDisplayMetrics_ofSys())
         var adWidth = screenWidth
         if (width > 0)
             adWidth = width

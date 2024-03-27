@@ -106,7 +106,7 @@ class InlineBannerAdActivity : AppCompatActivity(R.layout.activity_inline_banner
         _adKYandexInlineBannerProxy.apply {
             initBannerAdListener(_bannerAdEventListener)
             initBannerParams(adInfoFragment.selectedNetwork.adUnitId)
-            initBannerAdSize(UtilKScreen.getWidth_ofSysMetrics(), 90f.dp2px.toInt())
+            initBannerAdSize(UtilKScreen.getWidth_ofDisplayMetrics_ofSys(), 90f.dp2px.toInt())
             bindLifecycle(this@InlineBannerAdActivity)
         }
 
