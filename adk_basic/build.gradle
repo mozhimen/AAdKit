@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace 'com.mozhimen.adk.google'
+    namespace 'com.mozhimen.adk.basic'
     compileSdk 34
 
     defaultConfig {
@@ -30,7 +30,6 @@ android {
 }
 
 dependencies {
-    api 'com.google.android.gms:play-services-ads:23.0.0'
     implementation project(':SwiftKit:basick')
 
     testImplementation 'junit:junit:4.13.2'

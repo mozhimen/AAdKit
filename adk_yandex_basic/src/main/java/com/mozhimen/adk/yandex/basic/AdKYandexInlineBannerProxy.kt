@@ -45,7 +45,7 @@ class AdKYandexInlineBannerProxy : BaseWakeBefDestroyLifecycleObserver(), Banner
         _bannerAdEventListener = bannerAdEventListener
     }
 
-    fun initBannerParams(adUnitId: String, adFoxRequestParameters: Map<String, String>? = null) {
+    fun initBannerAdParams(adUnitId: String, adFoxRequestParameters: Map<String, String>? = null) {
         _adUnitId = adUnitId
         _adFoxRequestParameters = adFoxRequestParameters
     }

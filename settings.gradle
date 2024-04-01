@@ -65,3 +65,4 @@ project(':AWebKit').projectDir = new File("D:\\WorkSpace\\GitHub\\AWebKit")
 include ':AWebKit:webk_basic'
 
 
+include ':adk_basic'

@@ -1,6 +1,7 @@
 package com.mozhimen.adk.google.test
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import com.mozhimen.adk.google.AdKGoogleMgr
 import com.mozhimen.adk.google.optins.OMetaData_GMS_ADS_APPLICATION_ID
@@ -16,6 +17,7 @@ class MainActivity : BaseActivityVDB<ActivityMainBinding>() {
     @OptIn(OMetaData_GMS_ADS_APPLICATION_ID::class)
     override fun initView(savedInstanceState: Bundle?) {
         AdKGoogleMgr.init(this) { res ->
+            Log.d(TAG, "initView: isInitSuccess $res")
             _isInitSuccess = res
         }
     }

@@ -14,14 +14,13 @@ import android.view.ViewTreeObserver
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.commit
 import com.mozhimen.adk.yandex.basic.AdKYandexInlineBannerProxy
-import com.mozhimen.adk.yandex.basic.optins.OMetaData_YANDEX_ADS_APPLICATION_ID
 import com.mozhimen.adk.yandex.basic.test.databinding.ActivityInlineBannerAdBinding
 import com.mozhimen.adk.yandex.basic.test.network.Network
 import com.mozhimen.basick.lintk.optins.OApiCall_BindLifecycle
 import com.mozhimen.basick.lintk.optins.OApiCall_BindViewLifecycle
 import com.mozhimen.basick.lintk.optins.OApiInit_ByLazy
 import com.mozhimen.basick.utilk.android.util.dp2px
-import com.mozhimen.basick.utilk.android.view.UtilKScreen
+import com.mozhimen.basick.utilk.wrapper.UtilKScreen
 import com.yandex.mobile.ads.banner.BannerAdEventListener
 import com.yandex.mobile.ads.common.AdRequestError
 import com.yandex.mobile.ads.common.ImpressionData
@@ -105,7 +104,7 @@ class InlineBannerAdActivity : AppCompatActivity(R.layout.activity_inline_banner
 
         _adKYandexInlineBannerProxy.apply {
             initBannerAdListener(_bannerAdEventListener)
-            initBannerParams(adInfoFragment.selectedNetwork.adUnitId)
+            initBannerAdParams(adInfoFragment.selectedNetwork.adUnitId)
             initBannerAdSize(UtilKScreen.getWidth_ofDisplayMetrics_ofSys(), 90f.dp2px.toInt())
             bindLifecycle(this@InlineBannerAdActivity)
         }

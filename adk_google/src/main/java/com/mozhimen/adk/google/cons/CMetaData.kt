@@ -28,4 +28,28 @@ object CMetaData {
   </application>
 </manifest>
     """
+
+    //The flag below optimizes the MobileAds.initialize() initialization call:
+    const val GMS_ADS_FLAG_OPTIMIZE_INITIALIZATION = """
+<manifest>
+  <application>
+      <meta-data
+          android:name="com.google.android.gms.ads.flag.OPTIMIZE_INITIALIZATION"
+          android:value="true"/>
+  </application>
+</manifest>
+    """
+
+    //The flag below optimizes ad load calls for all ad formats:
+    const val gms_ads_flag_OPTIMIZE_AD_LOADING = """
+<manifest>
+  <application>
+      <meta-data
+          android:name="com.google.android.gms.ads.flag.OPTIMIZE_AD_LOADING"
+          android:value="true"/>
+  </application>
+</manifest>
+    """
+
+
 }

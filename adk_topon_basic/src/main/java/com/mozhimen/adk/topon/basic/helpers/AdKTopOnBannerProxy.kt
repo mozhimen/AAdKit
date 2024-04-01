@@ -18,7 +18,7 @@ import com.mozhimen.basick.lintk.optins.OApiCall_BindViewLifecycle
 import com.mozhimen.basick.lintk.optins.OApiInit_ByLazy
 import com.mozhimen.basick.utilk.android.util.UtilKDisplayMetrics
 import com.mozhimen.basick.utilk.android.util.dp2px
-import com.mozhimen.basick.utilk.android.view.addViewMatchParent
+import com.mozhimen.basick.utilk.android.view.addView_ofMatchParent
 
 /**
  * @ClassName BannerAdProxy
@@ -66,7 +66,7 @@ class AdKTopOnBannerProxy : BaseWakeBefDestroyLifecycleObserver(), ATBannerExLis
         Log.d(TAG, "loadBannerAd: ")
         //Loading and displaying ads should keep the container and BannerView visible all the time
         val localMap: MutableMap<String, Any> = HashMap()
-        localMap[ATAdConst.KEY.AD_WIDTH] = UtilKDisplayMetrics.getSysWidthPixels() - 2 * paddingHorizontal
+        localMap[ATAdConst.KEY.AD_WIDTH] = UtilKDisplayMetrics.getWidthPixels_ofSys() - 2 * paddingHorizontal
         localMap[ATAdConst.KEY.AD_HEIGHT] = 50f.dp2px.toInt()
         _atBannerView?.setLocalExtra(localMap)
 
@@ -80,7 +80,7 @@ class AdKTopOnBannerProxy : BaseWakeBefDestroyLifecycleObserver(), ATBannerExLis
     fun addBannerViewToContainer(container: ViewGroup) {
         Log.d(TAG, "addBannerViewToContainer: ")
         if (_atBannerView != null) {
-            container.addViewMatchParent(_atBannerView!!)
+            container.addView_ofMatchParent(_atBannerView!!)
         }
     }
 
