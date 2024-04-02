@@ -1,7 +1,7 @@
 package com.mozhimen.adk.yandex.basic.test
 
 import android.os.Bundle
-import com.mozhimen.adk.yandex.basic.AdKYandexOpenProxy
+import com.mozhimen.adk.yandex.basic.impls.AdKYandexOpenProxy
 import com.mozhimen.adk.yandex.basic.bases.BaseAppOpenAdLoadCallback
 import com.mozhimen.adk.yandex.basic.test.databinding.ActivityOpenAdBinding
 import com.mozhimen.basick.elemk.androidx.appcompat.bases.viewbinding.BaseActivityVB

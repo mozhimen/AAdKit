@@ -7,6 +7,7 @@ import com.mozhimen.adk.google.impls.AdKGoogleBannerProxy
 import com.mozhimen.adk.google.test.databinding.ActivityAdsBannerBinding
 import com.mozhimen.basick.elemk.androidx.appcompat.bases.databinding.BaseActivityVDB
 import com.mozhimen.basick.lintk.optins.OApiCall_BindLifecycle
+import com.mozhimen.basick.lintk.optins.OApiCall_BindViewLifecycle
 import com.mozhimen.basick.lintk.optins.OApiInit_ByLazy
 import com.mozhimen.basick.utilk.android.util.px2dp
 import com.mozhimen.basick.utilk.android.view.addAndRemoveOnGlobalLayoutListener
@@ -17,10 +18,10 @@ import com.mozhimen.basick.utilk.wrapper.UtilKScreen
  * 横幅广告
  */
 class AdsBannerActivity : BaseActivityVDB<ActivityAdsBannerBinding>() {
-    @OptIn(OApiInit_ByLazy::class, OApiCall_BindLifecycle::class)
-    private val _adKGoogleBannerProxy by lazy { AdKGoogleBannerProxy<AdsBannerActivity>() }
+    @OptIn(OApiInit_ByLazy::class, OApiCall_BindLifecycle::class, OApiCall_BindViewLifecycle::class)
+    private val _adKGoogleBannerProxy by lazy { AdKGoogleBannerProxy() }
 
-    @OptIn(OApiInit_ByLazy::class, OApiCall_BindLifecycle::class)
+    @OptIn(OApiInit_ByLazy::class, OApiCall_BindLifecycle::class, OApiCall_BindViewLifecycle::class)
     override fun initView(savedInstanceState: Bundle?) {
         _adKGoogleBannerProxy.apply {
             initBannerAdParams("ca-app-pub-3940256099942544/9214589741")

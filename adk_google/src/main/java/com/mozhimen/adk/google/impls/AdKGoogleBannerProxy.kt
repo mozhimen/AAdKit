@@ -1,20 +1,19 @@
 package com.mozhimen.adk.google.impls
 
-import android.app.Activity
 import android.util.Log
-import android.view.Gravity
 import android.view.ViewGroup
-import android.widget.FrameLayout
-import androidx.annotation.Px
 import androidx.lifecycle.LifecycleOwner
 import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdSize
 import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.LoadAdError
+import com.mozhimen.adk.basic.commons.IAdKBannerProxy
 import com.mozhimen.adk.google.AdKGoogleMgr
 import com.mozhimen.basick.elemk.androidx.lifecycle.bases.BaseWakeBefDestroyLifecycleObserver
+import com.mozhimen.basick.lintk.annors.Dp
 import com.mozhimen.basick.lintk.optins.OApiCall_BindLifecycle
+import com.mozhimen.basick.lintk.optins.OApiCall_BindViewLifecycle
 import com.mozhimen.basick.lintk.optins.OApiInit_ByLazy
 import com.mozhimen.basick.utilk.android.view.addView_ofMatchParent
 
@@ -27,8 +26,9 @@ import com.mozhimen.basick.utilk.android.view.addView_ofMatchParent
  */
 @OApiInit_ByLazy
 @OApiCall_BindLifecycle
-class AdKGoogleBannerProxy<A> :
-    BaseWakeBefDestroyLifecycleObserver() where A : Activity, A : LifecycleOwner {
+@OApiCall_BindViewLifecycle
+class AdKGoogleBannerProxy :
+    BaseWakeBefDestroyLifecycleObserver(), IAdKBannerProxy {
     private var _bannerAdView: AdView? = null
     val bannerAdView get() = _bannerAdView
     private var _bannerAdSize: AdSize? = null
@@ -46,11 +46,15 @@ class AdKGoogleBannerProxy<A> :
         _adUnitId = adUnitId
     }
 
-    fun initBannerAdSize(width_ofDp: Int = 0) {
-        _bannerAdSize = AdSize.getCurrentOrientationInlineAdaptiveBannerAdSize(_context, width_ofDp)
+    fun initBannerAdSize(@Dp width: Int) {
+        initBannerAdSize(width, 0)
     }
 
-    fun initBannerAd() {
+    override fun initBannerAdSize(@Dp width: Int,@Dp height: Int) {
+        _bannerAdSize = AdSize.getCurrentOrientationInlineAdaptiveBannerAdSize(_context, width)
+    }
+
+    override fun initBannerAd() {
         // 获取页面的根布局
         if (AdKGoogleMgr.isInitSuccess()) {
             _bannerAdView = AdView(_context).apply {
@@ -72,13 +76,13 @@ class AdKGoogleBannerProxy<A> :
         _bannerAdView?.alpha = 0f
     }
 
-    fun loadBannerAd() {
+    override fun loadBannerAd() {
         _bannerAdView?.loadAd(AdRequest.Builder().build())
     }
 
     //////////////////////////////////////////////////////////////////////////////////
 
-    fun addBannerViewToContainer(container: ViewGroup) {
+    override fun addBannerViewToContainer(container: ViewGroup) {
         if (_bannerAdView != null) {
 //            val bannerViewLayoutParams = FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.WRAP_CONTENT)
 //            // 设置显示在页面的底部中间
@@ -90,7 +94,7 @@ class AdKGoogleBannerProxy<A> :
 
     //////////////////////////////////////////////////////////////////////////////////
 
-    fun destroyBannerAd() {
+    override fun destroyBannerAd() {
         _bannerAdView?.destroy()
         _bannerAdView = null
     }
@@ -115,6 +119,7 @@ class AdKGoogleBannerProxy<A> :
         Log.d(TAG, "onDestroy: ")
 //        hideBanner()
         destroyBannerAd()
+        _bannerAdListener = null
         super.onDestroy(owner)
     }
 

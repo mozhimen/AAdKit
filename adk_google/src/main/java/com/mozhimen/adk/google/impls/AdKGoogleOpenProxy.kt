@@ -9,8 +9,7 @@ import com.google.android.gms.ads.FullScreenContentCallback
 import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.appopen.AppOpenAd
 import com.google.android.gms.ads.appopen.AppOpenAd.AppOpenAdLoadCallback
-import com.google.android.gms.ads.interstitial.InterstitialAd
-import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
+import com.mozhimen.adk.basic.commons.IAdKOpenProxy
 import com.mozhimen.adk.google.AdKGoogleMgr
 import com.mozhimen.basick.elemk.androidx.lifecycle.bases.BaseWakeBefDestroyLifecycleObserver
 import com.mozhimen.basick.lintk.optins.OApiCall_BindLifecycle
@@ -25,13 +24,11 @@ import com.mozhimen.basick.lintk.optins.OApiInit_ByLazy
  */
 @OApiInit_ByLazy
 @OApiCall_BindLifecycle
-class AdKGoogleOpenProxy : BaseWakeBefDestroyLifecycleObserver() {
+class AdKGoogleOpenProxy : BaseWakeBefDestroyLifecycleObserver(), IAdKOpenProxy {
     private var _appOpenAd: AppOpenAd? = null
-    private var _adUnitId = ""
     private var _appOpenAdLoadCallback: AppOpenAdLoadCallback? = null
     private var _fullScreenContentCallback: FullScreenContentCallback? = null
-
-    //    private var _loadingInProgress = AtomicBoolean(false)
+    private var _adUnitId = ""
 
     ///////////////////////////////////////////////////////////////////////////////
 
@@ -44,10 +41,10 @@ class AdKGoogleOpenProxy : BaseWakeBefDestroyLifecycleObserver() {
         _adUnitId = adUnitId
     }
 
-    fun initOpenAd() {
+    override fun initOpenAd() {
     }
 
-    fun loadOpenAd() {
+    override fun loadOpenAd() {
         if (AdKGoogleMgr.isInitSuccess()) {
             AppOpenAd.load(_context, _adUnitId, AdRequest.Builder().build(), AppOpenAdLoadListener())
         }
@@ -55,16 +52,17 @@ class AdKGoogleOpenProxy : BaseWakeBefDestroyLifecycleObserver() {
 
     ///////////////////////////////////////////////////////////////////////////////
 
-    fun showOpenAd(activity: Activity?) {
+    override fun showOpenAd(activity: Activity?) {
         if (activity != null && _appOpenAd != null) {
             _appOpenAd!!.apply {
+                Log.d(TAG, "showOpenAd: ")
                 fullScreenContentCallback = FullScreenContentListener()
                 show(activity)
             }
         }
     }
 
-    fun destroyOpenAd() {
+    override fun destroyOpenAd() {
         _appOpenAd?.fullScreenContentCallback = null
         _appOpenAd = null
     }
@@ -78,6 +76,8 @@ class AdKGoogleOpenProxy : BaseWakeBefDestroyLifecycleObserver() {
 
     override fun onDestroy(owner: LifecycleOwner) {
         destroyOpenAd()
+        _appOpenAdLoadCallback = null
+        _fullScreenContentCallback = null
         super.onDestroy(owner)
     }
 
@@ -87,10 +87,9 @@ class AdKGoogleOpenProxy : BaseWakeBefDestroyLifecycleObserver() {
     private inner class AppOpenAdLoadListener : AppOpenAdLoadCallback() {
         override fun onAdLoaded(p0: AppOpenAd) {
             Log.i(TAG, "open onAdLoaded")
-            _appOpenAdLoadCallback?.onAdLoaded(p0)//vdb.btnShowInterstitialAd.applyVisible()
-
             // 加载成功
             _appOpenAd = p0
+            _appOpenAdLoadCallback?.onAdLoaded(p0)//vdb.btnShowInterstitialAd.applyVisible()
         }
 
         override fun onAdFailedToLoad(loadAdError: LoadAdError) {

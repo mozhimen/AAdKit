@@ -35,6 +35,7 @@ android {
 
 dependencies {
     implementation project(':SwiftKit:basick')
+    api project(project.path.replace(project.name, '') +':adk_basic')
     api 'com.yandex.android:mobileads:6.4.1'
 //    api('com.yandex.android:mobileads-mediation:6.4.0.0') {
 //        //adcolony

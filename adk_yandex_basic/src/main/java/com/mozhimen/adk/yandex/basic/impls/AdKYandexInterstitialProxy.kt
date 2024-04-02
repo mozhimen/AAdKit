@@ -1,9 +1,9 @@
-package com.mozhimen.adk.yandex.basic
+package com.mozhimen.adk.yandex.basic.impls
 
 import android.app.Activity
 import android.util.Log
 import androidx.lifecycle.LifecycleOwner
-import com.mozhimen.adk.yandex.basic.optins.OMetaData_YANDEX_ADS_APPLICATION_ID
+import com.mozhimen.adk.basic.commons.IAdKInterstitialProxy
 import com.mozhimen.basick.elemk.androidx.lifecycle.bases.BaseWakeBefDestroyLifecycleObserver
 import com.mozhimen.basick.lintk.optins.OApiCall_BindLifecycle
 import com.mozhimen.basick.lintk.optins.OApiCall_BindViewLifecycle
@@ -27,21 +27,21 @@ import com.yandex.mobile.ads.interstitial.InterstitialAdLoader
 @OApiInit_ByLazy
 @OApiCall_BindLifecycle
 @OApiCall_BindViewLifecycle
-class AdKYandexInterstitialProxy<A>(
-    private var _activity: A?
-) : BaseWakeBefDestroyLifecycleObserver(), InterstitialAdLoadListener, InterstitialAdEventListener where A : LifecycleOwner, A : Activity {
+class AdKYandexInterstitialProxy(
+    private var _activity: Activity?
+) : BaseWakeBefDestroyLifecycleObserver(), InterstitialAdLoadListener, InterstitialAdEventListener, IAdKInterstitialProxy {
     private var _interstitialAdLoader: InterstitialAdLoader? = null
     private var _interstitialAd: InterstitialAd? = null
     private var _adUnitId: String = ""
     private var _adFoxRequestParameters: Map<String, String>? = null
-    private var _interstitialAdEventListener: InterstitialAdEventListener? = null
     private var _interstitialAdLoadListener: InterstitialAdLoadListener? = null
+    private var _interstitialAdEventListener: InterstitialAdEventListener? = null
 
     //////////////////////////////////////////////////////////////////////
 
-    fun initInterstitialAdListener(interstitialAdEventListener: InterstitialAdEventListener, interstitialAdLoadListener: InterstitialAdLoadListener) {
-        _interstitialAdEventListener = interstitialAdEventListener
+    fun initInterstitialAdListener(interstitialAdLoadListener: InterstitialAdLoadListener, interstitialAdEventListener: InterstitialAdEventListener) {
         _interstitialAdLoadListener = interstitialAdLoadListener
+        _interstitialAdEventListener = interstitialAdEventListener
     }
 
     fun initInterstitialAdParams(adUnitId: String, adFoxRequestParameters: Map<String, String>? = null) {
@@ -49,7 +49,7 @@ class AdKYandexInterstitialProxy<A>(
         _adFoxRequestParameters = adFoxRequestParameters
     }
 
-    fun initInterstitialAd() {
+    override fun initInterstitialAd() {
         if (_activity != null) {
             Log.d(TAG, "onCreate: InterstitialAdLoader")
             _interstitialAdLoader = InterstitialAdLoader(_activity!!).apply {
@@ -58,7 +58,7 @@ class AdKYandexInterstitialProxy<A>(
         }
     }
 
-    fun loadInterstitialAd() {
+    override fun loadInterstitialAd() {
         _interstitialAdLoader?.loadAd(createAdRequestConfiguration(_adUnitId, _adFoxRequestParameters)) ?: run {
             Log.d(TAG, "loadInterstitialAd: null")
         }
@@ -66,7 +66,7 @@ class AdKYandexInterstitialProxy<A>(
 
     //////////////////////////////////////////////////////////////////////
 
-    fun showInterstitialAd() {
+    override fun showInterstitialAd() {
         if (_activity != null && _interstitialAd != null) {
             _interstitialAd!!.apply {
                 setAdEventListener(this@AdKYandexInterstitialProxy)
@@ -81,7 +81,7 @@ class AdKYandexInterstitialProxy<A>(
         _interstitialAdLoader = null
     }
 
-    fun destroyInterstitialAdd() {
+    override fun destroyInterstitialAd() {
         // don't forget to clean up event listener to null?
         _interstitialAd?.setAdEventListener(null)
         _interstitialAd = null
@@ -100,7 +100,9 @@ class AdKYandexInterstitialProxy<A>(
 
     override fun onDestroy(owner: LifecycleOwner) {
         destroyInterstitialAddLoader()
-        destroyInterstitialAdd()
+        destroyInterstitialAd()
+        _interstitialAdLoadListener = null
+        _interstitialAdEventListener = null
         _activity = null
         super.onDestroy(owner)
     }
@@ -135,7 +137,7 @@ class AdKYandexInterstitialProxy<A>(
         Log.d(TAG, "onAdDismissed: ")
         _interstitialAdEventListener?.onAdDismissed()
 
-        destroyInterstitialAdd()// Now you can preload the next interstitial ad.
+        destroyInterstitialAd()// Now you can preload the next interstitial ad.
     }
 
     override fun onAdClicked() {

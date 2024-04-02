@@ -10,7 +10,7 @@ import com.anythink.core.api.ATAdInfo
 import com.anythink.core.api.AdError
 import com.mozhimen.adk.topon.basic.bases.BaseATAdSourceStatusCallback
 import com.mozhimen.adk.topon.basic.bases.BaseATBannerExCallback
-import com.mozhimen.adk.topon.basic.helpers.AdKTopOnBannerProxy
+import com.mozhimen.adk.topon.basic.impls.AdKTopOnBannerProxy
 import com.mozhimen.adk.topon.basic.test.R
 import com.mozhimen.adk.topon.basic.test.bases.BaseActivityVDB
 import com.mozhimen.adk.topon.basic.test.databinding.ActivityBannerBinding
@@ -108,7 +108,7 @@ class BannerAdActivity : BaseActivityVDB<ActivityBannerBinding>() {
         }
         vdb.bannerLoadAdBtn.setOnClickListener {
             printLogOnUI(getString(R.string.anythink_ad_status_loading))
-            _adKTopOnBannerProxy.loadBannerAd(vdb.adviewContainer)
+            _adKTopOnBannerProxy.loadBannerAd()
         }
     }
 

@@ -11,7 +11,7 @@ import com.mozhimen.adk.topon.basic.bases.BaseATAdSourceStatusCallback
 import com.mozhimen.adk.topon.basic.bases.BaseATInterstitialAutoEventCallback
 import com.mozhimen.adk.topon.basic.bases.BaseATInterstitialAutoLoadCallback
 import com.mozhimen.adk.topon.basic.bases.BaseATInterstitialExCallback
-import com.mozhimen.adk.topon.basic.helpers.AdKTopOnInterstitialProxy
+import com.mozhimen.adk.topon.basic.impls.AdKTopOnInterstitialProxy
 import com.mozhimen.adk.topon.basic.test.R
 import com.mozhimen.adk.topon.basic.test.bases.BaseActivityVDB
 import com.mozhimen.adk.topon.basic.test.mos.CommonViewBean
@@ -20,7 +20,6 @@ import com.mozhimen.basick.lintk.optins.OApiCall_BindViewLifecycle
 import com.mozhimen.basick.lintk.optins.OApiCall_ViewReady
 import com.mozhimen.basick.lintk.optins.OApiInit_ByLazy
 import com.mozhimen.basick.utilk.android.view.applyGone
-import com.mozhimen.basick.utilk.android.view.applyOnGlobalLayoutObserver
 import com.mozhimen.basick.utilk.android.view.applyVisible
 import com.mozhimen.basick.utilk.commons.IUtilK
 

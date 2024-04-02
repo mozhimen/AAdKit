@@ -1,4 +1,4 @@
-package com.mozhimen.adk.yandex.basic
+package com.mozhimen.adk.yandex.basic.impls
 
 import android.app.Application
 import android.util.Log
@@ -41,7 +41,7 @@ class AdKYandexOpenAdMgr(application: Application, private val _keyWord: String,
                 override fun onAdLoaded(p0: AppOpenAd) {
                     if (_showOpenAd.compareAndSet(false, true)) {
                         StackKCb.instance.getStackTopActivity()?.let {
-                            _adkYandexOpenProxy.showAppOpenAd(it)
+                            _adkYandexOpenProxy.showOpenAd(it)
                         }
                     }
                 }

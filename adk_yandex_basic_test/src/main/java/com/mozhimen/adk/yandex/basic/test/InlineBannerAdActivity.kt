@@ -13,7 +13,7 @@ import android.os.Bundle
 import android.view.ViewTreeObserver
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.commit
-import com.mozhimen.adk.yandex.basic.AdKYandexInlineBannerProxy
+import com.mozhimen.adk.yandex.basic.impls.AdKYandexBannerProxy
 import com.mozhimen.adk.yandex.basic.test.databinding.ActivityInlineBannerAdBinding
 import com.mozhimen.adk.yandex.basic.test.network.Network
 import com.mozhimen.basick.lintk.optins.OApiCall_BindLifecycle
@@ -53,7 +53,7 @@ class InlineBannerAdActivity : AppCompatActivity(R.layout.activity_inline_banner
     private lateinit var binding: ActivityInlineBannerAdBinding
 
     @OptIn(OApiCall_BindViewLifecycle::class, OApiCall_BindLifecycle::class, OApiInit_ByLazy::class)
-    private val _adKYandexInlineBannerProxy by lazy { AdKYandexInlineBannerProxy() }
+    private val _adKYandexBannerProxy by lazy { AdKYandexBannerProxy() }
 
     private val _bannerAdEventListener = object : BannerAdEventListener {
         override fun onAdLoaded() {
@@ -102,7 +102,7 @@ class InlineBannerAdActivity : AppCompatActivity(R.layout.activity_inline_banner
             replace(R.id.ad_info, adInfoFragment)
         }
 
-        _adKYandexInlineBannerProxy.apply {
+        _adKYandexBannerProxy.apply {
             initBannerAdListener(_bannerAdEventListener)
             initBannerAdParams(adInfoFragment.selectedNetwork.adUnitId)
             initBannerAdSize(UtilKScreen.getWidth_ofDisplayMetrics_ofSys(), 90f.dp2px.toInt())
@@ -115,7 +115,7 @@ class InlineBannerAdActivity : AppCompatActivity(R.layout.activity_inline_banner
             override fun onGlobalLayout() {
                 binding.coordinatorLayout.viewTreeObserver.removeOnGlobalLayoutListener(this)
 
-                _adKYandexInlineBannerProxy.apply {
+                _adKYandexBannerProxy.apply {
                     addBannerViewToContainer(binding.bannerContainer)
                 }
             }

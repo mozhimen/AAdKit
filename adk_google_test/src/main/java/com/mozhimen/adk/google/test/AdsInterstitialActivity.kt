@@ -9,6 +9,7 @@ import com.mozhimen.adk.google.impls.AdKGoogleInterstitialProxy
 import com.mozhimen.adk.google.test.databinding.ActivityAdsInterstitialBinding
 import com.mozhimen.basick.elemk.androidx.appcompat.bases.databinding.BaseActivityVDB
 import com.mozhimen.basick.lintk.optins.OApiCall_BindLifecycle
+import com.mozhimen.basick.lintk.optins.OApiCall_BindViewLifecycle
 import com.mozhimen.basick.lintk.optins.OApiInit_ByLazy
 import com.mozhimen.basick.utilk.android.view.applyInVisible
 import com.mozhimen.basick.utilk.android.view.applyVisible
@@ -17,10 +18,10 @@ import com.mozhimen.basick.utilk.android.view.applyVisible
  * 插页广告
  */
 class AdsInterstitialActivity : BaseActivityVDB<ActivityAdsInterstitialBinding>() {
-    @OptIn(OApiInit_ByLazy::class, OApiCall_BindLifecycle::class)
+    @OptIn(OApiInit_ByLazy::class, OApiCall_BindLifecycle::class, OApiCall_BindViewLifecycle::class)
     private val _adKGoogleInterstitialProxy by lazy { AdKGoogleInterstitialProxy(this) }
 
-    @OptIn(OApiInit_ByLazy::class, OApiCall_BindLifecycle::class)
+    @OptIn(OApiInit_ByLazy::class, OApiCall_BindLifecycle::class, OApiCall_BindViewLifecycle::class)
     override fun initView(savedInstanceState: Bundle?) {
         _adKGoogleInterstitialProxy.apply {
             initInterstitialAdParams("ca-app-pub-3940256099942544/1033173712")

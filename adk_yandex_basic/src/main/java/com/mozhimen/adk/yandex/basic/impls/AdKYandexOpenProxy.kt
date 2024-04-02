@@ -1,4 +1,4 @@
-package com.mozhimen.adk.yandex.basic
+package com.mozhimen.adk.yandex.basic.impls
 
 import android.app.Activity
 import android.util.Log
@@ -6,6 +6,7 @@ import androidx.lifecycle.LifecycleOwner
 import com.mozhimen.basick.elemk.androidx.lifecycle.bases.BaseWakeBefDestroyLifecycleObserver
 import com.mozhimen.basick.lintk.optins.OApiCall_BindLifecycle
 import com.mozhimen.basick.lintk.optins.OApiInit_ByLazy
+import com.mozhimen.adk.basic.commons.IAdKOpenProxy
 import com.yandex.mobile.ads.appopenad.AppOpenAd
 import com.yandex.mobile.ads.appopenad.AppOpenAdEventListener
 import com.yandex.mobile.ads.appopenad.AppOpenAdLoadListener
@@ -24,14 +25,13 @@ import com.yandex.mobile.ads.common.ImpressionData
  */
 @OApiInit_ByLazy
 @OApiCall_BindLifecycle
-class AdKYandexOpenProxy : BaseWakeBefDestroyLifecycleObserver(), AppOpenAdLoadListener, AppOpenAdEventListener {
+class AdKYandexOpenProxy : BaseWakeBefDestroyLifecycleObserver(), IAdKOpenProxy, AppOpenAdLoadListener, AppOpenAdEventListener {
     private var _appOpenAdLoader: AppOpenAdLoader? = null
     private var _appOpenAd: AppOpenAd? = null
     private var _appOpenAdLoadListener: AppOpenAdLoadListener? = null
     private var _appOpenAdEventListener: AppOpenAdEventListener? = null
-
-    //    private var _loadingInProgress = AtomicBoolean(false)
     private var _adUnitId = ""
+    //    private var _loadingInProgress = AtomicBoolean(false)
 
     ///////////////////////////////////////////////////////////////////////////////
 
@@ -44,13 +44,13 @@ class AdKYandexOpenProxy : BaseWakeBefDestroyLifecycleObserver(), AppOpenAdLoadL
         _adUnitId = adUnitId
     }
 
-    fun initOpenAd() {
+    override fun initOpenAd() {
         _appOpenAdLoader = AppOpenAdLoader(_context).apply {
             setAdLoadListener(this@AdKYandexOpenProxy)
         }
     }
 
-    fun loadOpenAd() {
+    override fun loadOpenAd() {
         // load new Ad if there is no loaded Ad and new ad isn't loading
 //        if (_loadingInProgress.compareAndSet(false, true)) {
         _appOpenAdLoader?.loadAd(AdRequestConfiguration.Builder(_adUnitId).build()) ?: run {
@@ -59,7 +59,7 @@ class AdKYandexOpenProxy : BaseWakeBefDestroyLifecycleObserver(), AppOpenAdLoadL
 //        }
     }
 
-    fun showAppOpenAd(activity: Activity?) {
+    override fun showOpenAd(activity: Activity?) {
         // show AppOpenAd when Application comes foreground if there is opened specific Activity
         if (activity != null && _appOpenAd != null) {
 //            showAdIfAvailable(_activity)
@@ -75,7 +75,7 @@ class AdKYandexOpenProxy : BaseWakeBefDestroyLifecycleObserver(), AppOpenAdLoadL
         _appOpenAdLoader = null
     }
 
-    fun destroyOpenAd() {
+    override fun destroyOpenAd() {
         _appOpenAd?.setAdEventListener(null)
         _appOpenAd = null
     }
@@ -90,6 +90,8 @@ class AdKYandexOpenProxy : BaseWakeBefDestroyLifecycleObserver(), AppOpenAdLoadL
     override fun onDestroy(owner: LifecycleOwner) {
         destroyOpenAdLoader()
         destroyOpenAd()
+        _appOpenAdLoadListener = null
+        _appOpenAdEventListener = null
         super.onDestroy(owner)
     }
 

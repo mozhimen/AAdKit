@@ -1,27 +1,30 @@
-package com.mozhimen.adk.google.impls
+package com.mozhimen.adk.yandex.basic.impls
 
 import android.app.Application
 import androidx.lifecycle.ProcessLifecycleOwner
-import com.google.android.gms.ads.appopen.AppOpenAd
-import com.google.android.gms.ads.appopen.AppOpenAd.AppOpenAdLoadCallback
 import com.mozhimen.adk.basic.bases.BaseAdKOpenAdMgr2
 import com.mozhimen.adk.basic.commons.IAdKOpenProxy
+import com.mozhimen.adk.yandex.basic.bases.BaseAppOpenAdLoadCallback
 import com.mozhimen.basick.lintk.optins.OApiCall_BindLifecycle
 import com.mozhimen.basick.lintk.optins.OApiInit_ByLazy
 import com.mozhimen.basick.lintk.optins.OApiInit_InApplication
 import com.mozhimen.basick.lintk.optins.OApiUse_BaseApplication
+import com.yandex.mobile.ads.appopenad.AppOpenAd
 
 @OptIn(OApiCall_BindLifecycle::class)
 @OApiInit_InApplication
 @OApiInit_ByLazy
 @OApiUse_BaseApplication
-class AdKGoogleOpenAdMgr2(application: Application, keyWord: String, adUnitId: String) : BaseAdKOpenAdMgr2(application, keyWord) {
+class AdKYandexOpenAdMgr2(application: Application, keyWord: String, adUnitId: String) : BaseAdKOpenAdMgr2(application, keyWord) {
+
     @OptIn(OApiCall_BindLifecycle::class)
-    private val _adkGoogleOpenProxy by lazy { AdKGoogleOpenProxy() }
+    private val _adkYandexOpenProxy by lazy { AdKYandexOpenProxy() }
+
+    //////////////////////////////////////////////////////////////////////////////
 
     init {
-        _adkGoogleOpenProxy.apply {
-            initOpenAdListener(object : AppOpenAdLoadCallback() {
+        _adkYandexOpenProxy.apply {
+            initOpenAdListener(object : BaseAppOpenAdLoadCallback() {
                 override fun onAdLoaded(p0: AppOpenAd) {
                     _isAdLoad = true
                 }
@@ -32,6 +35,6 @@ class AdKGoogleOpenAdMgr2(application: Application, keyWord: String, adUnitId: S
     }
 
     override fun getAdkOpenProxy(): IAdKOpenProxy {
-        return _adkGoogleOpenProxy
+        return _adkYandexOpenProxy
     }
 }

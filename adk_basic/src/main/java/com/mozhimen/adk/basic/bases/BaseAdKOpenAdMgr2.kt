@@ -1,33 +1,33 @@
-package com.mozhimen.adk.yandex.basic
+package com.mozhimen.adk.basic.bases
 
 import android.app.Activity
 import android.app.Application
 import android.util.Log
-import androidx.lifecycle.ProcessLifecycleOwner
-import com.mozhimen.adk.yandex.basic.bases.BaseAppOpenAdLoadCallback
+import com.mozhimen.adk.basic.commons.IAdKOpenProxy
 import com.mozhimen.basick.elemk.android.app.bases.BaseActivityLifecycleCallbacks
 import com.mozhimen.basick.elemk.kotlin.properties.VarProperty_Set
-import com.mozhimen.basick.lintk.optins.OApiCall_BindLifecycle
 import com.mozhimen.basick.lintk.optins.OApiInit_ByLazy
 import com.mozhimen.basick.lintk.optins.OApiInit_InApplication
 import com.mozhimen.basick.lintk.optins.OApiUse_BaseApplication
 import com.mozhimen.basick.utilk.commons.IUtilK
-import com.yandex.mobile.ads.appopenad.AppOpenAd
 import java.lang.ref.WeakReference
 import java.util.concurrent.atomic.AtomicBoolean
 
-@OptIn(OApiCall_BindLifecycle::class)
+/**
+ * @ClassName BaseAdKOpenAdMgr2
+ * @Description TODO
+ * @Author Mozhimen & Kolin Zhao
+ * @Date 2024/4/2
+ * @Version 1.0
+ */
 @OApiInit_InApplication
 @OApiInit_ByLazy
 @OApiUse_BaseApplication
-class AdKYandexOpenAdMgr2(application: Application, private val _keyWord: String, adUnitId: String) : IUtilK {
+abstract class BaseAdKOpenAdMgr2(application: Application, private val _keyWord: String) : IUtilK {
     //    private val _processLifecycleObserver = ActivityLifecycleObserver()
     private val _appOpenAdActivityObserver = ActivityLifecycleCallbacks()
 
     private val _atoShowOpenAd = AtomicBoolean(false)
-
-    @OptIn(OApiCall_BindLifecycle::class)
-    private val _adkYandexOpenProxy by lazy { AdKYandexOpenProxy() }
 
     private var _activityRef: WeakReference<Activity>? by VarProperty_Set(null) { _, value ->
         if (value != null && _isAdLoad) {
@@ -38,7 +38,7 @@ class AdKYandexOpenAdMgr2(application: Application, private val _keyWord: String
         true
     }
 
-    private var _isAdLoad by VarProperty_Set(false) { _, value ->
+    protected var _isAdLoad by VarProperty_Set(false) { _, value ->
         if (value && _activityRef != null) {
             _activityRef?.get()?.let {
                 showAppOpenAd(it)
@@ -55,16 +55,20 @@ class AdKYandexOpenAdMgr2(application: Application, private val _keyWord: String
         // observe Activity Callbacks to check if particular activity is started
         application.registerActivityLifecycleCallbacks(_appOpenAdActivityObserver)
 
-        _adkYandexOpenProxy.apply {
-            initOpenAdListener(object : BaseAppOpenAdLoadCallback() {
-                override fun onAdLoaded(p0: AppOpenAd) {
-                    _isAdLoad = true
-                }
-            }, null)
-            initOpenAdParams(adUnitId)
-            bindLifecycle(ProcessLifecycleOwner.get())
-        }
+//        _adkYandexOpenProxy.apply {
+//            initOpenAdListener(object : BaseAppOpenAdLoadCallback() {
+//                override fun onAdLoaded(p0: AppOpenAd) {
+//                    _isAdLoad = true
+//                }
+//            }, null)
+//            initOpenAdParams(adUnitId)
+//            bindLifecycle(ProcessLifecycleOwner.get())
+//        }
     }
+
+    //////////////////////////////////////////////////////////////////////////////
+
+    abstract fun getAdkOpenProxy() : IAdKOpenProxy
 
     //////////////////////////////////////////////////////////////////////////////
 
@@ -76,7 +80,7 @@ class AdKYandexOpenAdMgr2(application: Application, private val _keyWord: String
 
     private fun showAppOpenAd(activity: Activity) {
         if (_atoShowOpenAd.compareAndSet(false, true)) {
-            _adkYandexOpenProxy.showAppOpenAd(activity)
+            getAdkOpenProxy().showOpenAd(activity)
         }
     }
 

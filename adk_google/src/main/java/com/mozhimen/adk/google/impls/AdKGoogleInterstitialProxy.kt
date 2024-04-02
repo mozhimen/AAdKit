@@ -9,11 +9,12 @@ import com.google.android.gms.ads.FullScreenContentCallback
 import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
+import com.mozhimen.adk.basic.commons.IAdKInterstitialProxy
 import com.mozhimen.adk.google.AdKGoogleMgr
 import com.mozhimen.basick.elemk.androidx.lifecycle.bases.BaseWakeBefDestroyLifecycleObserver
 import com.mozhimen.basick.lintk.optins.OApiCall_BindLifecycle
+import com.mozhimen.basick.lintk.optins.OApiCall_BindViewLifecycle
 import com.mozhimen.basick.lintk.optins.OApiInit_ByLazy
-import java.lang.ref.WeakReference
 
 /**
  * @ClassName AdKGoogleInterstitialSimpleProxy
@@ -24,9 +25,10 @@ import java.lang.ref.WeakReference
  */
 @OApiInit_ByLazy
 @OApiCall_BindLifecycle
-class AdKGoogleInterstitialProxy<A>(
-    private var _activity: A?,
-) : BaseWakeBefDestroyLifecycleObserver() where A : Activity, A : LifecycleOwner {
+@OApiCall_BindViewLifecycle
+class AdKGoogleInterstitialProxy(
+    private var _activity: Activity?,
+) : BaseWakeBefDestroyLifecycleObserver(), IAdKInterstitialProxy {
     private var _interstitialAd: InterstitialAd? = null
     private var _adUnitId: String = ""
     private var _interstitialAdLoadCallback: InterstitialAdLoadCallback? = null
@@ -43,19 +45,16 @@ class AdKGoogleInterstitialProxy<A>(
         _adUnitId = adUnitId
     }
 
-    fun initInterstitialAd() {
+    override fun initInterstitialAd() {
     }
 
-    fun loadInterstitialAd() {
+    override fun loadInterstitialAd() {
         if (AdKGoogleMgr.isInitSuccess()) {
             // adUnitId为Admob后台创建的插屏广告的id
             InterstitialAd.load(_context, _adUnitId/*"ca-app-pub-3940256099942544/1033173712"*/, AdRequest.Builder().build(), InterstitialAdLoadListener())
         }
     }
-
-    //////////////////////////////////////////////////////////////////////////////////
-
-    fun showInterstitialAd() {
+    override fun showInterstitialAd() {
         if (_activity != null && _interstitialAd != null) {
             _interstitialAd!!.apply {
                 fullScreenContentCallback = FullScreenContentListener()// 设置广告事件回调
@@ -64,7 +63,7 @@ class AdKGoogleInterstitialProxy<A>(
         }
     }
 
-    fun destroyInterstitialAdd() {
+    override fun destroyInterstitialAd() {
         // don't forget to clean up event listener to null?
         _interstitialAd?.fullScreenContentCallback = null
         _interstitialAd = null
@@ -78,7 +77,9 @@ class AdKGoogleInterstitialProxy<A>(
     }
 
     override fun onDestroy(owner: LifecycleOwner) {
-        destroyInterstitialAdd()
+        destroyInterstitialAd()
+        _interstitialAdLoadCallback = null
+        _fullScreenContentCallback = null
         _activity = null
         super.onDestroy(owner)
     }
@@ -126,7 +127,7 @@ class AdKGoogleInterstitialProxy<A>(
             Log.i(TAG, "onAdShowedFullScreenContent")// 隐藏时调用，此时销毁当前的插屏广告对象，重新加载插屏广告
             _fullScreenContentCallback?.onAdDismissedFullScreenContent()
 
-            destroyInterstitialAdd()
+            destroyInterstitialAd()
 //            _interstitialAd = null
 //            vdb.btnShowInterstitialAd.applyInVisible()
 //            loadInterstitialAd()

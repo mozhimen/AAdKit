@@ -1,9 +1,10 @@
-package com.mozhimen.adk.yandex.basic
+package com.mozhimen.adk.yandex.basic.impls
 
 import android.util.Log
 import android.view.ViewGroup
 import androidx.annotation.Px
 import androidx.lifecycle.LifecycleOwner
+import com.mozhimen.adk.basic.commons.IAdKBannerProxy
 import com.mozhimen.basick.elemk.androidx.lifecycle.bases.BaseWakeBefDestroyLifecycleObserver
 import com.mozhimen.basick.lintk.optins.OApiCall_BindLifecycle
 import com.mozhimen.basick.lintk.optins.OApiCall_BindViewLifecycle
@@ -30,13 +31,13 @@ import kotlin.math.min
 @OApiCall_BindViewLifecycle
 @OApiCall_BindLifecycle
 @OApiInit_ByLazy
-class AdKYandexInlineBannerProxy : BaseWakeBefDestroyLifecycleObserver(), BannerAdEventListener {
+class AdKYandexBannerProxy : BaseWakeBefDestroyLifecycleObserver(), BannerAdEventListener, IAdKBannerProxy {
     private var _bannerAdView: BannerAdView? = null
     val bannerAdView get() = _bannerAdView
     private var _bannerAdSize: BannerAdSize? = null
-    private var _bannerAdEventListener: BannerAdEventListener? = null
     private var _adUnitId = ""
     private var _adFoxRequestParameters: Map<String, String>? = null
+    private var _bannerAdEventListener: BannerAdEventListener? = null
 
     ///////////////////////////////////////////////////////////////////////
 
@@ -50,7 +51,7 @@ class AdKYandexInlineBannerProxy : BaseWakeBefDestroyLifecycleObserver(), Banner
         _adFoxRequestParameters = adFoxRequestParameters
     }
 
-    fun initBannerAdSize(@Px width: Int = 0, @Px height: Int = 0) {
+    override fun initBannerAdSize(@Px width: Int, @Px height: Int) {
 //        val screenHeight = resources.displayMetrics.run { heightPixels / density }.roundToInt()
         // Calculate the width of the ad, taking into account the padding in the ad container.
 //        val adWidthPixels = binding.coordinatorLayout.width
@@ -68,17 +69,17 @@ class AdKYandexInlineBannerProxy : BaseWakeBefDestroyLifecycleObserver(), Banner
         _bannerAdSize = BannerAdSize.inlineSize(_context, adWidth.px2dp.toInt(), adHeight.px2dp.toInt())
     }
 
-    fun initBannerAd() {
+    override fun initBannerAd() {
         if (_bannerAdSize != null) {
             _bannerAdView = BannerAdView(_context).apply {
                 setAdUnitId(_adUnitId)
                 setAdSize(_bannerAdSize!!)
-                setBannerAdEventListener(this@AdKYandexInlineBannerProxy)
+                setBannerAdEventListener(this@AdKYandexBannerProxy)
             }
         }
     }
 
-    fun loadBannerAd() {
+    override fun loadBannerAd() {
         if (_bannerAdSize != null) {
             val adRequest = if (_adFoxRequestParameters != null) {
                 AdRequest.Builder().setParameters(_adFoxRequestParameters!!)
@@ -91,7 +92,7 @@ class AdKYandexInlineBannerProxy : BaseWakeBefDestroyLifecycleObserver(), Banner
 
     ///////////////////////////////////////////////////////////////////////
 
-    fun addBannerViewToContainer(container: ViewGroup) {
+    override fun addBannerViewToContainer(container: ViewGroup) {
 //        val params = ConstraintLayout.LayoutParams(
 //            ConstraintLayout.LayoutParams.MATCH_PARENT,
 //            ConstraintLayout.LayoutParams.WRAP_CONTENT,
@@ -106,7 +107,7 @@ class AdKYandexInlineBannerProxy : BaseWakeBefDestroyLifecycleObserver(), Banner
 
     ///////////////////////////////////////////////////////////////////////
 
-    fun destroyBannerAd() {
+    override fun destroyBannerAd() {
         _bannerAdView?.destroy()
         _bannerAdView = null
     }
@@ -122,6 +123,7 @@ class AdKYandexInlineBannerProxy : BaseWakeBefDestroyLifecycleObserver(), Banner
     override fun onDestroy(owner: LifecycleOwner) {
         Log.d(TAG, "onDestroy: ")
         destroyBannerAd()
+        _bannerAdEventListener = null
         super.onDestroy(owner)
     }
 

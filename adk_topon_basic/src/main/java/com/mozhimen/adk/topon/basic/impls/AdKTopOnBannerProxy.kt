@@ -1,4 +1,4 @@
-package com.mozhimen.adk.topon.basic.helpers
+package com.mozhimen.adk.topon.basic.impls
 
 import android.content.Context
 import android.util.Log
@@ -12,6 +12,7 @@ import com.anythink.core.api.ATAdInfo
 import com.anythink.core.api.ATAdSourceStatusListener
 import com.anythink.core.api.ATNetworkConfirmInfo
 import com.anythink.core.api.AdError
+import com.mozhimen.adk.basic.commons.IAdKBannerProxy
 import com.mozhimen.basick.elemk.androidx.lifecycle.bases.BaseWakeBefDestroyLifecycleObserver
 import com.mozhimen.basick.lintk.optins.OApiCall_BindLifecycle
 import com.mozhimen.basick.lintk.optins.OApiCall_BindViewLifecycle
@@ -30,13 +31,15 @@ import com.mozhimen.basick.utilk.android.view.addView_ofMatchParent
 @OApiCall_BindViewLifecycle
 @OApiCall_BindLifecycle
 @OApiInit_ByLazy
-class AdKTopOnBannerProxy : BaseWakeBefDestroyLifecycleObserver(), ATBannerExListener, ATAdSourceStatusListener {
+class AdKTopOnBannerProxy : BaseWakeBefDestroyLifecycleObserver(), ATBannerExListener, ATAdSourceStatusListener, IAdKBannerProxy {
     private var _atBannerView: ATBannerView? = null
-    val atBannerView get() = _atBannerView
-    private var _atBannerExListener: ATBannerExListener? = null
-    private var _adSourceStatusListener: ATAdSourceStatusListener? = null
+    val bannerAdView get() = _atBannerView
+
     private var _placementId = ""
     private var _scenarioId = ""
+    private var _bannerAdSize: MutableMap<String, Any>? = null
+    private var _atBannerExListener: ATBannerExListener? = null
+    private var _adSourceStatusListener: ATAdSourceStatusListener? = null
 
     ///////////////////////////////////////////////////////////////////////
 
@@ -50,11 +53,22 @@ class AdKTopOnBannerProxy : BaseWakeBefDestroyLifecycleObserver(), ATBannerExLis
         _scenarioId = scenarioId
     }
 
-    fun initBannerAd() {
+    override fun initBannerAdSize(width: Int, height: Int) {
+        //Loading and displaying ads should keep the container and BannerView visible all the time
+        val localMap: MutableMap<String, Any> = HashMap()
+        localMap[ATAdConst.KEY.AD_WIDTH] = width
+        localMap[ATAdConst.KEY.AD_HEIGHT] = height//50f.dp2px.toInt()
+        _bannerAdSize = localMap
+    }
+
+    override fun initBannerAd() {
         Log.d(TAG, "initBannerAd: ")
         _atBannerView = ATBannerView(_context)
         //Loading and displaying ads should keep the container and BannerView visible all the time
         _atBannerView?.apply {
+            _bannerAdSize?.let {
+                _atBannerView?.setLocalExtra(it)
+            }
             setBannerAdListener(this@AdKTopOnBannerProxy)
             setAdSourceStatusListener(this@AdKTopOnBannerProxy)
             setPlacementId(_placementId)
@@ -62,14 +76,7 @@ class AdKTopOnBannerProxy : BaseWakeBefDestroyLifecycleObserver(), ATBannerExLis
         }
     }
 
-    fun loadBannerAd(@Px paddingHorizontal: Int = 23f.dp2px.toInt()) {
-        Log.d(TAG, "loadBannerAd: ")
-        //Loading and displaying ads should keep the container and BannerView visible all the time
-        val localMap: MutableMap<String, Any> = HashMap()
-        localMap[ATAdConst.KEY.AD_WIDTH] = UtilKDisplayMetrics.getWidthPixels_ofSys() - 2 * paddingHorizontal
-        localMap[ATAdConst.KEY.AD_HEIGHT] = 50f.dp2px.toInt()
-        _atBannerView?.setLocalExtra(localMap)
-
+    override fun loadBannerAd() {
         //横幅广告使用原生自渲染广告，只需要在发起请求时额外设置setNativeAdCustomRender即可，请求、展示广告流程同横幅广告接入流程相同。
 //        mBannerView!!.setNativeAdCustomRender { mixNativeAd, atAdInfo -> MediationNativeAdUtil.getViewFromNativeAd(_activity, mixNativeAd, atAdInfo, false) }
         _atBannerView?.loadAd()
@@ -77,7 +84,7 @@ class AdKTopOnBannerProxy : BaseWakeBefDestroyLifecycleObserver(), ATBannerExLis
 
     //////////////////////////////////////////////////////////////////////
 
-    fun addBannerViewToContainer(container: ViewGroup) {
+    override fun addBannerViewToContainer(container: ViewGroup) {
         Log.d(TAG, "addBannerViewToContainer: ")
         if (_atBannerView != null) {
             container.addView_ofMatchParent(_atBannerView!!)
@@ -86,7 +93,7 @@ class AdKTopOnBannerProxy : BaseWakeBefDestroyLifecycleObserver(), ATBannerExLis
 
     //////////////////////////////////////////////////////////////////////
 
-    fun destroyBannerAd() {
+    override fun destroyBannerAd() {
         _atBannerView?.apply {
             setBannerAdListener(null)
             setAdDownloadListener(null)
@@ -105,6 +112,8 @@ class AdKTopOnBannerProxy : BaseWakeBefDestroyLifecycleObserver(), ATBannerExLis
 
     override fun onDestroy(owner: LifecycleOwner) {
         destroyBannerAd()
+        _atBannerExListener = null
+        _adSourceStatusListener = null
         super.onDestroy(owner)
     }
 

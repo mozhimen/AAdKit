@@ -1,4 +1,4 @@
-package com.mozhimen.adk.topon.basic.helpers
+package com.mozhimen.adk.topon.basic.impls
 
 import android.app.Activity
 import android.content.Context
@@ -14,6 +14,7 @@ import com.anythink.interstitial.api.ATInterstitialAutoAd
 import com.anythink.interstitial.api.ATInterstitialAutoEventListener
 import com.anythink.interstitial.api.ATInterstitialAutoLoadListener
 import com.anythink.interstitial.api.ATInterstitialExListener
+import com.mozhimen.adk.basic.commons.IAdKInterstitialProxy
 import com.mozhimen.basick.elemk.androidx.lifecycle.bases.BaseWakeBefDestroyLifecycleObserver
 import com.mozhimen.basick.lintk.optins.OApiCall_BindLifecycle
 import com.mozhimen.basick.lintk.optins.OApiCall_BindViewLifecycle
@@ -30,7 +31,9 @@ import com.mozhimen.basick.utilk.wrapper.UtilKScreen
 @OApiCall_BindViewLifecycle
 @OApiCall_BindLifecycle
 @OApiInit_ByLazy
-class AdKTopOnInterstitialProxy(private var _activity: Activity? = null) : BaseWakeBefDestroyLifecycleObserver(), ATInterstitialExListener, ATAdSourceStatusListener {
+class AdKTopOnInterstitialProxy(
+    private var _activity: Activity? = null
+) : BaseWakeBefDestroyLifecycleObserver(), ATInterstitialExListener, ATAdSourceStatusListener, IAdKInterstitialProxy {
     private var _interstitialAd: ATInterstitial? = null
     private val _autoLoadPlacementIdMap: MutableMap<String, Boolean> = HashMap()
     private var _placementId: String = ""
@@ -38,11 +41,10 @@ class AdKTopOnInterstitialProxy(private var _activity: Activity? = null) : BaseW
     private var _atInterstitialAutoEventListener: ATInterstitialAutoEventListener? = null
     private var _atInterstitialExListener: ATInterstitialExListener? = null
     private var _atAdSourceStatusListener: ATAdSourceStatusListener? = null
-
-    private var _atInterstitialAutoEventCallback = ATInterstitialAutoEventCallback()
+//    private var _atInterstitialAutoEventCallback = ATInterstitialAutoEventCallback()
 
     ////////////////////////////////////////////////////////////////////////////
-
+    //region # auto load
     fun isInterstitialAdAutoLoad(placementId: String, status: Boolean) {
         _autoLoadPlacementIdMap[placementId] = status
         if (status) ATInterstitialAutoAd.addPlacementId(placementId)
@@ -67,6 +69,7 @@ class AdKTopOnInterstitialProxy(private var _activity: Activity? = null) : BaseW
             ATInterstitialAutoAd.removePlacementId(key)
         }
     }
+    //endregion
     ////////////////////////////////////////////////////////////////////////////
 
     fun initInterstitialAdListener(
@@ -84,36 +87,37 @@ class AdKTopOnInterstitialProxy(private var _activity: Activity? = null) : BaseW
         _scenarioId = scenarioId
     }
 
-    fun initInterstitialAd() {
+    override fun initInterstitialAd() {
         if (_activity != null) {
-            Log.d(TAG, "initInterstitialAd: ")
             _interstitialAd = ATInterstitial(_activity, _placementId).apply {
                 setAdSourceStatusListener(this@AdKTopOnInterstitialProxy)
             }
         }
     }
 
-    fun loadInterstitialAd(width: Int = 0, height: Int = 0) {
-        Log.d(TAG, "loadAd: ")
-        if (width > 0 && height > 0) {
-            val localMap: HashMap<String, Any> = HashMap()
-            val widthOffset = Math.min(width, UtilKScreen.getWidth_ofDisplayMetrics_ofSys())
-            val heightOffset = Math.min(height, UtilKScreen.getHeight_ofDisplayMetrics_ofSys())
-            localMap.put(ATAdConst.KEY.AD_WIDTH, widthOffset /*getResources().getDisplayMetrics().widthPixels*/)
-            localMap.put(ATAdConst.KEY.AD_HEIGHT, heightOffset/*getResources().getDisplayMetrics().heightPixels*/)
-            _interstitialAd?.setLocalExtra(localMap)
-        }
+    override fun loadInterstitialAd(/*width: Int = 0, height: Int = 0*/) {
+        /*        Log.d(TAG, "loadAd: ")
+                if (width > 0 && height > 0) {
+                    val localMap: HashMap<String, Any> = HashMap()
+                    val widthOffset = Math.min(width, UtilKScreen.getWidth_ofDisplayMetrics_ofSys())
+                    val heightOffset = Math.min(height, UtilKScreen.getHeight_ofDisplayMetrics_ofSys())
+                    localMap.put(ATAdConst.KEY.AD_WIDTH, widthOffset )
+                    localMap.put(ATAdConst.KEY.AD_HEIGHT, heightOffset)
+                    _interstitialAd?.setLocalExtra(localMap)
+                }*/
         _interstitialAd?.load()
     }
 
-    fun showInterstitialAd() {
+    override fun showInterstitialAd() {
         Log.d(TAG, "showInterstitialAd: ")
         if (_placementId.isNotEmpty() && _activity != null) {
             ATInterstitial.entryAdScenario(_placementId, _scenarioId)
             if (isInterstitialAdReady()) {
                 if (isInterstitialAdAutoLoad(_placementId)) {
-                    if (_scenarioId.isNotEmpty()) ATInterstitialAutoAd.show(_activity!!, _placementId, _scenarioId, _atInterstitialAutoEventCallback)
-                    else ATInterstitialAutoAd.show(_activity!!, _placementId, _atInterstitialAutoEventCallback)
+                    if (_scenarioId.isNotEmpty())
+                        ATInterstitialAutoAd.show(_activity!!, _placementId, _scenarioId, ATInterstitialAutoEventCallback())
+                    else
+                        ATInterstitialAutoAd.show(_activity!!, _placementId, ATInterstitialAutoEventCallback())
                 } else {
                     if (_scenarioId.isNotEmpty()) {
                         _interstitialAd?.apply {
@@ -131,7 +135,7 @@ class AdKTopOnInterstitialProxy(private var _activity: Activity? = null) : BaseW
         }
     }
 
-    fun destroyInterstitialAd() {
+    override fun destroyInterstitialAd() {
         if (_interstitialAd != null) {
             _interstitialAd!!.setAdSourceStatusListener(null)
             _interstitialAd!!.setAdDownloadListener(null)
@@ -150,6 +154,9 @@ class AdKTopOnInterstitialProxy(private var _activity: Activity? = null) : BaseW
     override fun onDestroy(owner: LifecycleOwner) {
         destroyInterstitialAdAutoLoad()
         destroyInterstitialAd()
+        _atInterstitialAutoEventListener = null
+        _atInterstitialExListener = null
+        _atAdSourceStatusListener = null
         _activity = null
         super.onDestroy(owner)
     }

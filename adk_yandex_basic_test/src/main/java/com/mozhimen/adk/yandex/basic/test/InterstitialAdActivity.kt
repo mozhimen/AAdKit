@@ -11,9 +11,7 @@ package com.mozhimen.adk.yandex.basic.test
 
 import android.os.Bundle
 import android.util.Log
-import com.mozhimen.adk.yandex.basic.AdKYandexInterstitialProxy
-import com.mozhimen.adk.yandex.basic.optins.OMetaData_YANDEX_ADS_APPLICATION_ID
-import com.mozhimen.adk.yandex.basic.test.R
+import com.mozhimen.adk.yandex.basic.impls.AdKYandexInterstitialProxy
 import com.mozhimen.adk.yandex.basic.test.databinding.ActivityInterstitialAdBinding
 import com.mozhimen.adk.yandex.basic.test.network.Network
 import com.mozhimen.adk.yandex.basic.test.network.NetworkAdapter
