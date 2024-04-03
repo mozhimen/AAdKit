@@ -1,6 +1,6 @@
 package com.mozhimen.adk.google.impls
 
-import android.app.Activity
+import android.content.Context
 import android.util.Log
 import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
@@ -34,9 +34,7 @@ import com.mozhimen.basick.utilk.android.view.addView_ofMatchParent
 @OApiInit_ByLazy
 @OApiCall_BindLifecycle
 @OApiCall_BindViewLifecycle
-class AdKGoogleNativeProxy(
-    private var _activity: Activity?
-) :
+class AdKGoogleNativeProxy :
     BaseWakeBefDestroyLifecycleObserver(), IAdKNativeProxy {
 
     private var _nativeAd: NativeAd? = null
@@ -58,29 +56,26 @@ class AdKGoogleNativeProxy(
     ///////////////////////////////////////////////////////////////////////
 
     //region # dialog
-    fun showChoseMuteNativeAdDialog(title: String) {
-        if (_activity != null) {
-            val muteThisAdReasonString = arrayOfNulls<CharSequence>(_muteThisAdReasons.size)
-            for ((index, item) in _muteThisAdReasons.withIndex()) {
-                muteThisAdReasonString[index] = item.description
-            }
-            AlertDialog.Builder(_activity!!)
-                .setTitle(title/*"关闭此原生广告的原因是？"*/)
-                .setItems(muteThisAdReasonString) { _, which ->
-                    if (_muteThisAdReasons.size > which) {
-                        // 可以上报用户关闭广告的原因，便于优化广告
-                        _nativeAd?.muteThisAd(_muteThisAdReasons[which])
-                        destroyNativeAdView()
-                        destroyNativeAd()
-                        destroyNativeAdLoader()
-                        _nativeAdLoadedListener?.onNativeAdViewMuted()
-//        vdb.flNativeAdContainer.removeAllViews()
-                    }
-                }
-                .create()
-                .show()
+    fun showChoseMuteNativeAdDialog(context: Context, title: String) {
+        val muteThisAdReasonString = arrayOfNulls<CharSequence>(_muteThisAdReasons.size)
+        for ((index, item) in _muteThisAdReasons.withIndex()) {
+            muteThisAdReasonString[index] = item.description
         }
-
+        AlertDialog.Builder(context)
+            .setTitle(title/*"关闭此原生广告的原因是？"*/)
+            .setItems(muteThisAdReasonString) { _, which ->
+                if (_muteThisAdReasons.size > which) {
+                    // 可以上报用户关闭广告的原因，便于优化广告
+                    _nativeAd?.muteThisAd(_muteThisAdReasons[which])
+                    destroyNativeAdView()
+                    destroyNativeAd()
+                    destroyNativeAdLoader()
+                    _nativeAdLoadedListener?.onNativeAdViewMuted()
+//        vdb.flNativeAdContainer.removeAllViews()
+                }
+            }
+            .create()
+            .show()
     }
     //endregion
 
@@ -93,7 +88,7 @@ class AdKGoogleNativeProxy(
         _nativeAdMuteThisListener = nativeAdMuteThisListener
     }
 
-    fun initBannerAdParams(adUnitId: String, opts: NativeAdOptions? = null) {
+    fun initNativeAdParams(adUnitId: String, opts: NativeAdOptions? = null) {
         _adUnitId = adUnitId
         opts?.let {
             _nativeAdOptions = it
@@ -103,8 +98,8 @@ class AdKGoogleNativeProxy(
     ///////////////////////////////////////////////////////////////////////
 
     override fun initNativeAd() {
-        if (AdKGoogleMgr.isInitSuccess() && _activity != null) {
-            _adLoader = AdLoader.Builder(_activity!!, _adUnitId/*"ca-app-pub-3940256099942544/2247696110"*/)
+        if (AdKGoogleMgr.isInitSuccess()) {
+            _adLoader = AdLoader.Builder(_context, _adUnitId/*"ca-app-pub-3940256099942544/2247696110"*/)
                 .forNativeAd(NativeAdLoadedListener())
                 .apply {
                     if (_nativeAdOptions != null)
@@ -207,7 +202,10 @@ class AdKGoogleNativeProxy(
 //                }
 //            }
 
-            Log.d(TAG, "loadNativeAd: headline(${nativeAd.headline}) advertiser(${nativeAd.advertiser}) starRating(${nativeAd.starRating}) body(${nativeAd.body}) starRating(${nativeAd.starRating}) callToAction(${nativeAd.callToAction}) price(${nativeAd.price}) store(${nativeAd.store})")
+            Log.d(
+                TAG,
+                "loadNativeAd: headline(${nativeAd.headline}) advertiser(${nativeAd.advertiser}) starRating(${nativeAd.starRating}) body(${nativeAd.body}) starRating(${nativeAd.starRating}) callToAction(${nativeAd.callToAction}) price(${nativeAd.price}) store(${nativeAd.store})"
+            )
             _nativeAdLoadedListener?.onNativeAdViewLoad(
                 nativeAd,
                 nativeAd.icon,
@@ -258,7 +256,6 @@ class AdKGoogleNativeProxy(
         destroyNativeAdLoader()
         destroyNativeAd()
         destroyNativeAdView()
-        _activity = null
         _nativeAdListener = null
         _nativeAdLoadedListener = null
         _nativeAdMuteThisListener = null

@@ -10,6 +10,7 @@ import com.mozhimen.basick.elemk.androidx.lifecycle.bases.BaseWakeBefDestroyLife
 import com.mozhimen.basick.lintk.optins.OApiCall_BindLifecycle
 import com.mozhimen.basick.lintk.optins.OApiCall_BindViewLifecycle
 import com.mozhimen.basick.lintk.optins.OApiInit_ByLazy
+import com.mozhimen.basick.utilk.android.util.UtilKLogWrapper
 import com.yandex.mobile.ads.common.AdRequestError
 import com.yandex.mobile.ads.common.ImpressionData
 import com.yandex.mobile.ads.nativeads.NativeAd
@@ -29,9 +30,7 @@ import com.yandex.mobile.ads.nativeads.NativeAdView
 @OApiInit_ByLazy
 @OApiCall_BindLifecycle
 @OApiCall_BindViewLifecycle
-class AdKYandexNativeProxy(
-    private var _activity: Activity?
-) :
+class AdKYandexNativeProxy :
     BaseWakeBefDestroyLifecycleObserver(), IAdKNativeProxy, NativeAdLoadListener, NativeAdEventListener {
     private var _nativeAdLoader: NativeAdLoader? = null
     private var _nativeAd: NativeAd? = null
@@ -52,7 +51,7 @@ class AdKYandexNativeProxy(
         _nativeAdEventListener = nativeAdEventListener
     }
 
-    fun initBannerAdParams(adUnitId: String, adFoxRequestParameters: Map<String, String>? = null) {
+    fun initNativeAdParams(adUnitId: String, adFoxRequestParameters: Map<String, String>? = null) {
         _adUnitId = adUnitId
         _adFoxRequestParameters = adFoxRequestParameters
     }
@@ -60,24 +59,22 @@ class AdKYandexNativeProxy(
     //////////////////////////////////////////////////////////////////
 
     override fun initNativeAd() {
-        if (_activity != null) {
-            _nativeAdLoader = NativeAdLoader(_activity!!)
-            _nativeAdLoader?.setNativeAdLoadListener(this)
-            val adRequest = NativeAdRequestConfiguration
-                .Builder(_adUnitId)
-                .setShouldLoadImagesAutomatically(true)
-                .apply {
-                    if (_adFoxRequestParameters != null) {
-                        setParameters(_adFoxRequestParameters!!)
-                    }
-                }.build()
-            _nativeAdLoader?.loadAd(adRequest)
-        }
+        _nativeAdLoader = NativeAdLoader(_context)
+        _nativeAdLoader?.setNativeAdLoadListener(this)
+        val adRequest = NativeAdRequestConfiguration
+            .Builder(_adUnitId)
+            .setShouldLoadImagesAutomatically(true)
+            .apply {
+                if (_adFoxRequestParameters != null) {
+                    setParameters(_adFoxRequestParameters!!)
+                }
+            }.build()
+        _nativeAdLoader?.loadAd(adRequest)
     }
 
     override fun loadNativeAd() {
+        UtilKLogWrapper.d(TAG, "loadNativeAd: ")
         try {
-
             _nativeAd?.let { nativeAd ->
                 nativeAd.setNativeAdEventListener(this)
                 _nativeAdLoadedListener?.onNativeAdViewLoad(nativeAd)?.apply {
@@ -86,6 +83,7 @@ class AdKYandexNativeProxy(
                 }
             }
         } catch (e: Exception) {
+            UtilKLogWrapper.e(TAG, "loadNativeAd: e $e")
             e.printStackTrace()
         }
     }
@@ -118,7 +116,6 @@ class AdKYandexNativeProxy(
         _nativeAdLoadListener = null
         _nativeAdLoadedListener = null
         _nativeAdEventListener = null
-        _activity = null
         super.onDestroy(owner)
     }
 
@@ -128,6 +125,8 @@ class AdKYandexNativeProxy(
         Log.d(TAG, "onAdLoaded: ")
 
         _nativeAdLoadListener?.onAdLoaded(p0)
+
+        _nativeAd = p0
 
         loadNativeAd()
 

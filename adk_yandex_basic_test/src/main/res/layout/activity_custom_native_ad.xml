@@ -44,7 +44,6 @@
     <include
         android:id="@+id/native_ad"
         layout="@layout/native_ad_view"
-        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@+id/additional_container" />

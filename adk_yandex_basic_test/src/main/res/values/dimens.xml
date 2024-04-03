@@ -5,4 +5,19 @@
     <dimen name="icon_size">24dp</dimen>
     <dimen name="list_item_padding">12dp</dimen>
 
+    <dimen name="native_offset_small">4dp</dimen>
+    <dimen name="native_offset_medium">8dp</dimen>
+    <dimen name="native_offset_large">16dp</dimen>
+
+    <dimen name="native_image_height">80dp</dimen>
+    <dimen name="native_image_width">80dp</dimen>
+    <dimen name="native_favicon_height">16dp</dimen>
+    <dimen name="native_favicon_width">16dp</dimen>
+
+    <dimen name="native_asset_text_size_small">11sp</dimen>
+    <dimen name="native_asset_text_size_medium">13sp</dimen>
+    <dimen name="native_asset_text_size_large">15sp</dimen>
+
+    <dimen name="call_to_action_asset_min_height">36dp</dimen>
+
 </resources>

@@ -178,7 +178,7 @@
             tools:text="@string/native_appinstall_price_text"
             tools:visibility="visible" />
 
-        <com.yandex.ads.sample.common.RatingView
+        <com.mozhimen.adk.yandex.basic.test.RatingView
             android:id="@+id/rating"
             style="?android:attr/ratingBarStyleSmall"
             android:layout_width="wrap_content"

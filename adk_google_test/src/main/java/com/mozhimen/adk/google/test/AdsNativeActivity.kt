@@ -34,7 +34,7 @@ class AdsNativeActivity : BaseActivityVDB<ActivityAdsNativeBinding>() {
     @OptIn(OApiInit_ByLazy::class, OApiCall_BindLifecycle::class, OApiCall_BindViewLifecycle::class)
     override fun initView(savedInstanceState: Bundle?) {
         _adKGoogleNativeProxy.apply {
-            initBannerAdParams("ca-app-pub-3940256099942544/2247696110")
+            initNativeAdParams("ca-app-pub-3940256099942544/2247696110")
             initNativeAdListener(null, object : INativeAdLoadedListener {
                 override fun onNativeAdViewLoaded(nativeAd: NativeAd) {
                     vdb.btnStopNativeAd.visibility = if (nativeAd.isCustomMuteThisAdEnabled) View.VISIBLE else View.GONE
@@ -130,7 +130,7 @@ class AdsNativeActivity : BaseActivityVDB<ActivityAdsNativeBinding>() {
             bindLifecycle(this@AdsNativeActivity)
         }
         vdb.btnStopNativeAd.setOnClickListener {
-            _adKGoogleNativeProxy.showChoseMuteNativeAdDialog("关闭此原生广告的原因是？")
+            _adKGoogleNativeProxy.showChoseMuteNativeAdDialog(this, "关闭此原生广告的原因是？")
         }
     }
 }

@@ -25,7 +25,7 @@ class OpenAdActivity : BaseActivityVB<ActivityOpenAdBinding>() {
         _adKYandexOpenProxy.apply {
             initOpenAdListener(object : BaseAppOpenAdLoadCallback() {
                 override fun onAdLoaded(p0: AppOpenAd) {
-                    _adKYandexOpenProxy.showAppOpenAd(this@OpenAdActivity)
+                    _adKYandexOpenProxy.showOpenAd(this@OpenAdActivity)
                 }
             }, null)
             initOpenAdParams("demo-appopenad-yandex")

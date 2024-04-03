@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">AAdKit</string>
+    <string name="app_name">AAdKit_Yandex</string>
 
     <!--  Ad units  -->
     <string name="sticky_banner_title">Sticky banner</string>

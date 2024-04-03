@@ -20,4 +20,8 @@ class MainActivity : BaseActivityVB<ActivityMainBinding>() {
     fun OpenAd(view: View) {
         startContext<OpenAdActivity>()
     }
+
+    fun NativeAd(view: View) {
+        startContext<NativeAdActivity>()
+    }
 }
