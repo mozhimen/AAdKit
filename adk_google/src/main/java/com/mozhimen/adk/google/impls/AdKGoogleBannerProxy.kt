@@ -33,6 +33,7 @@ class AdKGoogleBannerProxy :
     val bannerAdView get() = _bannerAdView
     private var _bannerAdSize: AdSize? = null
     private var _adUnitId: String = ""
+
     private var _bannerAdListener: AdListener? = null
 
     //////////////////////////////////////////////////////////////////////////////////

@@ -38,6 +38,7 @@ class AdKTopOnInterstitialProxy(
     private val _autoLoadPlacementIdMap: MutableMap<String, Boolean> = HashMap()
     private var _placementId: String = ""
     private var _scenarioId: String = ""
+
     private var _atInterstitialAutoEventListener: ATInterstitialAutoEventListener? = null
     private var _atInterstitialExListener: ATInterstitialExListener? = null
     private var _atAdSourceStatusListener: ATAdSourceStatusListener? = null

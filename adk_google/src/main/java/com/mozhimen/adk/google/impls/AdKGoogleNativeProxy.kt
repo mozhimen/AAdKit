@@ -20,6 +20,7 @@ import com.mozhimen.adk.google.AdKGoogleMgr
 import com.mozhimen.adk.google.commons.INativeAdLoadedListener
 import com.mozhimen.basick.elemk.androidx.lifecycle.bases.BaseWakeBefDestroyLifecycleObserver
 import com.mozhimen.basick.lintk.optins.OApiCall_BindLifecycle
+import com.mozhimen.basick.lintk.optins.OApiCall_BindViewLifecycle
 import com.mozhimen.basick.lintk.optins.OApiInit_ByLazy
 import com.mozhimen.basick.utilk.android.view.addView_ofMatchParent
 
@@ -32,6 +33,7 @@ import com.mozhimen.basick.utilk.android.view.addView_ofMatchParent
  */
 @OApiInit_ByLazy
 @OApiCall_BindLifecycle
+@OApiCall_BindViewLifecycle
 class AdKGoogleNativeProxy(
     private var _activity: Activity?
 ) :
@@ -46,11 +48,12 @@ class AdKGoogleNativeProxy(
         .setRequestCustomMuteThisAd(true)// 设置自定义不再显示广告
         .build()
     private var _adUnitId: String = ""
+    private val _muteThisAdReasons = ArrayList<MuteThisAdReason>()
+
     private var _nativeAdListener: AdListener? = null
     private var _nativeAdLoadedListener: INativeAdLoadedListener? = null
     private var _nativeAdMuteThisListener: MuteThisAdListener? = null
 
-    private val _muteThisAdReasons = ArrayList<MuteThisAdReason>()
 
     ///////////////////////////////////////////////////////////////////////
 
@@ -84,7 +87,7 @@ class AdKGoogleNativeProxy(
     ///////////////////////////////////////////////////////////////////////
 
     fun initNativeAdListener(nativeAdListener: AdListener?, nativeAdLoadedListener: INativeAdLoadedListener?, nativeAdMuteThisListener: MuteThisAdListener?) {
-        Log.d(TAG, "initBannerAdListener: ")
+        Log.d(TAG, "initNativeAdListener: ")
         _nativeAdListener = nativeAdListener
         _nativeAdLoadedListener = nativeAdLoadedListener
         _nativeAdMuteThisListener = nativeAdMuteThisListener
@@ -204,8 +207,8 @@ class AdKGoogleNativeProxy(
 //                }
 //            }
 
-            Log.d(TAG, "loadNativeAd: headline ${nativeAd.headline} advertiser ${nativeAd.advertiser} starRating $${}")
-            _nativeAdLoadedListener?.onNativeAdViewLoaded(
+            Log.d(TAG, "loadNativeAd: headline(${nativeAd.headline}) advertiser(${nativeAd.advertiser}) starRating(${nativeAd.starRating}) body(${nativeAd.body}) starRating(${nativeAd.starRating}) callToAction(${nativeAd.callToAction}) price(${nativeAd.price}) store(${nativeAd.store})")
+            _nativeAdLoadedListener?.onNativeAdViewLoad(
                 nativeAd,
                 nativeAd.icon,
                 nativeAd.headline,
@@ -281,7 +284,7 @@ class AdKGoogleNativeProxy(
 
             loadNativeAd()
 
-            _nativeAdLoadedListener?.onNativeAdLoaded(p0)
+            _nativeAdLoadedListener?.onNativeAdViewLoaded(p0)
         }
     }
 

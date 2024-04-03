@@ -31,6 +31,7 @@ class AdKGoogleInterstitialProxy(
 ) : BaseWakeBefDestroyLifecycleObserver(), IAdKInterstitialProxy {
     private var _interstitialAd: InterstitialAd? = null
     private var _adUnitId: String = ""
+
     private var _interstitialAdLoadCallback: InterstitialAdLoadCallback? = null
     private var _fullScreenContentCallback: FullScreenContentCallback? = null
 

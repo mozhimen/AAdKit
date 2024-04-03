@@ -37,6 +37,7 @@ class AdKYandexBannerProxy : BaseWakeBefDestroyLifecycleObserver(), BannerAdEven
     private var _bannerAdSize: BannerAdSize? = null
     private var _adUnitId = ""
     private var _adFoxRequestParameters: Map<String, String>? = null
+
     private var _bannerAdEventListener: BannerAdEventListener? = null
 
     ///////////////////////////////////////////////////////////////////////

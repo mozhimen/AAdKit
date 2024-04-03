@@ -20,6 +20,7 @@ import com.mozhimen.adk.google.impls.AdKGoogleNativeProxy
 import com.mozhimen.adk.google.test.databinding.ActivityAdsNativeBinding
 import com.mozhimen.basick.elemk.androidx.appcompat.bases.databinding.BaseActivityVDB
 import com.mozhimen.basick.lintk.optins.OApiCall_BindLifecycle
+import com.mozhimen.basick.lintk.optins.OApiCall_BindViewLifecycle
 import com.mozhimen.basick.lintk.optins.OApiInit_ByLazy
 import com.mozhimen.basick.utilk.android.view.applyVisibleIf
 
@@ -27,20 +28,20 @@ import com.mozhimen.basick.utilk.android.view.applyVisibleIf
  * 原生广告
  */
 class AdsNativeActivity : BaseActivityVDB<ActivityAdsNativeBinding>() {
-    @OptIn(OApiInit_ByLazy::class, OApiCall_BindLifecycle::class)
+    @OptIn(OApiInit_ByLazy::class, OApiCall_BindLifecycle::class, OApiCall_BindViewLifecycle::class)
     private val _adKGoogleNativeProxy by lazy { AdKGoogleNativeProxy(this) }
 
-    @OptIn(OApiInit_ByLazy::class, OApiCall_BindLifecycle::class)
+    @OptIn(OApiInit_ByLazy::class, OApiCall_BindLifecycle::class, OApiCall_BindViewLifecycle::class)
     override fun initView(savedInstanceState: Bundle?) {
         _adKGoogleNativeProxy.apply {
             initBannerAdParams("ca-app-pub-3940256099942544/2247696110")
             initNativeAdListener(null, object : INativeAdLoadedListener {
-                override fun onNativeAdLoaded(nativeAd: NativeAd) {
+                override fun onNativeAdViewLoaded(nativeAd: NativeAd) {
                     vdb.btnStopNativeAd.visibility = if (nativeAd.isCustomMuteThisAdEnabled) View.VISIBLE else View.GONE
                     _adKGoogleNativeProxy.addNativeViewToContainer(vdb.flNativeAdContainer)
                 }
 
-                override fun onNativeAdViewLoaded(
+                override fun onNativeAdViewLoad(
                     nativeAd: NativeAd,
                     icon: NativeAd.Image?,
                     headline: String?,

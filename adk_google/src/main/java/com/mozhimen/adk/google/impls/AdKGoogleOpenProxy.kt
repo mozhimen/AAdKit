@@ -26,9 +26,10 @@ import com.mozhimen.basick.lintk.optins.OApiInit_ByLazy
 @OApiCall_BindLifecycle
 class AdKGoogleOpenProxy : BaseWakeBefDestroyLifecycleObserver(), IAdKOpenProxy {
     private var _appOpenAd: AppOpenAd? = null
+    private var _adUnitId = ""
+
     private var _appOpenAdLoadCallback: AppOpenAdLoadCallback? = null
     private var _fullScreenContentCallback: FullScreenContentCallback? = null
-    private var _adUnitId = ""
 
     ///////////////////////////////////////////////////////////////////////////////
 

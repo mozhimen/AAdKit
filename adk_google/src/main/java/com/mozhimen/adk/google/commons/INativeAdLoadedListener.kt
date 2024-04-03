@@ -13,8 +13,7 @@ import com.google.android.gms.ads.nativead.NativeAdView
  * @Version 1.0
  */
 interface INativeAdLoadedListener {
-    fun onNativeAdLoaded(nativeAd: NativeAd) {}
-    fun onNativeAdViewLoaded(
+    fun onNativeAdViewLoad(
         nativeAd: NativeAd,
         icon: Image?,
         headline: String?,
@@ -26,6 +25,8 @@ interface INativeAdLoadedListener {
         price: String?,
         store: String?
     ): NativeAdView?
+
+    fun onNativeAdViewLoaded(nativeAd: NativeAd) {}
 
     fun onNativeAdViewMuted() {}
 }

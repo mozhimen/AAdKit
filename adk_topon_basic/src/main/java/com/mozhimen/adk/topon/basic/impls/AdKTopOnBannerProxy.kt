@@ -38,6 +38,7 @@ class AdKTopOnBannerProxy : BaseWakeBefDestroyLifecycleObserver(), ATBannerExLis
     private var _placementId = ""
     private var _scenarioId = ""
     private var _bannerAdSize: MutableMap<String, Any>? = null
+
     private var _atBannerExListener: ATBannerExListener? = null
     private var _adSourceStatusListener: ATAdSourceStatusListener? = null
 

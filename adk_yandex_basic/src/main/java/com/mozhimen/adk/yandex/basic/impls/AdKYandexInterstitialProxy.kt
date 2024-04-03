@@ -34,6 +34,7 @@ class AdKYandexInterstitialProxy(
     private var _interstitialAd: InterstitialAd? = null
     private var _adUnitId: String = ""
     private var _adFoxRequestParameters: Map<String, String>? = null
+
     private var _interstitialAdLoadListener: InterstitialAdLoadListener? = null
     private var _interstitialAdEventListener: InterstitialAdEventListener? = null
 
@@ -59,7 +60,13 @@ class AdKYandexInterstitialProxy(
     }
 
     override fun loadInterstitialAd() {
-        _interstitialAdLoader?.loadAd(createAdRequestConfiguration(_adUnitId, _adFoxRequestParameters)) ?: run {
+        val adRequest = if (_adFoxRequestParameters != null) {
+            AdRequestConfiguration.Builder(_adUnitId)
+                .setParameters(_adFoxRequestParameters!!)
+        } else {
+            AdRequestConfiguration.Builder(_adUnitId)
+        }.build()
+        _interstitialAdLoader?.loadAd(adRequest) ?: run {
             Log.d(TAG, "loadInterstitialAd: null")
         }
     }
@@ -148,16 +155,5 @@ class AdKYandexInterstitialProxy(
     override fun onAdImpression(p0: ImpressionData?) {
         Log.d(TAG, "onAdImpression: ImpressionData $p0")
         _interstitialAdEventListener?.onAdImpression(p0)
-    }
-
-    //////////////////////////////////////////////////////////////////////
-
-    private fun createAdRequestConfiguration(adUnitId: String, adFoxRequestParameters: Map<String, String>? = null): AdRequestConfiguration {
-        return if (adFoxRequestParameters != null) {
-            AdRequestConfiguration.Builder(adUnitId)
-                .setParameters(adFoxRequestParameters)
-        } else {
-            AdRequestConfiguration.Builder(adUnitId)
-        }.build()
     }
 }

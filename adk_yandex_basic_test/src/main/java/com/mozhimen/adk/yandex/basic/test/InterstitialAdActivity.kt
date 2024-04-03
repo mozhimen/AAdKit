@@ -72,7 +72,7 @@ class InterstitialAdActivity : BaseActivityVB<ActivityInterstitialAdBinding>() {
     override fun initView(savedInstanceState: Bundle?) {
         Log.d(TAG, "initView: ")
         _adKYandexInterstitialProxy.apply {
-            initInterstitialAdListener(_interstitialAdEventListener, _interstitialAdLoadListener)
+            initInterstitialAdListener(_interstitialAdLoadListener, _interstitialAdEventListener)
             initInterstitialAdParams(selectedNetwork.adUnitId)
             bindLifecycle(this@InterstitialAdActivity)
             disableShowAdButton()
