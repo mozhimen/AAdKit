@@ -42,7 +42,7 @@ class AdKGoogleNativeProxy :
     private var _nativeAdView: NativeAdView? = null
     val nativeAdView get() = _nativeAdView
     private var _nativeAdOptions: NativeAdOptions? = NativeAdOptions.Builder()
-        .setVideoOptions(VideoOptions.Builder().setStartMuted(false).build())// 设置视频是否静音播放
+        .setVideoOptions(VideoOptions.Builder().setStartMuted(true).build())// 设置视频是否静音播放
         .setRequestCustomMuteThisAd(true)// 设置自定义不再显示广告
         .build()
     private var _adUnitId: String = ""
