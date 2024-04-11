@@ -38,6 +38,7 @@ class AdKTopOnInterstitialProxy(
     private val _autoLoadPlacementIdMap: MutableMap<String, Boolean> = HashMap()
     private var _placementId: String = ""
     private var _scenarioId: String = ""
+    private var _interstitialAdSize: MutableMap<String, Any>? = null
 
     private var _atInterstitialAutoEventListener: ATInterstitialAutoEventListener? = null
     private var _atInterstitialExListener: ATInterstitialExListener? = null
@@ -48,8 +49,10 @@ class AdKTopOnInterstitialProxy(
     //region # auto load
     fun isInterstitialAdAutoLoad(placementId: String, status: Boolean) {
         _autoLoadPlacementIdMap[placementId] = status
-        if (status) ATInterstitialAutoAd.addPlacementId(placementId)
-        else ATInterstitialAutoAd.removePlacementId(placementId)
+        if (status)
+            ATInterstitialAutoAd.addPlacementId(placementId)
+        else
+            ATInterstitialAutoAd.removePlacementId(placementId)
     }
 
     fun isInterstitialAdAutoLoad(placementId: String): Boolean =
@@ -62,9 +65,6 @@ class AdKTopOnInterstitialProxy(
         ATInterstitialAutoAd.init(context, null, atInterstitialAutoLoadListener)
     }
 
-    fun isInterstitialAdReady(): Boolean =
-        (_interstitialAd?.isAdReady ?: false).also { Log.d(TAG, "isAdReady: $it") }
-
     fun destroyInterstitialAdAutoLoad() {
         for ((key) in _autoLoadPlacementIdMap) {
             ATInterstitialAutoAd.removePlacementId(key)
@@ -74,8 +74,8 @@ class AdKTopOnInterstitialProxy(
     ////////////////////////////////////////////////////////////////////////////
 
     fun initInterstitialAdListener(
-        atInterstitialExListener: ATInterstitialExListener,
-        atAdSourceStatusListener: ATAdSourceStatusListener,
+        atInterstitialExListener: ATInterstitialExListener?,
+        atAdSourceStatusListener: ATAdSourceStatusListener?,
         atInterstitialAutoEventListener: ATInterstitialAutoEventListener? = null
     ) {
         _atInterstitialExListener = atInterstitialExListener
@@ -88,13 +88,26 @@ class AdKTopOnInterstitialProxy(
         _scenarioId = scenarioId
     }
 
+    fun initOpenAdSize(width: Int, height: Int) {
+        //Loading and displaying ads should keep the container and BannerView visible all the time
+        val localMap: MutableMap<String, Any> = HashMap()
+        localMap[ATAdConst.KEY.AD_WIDTH] = width
+        localMap[ATAdConst.KEY.AD_HEIGHT] = height//50f.dp2px.toInt()
+        _interstitialAdSize = localMap
+    }
+
     override fun initInterstitialAd() {
         if (_activity != null) {
             _interstitialAd = ATInterstitial(_activity, _placementId).apply {
+                _interstitialAdSize?.let { setLocalExtra(it) }
                 setAdSourceStatusListener(this@AdKTopOnInterstitialProxy)
             }
+            ATInterstitial.entryAdScenario(_placementId, _scenarioId)
         }
     }
+
+    fun isInterstitialAdReady(): Boolean =
+        (_interstitialAd?.isAdReady ?: false).also { Log.d(TAG, "isAdReady: $it") }
 
     override fun loadInterstitialAd(/*width: Int = 0, height: Int = 0*/) {
         /*        Log.d(TAG, "loadAd: ")
@@ -111,25 +124,22 @@ class AdKTopOnInterstitialProxy(
 
     override fun showInterstitialAd() {
         Log.d(TAG, "showInterstitialAd: ")
-        if (_placementId.isNotEmpty() && _activity != null) {
-            ATInterstitial.entryAdScenario(_placementId, _scenarioId)
-            if (isInterstitialAdReady()) {
-                if (isInterstitialAdAutoLoad(_placementId)) {
-                    if (_scenarioId.isNotEmpty())
-                        ATInterstitialAutoAd.show(_activity!!, _placementId, _scenarioId, ATInterstitialAutoEventCallback())
-                    else
-                        ATInterstitialAutoAd.show(_activity!!, _placementId, ATInterstitialAutoEventCallback())
+        if (_placementId.isNotEmpty() && _activity != null && isInterstitialAdReady()) {
+            if (isInterstitialAdAutoLoad(_placementId)) {
+                if (_scenarioId.isNotEmpty())
+                    ATInterstitialAutoAd.show(_activity!!, _placementId, _scenarioId, ATInterstitialAutoEventCallback())
+                else
+                    ATInterstitialAutoAd.show(_activity!!, _placementId, ATInterstitialAutoEventCallback())
+            } else {
+                if (_scenarioId.isNotEmpty()) {
+                    _interstitialAd?.apply {
+                        setAdListener(this@AdKTopOnInterstitialProxy)
+                        show(_activity!!, _scenarioId)
+                    }
                 } else {
-                    if (_scenarioId.isNotEmpty()) {
-                        _interstitialAd?.apply {
-                            setAdListener(this@AdKTopOnInterstitialProxy)
-                            show(_activity!!)
-                        }
-                    } else {
-                        _interstitialAd?.apply {
-                            setAdListener(this@AdKTopOnInterstitialProxy)
-                            show(_activity!!)
-                        }
+                    _interstitialAd?.apply {
+                        setAdListener(this@AdKTopOnInterstitialProxy)
+                        show(_activity!!)
                     }
                 }
             }
@@ -276,16 +286,12 @@ class AdKTopOnInterstitialProxy(
     }
 
     override fun onAdSourceLoadFail(adInfo: ATAdInfo, adError: com.anythink.core.api.AdError) {
-        Log.e(TAG, "onAdSourceLoadFail 广告源加载失败回调 Info: $adInfo")
-        Log.e(TAG, "onAdSourceLoadFail 广告源加载失败回调 error: ${adError.getFullErrorInfo()}")
+        Log.e(TAG, "onAdSourceLoadFail 广告源加载失败回调 Info: $adInfo \n error: ${adError.getFullErrorInfo()}")
         _atAdSourceStatusListener?.onAdSourceLoadFail(adInfo, adError)
     }
 
     override fun onAdSourceBiddingFail(adInfo: ATAdInfo, adError: com.anythink.core.api.AdError?) {
-        Log.e(TAG, "onAdSourceBiddingFail 竞价广告源竞价失败回调 Info: $adInfo")
-        if (adError != null) {
-            Log.e(TAG, "onAdSourceBiddingFail error: ${adError.getFullErrorInfo()}")
-        }
+        Log.e(TAG, "onAdSourceBiddingFail 竞价广告源竞价失败回调 Info: $adInfo error: ${adError?.getFullErrorInfo()}")
         _atAdSourceStatusListener?.onAdSourceBiddingFail(adInfo, adError)
     }
 

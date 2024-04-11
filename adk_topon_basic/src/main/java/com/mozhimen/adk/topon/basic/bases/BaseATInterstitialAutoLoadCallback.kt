@@ -14,10 +14,8 @@ import com.mozhimen.basick.utilk.commons.IUtilK
  */
 open class BaseATInterstitialAutoLoadCallback : ATInterstitialAutoLoadListener, IUtilK {
     override fun onInterstitialAutoLoaded(placementId: String) {
-        Log.i(TAG, "onInterstitialAutoLoaded PlacementId:$placementId: onInterstitialAutoLoaded")
     }
 
     override fun onInterstitialAutoLoadFail(placementId: String, adError: AdError) {
-        Log.i(TAG, "onInterstitialAutoLoadFail PlacementId:$placementId: onInterstitialAutoLoadFail:${adError.fullErrorInfo}")
     }
 }

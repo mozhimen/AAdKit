@@ -27,8 +27,7 @@ import com.mozhimen.basick.utilk.android.view.addView_ofMatchParent
 @OApiInit_ByLazy
 @OApiCall_BindLifecycle
 @OApiCall_BindViewLifecycle
-class AdKGoogleBannerProxy :
-    BaseWakeBefDestroyLifecycleObserver(), IAdKBannerProxy {
+class AdKGoogleBannerProxy : BaseWakeBefDestroyLifecycleObserver(), IAdKBannerProxy {
     private var _bannerAdView: AdView? = null
     val bannerAdView get() = _bannerAdView
     private var _bannerAdSize: AdSize? = null

@@ -80,7 +80,7 @@ class BannerAdActivity : BaseActivityVDB<ActivityBannerBinding>() {
     override fun onSelectPlacementId(placementId: String?) {
         _adKTopOnBannerProxy.apply {
             bindLifecycle(this@BannerAdActivity)
-            placementId?.let { initBanner(placementId, "") }
+            placementId?.let { initBannerAdParams(placementId, "") }
         }
     }
 

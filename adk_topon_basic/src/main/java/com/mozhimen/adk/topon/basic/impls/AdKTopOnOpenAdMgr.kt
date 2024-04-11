@@ -1,38 +1,45 @@
-package com.mozhimen.adk.yandex.basic.impls
+package com.mozhimen.adk.topon.basic.impls
 
+import android.util.Log
 import androidx.lifecycle.ProcessLifecycleOwner
 import com.mozhimen.adk.basic.bases.BaseAdKOpenAdMgr
-import com.mozhimen.adk.yandex.basic.bases.BaseAppOpenAdLoadCallback
+import com.mozhimen.adk.topon.basic.bases.BaseATSplashExCallback
 import com.mozhimen.basick.lintk.optins.OApiCall_BindLifecycle
 import com.mozhimen.basick.lintk.optins.OApiInit_ByLazy
 import com.mozhimen.basick.lintk.optins.OApiInit_InApplication
 import com.mozhimen.basick.lintk.optins.OApiUse_BaseApplication
 import com.mozhimen.basick.stackk.cb.StackKCb
-import com.yandex.mobile.ads.appopenad.AppOpenAd
 
+/**
+ * @ClassName AdKTopOnOpenAdMgr
+ * @Description TODO
+ * @Author Mozhimen & Kolin Zhao
+ * @Date 2024/4/11
+ * @Version 1.0
+ */
 @OptIn(OApiCall_BindLifecycle::class)
 @OApiInit_InApplication
 @OApiInit_ByLazy
 @OApiUse_BaseApplication
-class AdKYandexOpenAdMgr(adUnitId: String) : BaseAdKOpenAdMgr(adUnitId) {
+class AdKTopOnOpenAdMgr(adUnitId: String) : BaseAdKOpenAdMgr(adUnitId) {
 
     @OptIn(OApiCall_BindLifecycle::class)
-    private val _adkYandexOpenProxy by lazy { AdKYandexOpenProxy() }
+    private val _adkTopOnOpenProxy by lazy { AdKTopOnOpenProxy() }
 
     //////////////////////////////////////////////////////////////////////////////
 
     init {
-        _adkYandexOpenProxy.apply {
-            initOpenAdListener(object : BaseAppOpenAdLoadCallback() {
-                override fun onAdLoaded(p0: AppOpenAd) {
+        _adkTopOnOpenProxy.apply {
+            initOpenAdListener(object : BaseATSplashExCallback() {
+                override fun onAdLoaded(p0: Boolean) {
                     if (_showOpenAd.compareAndSet(false, true)) {
                         StackKCb.instance.getStackTopActivity()?.let {
-                            _adkYandexOpenProxy.showOpenAd(it)
+                            _adkTopOnOpenProxy.showOpenAd(it)
                         }
                     }
                 }
             }, null)
-            initOpenAdParams(adUnitId)
+            initOpenAdParams(adUnitId, "")
             bindLifecycle(ProcessLifecycleOwner.get())
         }
     }

@@ -144,7 +144,7 @@ class AdKYandexInterstitialProxy(
         Log.d(TAG, "onAdDismissed: ")
         _interstitialAdEventListener?.onAdDismissed()
 
-        destroyInterstitialAd()// Now you can preload the next interstitial ad.
+//        destroyInterstitialAd()// Now you can preload the next interstitial ad.
     }
 
     override fun onAdClicked() {

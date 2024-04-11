@@ -64,17 +64,13 @@ class AdKTopOnBannerProxy : BaseWakeBefDestroyLifecycleObserver(), ATBannerExLis
 
     override fun initBannerAd() {
         Log.d(TAG, "initBannerAd: ")
-        _atBannerView = ATBannerView(_context)
-        //Loading and displaying ads should keep the container and BannerView visible all the time
-        _atBannerView?.apply {
-            _bannerAdSize?.let {
-                _atBannerView?.setLocalExtra(it)
-            }
+        _atBannerView = ATBannerView(_context).apply {//Loading and displaying ads should keep the container and BannerView visible all the time
+            _bannerAdSize?.let { setLocalExtra(it) }
             setBannerAdListener(this@AdKTopOnBannerProxy)
             setAdSourceStatusListener(this@AdKTopOnBannerProxy)
             setPlacementId(_placementId)
-            ATBannerView.entryAdScenario(_placementId, _scenarioId)
         }
+        ATBannerView.entryAdScenario(_placementId, _scenarioId)
     }
 
     override fun loadBannerAd() {
@@ -179,16 +175,12 @@ class AdKTopOnBannerProxy : BaseWakeBefDestroyLifecycleObserver(), ATBannerExLis
     }
 
     override fun onAdSourceLoadFail(adInfo: ATAdInfo, adError: com.anythink.core.api.AdError) {
-        Log.e(TAG, "onAdSourceLoadFail 广告源加载失败回调 Info: $adInfo")
-        Log.e(TAG, "onAdSourceLoadFail 广告源加载失败回调 error: ${adError.getFullErrorInfo()}")
+        Log.e(TAG, "onAdSourceLoadFail 广告源加载失败回调 Info: $adInfo \n error: ${adError.getFullErrorInfo()}")
         _adSourceStatusListener?.onAdSourceLoadFail(adInfo, adError)
     }
 
     override fun onAdSourceBiddingFail(adInfo: ATAdInfo, adError: com.anythink.core.api.AdError?) {
-        Log.e(TAG, "onAdSourceBiddingFail 竞价广告源竞价失败回调 Info: $adInfo")
-        if (adError != null) {
-            Log.e(TAG, "onAdSourceBiddingFail error: ${adError.getFullErrorInfo()}")
-        }
+        Log.e(TAG, "onAdSourceBiddingFail 竞价广告源竞价失败回调 Info: $adInfo error: ${adError?.getFullErrorInfo()}")
         _adSourceStatusListener?.onAdSourceBiddingFail(adInfo, adError)
     }
 

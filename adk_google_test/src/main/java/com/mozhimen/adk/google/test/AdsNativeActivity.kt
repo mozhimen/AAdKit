@@ -29,7 +29,7 @@ import com.mozhimen.basick.utilk.android.view.applyVisibleIf
  */
 class AdsNativeActivity : BaseActivityVDB<ActivityAdsNativeBinding>() {
     @OptIn(OApiInit_ByLazy::class, OApiCall_BindLifecycle::class, OApiCall_BindViewLifecycle::class)
-    private val _adKGoogleNativeProxy by lazy { AdKGoogleNativeProxy(this) }
+    private val _adKGoogleNativeProxy by lazy { AdKGoogleNativeProxy() }
 
     @OptIn(OApiInit_ByLazy::class, OApiCall_BindLifecycle::class, OApiCall_BindViewLifecycle::class)
     override fun initView(savedInstanceState: Bundle?) {

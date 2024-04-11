@@ -124,7 +124,7 @@ class AdKGoogleNativeProxy :
             if (nativeAd.isCustomMuteThisAdEnabled) {// 判断是否支持自定义不再显示广告
                 _muteThisAdReasons.addAll(nativeAd.muteThisAdReasons)// 获取不再显示广告的原因
             }
-//                vdb.btnStopNativeAd.visibility = if (nativeAd.isCustomMuteThisAdEnabled) View.VISIBLE else View.GONE
+/*//                vdb.btnStopNativeAd.visibility = if (nativeAd.isCustomMuteThisAdEnabled) View.VISIBLE else View.GONE
             //            nativeAdView?.let { vdb.flNativeAdContainer.removeView(it) }
 
 
@@ -200,12 +200,9 @@ class AdKGoogleNativeProxy :
 //                layoutParams = FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.WRAP_CONTENT).apply {
 //                    gravity = Gravity.BOTTOM
 //                }
-//            }
+//            }*/
 
-            Log.d(
-                TAG,
-                "loadNativeAd: headline(${nativeAd.headline}) advertiser(${nativeAd.advertiser}) starRating(${nativeAd.starRating}) body(${nativeAd.body}) starRating(${nativeAd.starRating}) callToAction(${nativeAd.callToAction}) price(${nativeAd.price}) store(${nativeAd.store})"
-            )
+            Log.d(TAG, "loadNativeAd: headline(${nativeAd.headline}) advertiser(${nativeAd.advertiser}) starRating(${nativeAd.starRating}) body(${nativeAd.body}) starRating(${nativeAd.starRating}) callToAction(${nativeAd.callToAction}) price(${nativeAd.price}) store(${nativeAd.store})")
             _nativeAdLoadedListener?.onNativeAdViewLoad(
                 nativeAd,
                 nativeAd.icon,
@@ -267,7 +264,7 @@ class AdKGoogleNativeProxy :
     private inner class NativeAdMuteThisListener : MuteThisAdListener {
         override fun onAdMuted() {
             // 广告关闭回调
-            Log.i(TAG, "this native ad been muted")
+            Log.i(TAG, "onAdMuted this native ad been muted")
 
             _nativeAdMuteThisListener?.onAdMuted()
         }
