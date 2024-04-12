@@ -22,11 +22,11 @@ import com.anythink.nativead.api.ATNativeView
 import com.anythink.nativead.api.NativeAd
 import com.anythink.nativead.unitgroup.api.CustomNativeAd
 import com.mozhimen.adk.topon.basic.bases.BaseATAdSourceStatusCallback
+import com.mozhimen.adk.topon.basic.cons.CVideoAction
 import com.mozhimen.adk.topon.basic.test.R
 import com.mozhimen.adk.topon.basic.test.annors.AAdNativeType
 import com.mozhimen.adk.topon.basic.test.bases.BaseActivity
 import com.mozhimen.adk.topon.basic.test.cons.AdConst
-import com.mozhimen.adk.topon.basic.test.cons.VideoAction
 import com.mozhimen.adk.topon.basic.test.mos.CommonViewBean
 import com.mozhimen.adk.topon.basic.test.utils.SelfRenderViewUtil
 
@@ -105,20 +105,20 @@ class NativeAdActivity : BaseActivity(), View.OnClickListener {
         val isMute = booleanArrayOf(true)
         val adapter = NativeVideoButtonAdapter(mData, object : NativeVideoButtonAdapter.OnNativeVideoButtonCallback {
             override fun onClick(action: String?) {
-                if (action == VideoAction.VOICE_CHANGE) {
+                if (action == CVideoAction.VOICE_CHANGE) {
                     if (mNativeAd != null) {
                         mNativeAd!!.setVideoMute(!isMute[0])
                         isMute[0] = !isMute[0]
                     }
-                } else if (action == VideoAction.VIDEO_RESUME) {
+                } else if (action == CVideoAction.VIDEO_RESUME) {
                     if (mNativeAd != null) {
                         mNativeAd!!.resumeVideo()
                     }
-                } else if (action == VideoAction.VIDEO_PAUSE) {
+                } else if (action == CVideoAction.VIDEO_PAUSE) {
                     if (mNativeAd != null) {
                         mNativeAd!!.pauseVideo()
                     }
-                } else if (action == VideoAction.VIDEO_PROGRESS) {
+                } else if (action == CVideoAction.VIDEO_PROGRESS) {
                     if (mNativeAd != null) {
                         val tips = "video duration: " + mNativeAd!!.videoDuration + ", progress: " + mNativeAd!!.videoProgress
                         Log.i(TAG, tips)
@@ -278,18 +278,18 @@ class NativeAdActivity : BaseActivity(), View.OnClickListener {
             val networkId = atAdInfo.networkFirmId
             when (networkId) {
                 8 -> {
-                    mData.add(VideoAction.VOICE_CHANGE)
-                    mData.add(VideoAction.VIDEO_RESUME)
-                    mData.add(VideoAction.VIDEO_PAUSE)
-                    mData.add(VideoAction.VIDEO_PROGRESS)
+                    mData.add(CVideoAction.VOICE_CHANGE)
+                    mData.add(CVideoAction.VIDEO_RESUME)
+                    mData.add(CVideoAction.VIDEO_PAUSE)
+                    mData.add(CVideoAction.VIDEO_PROGRESS)
                 }
 
-                22, 28 -> mData.add(VideoAction.VIDEO_PROGRESS)
+                22, 28 -> mData.add(CVideoAction.VIDEO_PROGRESS)
                 66, 67 -> {
-                    mData.add(VideoAction.VOICE_CHANGE)
-                    mData.add(VideoAction.VIDEO_RESUME)
-                    mData.add(VideoAction.VIDEO_PAUSE)
-                    mData.add(VideoAction.VIDEO_PROGRESS)
+                    mData.add(CVideoAction.VOICE_CHANGE)
+                    mData.add(CVideoAction.VIDEO_RESUME)
+                    mData.add(CVideoAction.VIDEO_PAUSE)
+                    mData.add(CVideoAction.VIDEO_PROGRESS)
                 }
             }
         }

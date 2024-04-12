@@ -4,7 +4,7 @@ import android.content.Context
 import android.util.Log
 import com.google.android.gms.ads.MobileAds
 import com.google.android.gms.ads.initialization.AdapterStatus
-import com.mozhimen.adk.google.optins.OMetaData_GMS_ADS_APPLICATION_ID
+import com.mozhimen.abilityk.google.android.gms.ads.optins.OMetaData_GMS_ADS_APPLICATION_ID
 import com.mozhimen.adk.google.utils.CacheUtil
 import com.mozhimen.basick.elemk.commons.IA_Listener
 import com.mozhimen.basick.utilk.commons.IUtilK

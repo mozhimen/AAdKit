@@ -79,8 +79,8 @@ class BannerAdActivity : BaseActivityVDB<ActivityBannerBinding>() {
 
     override fun onSelectPlacementId(placementId: String?) {
         _adKTopOnBannerProxy.apply {
-            bindLifecycle(this@BannerAdActivity)
             placementId?.let { initBannerAdParams(placementId, "") }
+            bindLifecycle(this@BannerAdActivity)
         }
     }
 
@@ -93,7 +93,7 @@ class BannerAdActivity : BaseActivityVDB<ActivityBannerBinding>() {
         vdb.adviewContainer.applyVisible()
 
         _adKTopOnBannerProxy.initBannerView(this, _atBannerExListener, BaseATAdSourceStatusCallback())
-        _adKTopOnBannerProxy.addBannerViewToContainer(vdb.adviewContainer)
+
 
         if (mTVShowLog != null) {
             mTVShowLog!!.setOnTouchListener(OnTouchListener { view, motionEvent ->
@@ -108,7 +108,7 @@ class BannerAdActivity : BaseActivityVDB<ActivityBannerBinding>() {
         }
         vdb.bannerLoadAdBtn.setOnClickListener {
             printLogOnUI(getString(R.string.anythink_ad_status_loading))
-            _adKTopOnBannerProxy.loadBannerAd()
+            _adKTopOnBannerProxy.addBannerViewToContainer(vdb.adviewContainer)
         }
     }
 

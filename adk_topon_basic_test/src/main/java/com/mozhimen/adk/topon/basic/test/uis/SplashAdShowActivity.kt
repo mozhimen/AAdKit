@@ -17,10 +17,10 @@ import com.anythink.splashad.api.ATSplashAdExtraInfo
 import com.anythink.splashad.api.ATSplashExListener
 import com.anythink.splashad.api.ATSplashSkipAdListener
 import com.anythink.splashad.api.ATSplashSkipInfo
+import com.mozhimen.adk.topon.basic.helpers.SplashZoomOutManager
 import com.mozhimen.adk.topon.basic.test.cons.AdConst
 import com.mozhimen.adk.topon.basic.test.databinding.SplashAdShowBinding
 import com.mozhimen.adk.topon.basic.test.helpers.SplashEyeAdHolder
-import com.mozhimen.adk.topon.basic.test.helpers.SplashZoomOutManager
 import com.mozhimen.basick.elemk.androidx.appcompat.bases.databinding.BaseActivityVDB
 
 /**

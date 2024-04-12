@@ -1,4 +1,4 @@
-package com.mozhimen.adk.topon.basic.test.cons;
+package com.mozhimen.adk.topon.basic.cons;
 /*
  * Copyright © 2018-2020 TopOn. All rights reserved.
  * https://www.toponad.com
@@ -6,7 +6,7 @@ package com.mozhimen.adk.topon.basic.test.cons;
  * https://github.com/toponteam/TopOn-Android-SDK/blob/master/LICENSE
  */
 
-public class VideoAction {
+public class CVideoAction {
     public static String VOICE_CHANGE = "voice_change";
     public static String VIDEO_RESUME = "video_resume";
     public static String VIDEO_PAUSE = "video_pause";

@@ -1,6 +1,5 @@
 package com.mozhimen.adk.topon.basic.test.bases
 
-import android.R
 import android.os.Bundle
 import android.text.TextUtils
 import android.text.method.ScrollingMovementMethod
@@ -18,7 +17,7 @@ import com.mozhimen.adk.topon.basic.test.annors.AnnotationAdType
 import com.mozhimen.adk.topon.basic.test.mos.CommonViewBean
 import com.mozhimen.adk.topon.basic.test.utils.PlacementIdUtil
 import com.mozhimen.basick.elemk.androidx.appcompat.bases.databinding.BaseActivityVDB
-import com.mozhimen.basick.utilk.android.widget.applyPrintLog
+import com.mozhimen.basick.utilk.android.widget.UtilKTextViewWrapper
 import com.mozhimen.xmlk.bark.title.BarKTitle
 import java.lang.ref.WeakReference
 
@@ -36,7 +35,7 @@ abstract class BaseActivityVDB<VB : ViewDataBinding> : BaseActivityVDB<VB>() {
         @JvmStatic
         protected fun printLogOnUI(msg: String?) {
             if (mTVShowLogWR == null || mTVShowLogWR!!.get() == null || TextUtils.isEmpty(msg)) return
-            msg?.let { mTVShowLogWR!!.get()!!.applyPrintLog(it) }
+            msg?.let { UtilKTextViewWrapper.applyValue_ofLog(mTVShowLogWR!!.get()!!, it) }
         }
     }
 
@@ -89,7 +88,7 @@ abstract class BaseActivityVDB<VB : ViewDataBinding> : BaseActivityVDB<VB>() {
         Log.d(TAG, "initPlacementListAdapter: mPlacementIdMap ${mPlacementIdMap!!.size}")
         val placementNameList: List<String> = ArrayList(mPlacementIdMap!!.keys)
         val adapter = ArrayAdapter(
-            this, R.layout.simple_spinner_dropdown_item, placementNameList
+            this, android.R.layout.simple_spinner_dropdown_item, placementNameList
         )
         spinner.setAdapter(adapter)
         spinner.onItemSelectedListener = PlacementSelectListenerImpl()

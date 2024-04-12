@@ -28,7 +28,7 @@ object PlacementIdUtil : IUtilK {
 
     private fun getPlacementJSONObject(): JSONObject? {
         if (placementInfoObject == null) {
-            val jsonString: String = UtilKStrAsset.strAssetName2strOfReadMultiLines(placementIdJson) ?: ""
+            val jsonString: String = UtilKStrAsset.strAssetName2str_use_ofBufferedReader(placementIdJson) ?: ""
             try {
                 placementInfoObject = JSONObject(jsonString)
             } catch (e: Exception) {
