@@ -5,7 +5,6 @@ import android.util.Log
 import com.mozhimen.adk.yandex.basic.commons.INativeAdLoadedListener
 import com.mozhimen.adk.yandex.basic.impls.AdKYandexNativeProxy
 import com.mozhimen.adk.yandex.basic.test.databinding.ActivityCustomNativeAdBinding
-import com.mozhimen.adk.yandex.basic.test.databinding.NativeAdViewBinding
 import com.mozhimen.basick.elemk.androidx.appcompat.bases.viewbinding.BaseActivityVB
 import com.mozhimen.basick.lintk.optins.OApiCall_BindLifecycle
 import com.mozhimen.basick.lintk.optins.OApiCall_BindViewLifecycle
