@@ -37,7 +37,7 @@ dependencies {
     implementation project(':SwiftKit:basick')
     api project(project.path.replace(project.name, '') +':adk_basic')
     implementation project(':AWebKit:webk_basic')
-    implementation project(':AAbilityKit_Google:android_ump')
+    api project(':AAbilityKit_Google:android_ump')
 
     api fileTree(include: ['*.jar', '*.aar'], dir: 'libs')
 
@@ -46,12 +46,12 @@ dependencies {
     api "androidx.browser:browser:1.4.0"
 
     //Anythink (Necessary)
-    api "com.anythink.sdk:core:6.2.98"
-    api "com.anythink.sdk:nativead:6.2.98"
-    api "com.anythink.sdk:banner:6.2.98"
-    api "com.anythink.sdk:interstitial:6.2.98"
-    api "com.anythink.sdk:rewardedvideo:6.2.98"
-    api "com.anythink.sdk:splash:6.2.98"
+    api "com.anythink.sdk:core:6.3.35"
+    api "com.anythink.sdk:nativead:6.3.35"
+    api "com.anythink.sdk:banner:6.3.35"
+    api "com.anythink.sdk:interstitial:6.3.35"
+    api "com.anythink.sdk:rewardedvideo:6.3.35"
+    api "com.anythink.sdk:splash:6.3.35"
 2
 //    //UnityAds
 //    api "com.anythink.sdk:adapter-unityads:6.2.98"

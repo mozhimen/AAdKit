@@ -1,0 +1,81 @@
+package com.mozhimen.adk.yandex.basic.test.impls
+
+import android.util.Log
+import android.widget.FrameLayout
+import com.chad.library.adapter3.provider.BaseItemProvider
+import com.chad.library.adapter3.viewholder.BaseViewHolder
+import com.mozhimen.adk.yandex.basic.bases.BaseBannerAdEventCallback
+import com.mozhimen.adk.yandex.basic.impls.AdKYandexBannerProxy
+import com.mozhimen.basick.lintk.optins.OApiCall_BindLifecycle
+import com.mozhimen.basick.lintk.optins.OApiCall_BindViewLifecycle
+import com.mozhimen.basick.lintk.optins.OApiInit_ByLazy
+import com.mozhimen.basick.utilk.android.util.dp2px
+import com.mozhimen.basick.utilk.android.view.addView_ofMatchParent
+import com.mozhimen.basick.utilk.android.view.applyGone
+import com.mozhimen.basick.utilk.android.view.applyVisible
+import com.mozhimen.basick.utilk.wrapper.UtilKScreen
+import com.ty.lelejoy.fun_widget.R
+import com.ty.lelejoy.fun_widget.cons.CItemExtras
+import com.ty.lelejoy.fun_widget.cons.ListBundle
+import com.ty.lelejoy.fun_widget.cons.ListBundle_AdBannerYandex
+
+/**
+ * @ClassName ItemRecyclerVerticalAdBanner
+ * @Description TODO
+ * @Author Mozhimen / Kolin Zhao
+ * @Date 2024/2/28 0:22
+ * @Version 1.0
+ */
+class ItemListAdBannerYandex : BaseItemProvider<ListBundle>() {
+    override val itemViewType: Int
+        get() = CItemExtras.ITEM_LIST_AD_BANNER_YANDEX
+    override val layoutId: Int
+        get() = R.layout.item_recycler_vertical_ad_banner_change
+
+    @OptIn(OApiCall_BindViewLifecycle::class, OApiCall_BindLifecycle::class, OApiInit_ByLazy::class)
+    override fun onBindViewHolder(holder: BaseViewHolder, item: ListBundle, position: Int?) {
+        super.onBindViewHolder(holder, item, position)
+        if (item is ListBundle_AdBannerYandex) {
+            val adKYandexInlineBannerProxy = AdKYandexBannerProxy()
+            adKYandexInlineBannerProxy.apply {
+                initBannerAdListener(object : BaseBannerAdEventCallback() {
+                    override fun onAdLoaded() {
+                        item.bannerAdView = adKYandexInlineBannerProxy.bannerAdView
+                        adKYandexInlineBannerProxy.addBannerViewToContainer(holder.findViewById<FrameLayout>(R.id.item_detail_container))
+                        holder.findViewById<FrameLayout>(R.id.item_detail_container).applyVisible()
+                    }
+                })
+                initBannerAdSize(UtilKScreen.getWidth_ofDisplayMetrics_ofSys() - 46f.dp2px.toInt(), 50f.dp2px.toInt())
+                initBannerAdParams(com.ty.lelejoy.module_common.BuildConfig.yandex_placement_id_banner)
+                bindLifecycle(holder)
+            }
+        }
+
+    }
+
+    override fun onViewAttachedToWindow(holder: BaseViewHolder, item: ListBundle?, position: Int?) {
+        super.onViewAttachedToWindow(holder, item, position)
+        if (item != null && item is ListBundle_AdBannerYandex) {
+            if (item.bannerAdView != null) {
+                holder.findViewById<FrameLayout>(R.id.item_detail_container).addView_ofMatchParent(item.bannerAdView!!)
+            }
+        }
+    }
+
+
+    override fun onViewDetachedFromWindow(holder: BaseViewHolder, item: ListBundle?, position: Int?) {
+        holder.findViewById<FrameLayout>(R.id.item_detail_container).removeAllViews()
+        super.onViewDetachedFromWindow(holder, item, position)
+    }
+
+    override fun onViewRecycled(holder: BaseViewHolder, item: ListBundle?, position: Int?) {
+        if (item != null && item is ListBundle_AdBannerYandex) {
+            if (item.bannerAdView != null) {
+                Log.d(TAG, "onViewRecycled: item $item")
+                item.bannerAdView = null
+            }
+        }
+        holder.findViewById<FrameLayout>(R.id.item_detail_container).applyGone()
+        super.onViewRecycled(holder, item, position)
+    }
+}

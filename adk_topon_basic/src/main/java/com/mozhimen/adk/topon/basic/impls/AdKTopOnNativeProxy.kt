@@ -1,6 +1,7 @@
 package com.mozhimen.adk.topon.basic.impls
 
 import android.util.Log
+import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.LifecycleOwner
 import com.anythink.core.api.ATAdConst
@@ -11,10 +12,10 @@ import com.anythink.nativead.api.ATNative
 import com.anythink.nativead.api.ATNativeAdView
 import com.anythink.nativead.api.ATNativeDislikeListener
 import com.anythink.nativead.api.ATNativeEventListener
+import com.anythink.nativead.api.ATNativeMaterial
 import com.anythink.nativead.api.ATNativeNetworkListener
 import com.anythink.nativead.api.ATNativePrepareExInfo
 import com.anythink.nativead.api.ATNativePrepareInfo
-import com.anythink.nativead.api.ATNativeView
 import com.anythink.nativead.api.NativeAd
 import com.anythink.nativead.unitgroup.api.CustomNativeAd
 import com.mozhimen.adk.basic.commons.IAdKNativeProxy
@@ -24,6 +25,7 @@ import com.mozhimen.basick.elemk.androidx.lifecycle.bases.BaseWakeBefDestroyLife
 import com.mozhimen.basick.lintk.optins.OApiCall_BindLifecycle
 import com.mozhimen.basick.lintk.optins.OApiCall_BindViewLifecycle
 import com.mozhimen.basick.lintk.optins.OApiInit_ByLazy
+import com.mozhimen.basick.utilk.android.util.UtilKLogWrapper
 import com.mozhimen.basick.utilk.android.view.addView_ofMatchParent
 
 /**
@@ -40,7 +42,7 @@ class AdKTopOnNativeProxy :
     BaseWakeBefDestroyLifecycleObserver(), IAdKNativeProxy, ATNativeNetworkListener, ATAdSourceStatusListener, ATNativeEventListener {
     private var _aTNative: ATNative? = null
     private var _nativeAd: NativeAd? = null
-    private var _aTNativeView: ATNativeView? = null
+    private var _aTNativeView: ATNativeAdView? = null
     private var _placementId = ""
     private var _scenarioId: String = ""
     private var _nativeAdSize: MutableMap<String, Any>? = null
@@ -72,7 +74,7 @@ class AdKTopOnNativeProxy :
         nativeAdLoadedListener: INativeAdLoadedListener?,
         aTAdSourceStatusListener: ATAdSourceStatusListener?,
         aTNativeEventListener: ATNativeEventListener?,
-        aTNativeDislikeListener: ATNativeDislikeListener
+        aTNativeDislikeListener: ATNativeDislikeListener?
     ) {
         _aTNativeNetworkListener = aTNativeNetworkListener
         _nativeAdLoadedListener = nativeAdLoadedListener
@@ -113,7 +115,7 @@ class AdKTopOnNativeProxy :
             }
             try {
                 val atNativePrepareInfo: ATNativePrepareInfo = ATNativePrepareExInfo()
-                _nativeAdLoadedListener?.onNativeAdViewLoad(_nativeAd, atNativePrepareInfo)?.also {
+                _nativeAdLoadedListener?.onNativeAdViewLoad(_nativeAd, _nativeAd?.adMaterial, atNativePrepareInfo)?.also {
                     _aTNativeView = it.first
                     if (_nativeAd!!.isNativeExpress) {
                         _nativeAd!!.renderAdContainer(_aTNativeView, null)
@@ -123,6 +125,7 @@ class AdKTopOnNativeProxy :
                     _nativeAd!!.prepare(_aTNativeView, atNativePrepareInfo)
                 }
             } catch (e: Exception) {
+                UtilKLogWrapper.e(TAG, "loadNativeAd: ${e.message}")
                 e.printStackTrace()
             }
         }
@@ -306,10 +309,71 @@ class AdKTopOnNativeProxy :
                 }
 
                 66, 67 -> {//for Adx //for Direct
-                    return listOf(CVideoAction.VOICE_CHANGE,CVideoAction.VIDEO_RESUME,CVideoAction.VIDEO_PAUSE,CVideoAction.VIDEO_PROGRESS)
+                    return listOf(CVideoAction.VOICE_CHANGE, CVideoAction.VIDEO_RESUME, CVideoAction.VIDEO_PAUSE, CVideoAction.VIDEO_PROGRESS)
                 }
             }
         }
         return null
+    }
+
+    private fun printNativeAdMaterial(adMaterial: ATNativeMaterial?) {
+        if (adMaterial == null) return
+        val adType = adMaterial.adType
+        when (adType) {
+            CustomNativeAd.NativeAdConst.VIDEO_TYPE -> Log.i(TAG, "Ad source type: Video" + ", video duration: " + adMaterial.videoDuration)
+            CustomNativeAd.NativeAdConst.IMAGE_TYPE -> Log.i(TAG, "Ad source type: Image")
+            else -> Log.i(TAG, "Ad source type: Unknown")
+        }
+        when (adMaterial.nativeType) {
+            CustomNativeAd.NativeType.FEED -> Log.i(TAG, "Native type: Feed")
+            CustomNativeAd.NativeType.PATCH -> Log.i(TAG, "Native type: Patch")
+        }
+        UtilKLogWrapper.d(
+            TAG,
+            """
+     show native material:
+     adMaterial:$adMaterial
+
+     getAdIconView:${adMaterial.adIconView}
+     getTitle:${adMaterial.title}
+     getDescriptionText:${adMaterial.descriptionText}
+     getMainImageUrl:${adMaterial.mainImageUrl}
+     getIconImageUrl:${adMaterial.iconImageUrl}
+     getCallToActionText:${adMaterial.callToActionText}
+     getStarRating:${adMaterial.starRating}
+     getVideoUrl:${adMaterial.videoUrl}
+     getAdChoiceIconUrl:${adMaterial.adChoiceIconUrl}
+     getAdFrom:${adMaterial.adFrom}
+     getAdLogoView:${adMaterial.adLogoView}
+     getImageUrlList:${adMaterial.imageUrlList}
+     getAdAppInfo:${adMaterial.adAppInfo}
+     getAdMediaView:${adMaterial.getAdMediaView()}
+     getAdLogo:${adMaterial.adLogo}
+     getMainImageHeight:${adMaterial.mainImageHeight}
+     getMainImageWidth:${adMaterial.mainImageWidth}
+     getNativeExpressWidth:${adMaterial.nativeExpressWidth}
+     getNativeExpressHeight${adMaterial.nativeExpressHeight}
+     getVideoWidth:${adMaterial.videoWidth}
+     getVideoHeight:${adMaterial.videoHeight}
+     getAppPrice:${adMaterial.appPrice}
+     getAppCommentNum:${adMaterial.appCommentNum}
+     getAdvertiserName:${adMaterial.advertiserName}
+     getNativeType:${adMaterial.nativeType}
+     getNativeAdInteractionType:${adMaterial.nativeAdInteractionType}
+     getVideoDuration:${adMaterial.videoDuration}
+     getVideoProgress:${adMaterial.videoProgress}
+     getAdType:${adMaterial.adType}
+     getNativeCustomVideo:${adMaterial.nativeCustomVideo}
+     getNetworkInfoMap:${adMaterial.networkInfoMap}
+     getAppDownloadButton:${adMaterial.appDownloadButton}
+     getDomain:${adMaterial.domain}
+     getWarning:${adMaterial.warning}
+     getAdvertiserInfoOperate:${adMaterial.advertiserInfoOperate}
+     supportSetPrivacyClickViewList:${adMaterial.supportSetPrivacyClickViewList()}
+     supportSetPermissionClickViewList:${adMaterial.supportSetPermissionClickViewList()}
+     getDownloadStatus:${adMaterial.downloadStatus}
+     getDownloadProgress:${adMaterial.downloadProgress}
+     """.trimIndent(),
+        )
     }
 }

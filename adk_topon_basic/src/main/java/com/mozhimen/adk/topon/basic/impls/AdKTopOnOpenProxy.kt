@@ -113,6 +113,7 @@ class AdKTopOnOpenProxy : BaseWakeBefDestroyLifecycleObserver(), IAdKOpenProxy, 
             setAdListener(null)
             setAdDownloadListener(null)
             setAdSourceStatusListener(null)
+            onDestory()
         }
         _atOpenAd = null
     }

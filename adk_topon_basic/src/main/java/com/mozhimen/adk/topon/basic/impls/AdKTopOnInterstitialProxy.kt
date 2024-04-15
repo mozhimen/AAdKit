@@ -40,9 +40,9 @@ class AdKTopOnInterstitialProxy(
     private var _scenarioId: String = ""
     private var _interstitialAdSize: MutableMap<String, Any>? = null
 
-    private var _atInterstitialAutoEventListener: ATInterstitialAutoEventListener? = null
     private var _atInterstitialExListener: ATInterstitialExListener? = null
     private var _atAdSourceStatusListener: ATAdSourceStatusListener? = null
+    private var _atInterstitialAutoEventListener: ATInterstitialAutoEventListener? = null
 //    private var _atInterstitialAutoEventCallback = ATInterstitialAutoEventCallback()
 
     ////////////////////////////////////////////////////////////////////////////

@@ -36,13 +36,19 @@ object AdKTopOnBasicMgr : IUtilK {
     @OMetaData_GMS_ADS_APPLICATION_ID
     fun init_ofGDPR_ofUmp(activity: Activity, topOnAppId: String, topOnAppKey: String, isDebug: Boolean = true, onInitSuccess: I_Listener? = null) {
         if (_isNeedApplyGDPR.get() && ATSDK.getGDPRDataLevel(activity) == ATSDK.UNKNOWN) {
+            Log.d(TAG, "init_ofGDPR_ofUmp: showGDPRConsentDialog")
             ATSDK.showGDPRConsentDialog(activity, object : ATGDPRConsentDismissListener {
                 override fun onDismiss(p0: ATGDPRConsentDismissListener.ConsentDismissInfo?) {
                     init(activity, topOnAppId, topOnAppKey, isDebug, onInitSuccess)
                 }
             })
-        } else
+        } else if (!_isInit.get()) {
+            Log.d(TAG, "init_ofGDPR_ofUmp: !_isInit.get()")
             init(activity, topOnAppId, topOnAppKey, isDebug, onInitSuccess)
+        } else {
+            Log.d(TAG, "init_ofGDPR_ofUmp: ")
+            onInitSuccess?.invoke()
+        }
     }
 
     ////////////////////////////////////////////////////////////////////////////////
@@ -56,14 +62,16 @@ object AdKTopOnBasicMgr : IUtilK {
 //                    ATSDK.showGdprAuth(this@DemoApplicaion)
                     _isNeedApplyGDPR.compareAndSet(false, true)
                     return
+                } else {
+                    init(context, topOnAppId, topOnAppKey, isDebug, onInitSuccess)
                 }
             }
 
             override fun onErrorCallback(errorMsg: String) {
                 Log.i(TAG, "init_ofGDPR onErrorCallback:$errorMsg")
+                init(context, topOnAppId, topOnAppKey, isDebug, onInitSuccess)
             }
         })
-        init(context, topOnAppId, topOnAppKey, isDebug, onInitSuccess)
     }
 
     ////////////////////////////////////////////////////////////////////////////////
@@ -75,9 +83,11 @@ object AdKTopOnBasicMgr : IUtilK {
             Log.e(TAG, "init: fail")
             return
         }
-        Log.d(TAG, "init: topOnAppId $topOnAppId topOnAppKey $topOnAppKey")
+        Log.w(TAG, "init: start")
 
         if (_isInit.compareAndSet(false, true)) {
+            Log.d(TAG, "init: topOnAppId $topOnAppId topOnAppKey $topOnAppKey")
+
             WebKMgr.init(context)
 
             if (UtilKRunningAppProcessInfo.isMainProcess(context)) {
