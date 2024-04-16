@@ -96,6 +96,7 @@ class AdKTopOnBannerProxy : BaseWakeBefDestroyLifecycleObserver(), ATBannerExLis
             setAdDownloadListener(null)
             setAdSourceStatusListener(null)
             destroy()
+            Log.d(TAG, "destroyBannerAd: destroy")
         }
         _atBannerView = null
     }

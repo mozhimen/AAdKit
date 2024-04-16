@@ -117,11 +117,11 @@ class AdKTopOnNativeProxy :
                 val atNativePrepareInfo: ATNativePrepareInfo = ATNativePrepareExInfo()
                 _nativeAdLoadedListener?.onNativeAdViewLoad(_nativeAd, _nativeAd?.adMaterial, atNativePrepareInfo)?.also {
                     _aTNativeView = it.first
-                    if (_nativeAd!!.isNativeExpress) {
-                        _nativeAd!!.renderAdContainer(_aTNativeView, null)
-                    } else if (it.second != null) {
-                        _nativeAd!!.renderAdContainer(it.first, it.second)
-                    }
+//                    if (_nativeAd!!.isNativeExpress) {
+//                        _nativeAd!!.renderAdContainer(_aTNativeView, null)
+//                    } else if (it.second != null) {
+//                        _nativeAd!!.renderAdContainer(it.first, it.second)
+//                    }
                     _nativeAd!!.prepare(_aTNativeView, atNativePrepareInfo)
                 }
             } catch (e: Exception) {

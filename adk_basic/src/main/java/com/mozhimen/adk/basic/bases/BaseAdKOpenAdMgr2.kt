@@ -27,9 +27,10 @@ abstract class BaseAdKOpenAdMgr2(application: Application, private val _keyWord:
     //    private val _processLifecycleObserver = ActivityLifecycleObserver()
     private val _appOpenAdActivityObserver = ActivityLifecycleCallbacks()
 
-    private val _atoShowOpenAd = AtomicBoolean(false)
+    protected val _autoShowOpenAd = AtomicBoolean(false)
 
-    private var _activityRef: WeakReference<Activity>? by VarProperty_Set(null) { _, value ->
+    protected var _activityRef: WeakReference<Activity>? by VarProperty_Set(null) { _, value ->
+        Log.d(TAG, "_activityRef: ")
         if (value != null && _isAdLoad) {
             value.get()?.let {
                 showAppOpenAd(it)
@@ -68,7 +69,9 @@ abstract class BaseAdKOpenAdMgr2(application: Application, private val _keyWord:
 
     //////////////////////////////////////////////////////////////////////////////
 
-    abstract fun getAdkOpenProxy() : IAdKOpenProxy
+    abstract fun getAdkOpenProxy(): IAdKOpenProxy
+
+    abstract fun initOpenAdProxy(adUnitId: String)
 
     //////////////////////////////////////////////////////////////////////////////
 
@@ -78,8 +81,8 @@ abstract class BaseAdKOpenAdMgr2(application: Application, private val _keyWord:
 
     //////////////////////////////////////////////////////////////////////////////
 
-    private fun showAppOpenAd(activity: Activity) {
-        if (_atoShowOpenAd.compareAndSet(false, true)) {
+    protected open fun showAppOpenAd(activity: Activity) {
+        if (_autoShowOpenAd.compareAndSet(false, true)) {
             getAdkOpenProxy().showOpenAd(activity)
         }
     }

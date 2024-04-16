@@ -23,6 +23,10 @@ class AdKYandexOpenAdMgr2(application: Application, keyWord: String, adUnitId: S
     //////////////////////////////////////////////////////////////////////////////
 
     init {
+        initOpenAdProxy(adUnitId)
+    }
+
+    override fun initOpenAdProxy(adUnitId: String) {
         _adkYandexOpenProxy.apply {
             initOpenAdListener(object : BaseAppOpenAdLoadCallback() {
                 override fun onAdLoaded(p0: AppOpenAd) {

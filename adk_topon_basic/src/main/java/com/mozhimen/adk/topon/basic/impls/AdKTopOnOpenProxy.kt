@@ -82,6 +82,7 @@ class AdKTopOnOpenProxy : BaseWakeBefDestroyLifecycleObserver(), IAdKOpenProxy, 
         _atOpenAd?.loadAd()
     }
 
+    @Deprecated("use showOpenAd(activity: Activity?, viewGroup: ViewGroup)")
     override fun showOpenAd(activity: Activity?) {
         if (activity != null) {
             showOpenAd(activity, UtilKActivityWrapper.getContentView(activity))
@@ -211,7 +212,7 @@ class AdKTopOnOpenProxy : BaseWakeBefDestroyLifecycleObserver(), IAdKOpenProxy, 
     }
 
     override fun onAdSourceLoadFilled(p0: ATAdInfo?) {
-        Log.e(TAG, "onAdSourceLoadFilled: ")
+        Log.e(TAG, "onAdSourceLoadFilled: ATAdInfo $p0")
 
         _atAdSourceStatusListener?.onAdSourceLoadFilled(p0)
     }

@@ -15,11 +15,15 @@ import com.mozhimen.basick.lintk.optins.OApiUse_BaseApplication
 @OApiInit_InApplication
 @OApiInit_ByLazy
 @OApiUse_BaseApplication
-class AdKGoogleOpenAdMgr2(application: Application, keyWord: String, adUnitId: String) : BaseAdKOpenAdMgr2(application, keyWord) {
+class AdKGoogleOpenAdMgr2(application: Application, keyWord: String, adUnitId: String) : BaseAdKOpenAdMgr2(application, keyWord, adUnitId) {
 
     private val _adkGoogleOpenProxy by lazy { AdKGoogleOpenProxy() }
 
     init {
+        initOpenAdProxy(adUnitId)
+    }
+
+    override fun initOpenAdProxy(adUnitId: String) {
         _adkGoogleOpenProxy.apply {
             initOpenAdListener(object : AppOpenAdLoadCallback() {
                 override fun onAdLoaded(p0: AppOpenAd) {

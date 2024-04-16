@@ -275,24 +275,14 @@ class AdKTopOnInterstitialProxy(
 
     ////////////////////////////////////////////////////////////////////////////
 
-    override fun onAdSourceAttempt(adInfo: ATAdInfo) {
-        Log.i(TAG, "onAdSourceAttempt: 广告源开始加载回调 $adInfo")
-        _atAdSourceStatusListener?.onAdSourceAttempt(adInfo)
-    }
-
     override fun onAdSourceBiddingAttempt(adInfo: ATAdInfo) {
         Log.i(TAG, "onAdSourceBiddingAttempt: 竞价广告源开始竞价回调 $adInfo")
         _atAdSourceStatusListener?.onAdSourceBiddingAttempt(adInfo)
     }
 
-    override fun onAdSourceLoadFail(adInfo: ATAdInfo, adError: com.anythink.core.api.AdError) {
-        Log.e(TAG, "onAdSourceLoadFail 广告源加载失败回调 Info: $adInfo \n error: ${adError.getFullErrorInfo()}")
-        _atAdSourceStatusListener?.onAdSourceLoadFail(adInfo, adError)
-    }
-
-    override fun onAdSourceBiddingFail(adInfo: ATAdInfo, adError: com.anythink.core.api.AdError?) {
-        Log.e(TAG, "onAdSourceBiddingFail 竞价广告源竞价失败回调 Info: $adInfo error: ${adError?.getFullErrorInfo()}")
-        _atAdSourceStatusListener?.onAdSourceBiddingFail(adInfo, adError)
+    override fun onAdSourceAttempt(adInfo: ATAdInfo) {
+        Log.i(TAG, "onAdSourceAttempt: 广告源开始加载回调 $adInfo")
+        _atAdSourceStatusListener?.onAdSourceAttempt(adInfo)
     }
 
     override fun onAdSourceLoadFilled(adInfo: ATAdInfo) {
@@ -303,5 +293,15 @@ class AdKTopOnInterstitialProxy(
     override fun onAdSourceBiddingFilled(adInfo: ATAdInfo) {
         Log.i(TAG, "onAdSourceBiddingFilled: 竞价广告源竞价成功回调 $adInfo")
         _atAdSourceStatusListener?.onAdSourceBiddingFilled(adInfo)
+    }
+
+    override fun onAdSourceLoadFail(adInfo: ATAdInfo, adError: com.anythink.core.api.AdError) {
+        Log.e(TAG, "onAdSourceLoadFail 广告源加载失败回调 Info: $adInfo \n error: ${adError.getFullErrorInfo()}")
+        _atAdSourceStatusListener?.onAdSourceLoadFail(adInfo, adError)
+    }
+
+    override fun onAdSourceBiddingFail(adInfo: ATAdInfo, adError: com.anythink.core.api.AdError?) {
+        Log.e(TAG, "onAdSourceBiddingFail 竞价广告源竞价失败回调 Info: $adInfo error: ${adError?.getFullErrorInfo()}")
+        _atAdSourceStatusListener?.onAdSourceBiddingFail(adInfo, adError)
     }
 }
