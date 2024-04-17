@@ -1,7 +1,5 @@
 package com.mozhimen.adk.topon.basic.impls
 
-import android.util.Log
-import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.LifecycleOwner
 import com.anythink.core.api.ATAdConst
@@ -104,24 +102,27 @@ class AdKTopOnNativeProxy :
         _aTNative?.makeAdRequest()
     }
 
-    fun isNativeAdReady(): Boolean =
-        _aTNative?.checkAdStatus()?.isReady ?: false
+//    fun isNativeAdReady(): Boolean =
+//        (_aTNative?.is()?.isReady ?: false).also { UtilKLogWrapper.d(TAG, "isNativeAdReady: $it") }
 
     override fun loadNativeAd() {
-        if (isNativeAdReady() && _nativeAd != null) {
+        if (/*isNativeAdReady() &&*/ _nativeAd != null) {
+            UtilKLogWrapper.d(TAG, "loadNativeAd: ")
             _nativeAd!!.apply {
                 setNativeEventListener(this@AdKTopOnNativeProxy)
                 setDislikeCallbackListener(ATNativeDislikeCallback())
             }
             try {
+                printNativeAdMaterial(_nativeAd?.adMaterial)
                 val atNativePrepareInfo: ATNativePrepareInfo = ATNativePrepareExInfo()
                 _nativeAdLoadedListener?.onNativeAdViewLoad(_nativeAd, _nativeAd?.adMaterial, atNativePrepareInfo)?.also {
+                    UtilKLogWrapper.d(TAG, "loadNativeAd: ATNativeAdView ${it.first} View ${it.second}")
                     _aTNativeView = it.first
-//                    if (_nativeAd!!.isNativeExpress) {
-//                        _nativeAd!!.renderAdContainer(_aTNativeView, null)
-//                    } else if (it.second != null) {
-//                        _nativeAd!!.renderAdContainer(it.first, it.second)
-//                    }
+                    if (_nativeAd!!.isNativeExpress) {
+                        _nativeAd!!.renderAdContainer(_aTNativeView, null)
+                    } else if (it.second != null) {
+                        _nativeAd!!.renderAdContainer(it.first, it.second)
+                    }
                     _nativeAd!!.prepare(_aTNativeView, atNativePrepareInfo)
                 }
             } catch (e: Exception) {
@@ -133,7 +134,10 @@ class AdKTopOnNativeProxy :
 
     override fun addNativeViewToContainer(container: ViewGroup) {
         if (_aTNativeView != null) {
+            UtilKLogWrapper.d(TAG, "addNativeViewToContainer")
             container.addView_ofMatchParent(_aTNativeView!!)// 把 Banner Ad 添加到根布局
+        } else {
+            UtilKLogWrapper.d(TAG, "addNativeViewToContainer _aTNativeView null")
         }
     }
 
@@ -186,7 +190,7 @@ class AdKTopOnNativeProxy :
     ///////////////////////////////////////////////////////////////////////
 
     override fun onNativeAdLoaded() {
-        Log.d(TAG, "onNativeAdLoaded: ")
+        UtilKLogWrapper.d(TAG, "_aTNativeNetworkListener_ onNativeAdLoaded: ")
 
         _aTNativeNetworkListener?.onNativeAdLoaded()
 
@@ -201,7 +205,7 @@ class AdKTopOnNativeProxy :
     }
 
     override fun onNativeAdLoadFail(p0: AdError?) {
-        Log.e(TAG, "onNativeAdLoadFail: AdError $p0")
+        UtilKLogWrapper.e(TAG, "_aTNativeNetworkListener_ onNativeAdLoadFail: AdError $p0")
 
         _aTNativeNetworkListener?.onNativeAdLoadFail(p0)
     }
@@ -209,37 +213,37 @@ class AdKTopOnNativeProxy :
     ///////////////////////////////////////////////////////////////////////
 
     override fun onAdSourceBiddingAttempt(p0: ATAdInfo?) {
-        Log.d(TAG, "onAdSourceBiddingAttempt: ")
+        UtilKLogWrapper.d(TAG, "_aTAdSourceStatusListener onAdSourceBiddingAttempt: ATAdInfo $p0")
 
         _aTAdSourceStatusListener?.onAdSourceBiddingAttempt(p0)
     }
 
-    override fun onAdSourceBiddingFilled(p0: ATAdInfo?) {
-        Log.d(TAG, "onAdSourceBiddingFilled: ")
-
-        _aTAdSourceStatusListener?.onAdSourceBiddingFilled(p0)
-    }
-
-    override fun onAdSourceBiddingFail(p0: ATAdInfo?, p1: AdError?) {
-        Log.e(TAG, "onAdSourceBiddingFail: AdError $p1")
-
-        _aTAdSourceStatusListener?.onAdSourceBiddingFail(p0, p1)
-    }
-
     override fun onAdSourceAttempt(p0: ATAdInfo?) {
-        Log.d(TAG, "onAdSourceAttempt: ")
+        UtilKLogWrapper.d(TAG, "_aTAdSourceStatusListener onAdSourceAttempt: ATAdInfo $p0")
 
         _aTAdSourceStatusListener?.onAdSourceAttempt(p0)
     }
 
+    override fun onAdSourceBiddingFilled(p0: ATAdInfo?) {
+        UtilKLogWrapper.w(TAG, "_aTAdSourceStatusListener onAdSourceBiddingFilled: ATAdInfo $p0")
+
+        _aTAdSourceStatusListener?.onAdSourceBiddingFilled(p0)
+    }
+
     override fun onAdSourceLoadFilled(p0: ATAdInfo?) {
-        Log.d(TAG, "onAdSourceLoadFilled: ")
+        UtilKLogWrapper.w(TAG, "_aTAdSourceStatusListener onAdSourceLoadFilled: ATAdInfo $p0")
 
         _aTAdSourceStatusListener?.onAdSourceLoadFilled(p0)
     }
 
+    override fun onAdSourceBiddingFail(p0: ATAdInfo?, p1: AdError?) {
+        UtilKLogWrapper.e(TAG, "_aTAdSourceStatusListener onAdSourceBiddingFail: AdError $p1 ATAdInfo $p0")
+
+        _aTAdSourceStatusListener?.onAdSourceBiddingFail(p0, p1)
+    }
+
     override fun onAdSourceLoadFail(p0: ATAdInfo?, p1: AdError?) {
-        Log.e(TAG, "onAdSourceLoadFail: AdError $p1")
+        UtilKLogWrapper.e(TAG, "_aTAdSourceStatusListener onAdSourceLoadFail: AdError $p1 ATAdInfo $p0")
 
         _aTAdSourceStatusListener?.onAdSourceLoadFail(p0, p1)
     }
@@ -247,40 +251,40 @@ class AdKTopOnNativeProxy :
     ///////////////////////////////////////////////////////////////////////
 
     override fun onAdImpressed(p0: ATNativeAdView?, p1: ATAdInfo?) {
-        Log.d(TAG, "onAdImpressed: ")
+        UtilKLogWrapper.d(TAG, "_aTNativeEventListener___ onAdImpressed: ATAdInfo $p0")
 
         _aTNativeEventListener?.onAdImpressed(p0, p1)
     }
 
     override fun onAdClicked(p0: ATNativeAdView?, p1: ATAdInfo?) {
-        Log.d(TAG, "onAdClicked: ")
+        UtilKLogWrapper.d(TAG, "_aTNativeEventListener___ onAdClicked: ATAdInfo $p0")
 
         _aTNativeEventListener?.onAdClicked(p0, p1)
     }
 
     override fun onAdVideoStart(p0: ATNativeAdView?) {
-        Log.d(TAG, "onAdVideoStart: ")
+        UtilKLogWrapper.d(TAG, "_aTNativeEventListener___ onAdVideoStart: ATNativeAdView $p0")
 
         _aTNativeEventListener?.onAdVideoStart(p0)
     }
 
     override fun onAdVideoEnd(p0: ATNativeAdView?) {
-        Log.d(TAG, "onAdVideoEnd: ")
+        UtilKLogWrapper.d(TAG, "_aTNativeEventListener___ onAdVideoEnd: ATNativeAdView $p0")
 
         _aTNativeEventListener?.onAdVideoEnd(p0)
     }
 
     override fun onAdVideoProgress(p0: ATNativeAdView?, p1: Int) {
-        Log.d(TAG, "onAdVideoProgress: ")
+        UtilKLogWrapper.d(TAG, "_aTNativeEventListener___ onAdVideoProgress: ATNativeAdView $p0 Int $p1")
 
         _aTNativeEventListener?.onAdVideoProgress(p0, p1)
     }
 
     ///////////////////////////////////////////////////////////////////////
 
-    private inner class ATNativeDislikeCallback : com.anythink.nativead.api.ATNativeDislikeListener() {
+    private inner class ATNativeDislikeCallback : ATNativeDislikeListener() {
         override fun onAdCloseButtonClick(p0: ATNativeAdView?, p1: ATAdInfo?) {
-            Log.d(TAG, "onAdCloseButtonClick: ")
+            UtilKLogWrapper.d(TAG, "_aTNativeDislikeListener_ onAdCloseButtonClick: ATNativeAdView $p1 ATAdInfo $p0")
 
             _aTNativeDislikeListener?.onAdCloseButtonClick(p0, p1)
         }
@@ -317,62 +321,51 @@ class AdKTopOnNativeProxy :
     }
 
     private fun printNativeAdMaterial(adMaterial: ATNativeMaterial?) {
-        if (adMaterial == null) return
-        val adType = adMaterial.adType
-        when (adType) {
-            CustomNativeAd.NativeAdConst.VIDEO_TYPE -> Log.i(TAG, "Ad source type: Video" + ", video duration: " + adMaterial.videoDuration)
-            CustomNativeAd.NativeAdConst.IMAGE_TYPE -> Log.i(TAG, "Ad source type: Image")
-            else -> Log.i(TAG, "Ad source type: Unknown")
+        adMaterial ?: return
+        when (adMaterial.adType) {
+            CustomNativeAd.NativeAdConst.VIDEO_TYPE -> UtilKLogWrapper.d(TAG, "Ad source type: Video" + ", video duration: " + adMaterial.videoDuration)
+            CustomNativeAd.NativeAdConst.IMAGE_TYPE -> UtilKLogWrapper.d(TAG, "Ad source type: Image")
+            else -> UtilKLogWrapper.d(TAG, "Ad source type: Unknown")
         }
         when (adMaterial.nativeType) {
-            CustomNativeAd.NativeType.FEED -> Log.i(TAG, "Native type: Feed")
-            CustomNativeAd.NativeType.PATCH -> Log.i(TAG, "Native type: Patch")
+            CustomNativeAd.NativeType.FEED -> UtilKLogWrapper.d(TAG, "Native type: Feed")
+            CustomNativeAd.NativeType.PATCH -> UtilKLogWrapper.d(TAG, "Native type: Patch")
         }
         UtilKLogWrapper.d(
             TAG,
             """
+     [main]
      show native material:
      adMaterial:$adMaterial
+     adType:${adMaterial.adType} nativeType:${adMaterial.nativeType} nativeAdInteractionType:${adMaterial.nativeAdInteractionType}
+     adAppInfo:${adMaterial.adAppInfo}
+     adLogo:${adMaterial.adLogo}
+     networkInfoMap:${adMaterial.networkInfoMap}
+     advertiserInfoOperate:${adMaterial.advertiserInfoOperate}
+     
+     [content]
+     title:${adMaterial.title} descriptionText:${adMaterial.descriptionText} callToActionText:${adMaterial.callToActionText}
+     appPrice:${adMaterial.appPrice} starRating:${adMaterial.starRating} domain:${adMaterial.domain} warning:${adMaterial.warning}
+     adFrom:${adMaterial.adFrom} appCommentNum:${adMaterial.appCommentNum} advertiserName:${adMaterial.advertiserName}
+     
+     [address]
+     mainImageUrl:${adMaterial.mainImageUrl} iconImageUrl:${adMaterial.iconImageUrl} videoUrl:${adMaterial.videoUrl} adChoiceIconUrl:${adMaterial.adChoiceIconUrl}
+     imageUrlList:${adMaterial.imageUrlList}
+     
+     [view]
+     adIconView:${adMaterial.adIconView} adLogoView:${adMaterial.adLogoView} getAdMediaView:${adMaterial.getAdMediaView()} appDownloadButton:${adMaterial.appDownloadButton}
+     supportSetPrivacyClickViewList:${adMaterial.supportSetPrivacyClickViewList()} supportSetPermissionClickViewList:${adMaterial.supportSetPermissionClickViewList()}
+     
+     [size]
+     mainImageHeight:${adMaterial.mainImageHeight} mainImageWidth:${adMaterial.mainImageWidth} nativeExpressWidth:${adMaterial.nativeExpressWidth} nativeExpressHeight${adMaterial.nativeExpressHeight}
+     
+     [video]
+     videoWidth:${adMaterial.videoWidth} videoHeight:${adMaterial.videoHeight} videoDuration:${adMaterial.videoDuration} videoProgress:${adMaterial.videoProgress}
+     nativeCustomVideo:${adMaterial.nativeCustomVideo}
 
-     getAdIconView:${adMaterial.adIconView}
-     getTitle:${adMaterial.title}
-     getDescriptionText:${adMaterial.descriptionText}
-     getMainImageUrl:${adMaterial.mainImageUrl}
-     getIconImageUrl:${adMaterial.iconImageUrl}
-     getCallToActionText:${adMaterial.callToActionText}
-     getStarRating:${adMaterial.starRating}
-     getVideoUrl:${adMaterial.videoUrl}
-     getAdChoiceIconUrl:${adMaterial.adChoiceIconUrl}
-     getAdFrom:${adMaterial.adFrom}
-     getAdLogoView:${adMaterial.adLogoView}
-     getImageUrlList:${adMaterial.imageUrlList}
-     getAdAppInfo:${adMaterial.adAppInfo}
-     getAdMediaView:${adMaterial.getAdMediaView()}
-     getAdLogo:${adMaterial.adLogo}
-     getMainImageHeight:${adMaterial.mainImageHeight}
-     getMainImageWidth:${adMaterial.mainImageWidth}
-     getNativeExpressWidth:${adMaterial.nativeExpressWidth}
-     getNativeExpressHeight${adMaterial.nativeExpressHeight}
-     getVideoWidth:${adMaterial.videoWidth}
-     getVideoHeight:${adMaterial.videoHeight}
-     getAppPrice:${adMaterial.appPrice}
-     getAppCommentNum:${adMaterial.appCommentNum}
-     getAdvertiserName:${adMaterial.advertiserName}
-     getNativeType:${adMaterial.nativeType}
-     getNativeAdInteractionType:${adMaterial.nativeAdInteractionType}
-     getVideoDuration:${adMaterial.videoDuration}
-     getVideoProgress:${adMaterial.videoProgress}
-     getAdType:${adMaterial.adType}
-     getNativeCustomVideo:${adMaterial.nativeCustomVideo}
-     getNetworkInfoMap:${adMaterial.networkInfoMap}
-     getAppDownloadButton:${adMaterial.appDownloadButton}
-     getDomain:${adMaterial.domain}
-     getWarning:${adMaterial.warning}
-     getAdvertiserInfoOperate:${adMaterial.advertiserInfoOperate}
-     supportSetPrivacyClickViewList:${adMaterial.supportSetPrivacyClickViewList()}
-     supportSetPermissionClickViewList:${adMaterial.supportSetPermissionClickViewList()}
-     getDownloadStatus:${adMaterial.downloadStatus}
-     getDownloadProgress:${adMaterial.downloadProgress}
+     [download]
+     downloadStatus:${adMaterial.downloadStatus} downloadProgress:${adMaterial.downloadProgress}
+     
      """.trimIndent(),
         )
     }

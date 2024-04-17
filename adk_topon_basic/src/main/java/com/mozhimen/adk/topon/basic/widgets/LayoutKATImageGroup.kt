@@ -1,10 +1,11 @@
 package com.mozhimen.adk.topon.basic.widgets
 
 import android.content.Context
+import android.util.AttributeSet
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import com.anythink.nativead.api.ATNativeImageView
 import com.mozhimen.basick.utilk.android.util.dp2px
+import com.mozhimen.xmlk.bases.BaseLayoutKLinear
 
 /**
  * @ClassName MutiImageView
@@ -14,7 +15,7 @@ import com.mozhimen.basick.utilk.android.util.dp2px
  * @Version 1.0
  */
 
-class LayoutKATImageGroup(context: Context?) : LinearLayout(context) {
+class LayoutKATImageGroup @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : BaseLayoutKLinear(context, attrs, defStyleAttr) {
     var padding: Int
 
     init {

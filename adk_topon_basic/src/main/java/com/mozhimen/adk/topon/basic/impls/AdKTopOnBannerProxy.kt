@@ -1,9 +1,7 @@
 package com.mozhimen.adk.topon.basic.impls
 
 import android.content.Context
-import android.util.Log
 import android.view.ViewGroup
-import androidx.annotation.Px
 import androidx.lifecycle.LifecycleOwner
 import com.anythink.banner.api.ATBannerExListener
 import com.anythink.banner.api.ATBannerView
@@ -17,8 +15,7 @@ import com.mozhimen.basick.elemk.androidx.lifecycle.bases.BaseWakeBefDestroyLife
 import com.mozhimen.basick.lintk.optins.OApiCall_BindLifecycle
 import com.mozhimen.basick.lintk.optins.OApiCall_BindViewLifecycle
 import com.mozhimen.basick.lintk.optins.OApiInit_ByLazy
-import com.mozhimen.basick.utilk.android.util.UtilKDisplayMetrics
-import com.mozhimen.basick.utilk.android.util.dp2px
+import com.mozhimen.basick.utilk.android.util.UtilKLogWrapper
 import com.mozhimen.basick.utilk.android.view.addView_ofMatchParent
 
 /**
@@ -63,7 +60,7 @@ class AdKTopOnBannerProxy : BaseWakeBefDestroyLifecycleObserver(), ATBannerExLis
     }
 
     override fun initBannerAd() {
-        Log.d(TAG, "initBannerAd: ")
+        UtilKLogWrapper.d(TAG, "initBannerAd: ")
         _atBannerView = ATBannerView(_context).apply {//Loading and displaying ads should keep the container and BannerView visible all the time
             _bannerAdSize?.let { setLocalExtra(it) }
             setBannerAdListener(this@AdKTopOnBannerProxy)
@@ -82,7 +79,7 @@ class AdKTopOnBannerProxy : BaseWakeBefDestroyLifecycleObserver(), ATBannerExLis
     //////////////////////////////////////////////////////////////////////
 
     override fun addBannerViewToContainer(container: ViewGroup) {
-        Log.d(TAG, "addBannerViewToContainer: ")
+        UtilKLogWrapper.d(TAG, "addBannerViewToContainer: ")
         if (_atBannerView != null) {
             container.addView_ofMatchParent(_atBannerView!!)
         }
@@ -96,7 +93,7 @@ class AdKTopOnBannerProxy : BaseWakeBefDestroyLifecycleObserver(), ATBannerExLis
             setAdDownloadListener(null)
             setAdSourceStatusListener(null)
             destroy()
-            Log.d(TAG, "destroyBannerAd: destroy")
+            UtilKLogWrapper.d(TAG, "destroyBannerAd: destroy")
         }
         _atBannerView = null
     }
@@ -115,83 +112,82 @@ class AdKTopOnBannerProxy : BaseWakeBefDestroyLifecycleObserver(), ATBannerExLis
         super.onDestroy(owner)
     }
 
-
     ///////////////////////////////////////////////////////////////////////
 
     override fun onBannerLoaded() {
-        Log.i(TAG, "onBannerLoaded")
+        UtilKLogWrapper.d(TAG, "_atBannerExListener____ onBannerLoaded")
         _atBannerExListener?.onBannerLoaded()
     }
 
-    override fun onBannerFailed(adError: AdError) {
-        Log.i(TAG, "onBannerFailed: 横幅广告加载失败 ${adError.fullErrorInfo}")
-        _atBannerExListener?.onBannerFailed(adError)
-    }
-
     override fun onBannerAutoRefreshed(entity: ATAdInfo) {
-        Log.i(TAG, "onBannerAutoRefreshed: $entity")
+        UtilKLogWrapper.d(TAG, "_atBannerExListener____ onBannerAutoRefreshed: $entity")
         _atBannerExListener?.onBannerAutoRefreshed(entity)
     }
 
-    override fun onBannerAutoRefreshFail(adError: AdError) {
-        Log.i(TAG, "onBannerAutoRefreshFail: 横幅广告自动刷新失败 ${adError.fullErrorInfo}")
-        _atBannerExListener?.onBannerAutoRefreshFail(adError)
-    }
-
     override fun onDeeplinkCallback(isRefresh: Boolean, adInfo: ATAdInfo, isSuccess: Boolean) {
-        Log.i(TAG, "onDeeplinkCallback: $adInfo status: $isSuccess")
+        UtilKLogWrapper.d(TAG, "_atBannerExListener____ onDeeplinkCallback: $adInfo status: $isSuccess")
         _atBannerExListener?.onDeeplinkCallback(isRefresh, adInfo, isSuccess)
     }
 
     override fun onDownloadConfirm(context: Context, adInfo: ATAdInfo, networkConfirmInfo: ATNetworkConfirmInfo) {
-        Log.i(TAG, "onDownloadConfirm: $adInfo networkConfirmInfo: $networkConfirmInfo")
+        UtilKLogWrapper.d(TAG, "_atBannerExListener____ onDownloadConfirm: $adInfo networkConfirmInfo: $networkConfirmInfo")
         _atBannerExListener?.onDownloadConfirm(context, adInfo, networkConfirmInfo)
     }
 
     override fun onBannerClicked(entity: ATAdInfo) {
-        Log.i(TAG, "onBannerClicked: $entity")
+        UtilKLogWrapper.d(TAG, "_atBannerExListener____ onBannerClicked: $entity")
         _atBannerExListener?.onBannerClicked(entity)
     }
 
     override fun onBannerShow(entity: ATAdInfo) {
-        Log.i(TAG, "onBannerShow: $entity")
+        UtilKLogWrapper.d(TAG, "_atBannerExListener____ onBannerShow: $entity")
         _atBannerExListener?.onBannerShow(entity)
     }
 
     override fun onBannerClose(entity: ATAdInfo) {
-        Log.i(TAG, "onBannerClose: $entity")
+        UtilKLogWrapper.d(TAG, "_atBannerExListener____ onBannerClose: $entity")
         _atBannerExListener?.onBannerClose(entity)
+    }
+
+    override fun onBannerFailed(adError: AdError) {
+        UtilKLogWrapper.e(TAG, "_atBannerExListener____ onBannerFailed: 横幅广告加载失败 ${adError.fullErrorInfo}")
+        _atBannerExListener?.onBannerFailed(adError)
+    }
+
+    override fun onBannerAutoRefreshFail(adError: AdError) {
+        UtilKLogWrapper.e(TAG, "_atBannerExListener____ onBannerAutoRefreshFail: 横幅广告自动刷新失败 ${adError.fullErrorInfo}")
+        _atBannerExListener?.onBannerAutoRefreshFail(adError)
     }
 
     ///////////////////////////////////////////////////////////////////////
 
     override fun onAdSourceAttempt(adInfo: ATAdInfo) {
-        Log.i(TAG, "onAdSourceAttempt: 广告源开始加载回调 $adInfo")
+        UtilKLogWrapper.d(TAG, "_adSourceStatusListener onAdSourceAttempt: 广告源开始加载回调 $adInfo")
         _adSourceStatusListener?.onAdSourceAttempt(adInfo)
     }
 
     override fun onAdSourceBiddingAttempt(adInfo: ATAdInfo) {
-        Log.i(TAG, "onAdSourceBiddingAttempt: 竞价广告源开始竞价回调 $adInfo")
+        UtilKLogWrapper.d(TAG, "_adSourceStatusListener onAdSourceBiddingAttempt: 竞价广告源开始竞价回调 $adInfo")
         _adSourceStatusListener?.onAdSourceBiddingAttempt(adInfo)
     }
 
-    override fun onAdSourceLoadFail(adInfo: ATAdInfo, adError: com.anythink.core.api.AdError) {
-        Log.e(TAG, "onAdSourceLoadFail 广告源加载失败回调 Info: $adInfo \n error: ${adError.getFullErrorInfo()}")
-        _adSourceStatusListener?.onAdSourceLoadFail(adInfo, adError)
-    }
-
-    override fun onAdSourceBiddingFail(adInfo: ATAdInfo, adError: com.anythink.core.api.AdError?) {
-        Log.e(TAG, "onAdSourceBiddingFail 竞价广告源竞价失败回调 Info: $adInfo error: ${adError?.getFullErrorInfo()}")
-        _adSourceStatusListener?.onAdSourceBiddingFail(adInfo, adError)
-    }
-
     override fun onAdSourceLoadFilled(adInfo: ATAdInfo) {
-        Log.i(TAG, "onAdSourceLoadFilled: 广告源广告填充回调 $adInfo")
+        UtilKLogWrapper.w(TAG, "_adSourceStatusListener onAdSourceLoadFilled: 广告源广告填充回调 $adInfo")
         _adSourceStatusListener?.onAdSourceLoadFilled(adInfo)
     }
 
     override fun onAdSourceBiddingFilled(adInfo: ATAdInfo) {
-        Log.i(TAG, "onAdSourceBiddingFilled: 竞价广告源竞价成功回调 $adInfo")
+        UtilKLogWrapper.w(TAG, "_adSourceStatusListener onAdSourceBiddingFilled: 竞价广告源竞价成功回调 $adInfo")
         _adSourceStatusListener?.onAdSourceBiddingFilled(adInfo)
+    }
+
+    override fun onAdSourceLoadFail(adInfo: ATAdInfo, adError: com.anythink.core.api.AdError) {
+        UtilKLogWrapper.e(TAG, "_adSourceStatusListener onAdSourceLoadFail 广告源加载失败回调 error: ${adError.getFullErrorInfo()} Info: $adInfo")
+        _adSourceStatusListener?.onAdSourceLoadFail(adInfo, adError)
+    }
+
+    override fun onAdSourceBiddingFail(adInfo: ATAdInfo, adError: com.anythink.core.api.AdError?) {
+        UtilKLogWrapper.e(TAG, "_adSourceStatusListener onAdSourceBiddingFail 竞价广告源竞价失败回调 Info: $adInfo error: ${adError?.getFullErrorInfo()}")
+        _adSourceStatusListener?.onAdSourceBiddingFail(adInfo, adError)
     }
 }

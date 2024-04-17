@@ -11,7 +11,7 @@ import com.anythink.nativead.api.ATNativeEventListener
  * @Date 2024/4/15
  * @Version 1.0
  */
-class BaseATNativeEventCallback : ATNativeEventListener {
+open class BaseATNativeEventCallback : ATNativeEventListener {
     override fun onAdImpressed(p0: ATNativeAdView?, p1: ATAdInfo?) {
     }
 
