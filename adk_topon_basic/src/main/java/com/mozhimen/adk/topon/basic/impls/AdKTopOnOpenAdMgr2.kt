@@ -2,8 +2,10 @@ package com.mozhimen.adk.topon.basic.impls
 
 import android.app.Application
 import androidx.lifecycle.ProcessLifecycleOwner
+import com.anythink.core.api.ATAdInfo
 import com.mozhimen.adk.basic.bases.BaseAdKOpenAdMgr2
 import com.mozhimen.adk.basic.commons.IAdKOpenProxy
+import com.mozhimen.adk.topon.basic.bases.BaseATAdSourceStatusCallback
 import com.mozhimen.adk.topon.basic.bases.BaseATSplashExCallback
 import com.mozhimen.basick.lintk.optins.OApiCall_BindLifecycle
 import com.mozhimen.basick.lintk.optins.OApiInit_ByLazy
@@ -32,11 +34,13 @@ class AdKTopOnOpenAdMgr2(application: Application, keyWord: String, adUnitId: St
 
     override fun initOpenAdProxy(adUnitId: String) {
         _adkTopOnOpenProxy.apply {
-            initOpenAdListener(object : BaseATSplashExCallback() {
-                override fun onAdLoaded(p0: Boolean) {
-                    _isAdLoad = true
-                }
-            }, null)
+            initOpenAdListener(
+                null,
+                object : BaseATAdSourceStatusCallback() {
+                    override fun onAdSourceLoadFilled(adInfo: ATAdInfo) {
+                        _isAdLoad = true
+                    }
+                })
             initOpenAdParams(adUnitId, "")
             bindLifecycle(ProcessLifecycleOwner.get())
         }

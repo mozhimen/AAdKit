@@ -48,7 +48,7 @@ class AdKTopOnOpenProxy : BaseWakeBefDestroyLifecycleObserver(), IAdKOpenProxy, 
     ///////////////////////////////////////////////////////////////////////////////
 
 
-    fun initOpenAdListener(atSplashExListener: ATSplashExListener, atAdSourceStatusListener: ATAdSourceStatusListener?) {
+    fun initOpenAdListener(atSplashExListener: ATSplashExListener?, atAdSourceStatusListener: ATAdSourceStatusListener?) {
         _atSplashExListener = atSplashExListener
         _atAdSourceStatusListener = atAdSourceStatusListener
     }
@@ -136,37 +136,37 @@ class AdKTopOnOpenProxy : BaseWakeBefDestroyLifecycleObserver(), IAdKOpenProxy, 
     ///////////////////////////////////////////////////////////////////////////////
 
     override fun onAdLoaded(p0: Boolean) {
-        Log.d(TAG, "onAdLoaded: $p0")
+        Log.d(TAG, "_atSplashExListener onAdLoaded: $p0")
 
         _atSplashExListener?.onAdLoaded(p0)
     }
 
     override fun onAdLoadTimeout() {
-        Log.d(TAG, "onAdLoadTimeout: ")
+        Log.d(TAG, "_atSplashExListener onAdLoadTimeout: ")
 
         _atSplashExListener?.onAdLoadTimeout()
     }
 
     override fun onNoAdError(p0: AdError?) {
-        Log.e(TAG, "onNoAdError: AdError $p0")
+        Log.e(TAG, "_atSplashExListener onNoAdError: AdError $p0")
 
         _atSplashExListener?.onNoAdError(p0)
     }
 
     override fun onAdShow(p0: ATAdInfo?) {
-        Log.d(TAG, "onAdShow: ")
+        Log.d(TAG, "_atSplashExListener onAdShow: ")
 
         _atSplashExListener?.onAdShow(p0)
     }
 
     override fun onAdClick(p0: ATAdInfo?) {
-        Log.d(TAG, "onAdClick: ")
+        Log.d(TAG, "_atSplashExListener onAdClick: ")
 
         _atSplashExListener?.onAdClick(p0)
     }
 
     override fun onAdDismiss(p0: ATAdInfo?, p1: ATSplashAdExtraInfo?) {
-        Log.d(TAG, "onAdDismiss: ATAdInfo $p0")
+        Log.d(TAG, "_atSplashExListener onAdDismiss: ATAdInfo $p0")
 
         showSplashEyeAd(p1?.getAtSplashEyeAd())
 
@@ -174,13 +174,13 @@ class AdKTopOnOpenProxy : BaseWakeBefDestroyLifecycleObserver(), IAdKOpenProxy, 
     }
 
     override fun onDeeplinkCallback(p0: ATAdInfo?, p1: Boolean) {
-        Log.d(TAG, "onDeeplinkCallback: ")
+        Log.d(TAG, "_atSplashExListener onDeeplinkCallback: ")
 
         _atSplashExListener?.onDeeplinkCallback(p0, p1)
     }
 
     override fun onDownloadConfirm(p0: Context?, p1: ATAdInfo?, p2: ATNetworkConfirmInfo?) {
-        Log.d(TAG, "onDownloadConfirm: ")
+        Log.d(TAG, "_atSplashExListener onDownloadConfirm: ")
 
         _atSplashExListener?.onDownloadConfirm(p0, p1, p2)
     }
@@ -188,37 +188,38 @@ class AdKTopOnOpenProxy : BaseWakeBefDestroyLifecycleObserver(), IAdKOpenProxy, 
     ///////////////////////////////////////////////////////////////////////////////
 
     override fun onAdSourceBiddingAttempt(p0: ATAdInfo?) {
-        Log.d(TAG, "onAdSourceBiddingAttempt: ")
+        Log.d(TAG, "_atAdSourceStatusListener onAdSourceBiddingAttempt: ")
 
         _atAdSourceStatusListener?.onAdSourceBiddingAttempt(p0)
     }
-
-    override fun onAdSourceBiddingFilled(p0: ATAdInfo?) {
-        Log.e(TAG, "onAdSourceBiddingFilled: ")
-
-        _atAdSourceStatusListener?.onAdSourceBiddingFilled(p0)
-    }
-
-    override fun onAdSourceBiddingFail(p0: ATAdInfo?, p1: AdError?) {
-        Log.e(TAG, "onAdSourceBiddingFail: AdError $p1")
-
-        _atAdSourceStatusListener?.onAdSourceBiddingFail(p0, p1)
-    }
-
     override fun onAdSourceAttempt(p0: ATAdInfo?) {
-        Log.d(TAG, "onAdSourceAttempt: ")
+        Log.d(TAG, "_atAdSourceStatusListener onAdSourceAttempt: ")
 
         _atAdSourceStatusListener?.onAdSourceAttempt(p0)
     }
 
+    override fun onAdSourceBiddingFilled(p0: ATAdInfo?) {
+        Log.w(TAG, "_atAdSourceStatusListener onAdSourceBiddingFilled: ")
+
+        _atAdSourceStatusListener?.onAdSourceBiddingFilled(p0)
+    }
+
     override fun onAdSourceLoadFilled(p0: ATAdInfo?) {
-        Log.e(TAG, "onAdSourceLoadFilled: ATAdInfo $p0")
+        Log.w(TAG, "_atAdSourceStatusListener onAdSourceLoadFilled: ATAdInfo $p0")
 
         _atAdSourceStatusListener?.onAdSourceLoadFilled(p0)
     }
 
+    override fun onAdSourceBiddingFail(p0: ATAdInfo?, p1: AdError?) {
+        Log.e(TAG, "_atAdSourceStatusListener onAdSourceBiddingFail: AdError $p1")
+
+        _atAdSourceStatusListener?.onAdSourceBiddingFail(p0, p1)
+    }
+
     override fun onAdSourceLoadFail(p0: ATAdInfo?, p1: AdError?) {
-        Log.e(TAG, "onAdSourceLoadFail: AdError $p1")
+        Log.e(TAG, "_atAdSourceStatusListener onAdSourceLoadFail: AdError $p1")
+
+        _atAdSourceStatusListener?.onAdSourceLoadFail(p0, p1)
     }
 
     ///////////////////////////////////////////////////////////////////////////////
