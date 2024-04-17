@@ -136,37 +136,37 @@ class AdKTopOnOpenProxy : BaseWakeBefDestroyLifecycleObserver(), IAdKOpenProxy, 
     ///////////////////////////////////////////////////////////////////////////////
 
     override fun onAdLoaded(p0: Boolean) {
-        Log.d(TAG, "_atSplashExListener onAdLoaded: $p0")
+        Log.d(TAG, "_atSplashExListener______ onAdLoaded: $p0")
 
         _atSplashExListener?.onAdLoaded(p0)
     }
 
     override fun onAdLoadTimeout() {
-        Log.d(TAG, "_atSplashExListener onAdLoadTimeout: ")
+        Log.d(TAG, "_atSplashExListener______ onAdLoadTimeout: ")
 
         _atSplashExListener?.onAdLoadTimeout()
     }
 
     override fun onNoAdError(p0: AdError?) {
-        Log.e(TAG, "_atSplashExListener onNoAdError: AdError $p0")
+        Log.e(TAG, "_atSplashExListener______ onNoAdError: AdError $p0")
 
         _atSplashExListener?.onNoAdError(p0)
     }
 
     override fun onAdShow(p0: ATAdInfo?) {
-        Log.d(TAG, "_atSplashExListener onAdShow: ")
+        Log.d(TAG, "_atSplashExListener______ onAdShow: ")
 
         _atSplashExListener?.onAdShow(p0)
     }
 
     override fun onAdClick(p0: ATAdInfo?) {
-        Log.d(TAG, "_atSplashExListener onAdClick: ")
+        Log.d(TAG, "_atSplashExListener______ onAdClick: ")
 
         _atSplashExListener?.onAdClick(p0)
     }
 
     override fun onAdDismiss(p0: ATAdInfo?, p1: ATSplashAdExtraInfo?) {
-        Log.d(TAG, "_atSplashExListener onAdDismiss: ATAdInfo $p0")
+        Log.d(TAG, "_atSplashExListener______ onAdDismiss: ATAdInfo $p0")
 
         showSplashEyeAd(p1?.getAtSplashEyeAd())
 
@@ -174,13 +174,13 @@ class AdKTopOnOpenProxy : BaseWakeBefDestroyLifecycleObserver(), IAdKOpenProxy, 
     }
 
     override fun onDeeplinkCallback(p0: ATAdInfo?, p1: Boolean) {
-        Log.d(TAG, "_atSplashExListener onDeeplinkCallback: ")
+        Log.d(TAG, "_atSplashExListener______ onDeeplinkCallback: ")
 
         _atSplashExListener?.onDeeplinkCallback(p0, p1)
     }
 
     override fun onDownloadConfirm(p0: Context?, p1: ATAdInfo?, p2: ATNetworkConfirmInfo?) {
-        Log.d(TAG, "_atSplashExListener onDownloadConfirm: ")
+        Log.d(TAG, "_atSplashExListener______ onDownloadConfirm: ")
 
         _atSplashExListener?.onDownloadConfirm(p0, p1, p2)
     }

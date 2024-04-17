@@ -35,12 +35,12 @@ class AdKTopOnOpenAdMgr2(application: Application, keyWord: String, adUnitId: St
     override fun initOpenAdProxy(adUnitId: String) {
         _adkTopOnOpenProxy.apply {
             initOpenAdListener(
-                null,
-                object : BaseATAdSourceStatusCallback() {
-                    override fun onAdSourceLoadFilled(adInfo: ATAdInfo) {
+                object : BaseATSplashExCallback() {
+                    override fun onAdLoaded(p0: Boolean) {
                         _isAdLoad = true
                     }
-                })
+                }, null
+            )
             initOpenAdParams(adUnitId, "")
             bindLifecycle(ProcessLifecycleOwner.get())
         }
