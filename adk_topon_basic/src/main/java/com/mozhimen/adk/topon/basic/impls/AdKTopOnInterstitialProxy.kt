@@ -98,13 +98,11 @@ class AdKTopOnInterstitialProxy(
     }
 
     override fun initInterstitialAd() {
-        if (_activity != null) {
-            _interstitialAd = ATInterstitial(_activity, _placementId).apply {
-                _interstitialAdSize?.let { setLocalExtra(it) }
-                setAdSourceStatusListener(this@AdKTopOnInterstitialProxy)
-            }
-            ATInterstitial.entryAdScenario(_placementId, _scenarioId)
+        _interstitialAd = ATInterstitial(_context, _placementId).apply {
+            _interstitialAdSize?.let { setLocalExtra(it) }
+            setAdSourceStatusListener(this@AdKTopOnInterstitialProxy)
         }
+        ATInterstitial.entryAdScenario(_placementId, _scenarioId)
     }
 
     fun isInterstitialAdReady(): Boolean =

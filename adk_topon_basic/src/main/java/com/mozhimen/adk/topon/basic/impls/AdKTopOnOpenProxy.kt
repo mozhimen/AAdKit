@@ -67,7 +67,7 @@ class AdKTopOnOpenProxy : BaseWakeBefDestroyLifecycleObserver(), IAdKOpenProxy, 
     }
 
     override fun initOpenAd() {
-        _atOpenAd = ATSplashAd(_context, _placementId, this, 5000, ""/*defaultConfig*/).apply {
+        _atOpenAd = ATSplashAd(_context, _placementId, this, 5000/*defaultConfig*/).apply {
             _openAdSize?.let { setLocalExtra(it) }
             setAdSourceStatusListener(this@AdKTopOnOpenProxy)
         }
