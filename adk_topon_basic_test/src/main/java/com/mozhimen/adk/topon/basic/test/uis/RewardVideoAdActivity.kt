@@ -3,6 +3,7 @@ package com.mozhimen.adk.topon.basic.test.uis
 import android.annotation.SuppressLint
 import android.content.Context
 import android.util.Log
+import com.mozhimen.basick.utilk.android.util.UtilKLogWrapper
 import android.view.View
 import android.widget.CheckBox
 import android.widget.CompoundButton
@@ -83,79 +84,79 @@ class RewardVideoAdActivity : BaseActivity(), View.OnClickListener, IUtilK {
         mRewardVideoAd = ATRewardVideoAd(this, placementId)
         mRewardVideoAd!!.setAdListener(object : ATRewardVideoExListener {
             override fun onDeeplinkCallback(adInfo: ATAdInfo, isSuccess: Boolean) {
-                Log.i(TAG, "onDeeplinkCallback:$adInfo--status:$isSuccess")
+                UtilKLogWrapper.i(TAG, "onDeeplinkCallback:$adInfo--status:$isSuccess")
                 printLogOnUI("onDeeplinkCallback")
             }
 
             override fun onDownloadConfirm(context: Context, adInfo: ATAdInfo, networkConfirmInfo: ATNetworkConfirmInfo) {
-                Log.i(TAG, "onDownloadConfirm: $adInfo")
+                UtilKLogWrapper.i(TAG, "onDownloadConfirm: $adInfo")
                 printLogOnUI("onDownloadConfirm")
             }
 
             //-------------------------- Only for CSJ --------------------------
             override fun onRewardedVideoAdAgainPlayStart(entity: ATAdInfo) {
-                Log.i(TAG, "onRewardedVideoAdAgainPlayStart:\n$entity")
+                UtilKLogWrapper.i(TAG, "onRewardedVideoAdAgainPlayStart:\n$entity")
                 printLogOnUI("onRewardedVideoAdAgainPlayStart")
             }
 
             override fun onRewardedVideoAdAgainPlayEnd(entity: ATAdInfo) {
-                Log.i(TAG, "onRewardedVideoAdAgainPlayEnd:\n$entity")
+                UtilKLogWrapper.i(TAG, "onRewardedVideoAdAgainPlayEnd:\n$entity")
                 printLogOnUI("onRewardedVideoAdAgainPlayEnd")
             }
 
             override fun onRewardedVideoAdAgainPlayFailed(errorCode: AdError, entity: ATAdInfo) {
-                Log.i(TAG, "onRewardedVideoAdAgainPlayFailed error: " + errorCode.fullErrorInfo)
+                UtilKLogWrapper.i(TAG, "onRewardedVideoAdAgainPlayFailed error: " + errorCode.fullErrorInfo)
                 printLogOnUI("onRewardedVideoAdAgainPlayFailed:" + errorCode.fullErrorInfo)
             }
 
             override fun onRewardedVideoAdAgainPlayClicked(entity: ATAdInfo) {
-                Log.i(TAG, "onRewardedVideoAdAgainPlayClicked: $entity")
+                UtilKLogWrapper.i(TAG, "onRewardedVideoAdAgainPlayClicked: $entity")
                 printLogOnUI("onRewardedVideoAdAgainPlayClicked")
             }
 
             override fun onAgainReward(entity: ATAdInfo) {
-                Log.i(TAG, "onAgainReward:\n$entity")
+                UtilKLogWrapper.i(TAG, "onAgainReward:\n$entity")
                 printLogOnUI("onAgainReward")
             }
 
             //-------------------------- Only for CSJ --------------------------
             override fun onRewardedVideoAdLoaded() {
-                Log.i(TAG, "onRewardedVideoAdLoaded")
+                UtilKLogWrapper.i(TAG, "onRewardedVideoAdLoaded")
                 printLogOnUI("onRewardedVideoAdLoaded")
             }
 
             override fun onRewardedVideoAdFailed(errorCode: AdError) {
-                Log.i(TAG, "onRewardedVideoAdFailed error:" + errorCode.fullErrorInfo)
+                UtilKLogWrapper.i(TAG, "onRewardedVideoAdFailed error:" + errorCode.fullErrorInfo)
                 printLogOnUI("onRewardedVideoAdFailed:" + errorCode.fullErrorInfo)
             }
 
             override fun onRewardedVideoAdPlayStart(entity: ATAdInfo) {
-                Log.i(TAG, "onRewardedVideoAdPlayStart:\n$entity")
+                UtilKLogWrapper.i(TAG, "onRewardedVideoAdPlayStart:\n$entity")
                 printLogOnUI("onRewardedVideoAdPlayStart")
             }
 
             override fun onRewardedVideoAdPlayEnd(entity: ATAdInfo) {
-                Log.i(TAG, "onRewardedVideoAdPlayEnd:\n$entity")
+                UtilKLogWrapper.i(TAG, "onRewardedVideoAdPlayEnd:\n$entity")
                 printLogOnUI("onRewardedVideoAdPlayEnd")
             }
 
             override fun onRewardedVideoAdPlayFailed(errorCode: AdError, entity: ATAdInfo) {
-                Log.i(TAG, "onRewardedVideoAdPlayFailed:\n$entity")
+                UtilKLogWrapper.i(TAG, "onRewardedVideoAdPlayFailed:\n$entity")
                 printLogOnUI("onRewardedVideoAdPlayFailed:" + errorCode.fullErrorInfo)
             }
 
             override fun onRewardedVideoAdClosed(entity: ATAdInfo) {
-                Log.i(TAG, "onRewardedVideoAdClosed:\n$entity")
+                UtilKLogWrapper.i(TAG, "onRewardedVideoAdClosed:\n$entity")
                 printLogOnUI("onRewardedVideoAdClosed")
             }
 
             override fun onRewardedVideoAdPlayClicked(entity: ATAdInfo) {
-                Log.i(TAG, "onRewardedVideoAdPlayClicked:\n$entity")
+                UtilKLogWrapper.i(TAG, "onRewardedVideoAdPlayClicked:\n$entity")
                 printLogOnUI("onRewardedVideoAdPlayClicked")
             }
 
             override fun onReward(entity: ATAdInfo) {
-                Log.e(TAG, "onReward:\n$entity")
+                UtilKLogWrapper.e(TAG, "onReward:\n$entity")
                 printLogOnUI("onReward")
             }
         })
@@ -208,10 +209,10 @@ class RewardVideoAdActivity : BaseActivity(), View.OnClickListener, IUtilK {
             val atAdStatusInfo = mRewardVideoAd!!.checkAdStatus()
             printLogOnUI("video ad ready status:" + atAdStatusInfo.isReady)
             val atAdInfoList = mRewardVideoAd!!.checkValidAdCaches()
-            Log.i(TAG, "Valid Cahce size:" + (atAdInfoList?.size ?: 0))
+            UtilKLogWrapper.i(TAG, "Valid Cahce size:" + (atAdInfoList?.size ?: 0))
             if (atAdInfoList != null) {
                 for (adInfo in atAdInfoList) {
-                    Log.i(TAG, "\nCahce detail:$adInfo")
+                    UtilKLogWrapper.i(TAG, "\nCahce detail:$adInfo")
                 }
             }
         }
@@ -258,12 +259,12 @@ class RewardVideoAdActivity : BaseActivity(), View.OnClickListener, IUtilK {
     val autoLoadListener: ATRewardVideoAutoLoadListener = object : ATRewardVideoAutoLoadListener {
         override fun onRewardVideoAutoLoaded(placementId: String) {
             initPlacementIdLocalExtra(placementId)
-            Log.i(TAG, "PlacementId:$placementId: onRewardVideoAutoLoaded")
+            UtilKLogWrapper.i(TAG, "PlacementId:$placementId: onRewardVideoAutoLoaded")
             printLogOnUI("PlacementId:$placementId: onRewardVideoAutoLoaded")
         }
 
         override fun onRewardVideoAutoLoadFail(placementId: String, adError: AdError) {
-            Log.i(
+            UtilKLogWrapper.i(
                 TAG, """
      PlacementId:$placementId: onRewardVideoAutoLoadFail:
      ${adError.fullErrorInfo}
@@ -284,64 +285,64 @@ class RewardVideoAdActivity : BaseActivity(), View.OnClickListener, IUtilK {
         val localMap: MutableMap<String, Any> = HashMap()
         localMap[ATAdConst.KEY.USER_ID] = userid
         localMap[ATAdConst.KEY.USER_CUSTOM_DATA] = userdata
-        Log.i(TAG, "Set PlacementId:$placementId: UserId:$userid| userdata:$userdata")
+        UtilKLogWrapper.i(TAG, "Set PlacementId:$placementId: UserId:$userid| userdata:$userdata")
         ATRewardVideoAutoAd.setLocalExtra(placementId, localMap)
     }
 
     private val autoEventListener: ATRewardVideoAutoEventListener = object : ATRewardVideoAutoEventListener() {
         override fun onRewardedVideoAdPlayStart(adInfo: ATAdInfo) {
-            Log.i(TAG, "onRewardedVideoAdPlayStart:\n$adInfo")
+            UtilKLogWrapper.i(TAG, "onRewardedVideoAdPlayStart:\n$adInfo")
             printLogOnUI("onRewardedVideoAdPlayStart:")
         }
 
         override fun onRewardedVideoAdPlayEnd(adInfo: ATAdInfo) {
-            Log.i(TAG, "onRewardedVideoAdPlayEnd:\n$adInfo")
+            UtilKLogWrapper.i(TAG, "onRewardedVideoAdPlayEnd:\n$adInfo")
             printLogOnUI("onRewardedVideoAdPlayEnd")
         }
 
         override fun onRewardedVideoAdPlayFailed(errorCode: AdError, adInfo: ATAdInfo) {
-            Log.i(TAG, "onRewardedVideoAdPlayFailed:\n$adInfo")
+            UtilKLogWrapper.i(TAG, "onRewardedVideoAdPlayFailed:\n$adInfo")
             printLogOnUI("onRewardedVideoAdPlayFailed")
         }
 
         override fun onRewardedVideoAdClosed(adInfo: ATAdInfo) {
-            Log.i(TAG, "onRewardedVideoAdClosed:\n$adInfo")
+            UtilKLogWrapper.i(TAG, "onRewardedVideoAdClosed:\n$adInfo")
             printLogOnUI("onRewardedVideoAdClosed")
         }
 
         override fun onRewardedVideoAdPlayClicked(adInfo: ATAdInfo) {
-            Log.i(TAG, "onRewardedVideoAdPlayClicked:\n$adInfo")
+            UtilKLogWrapper.i(TAG, "onRewardedVideoAdPlayClicked:\n$adInfo")
             printLogOnUI("onRewardedVideoAdPlayClicked")
         }
 
         override fun onReward(adInfo: ATAdInfo) {
-            Log.e(TAG, "onReward:\n$adInfo")
+            UtilKLogWrapper.e(TAG, "onReward:\n$adInfo")
             printLogOnUI("onReward")
         }
 
         override fun onDeeplinkCallback(adInfo: ATAdInfo, isSuccess: Boolean) {
-            Log.i(TAG, "onDeeplinkCallback:\n$adInfo| isSuccess:$isSuccess")
+            UtilKLogWrapper.i(TAG, "onDeeplinkCallback:\n$adInfo| isSuccess:$isSuccess")
             printLogOnUI("onDeeplinkCallback")
         }
 
         override fun onDownloadConfirm(context: Context, adInfo: ATAdInfo, networkConfirmInfo: ATNetworkConfirmInfo) {
-            Log.i(TAG, "onDownloadConfirm:\n$adInfo")
+            UtilKLogWrapper.i(TAG, "onDownloadConfirm:\n$adInfo")
             printLogOnUI("onDownloadConfirm")
         }
 
         //again listener
         override fun onRewardedVideoAdAgainPlayStart(adInfo: ATAdInfo) {
-            Log.i(TAG, "onRewardedVideoAdAgainPlayStart:\n$adInfo")
+            UtilKLogWrapper.i(TAG, "onRewardedVideoAdAgainPlayStart:\n$adInfo")
             printLogOnUI("onRewardedVideoAdAgainPlayStart")
         }
 
         override fun onRewardedVideoAdAgainPlayEnd(adInfo: ATAdInfo) {
-            Log.i(TAG, "onRewardedVideoAdAgainPlayEnd:\n$adInfo")
+            UtilKLogWrapper.i(TAG, "onRewardedVideoAdAgainPlayEnd:\n$adInfo")
             printLogOnUI("onRewardedVideoAdAgainPlayEnd")
         }
 
         override fun onRewardedVideoAdAgainPlayFailed(adError: AdError, adInfo: ATAdInfo) {
-            Log.i(
+            UtilKLogWrapper.i(
                 TAG, """
      onRewardedVideoAdAgainPlayFailed:
      $adInfo｜error：${adError.fullErrorInfo}
@@ -351,12 +352,12 @@ class RewardVideoAdActivity : BaseActivity(), View.OnClickListener, IUtilK {
         }
 
         override fun onRewardedVideoAdAgainPlayClicked(adInfo: ATAdInfo) {
-            Log.i(TAG, "onRewardedVideoAdAgainPlayClicked:\n$adInfo")
+            UtilKLogWrapper.i(TAG, "onRewardedVideoAdAgainPlayClicked:\n$adInfo")
             printLogOnUI("onRewardedVideoAdAgainPlayClicked")
         }
 
         override fun onAgainReward(adInfo: ATAdInfo) {
-            Log.i(TAG, "onAgainReward:\n$adInfo")
+            UtilKLogWrapper.i(TAG, "onAgainReward:\n$adInfo")
             printLogOnUI("onAgainReward")
         }
     }

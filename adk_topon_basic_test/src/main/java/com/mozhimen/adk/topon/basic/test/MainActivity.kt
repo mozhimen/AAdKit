@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
+import com.mozhimen.basick.utilk.android.util.UtilKLogWrapper
 import android.view.View
 import com.anythink.core.api.ATSDK
 import com.mozhimen.adk.topon.basic.test.databinding.ActivityMainBinding
@@ -33,7 +34,7 @@ class MainActivity : BaseActivityVDB<ActivityMainBinding>(), View.OnClickListene
         vdb.rewardedVideoBtn.setOnClickListener(this)
 
 //        ATSDK.testModeDeviceInfo(this) { deviceInfo ->
-//            Log.d(TAG, "initView: deviceInfo $deviceInfo")
+//            UtilKLogWrapper.d(TAG, "initView: deviceInfo $deviceInfo")
 //            if (!TextUtils.isEmpty(deviceInfo)) {
 //                try {
 //                    val jsonObject = JSONObject(deviceInfo)

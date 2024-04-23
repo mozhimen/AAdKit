@@ -1,6 +1,7 @@
 package com.mozhimen.adk.topon.basic.test.uis
 
 import android.util.Log
+import com.mozhimen.basick.utilk.android.util.UtilKLogWrapper
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
@@ -73,7 +74,7 @@ class NativeListAdapter(data: MutableList<RecycleViewDataBean>, onNativeListCall
     }
 
     private fun onCreateAdViewHolder(viewGroup: ViewGroup): AdViewHolder {
-        Log.i(TAG, "onCreateAdViewHolder: create adView")
+        UtilKLogWrapper.i(TAG, "onCreateAdViewHolder: create adView")
         val view: View = LayoutInflater.from(viewGroup.context).inflate(R.layout.native_list_ad_item, viewGroup, false)
         return AdViewHolder(view)
     }
@@ -92,7 +93,7 @@ class NativeListAdapter(data: MutableList<RecycleViewDataBean>, onNativeListCall
         val itemViewType = getItemViewType(position)
         when (itemViewType) {
             TYPE_AD -> if (viewHolder is AdViewHolder) {
-                Log.i(TAG, "onBindViewHolder:$viewHolder")
+                UtilKLogWrapper.i(TAG, "onBindViewHolder:$viewHolder")
                 onBindAdViewHolder(viewHolder, position)
             }
 
@@ -114,7 +115,7 @@ class NativeListAdapter(data: MutableList<RecycleViewDataBean>, onNativeListCall
      * bind ad view,use nativeAd cache
      */
     private fun onBindAdViewHolder(viewHolder: AdViewHolder, position: Int) {
-        Log.i(TAG, "onBindAdViewHolder")
+        UtilKLogWrapper.i(TAG, "onBindAdViewHolder")
         val recycleViewDataBean: RecycleViewDataBean = mData!![position]
 
         //海外SDK处理
@@ -143,7 +144,7 @@ class NativeListAdapter(data: MutableList<RecycleViewDataBean>, onNativeListCall
             hasUseNewAd = true
         }
         if (hasUseNewAd) {
-            Log.i(TAG, "start to request new ad object.")
+            UtilKLogWrapper.i(TAG, "start to request new ad object.")
             //It is judged that if a new Ad has been obtained or the advertisement cannot be obtained temporarily, the Ad will be loaded immediately
             mATNative!!.makeAdRequest()
         }
@@ -156,7 +157,7 @@ class NativeListAdapter(data: MutableList<RecycleViewDataBean>, onNativeListCall
     private fun bindNativeAdWithViewHolder(nativeAd: NativeAd?, viewHolder: AdViewHolder, recycleViewDataBean: RecycleViewDataBean, position: Int) {
         if (nativeAd == null) {
             //Temporarily hide the item when the ad object is empty, and display it after the Ad is obtained
-            Log.i(TAG, "onBindAdViewHolder: NativeAd is null, it would be gone now.")
+            UtilKLogWrapper.i(TAG, "onBindAdViewHolder: NativeAd is null, it would be gone now.")
             val param = viewHolder.itemView.layoutParams as RecyclerView.LayoutParams
             viewHolder.itemView.visibility = View.GONE
             param.height = 0
@@ -164,8 +165,8 @@ class NativeListAdapter(data: MutableList<RecycleViewDataBean>, onNativeListCall
             viewHolder.itemView.setLayoutParams(param)
         } else {
             //Show Ad
-            Log.i(TAG, "onBindAdViewHolder: NativeAd exist, start to render view.")
-            Log.i(TAG, "onBindAdViewHolder: RenderAd: " + nativeAd.adInfo.toString())
+            UtilKLogWrapper.i(TAG, "onBindAdViewHolder: NativeAd exist, start to render view.")
+            UtilKLogWrapper.i(TAG, "onBindAdViewHolder: RenderAd: " + nativeAd.adInfo.toString())
             viewHolder.itemView.visibility = View.VISIBLE
             val param = viewHolder.itemView.layoutParams as RecyclerView.LayoutParams
             param.height = RelativeLayout.LayoutParams.WRAP_CONTENT
@@ -190,7 +191,7 @@ class NativeListAdapter(data: MutableList<RecycleViewDataBean>, onNativeListCall
             if (removeBean?.nativeAd != null) {
                 //Remove the oldest Ad directly after the number is exceeded
                 mNativeAdBeanList.removeAt(0)
-                Log.i(TAG, "controlNativeAdCacheSize: Over Ad Size, Remove AD:" + removeBean.nativeAd.getAdInfo())
+                UtilKLogWrapper.i(TAG, "controlNativeAdCacheSize: Over Ad Size, Remove AD:" + removeBean.nativeAd.getAdInfo())
                 removeBean.nativeAd.destory()
                 removeBean.nativeAd = null
             }
@@ -200,33 +201,33 @@ class NativeListAdapter(data: MutableList<RecycleViewDataBean>, onNativeListCall
     private fun renderAdView(nativeAd: NativeAd, adViewHolder: AdViewHolder, position: Int) {
         nativeAd.setNativeEventListener(object : ATNativeEventListener {
             override fun onAdImpressed(view: ATNativeAdView, entity: ATAdInfo) {
-                Log.i(TAG, "native ad onAdImpressed--------\n$entity")
+                UtilKLogWrapper.i(TAG, "native ad onAdImpressed--------\n$entity")
             }
 
             override fun onAdClicked(view: ATNativeAdView, entity: ATAdInfo) {
-                Log.i(TAG, "native ad onAdClicked--------\n$entity")
+                UtilKLogWrapper.i(TAG, "native ad onAdClicked--------\n$entity")
             }
 
             override fun onAdVideoStart(view: ATNativeAdView) {
-                Log.i(TAG, "native ad onAdVideoStart--------")
+                UtilKLogWrapper.i(TAG, "native ad onAdVideoStart--------")
             }
 
             override fun onAdVideoEnd(view: ATNativeAdView) {
-                Log.i(TAG, "native ad onAdVideoEnd--------")
+                UtilKLogWrapper.i(TAG, "native ad onAdVideoEnd--------")
             }
 
             override fun onAdVideoProgress(view: ATNativeAdView, progress: Int) {
-                Log.i(TAG, "native ad onAdVideoProgress--------:$progress")
+                UtilKLogWrapper.i(TAG, "native ad onAdVideoProgress--------:$progress")
             }
         })
         nativeAd.setDislikeCallbackListener(object : ATNativeDislikeListener() {
             override fun onAdCloseButtonClick(view: ATNativeAdView, entity: ATAdInfo) {
-                Log.i(TAG, "onAdCloseButtonClick: remove $position")
+                UtilKLogWrapper.i(TAG, "onAdCloseButtonClick: remove $position")
                 removeAdView(position)
             }
         })
         try {
-            Log.i(TAG, "native ad start to render ad------------- ")
+            UtilKLogWrapper.i(TAG, "native ad start to render ad------------- ")
             var nativePrepareInfo: ATNativePrepareInfo? = null
             adViewHolder.mATNativeView.removeAllViews()
             if (nativeAd.isNativeExpress) {
@@ -291,7 +292,7 @@ class NativeListAdapter(data: MutableList<RecycleViewDataBean>, onNativeListCall
         while (iterator.hasNext()) {
             val nativeAd = iterator.next()
             nativeAd.onResume()
-            Log.i(TAG, "Ad View onResume:$nativeAd")
+            UtilKLogWrapper.i(TAG, "Ad View onResume:$nativeAd")
         }
     }
 
@@ -300,13 +301,13 @@ class NativeListAdapter(data: MutableList<RecycleViewDataBean>, onNativeListCall
         while (iterator.hasNext()) {
             val nativeAd = iterator.next()
             nativeAd.onPause()
-            Log.i(TAG, "Ad View onPause:$nativeAd")
+            UtilKLogWrapper.i(TAG, "Ad View onPause:$nativeAd")
         }
     }
 
     fun onDestroy() {
         if (mData != null) {
-            Log.i(TAG, "Recycle Destory:" + mData!!.size)
+            UtilKLogWrapper.i(TAG, "Recycle Destory:" + mData!!.size)
             val dataBeanIterator: Iterator<RecycleViewDataBean> = mData!!.iterator()
             while (dataBeanIterator.hasNext()) {
                 val recycleViewDataBean: RecycleViewDataBean = dataBeanIterator.next()
@@ -323,7 +324,7 @@ class NativeListAdapter(data: MutableList<RecycleViewDataBean>, onNativeListCall
     override fun onViewRecycled(holder: RecyclerView.ViewHolder) {
         super.onViewRecycled(holder)
         if (holder is AdViewHolder) {
-            Log.i(TAG, "Ad View recycled:" + holder.getLayoutPosition() + "---holder:" + holder.toString())
+            UtilKLogWrapper.i(TAG, "Ad View recycled:" + holder.getLayoutPosition() + "---holder:" + holder.toString())
             val recycleViewDataBean: RecycleViewDataBean? = holder.recycleViewDataBean
             if (recycleViewDataBean != null && recycleViewDataBean.nativeAd != null) {
                 mImpressionAdMap.remove(java.lang.String.valueOf(recycleViewDataBean.nativeAd.hashCode()), recycleViewDataBean.nativeAd)

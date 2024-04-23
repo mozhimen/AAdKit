@@ -3,6 +3,7 @@ package com.mozhimen.adk.topon.basic.test.uis
 import android.app.Activity
 import android.os.Bundle
 import android.util.Log
+import com.mozhimen.basick.utilk.android.util.UtilKLogWrapper
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -31,11 +32,11 @@ class NativeListActivity : Activity(), IUtilK {
     private var mATNative: ATNative? = null
     var nativeNetworkListener: ATNativeNetworkListener = object : ATNativeNetworkListener {
         override fun onNativeAdLoaded() {
-            Log.i(TAG, "native ad onNativeAdLoaded------------- ")
+            UtilKLogWrapper.i(TAG, "native ad onNativeAdLoaded------------- ")
         }
 
         override fun onNativeAdLoadFail(adError: AdError) {
-            Log.e(TAG, "native ad onNativeAdLoadFail------------- " + adError.fullErrorInfo)
+            UtilKLogWrapper.e(TAG, "native ad onNativeAdLoadFail------------- " + adError.fullErrorInfo)
         }
     }
 
@@ -127,7 +128,7 @@ class NativeListActivity : Activity(), IUtilK {
 
         //load ad
         mATNative!!.makeAdRequest()
-        Log.i(TAG, "native ad start to load ad------------- ")
+        UtilKLogWrapper.i(TAG, "native ad start to load ad------------- ")
     }
 }
 

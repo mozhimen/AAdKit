@@ -3,6 +3,7 @@ package com.mozhimen.adk.topon.basic.test.uis
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
+import com.mozhimen.basick.utilk.android.util.UtilKLogWrapper
 import com.anythink.core.api.ATAdConst
 import com.anythink.core.api.ATAdInfo
 import com.anythink.core.api.ATNetworkConfirmInfo
@@ -209,10 +210,10 @@ class InterstitialAdActivity : BaseActivityVDB<com.mozhimen.adk.topon.basic.test
                     val atAdStatusInfo = _adkTopOnInterstitialProxy.atInterstitial?.checkAdStatus()
                     printLogOnUI("interstitial ad ready status:" + atAdStatusInfo?.isReady)
                     val atAdInfoList = _adkTopOnInterstitialProxy.atInterstitial?.checkValidAdCaches()
-                    Log.i(TAG, "Valid Cahce size:" + (atAdInfoList?.size ?: 0))
+                    UtilKLogWrapper.i(TAG, "Valid Cahce size:" + (atAdInfoList?.size ?: 0))
                     if (atAdInfoList != null) {
                         for (adInfo in atAdInfoList) {
-                            Log.i(TAG, " Cahce detail:$adInfo")
+                            UtilKLogWrapper.i(TAG, " Cahce detail:$adInfo")
                         }
                     }
                 }

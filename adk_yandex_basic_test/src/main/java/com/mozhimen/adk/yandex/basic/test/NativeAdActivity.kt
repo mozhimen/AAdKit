@@ -2,6 +2,7 @@ package com.mozhimen.adk.yandex.basic.test
 
 import android.os.Bundle
 import android.util.Log
+import com.mozhimen.basick.utilk.android.util.UtilKLogWrapper
 import com.mozhimen.adk.yandex.basic.commons.INativeAdLoadedListener
 import com.mozhimen.adk.yandex.basic.impls.AdKYandexNativeProxy
 import com.mozhimen.adk.yandex.basic.test.databinding.ActivityCustomNativeAdBinding
@@ -48,7 +49,7 @@ class NativeAdActivity : BaseActivityVB<ActivityCustomNativeAdBinding>() {
                 }
 
                 override fun onNativeAdViewLoaded(nativeAd: NativeAd, info: String?) {
-                    Log.d(TAG, "onNativeAdViewLoaded: info $info")
+                    UtilKLogWrapper.d(TAG, "onNativeAdViewLoaded: info $info")
                 }
             }, null)
             initNativeAdParams("demo-native-content-yandex")

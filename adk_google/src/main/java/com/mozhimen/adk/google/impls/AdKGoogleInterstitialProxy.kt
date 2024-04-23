@@ -2,6 +2,7 @@ package com.mozhimen.adk.google.impls
 
 import android.app.Activity
 import android.util.Log
+import com.mozhimen.basick.utilk.android.util.UtilKLogWrapper
 import androidx.lifecycle.LifecycleOwner
 import com.google.android.gms.ads.AdError
 import com.google.android.gms.ads.AdRequest
@@ -90,7 +91,7 @@ class AdKGoogleInterstitialProxy(
     // 插屏广告加载状态的回调
     private inner class InterstitialAdLoadListener : InterstitialAdLoadCallback() {
         override fun onAdLoaded(interstitialAd: InterstitialAd) {
-            Log.i(TAG, "interstitial onAdLoaded")
+            UtilKLogWrapper.i(TAG, "interstitial onAdLoaded")
             _interstitialAdLoadCallback?.onAdLoaded(interstitialAd)//vdb.btnShowInterstitialAd.applyVisible()
 
             // 加载成功
@@ -100,7 +101,7 @@ class AdKGoogleInterstitialProxy(
         }
 
         override fun onAdFailedToLoad(loadAdError: LoadAdError) {
-            Log.e(TAG, "onAdFailedToLoad error:${loadAdError.message}")// 加载失败
+            UtilKLogWrapper.e(TAG, "onAdFailedToLoad error:${loadAdError.message}")// 加载失败
             _interstitialAdLoadCallback?.onAdFailedToLoad(loadAdError)
         }
     }
@@ -110,13 +111,13 @@ class AdKGoogleInterstitialProxy(
     // 插屏广告相关事件回调
     private inner class FullScreenContentListener() : FullScreenContentCallback() {
         override fun onAdImpression() {
-            Log.i(TAG, "interstitial onAdImpression")// 被记录为展示成功时调用
+            UtilKLogWrapper.i(TAG, "interstitial onAdImpression")// 被记录为展示成功时调用
             _fullScreenContentCallback?.onAdImpression()
         }
 
         override fun onAdFailedToShowFullScreenContent(adError: AdError) {
             // 展示失败时调用，此时销毁当前的插屏广告对象，重新加载插屏广告
-            Log.e(TAG, "onAdFailedToShowFullScreenContent error:${adError.message}")
+            UtilKLogWrapper.e(TAG, "onAdFailedToShowFullScreenContent error:${adError.message}")
             _fullScreenContentCallback?.onAdFailedToShowFullScreenContent(adError)
 
 //            _interstitialAd = null
@@ -125,7 +126,7 @@ class AdKGoogleInterstitialProxy(
         }
 
         override fun onAdDismissedFullScreenContent() {
-            Log.i(TAG, "onAdShowedFullScreenContent")// 隐藏时调用，此时销毁当前的插屏广告对象，重新加载插屏广告
+            UtilKLogWrapper.i(TAG, "onAdShowedFullScreenContent")// 隐藏时调用，此时销毁当前的插屏广告对象，重新加载插屏广告
             _fullScreenContentCallback?.onAdDismissedFullScreenContent()
 
             destroyInterstitialAd()
@@ -135,12 +136,12 @@ class AdKGoogleInterstitialProxy(
         }
 
         override fun onAdClicked() {
-            Log.i(TAG, "interstitial onAdClicked")// 被点击时调用
+            UtilKLogWrapper.i(TAG, "interstitial onAdClicked")// 被点击时调用
             _fullScreenContentCallback?.onAdClicked()
         }
 
         override fun onAdShowedFullScreenContent() {
-            Log.i(TAG, "interstitial onAdShowedFullScreenContent")// 显示时调用
+            UtilKLogWrapper.i(TAG, "interstitial onAdShowedFullScreenContent")// 显示时调用
             _fullScreenContentCallback?.onAdShowedFullScreenContent()
         }
     }

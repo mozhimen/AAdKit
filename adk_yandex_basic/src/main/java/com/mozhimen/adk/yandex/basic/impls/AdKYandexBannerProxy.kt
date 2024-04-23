@@ -1,6 +1,7 @@
 package com.mozhimen.adk.yandex.basic.impls
 
 import android.util.Log
+import com.mozhimen.basick.utilk.android.util.UtilKLogWrapper
 import android.view.ViewGroup
 import androidx.annotation.Px
 import androidx.lifecycle.LifecycleOwner
@@ -43,7 +44,7 @@ class AdKYandexBannerProxy : BaseWakeBefDestroyLifecycleObserver(), BannerAdEven
     ///////////////////////////////////////////////////////////////////////
 
     fun initBannerAdListener(bannerAdEventListener: BannerAdEventListener) {
-        Log.d(TAG, "initBannerAdListener: ")
+        UtilKLogWrapper.d(TAG, "initBannerAdListener: ")
         _bannerAdEventListener = bannerAdEventListener
     }
 
@@ -66,7 +67,7 @@ class AdKYandexBannerProxy : BaseWakeBefDestroyLifecycleObserver(), BannerAdEven
         var adHeight = (screenHeight / 3)
         if (height > 0)
             adHeight = min(adHeight, height)
-        Log.d(TAG, "initBannerAdSize: adWidth $adWidth adHeight $adHeight")
+        UtilKLogWrapper.d(TAG, "initBannerAdSize: adWidth $adWidth adHeight $adHeight")
         _bannerAdSize = BannerAdSize.inlineSize(_context, adWidth.px2dp.toInt(), adHeight.px2dp.toInt())
     }
 
@@ -116,13 +117,13 @@ class AdKYandexBannerProxy : BaseWakeBefDestroyLifecycleObserver(), BannerAdEven
     ///////////////////////////////////////////////////////////////////////
 
     override fun onCreate(owner: LifecycleOwner) {
-        Log.d(TAG, "onCreate: ")
+        UtilKLogWrapper.d(TAG, "onCreate: ")
         initBannerAd()
         loadBannerAd()
     }
 
     override fun onDestroy(owner: LifecycleOwner) {
-        Log.d(TAG, "onDestroy: ")
+        UtilKLogWrapper.d(TAG, "onDestroy: ")
         destroyBannerAd()
         _bannerAdEventListener = null
         super.onDestroy(owner)
@@ -131,32 +132,32 @@ class AdKYandexBannerProxy : BaseWakeBefDestroyLifecycleObserver(), BannerAdEven
     ///////////////////////////////////////////////////////////////////////
 
     override fun onAdLoaded() {
-        Log.d(TAG, "onAdLoaded: ")
+        UtilKLogWrapper.d(TAG, "onAdLoaded: ")
         _bannerAdEventListener?.onAdLoaded()
     }
 
     override fun onAdFailedToLoad(error: AdRequestError) {
-        Log.e(TAG, "onAdFailedToLoad: AdRequestError $error")
+        UtilKLogWrapper.e(TAG, "onAdFailedToLoad: AdRequestError $error")
         _bannerAdEventListener?.onAdFailedToLoad(error)
     }
 
     override fun onAdClicked() {
-        Log.d(TAG, "onAdClicked: ")
+        UtilKLogWrapper.d(TAG, "onAdClicked: ")
         _bannerAdEventListener?.onAdClicked()
     }
 
     override fun onLeftApplication() {
-        Log.d(TAG, "onLeftApplication: ")
+        UtilKLogWrapper.d(TAG, "onLeftApplication: ")
         _bannerAdEventListener?.onLeftApplication()
     }
 
     override fun onReturnedToApplication() {
-        Log.d(TAG, "onReturnedToApplication: ")
+        UtilKLogWrapper.d(TAG, "onReturnedToApplication: ")
         _bannerAdEventListener?.onReturnedToApplication()
     }
 
     override fun onImpression(data: ImpressionData?) {
-        Log.d(TAG, "onImpression: ImpressionData $data")
+        UtilKLogWrapper.d(TAG, "onImpression: ImpressionData $data")
         _bannerAdEventListener?.onImpression(data)
     }
 

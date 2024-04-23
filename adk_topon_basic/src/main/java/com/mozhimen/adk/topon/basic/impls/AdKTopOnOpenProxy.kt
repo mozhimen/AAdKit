@@ -3,6 +3,7 @@ package com.mozhimen.adk.topon.basic.impls
 import android.app.Activity
 import android.content.Context
 import android.util.Log
+import com.mozhimen.basick.utilk.android.util.UtilKLogWrapper
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.LifecycleOwner
@@ -75,7 +76,7 @@ class AdKTopOnOpenProxy : BaseWakeBefDestroyLifecycleObserver(), IAdKOpenProxy, 
     }
 
     fun isOpenAdReady(): Boolean =
-        (_atOpenAd?.isAdReady ?: false).also { Log.d(TAG, "isAdReady: $it") }
+        (_atOpenAd?.isAdReady ?: false).also { UtilKLogWrapper.d(TAG, "isAdReady: $it") }
 
 
     override fun loadOpenAd() {
@@ -136,37 +137,37 @@ class AdKTopOnOpenProxy : BaseWakeBefDestroyLifecycleObserver(), IAdKOpenProxy, 
     ///////////////////////////////////////////////////////////////////////////////
 
     override fun onAdLoaded(p0: Boolean) {
-        Log.d(TAG, "_atSplashExListener______ onAdLoaded: $p0")
+        UtilKLogWrapper.d(TAG, "_atSplashExListener______ onAdLoaded: $p0")
 
         _atSplashExListener?.onAdLoaded(p0)
     }
 
     override fun onAdLoadTimeout() {
-        Log.d(TAG, "_atSplashExListener______ onAdLoadTimeout: ")
+        UtilKLogWrapper.d(TAG, "_atSplashExListener______ onAdLoadTimeout: ")
 
         _atSplashExListener?.onAdLoadTimeout()
     }
 
     override fun onNoAdError(p0: AdError?) {
-        Log.e(TAG, "_atSplashExListener______ onNoAdError: AdError $p0")
+        UtilKLogWrapper.e(TAG, "_atSplashExListener______ onNoAdError: AdError $p0")
 
         _atSplashExListener?.onNoAdError(p0)
     }
 
     override fun onAdShow(p0: ATAdInfo?) {
-        Log.d(TAG, "_atSplashExListener______ onAdShow: ")
+        UtilKLogWrapper.d(TAG, "_atSplashExListener______ onAdShow: ")
 
         _atSplashExListener?.onAdShow(p0)
     }
 
     override fun onAdClick(p0: ATAdInfo?) {
-        Log.d(TAG, "_atSplashExListener______ onAdClick: ")
+        UtilKLogWrapper.d(TAG, "_atSplashExListener______ onAdClick: ")
 
         _atSplashExListener?.onAdClick(p0)
     }
 
     override fun onAdDismiss(p0: ATAdInfo?, p1: ATSplashAdExtraInfo?) {
-        Log.d(TAG, "_atSplashExListener______ onAdDismiss: ATAdInfo $p0")
+        UtilKLogWrapper.d(TAG, "_atSplashExListener______ onAdDismiss: ATAdInfo $p0")
 
         showSplashEyeAd(p1?.getAtSplashEyeAd())
 
@@ -174,13 +175,13 @@ class AdKTopOnOpenProxy : BaseWakeBefDestroyLifecycleObserver(), IAdKOpenProxy, 
     }
 
     override fun onDeeplinkCallback(p0: ATAdInfo?, p1: Boolean) {
-        Log.d(TAG, "_atSplashExListener______ onDeeplinkCallback: ")
+        UtilKLogWrapper.d(TAG, "_atSplashExListener______ onDeeplinkCallback: ")
 
         _atSplashExListener?.onDeeplinkCallback(p0, p1)
     }
 
     override fun onDownloadConfirm(p0: Context?, p1: ATAdInfo?, p2: ATNetworkConfirmInfo?) {
-        Log.d(TAG, "_atSplashExListener______ onDownloadConfirm: ")
+        UtilKLogWrapper.d(TAG, "_atSplashExListener______ onDownloadConfirm: ")
 
         _atSplashExListener?.onDownloadConfirm(p0, p1, p2)
     }
@@ -188,36 +189,36 @@ class AdKTopOnOpenProxy : BaseWakeBefDestroyLifecycleObserver(), IAdKOpenProxy, 
     ///////////////////////////////////////////////////////////////////////////////
 
     override fun onAdSourceBiddingAttempt(p0: ATAdInfo?) {
-        Log.d(TAG, "_atAdSourceStatusListener onAdSourceBiddingAttempt: ")
+        UtilKLogWrapper.d(TAG, "_atAdSourceStatusListener onAdSourceBiddingAttempt: ")
 
         _atAdSourceStatusListener?.onAdSourceBiddingAttempt(p0)
     }
     override fun onAdSourceAttempt(p0: ATAdInfo?) {
-        Log.d(TAG, "_atAdSourceStatusListener onAdSourceAttempt: ")
+        UtilKLogWrapper.d(TAG, "_atAdSourceStatusListener onAdSourceAttempt: ")
 
         _atAdSourceStatusListener?.onAdSourceAttempt(p0)
     }
 
     override fun onAdSourceBiddingFilled(p0: ATAdInfo?) {
-        Log.w(TAG, "_atAdSourceStatusListener onAdSourceBiddingFilled: ")
+        UtilKLogWrapper.w(TAG, "_atAdSourceStatusListener onAdSourceBiddingFilled: ")
 
         _atAdSourceStatusListener?.onAdSourceBiddingFilled(p0)
     }
 
     override fun onAdSourceLoadFilled(p0: ATAdInfo?) {
-        Log.w(TAG, "_atAdSourceStatusListener onAdSourceLoadFilled: ATAdInfo $p0")
+        UtilKLogWrapper.w(TAG, "_atAdSourceStatusListener onAdSourceLoadFilled: ATAdInfo $p0")
 
         _atAdSourceStatusListener?.onAdSourceLoadFilled(p0)
     }
 
     override fun onAdSourceBiddingFail(p0: ATAdInfo?, p1: AdError?) {
-        Log.e(TAG, "_atAdSourceStatusListener onAdSourceBiddingFail: AdError $p1")
+        UtilKLogWrapper.e(TAG, "_atAdSourceStatusListener onAdSourceBiddingFail: AdError $p1")
 
         _atAdSourceStatusListener?.onAdSourceBiddingFail(p0, p1)
     }
 
     override fun onAdSourceLoadFail(p0: ATAdInfo?, p1: AdError?) {
-        Log.e(TAG, "_atAdSourceStatusListener onAdSourceLoadFail: AdError $p1")
+        UtilKLogWrapper.e(TAG, "_atAdSourceStatusListener onAdSourceLoadFail: AdError $p1")
 
         _atAdSourceStatusListener?.onAdSourceLoadFail(p0, p1)
     }
@@ -239,7 +240,7 @@ class AdKTopOnOpenProxy : BaseWakeBefDestroyLifecycleObserver(), IAdKOpenProxy, 
                         object : SplashZoomOutManager.AnimationCallBack {
                             override fun animationStart(animationTime: Int) {}
                             override fun animationEnd() {
-                                Log.i(TAG, "animationEnd---------: eye")
+                                UtilKLogWrapper.i(TAG, "animationEnd---------: eye")
 
                                 splashEyeAd.onFinished()
                             }
@@ -247,7 +248,7 @@ class AdKTopOnOpenProxy : BaseWakeBefDestroyLifecycleObserver(), IAdKOpenProxy, 
                 }
 
                 override fun onAdDismiss(isSupportEyeSplash: Boolean, errorMsg: String) {
-                    Log.i(TAG, "onAdDismiss---------: eye")
+                    UtilKLogWrapper.i(TAG, "onAdDismiss---------: eye")
 
                     val zoomOutManager: SplashZoomOutManager = SplashZoomOutManager.getInstance(_context)
                     zoomOutManager.clearStaticData()

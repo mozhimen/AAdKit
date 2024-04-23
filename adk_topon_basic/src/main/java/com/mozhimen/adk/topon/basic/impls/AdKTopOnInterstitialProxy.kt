@@ -2,7 +2,6 @@ package com.mozhimen.adk.topon.basic.impls
 
 import android.app.Activity
 import android.content.Context
-import android.util.Log
 import androidx.lifecycle.LifecycleOwner
 import com.anythink.core.api.ATAdConst
 import com.anythink.core.api.ATAdInfo
@@ -20,7 +19,6 @@ import com.mozhimen.basick.lintk.optins.OApiCall_BindLifecycle
 import com.mozhimen.basick.lintk.optins.OApiCall_BindViewLifecycle
 import com.mozhimen.basick.lintk.optins.OApiInit_ByLazy
 import com.mozhimen.basick.utilk.android.util.UtilKLogWrapper
-import com.mozhimen.basick.utilk.wrapper.UtilKScreen
 
 /**
  * @ClassName AdKTopOnInterstitialProxy

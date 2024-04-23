@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.util.Log
+import com.mozhimen.basick.utilk.android.util.UtilKLogWrapper
 import android.view.View
 import android.widget.RelativeLayout
 import android.widget.TextView
@@ -86,7 +87,7 @@ class SplashAdActivity : BaseActivity(), View.OnClickListener, IUtilK {
 
         //Klevin
 //        defaultConfig = "{\"unit_id\":1333253,\"nw_firm_id\":51,\"adapter_class\":\"com.anythink.network.klevin.KlevinATSplashAdapter\",\"content\":\"{\\\"pos_id\\\":\\\"30029\\\",\\\"app_id\\\":\\\"30008\\\"}\"}";
-        Log.d(TAG, "initSplashAd: placementId $placementId")
+        UtilKLogWrapper.d(TAG, "initSplashAd: placementId $placementId")
         mSplashAd = ATSplashAd(this, placementId, ATSplashExListenerImpl(), 5000, defaultConfig)
         val localMap: Map<String, Any> = HashMap()
         mSplashAd!!.setLocalExtra(localMap)
@@ -117,17 +118,17 @@ class SplashAdActivity : BaseActivity(), View.OnClickListener, IUtilK {
     private fun isAdReady() {
         val atAdStatusInfo = mSplashAd!!.checkAdStatus()
         if (atAdStatusInfo.isReady) {
-            Log.i(TAG, "SplashAd is ready to show.")
+            UtilKLogWrapper.i(TAG, "SplashAd is ready to show.")
             printLogOnUI("SplashAd is ready to show.")
         } else {
-            Log.i(TAG, "SplashAd isn't ready to show.")
+            UtilKLogWrapper.i(TAG, "SplashAd isn't ready to show.")
             printLogOnUI("SplashAd isn't ready to show.")
         }
         val atAdInfoList = mSplashAd!!.checkValidAdCaches()
-        Log.i(TAG, "Valid Cahce size:" + (atAdInfoList?.size ?: 0))
+        UtilKLogWrapper.i(TAG, "Valid Cahce size:" + (atAdInfoList?.size ?: 0))
         if (atAdInfoList != null) {
             for (adInfo in atAdInfoList) {
-                Log.i(TAG, "\nCahce detail:$adInfo")
+                UtilKLogWrapper.i(TAG, "\nCahce detail:$adInfo")
             }
         }
     }
@@ -154,42 +155,42 @@ class SplashAdActivity : BaseActivity(), View.OnClickListener, IUtilK {
 
     private inner class ATSplashExListenerImpl : ATSplashExListener {
         override fun onAdLoaded(isTimeout: Boolean) {
-            Log.i(TAG, "onAdLoaded---------isTimeout:$isTimeout")
+            UtilKLogWrapper.i(TAG, "onAdLoaded---------isTimeout:$isTimeout")
             printLogOnUI("onAdLoaded---------isTimeout:$isTimeout")
         }
 
         override fun onAdLoadTimeout() {
-            Log.i(TAG, "onAdLoadTimeout---------")
+            UtilKLogWrapper.i(TAG, "onAdLoadTimeout---------")
             printLogOnUI("onAdLoadTimeout---------")
         }
 
         override fun onNoAdError(adError: AdError) {
-            Log.i(TAG, "onNoAdError---------:" + adError.fullErrorInfo)
+            UtilKLogWrapper.i(TAG, "onNoAdError---------:" + adError.fullErrorInfo)
             printLogOnUI("onNoAdError---------:" + adError.fullErrorInfo)
         }
 
         override fun onAdShow(entity: ATAdInfo) {
-            Log.i(TAG, "onAdShow---------:$entity")
+            UtilKLogWrapper.i(TAG, "onAdShow---------:$entity")
             printLogOnUI("onAdShow---------")
         }
 
         override fun onAdClick(entity: ATAdInfo) {
-            Log.i(TAG, "onAdClick---------:$entity")
+            UtilKLogWrapper.i(TAG, "onAdClick---------:$entity")
             printLogOnUI("onAdClick---------")
         }
 
         override fun onAdDismiss(entity: ATAdInfo, splashAdExtraInfo: ATSplashAdExtraInfo) {
-            Log.i(TAG, "onAdDismiss---------:$entity")
+            UtilKLogWrapper.i(TAG, "onAdDismiss---------:$entity")
             printLogOnUI("onAdDismiss---------")
         }
 
         override fun onDeeplinkCallback(entity: ATAdInfo, isSuccess: Boolean) {
-            Log.i(TAG, "onDeeplinkCallback---------：$entity isSuccess = $isSuccess")
+            UtilKLogWrapper.i(TAG, "onDeeplinkCallback---------：$entity isSuccess = $isSuccess")
             printLogOnUI("onDeeplinkCallback---------")
         }
 
         override fun onDownloadConfirm(context: Context, adInfo: ATAdInfo, networkConfirmInfo: ATNetworkConfirmInfo) {
-            Log.i(TAG, "onDownloadConfirm--------- entity = $adInfo")
+            UtilKLogWrapper.i(TAG, "onDownloadConfirm--------- entity = $adInfo")
             printLogOnUI("onDownloadConfirm---------")
         }
     }

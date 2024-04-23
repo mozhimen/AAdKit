@@ -2,6 +2,7 @@ package com.mozhimen.adk.google.impls
 
 import android.content.Context
 import android.util.Log
+import com.mozhimen.basick.utilk.android.util.UtilKLogWrapper
 import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.LifecycleOwner
@@ -82,7 +83,7 @@ class AdKGoogleNativeProxy :
     ///////////////////////////////////////////////////////////////////////
 
     fun initNativeAdListener(nativeAdListener: AdListener?, nativeAdLoadedListener: INativeAdLoadedListener?, nativeAdMuteThisListener: MuteThisAdListener?) {
-        Log.d(TAG, "initNativeAdListener: ")
+        UtilKLogWrapper.d(TAG, "initNativeAdListener: ")
         _nativeAdListener = nativeAdListener
         _nativeAdLoadedListener = nativeAdLoadedListener
         _nativeAdMuteThisListener = nativeAdMuteThisListener
@@ -155,32 +156,32 @@ class AdKGoogleNativeProxy :
 //                            override fun onVideoStart() {
 //                                super.onVideoStart()
 //                                // 视频开始
-//                                Log.i(TAG, "onVideoStart")
+//                                UtilKLogWrapper.i(TAG, "onVideoStart")
 //                            }
 //
 //                            override fun onVideoEnd() {
 //                                super.onVideoEnd()
 //                                // 视频结束，结束后可以刷新广告
-//                                Log.i(TAG, "onVideoEnd")
+//                                UtilKLogWrapper.i(TAG, "onVideoEnd")
 //                            }
 //
 //                            override fun onVideoPlay() {
 //                                super.onVideoPlay()
 //                                // 视频播放
-//                                Log.i(TAG, "onVideoPlay")
+//                                UtilKLogWrapper.i(TAG, "onVideoPlay")
 //                            }
 //
 //                            override fun onVideoPause() {
 //                                super.onVideoPause()
 //                                // 视频暂停
-//                                Log.i(TAG, "onVideoPause")
+//                                UtilKLogWrapper.i(TAG, "onVideoPause")
 //                            }
 //
 //                            override fun onVideoMute(mute: Boolean) {
 //                                super.onVideoMute(mute)
 //                                // 视频是否静音
 //                                // mute true 静音 false 非静音
-//                                Log.i(TAG, "onVideoMute mute:$mute")
+//                                UtilKLogWrapper.i(TAG, "onVideoMute mute:$mute")
 //                            }
 //                        }
 //                    }
@@ -202,7 +203,7 @@ class AdKGoogleNativeProxy :
 //                }
 //            }*/
 
-            Log.d(TAG, "loadNativeAd: headline(${nativeAd.headline}) advertiser(${nativeAd.advertiser}) starRating(${nativeAd.starRating}) body(${nativeAd.body}) starRating(${nativeAd.starRating}) callToAction(${nativeAd.callToAction}) price(${nativeAd.price}) store(${nativeAd.store})")
+            UtilKLogWrapper.d(TAG, "loadNativeAd: headline(${nativeAd.headline}) advertiser(${nativeAd.advertiser}) starRating(${nativeAd.starRating}) body(${nativeAd.body}) starRating(${nativeAd.starRating}) callToAction(${nativeAd.callToAction}) price(${nativeAd.price}) store(${nativeAd.store})")
             _nativeAdLoadedListener?.onNativeAdViewLoad(
                 nativeAd,
                 nativeAd.icon,
@@ -264,7 +265,7 @@ class AdKGoogleNativeProxy :
     private inner class NativeAdMuteThisListener : MuteThisAdListener {
         override fun onAdMuted() {
             // 广告关闭回调
-            Log.i(TAG, "onAdMuted this native ad been muted")
+            UtilKLogWrapper.i(TAG, "onAdMuted this native ad been muted")
 
             _nativeAdMuteThisListener?.onAdMuted()
         }
@@ -272,7 +273,7 @@ class AdKGoogleNativeProxy :
 
     private inner class NativeAdLoadedListener : NativeAd.OnNativeAdLoadedListener {
         override fun onNativeAdLoaded(p0: NativeAd) {
-            Log.d(TAG, "onNativeAdLoaded: ")
+            UtilKLogWrapper.d(TAG, "onNativeAdLoaded: ")
 
             _nativeAd = p0
 
@@ -285,32 +286,32 @@ class AdKGoogleNativeProxy :
     private inner class NativeAdListener : AdListener() {
         override fun onAdLoaded() {
             // 广告加载成功
-            Log.i(TAG, "nativeAd onAdLoaded")
+            UtilKLogWrapper.i(TAG, "nativeAd onAdLoaded")
 //            nativeAdView?.let { vdb.flNativeAdContainer.addView(it) }
             _nativeAdListener?.onAdLoaded()
         }
 
         override fun onAdFailedToLoad(loadAdError: LoadAdError) {
             // 广告加载失败
-            Log.e(TAG, "nativeAd onAdFailedToLoad error:${loadAdError}")
+            UtilKLogWrapper.e(TAG, "nativeAd onAdFailedToLoad error:${loadAdError}")
             _nativeAdListener?.onAdFailedToLoad(loadAdError)
         }
 
         override fun onAdOpened() {
             // 广告页打开
-            Log.i(TAG, "nativeAd onAdOpened")
+            UtilKLogWrapper.i(TAG, "nativeAd onAdOpened")
             _nativeAdListener?.onAdOpened()
         }
 
         override fun onAdClicked() {
             // 广告被点击
-            Log.i(TAG, "nativeAd onAdClicked")
+            UtilKLogWrapper.i(TAG, "nativeAd onAdClicked")
             _nativeAdListener?.onAdClicked()
         }
 
         override fun onAdClosed() {
             // 广告页关闭
-            Log.i(TAG, "nativeAd onAdClosed")
+            UtilKLogWrapper.i(TAG, "nativeAd onAdClosed")
             _nativeAdListener?.onAdClosed()
         }
     }

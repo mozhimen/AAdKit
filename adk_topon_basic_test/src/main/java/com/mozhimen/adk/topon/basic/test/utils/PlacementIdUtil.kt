@@ -2,6 +2,7 @@ package com.mozhimen.adk.topon.basic.test.utils
 
 import android.text.TextUtils
 import android.util.Log
+import com.mozhimen.basick.utilk.android.util.UtilKLogWrapper
 import com.mozhimen.basick.utilk.commons.IUtilK
 import com.mozhimen.basick.utilk.kotlin.UtilKStrAsset
 import org.json.JSONObject
@@ -63,7 +64,7 @@ object PlacementIdUtil : IUtilK {
             }
         } catch (e: Throwable) {
             e.printStackTrace()
-            Log.e(TAG, "getPlacementIdMap: parse json error -> $format")
+            UtilKLogWrapper.e(TAG, "getPlacementIdMap: parse json error -> $format")
         }
         return result
     }
@@ -75,7 +76,7 @@ object PlacementIdUtil : IUtilK {
         if (splashPlacements == null) {
             splashPlacements = getPlacementIdMap(placementIdJson, "splash")
         }
-        return (splashPlacements ?: emptyMap()).also { Log.d(TAG, "getSplashPlacements: $it") }
+        return (splashPlacements ?: emptyMap()).also { UtilKLogWrapper.d(TAG, "getSplashPlacements: $it") }
     }
 
     @JvmStatic

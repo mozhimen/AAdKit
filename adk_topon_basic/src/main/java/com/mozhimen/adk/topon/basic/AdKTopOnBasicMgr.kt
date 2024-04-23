@@ -3,6 +3,7 @@ package com.mozhimen.adk.topon.basic
 import android.app.Activity
 import android.content.Context
 import android.util.Log
+import com.mozhimen.basick.utilk.android.util.UtilKLogWrapper
 import com.anythink.core.api.ATDebuggerConfig
 import com.anythink.core.api.ATGDPRAuthCallback
 import com.anythink.core.api.ATGDPRConsentDismissListener
@@ -36,17 +37,17 @@ object AdKTopOnBasicMgr : IUtilK {
     @OMetaData_GMS_ADS_APPLICATION_ID
     fun init_ofGDPR_ofUmp(activity: Activity, topOnAppId: String, topOnAppKey: String, isDebug: Boolean = true, onInitSuccess: I_Listener? = null) {
         if (_isNeedApplyGDPR.get() && ATSDK.getGDPRDataLevel(activity) == ATSDK.UNKNOWN) {
-            Log.d(TAG, "init_ofGDPR_ofUmp: showGDPRConsentDialog")
+            UtilKLogWrapper.d(TAG, "init_ofGDPR_ofUmp: showGDPRConsentDialog")
             ATSDK.showGDPRConsentDialog(activity, object : ATGDPRConsentDismissListener {
                 override fun onDismiss(p0: ATGDPRConsentDismissListener.ConsentDismissInfo?) {
                     init(activity, topOnAppId, topOnAppKey, isDebug, onInitSuccess)
                 }
             })
         } else if (!_isInit.get()) {
-            Log.d(TAG, "init_ofGDPR_ofUmp: !_isInit.get()")
+            UtilKLogWrapper.d(TAG, "init_ofGDPR_ofUmp: !_isInit.get()")
             init(activity, topOnAppId, topOnAppKey, isDebug, onInitSuccess)
         } else {
-            Log.d(TAG, "init_ofGDPR_ofUmp: ")
+            UtilKLogWrapper.d(TAG, "init_ofGDPR_ofUmp: ")
             onInitSuccess?.invoke()
         }
     }
@@ -68,7 +69,7 @@ object AdKTopOnBasicMgr : IUtilK {
             }
 
             override fun onErrorCallback(errorMsg: String) {
-                Log.i(TAG, "init_ofGDPR onErrorCallback:$errorMsg")
+                UtilKLogWrapper.i(TAG, "init_ofGDPR onErrorCallback:$errorMsg")
                 init(context, topOnAppId, topOnAppKey, isDebug, onInitSuccess)
             }
         })
@@ -80,13 +81,13 @@ object AdKTopOnBasicMgr : IUtilK {
     @OApiInit_InApplication
     fun init(context: Context, topOnAppId: String, topOnAppKey: String, isDebug: Boolean = true, onInitSuccess: I_Listener? = null) {
         if (topOnAppId.isEmpty() || topOnAppKey.isEmpty()) {
-            Log.e(TAG, "init: fail")
+            UtilKLogWrapper.e(TAG, "init: fail")
             return
         }
-        Log.w(TAG, "init: start")
+        UtilKLogWrapper.w(TAG, "init: start")
 
         if (_isInit.compareAndSet(false, true)) {
-            Log.d(TAG, "init: topOnAppId $topOnAppId topOnAppKey $topOnAppKey")
+            UtilKLogWrapper.d(TAG, "init: topOnAppId $topOnAppId topOnAppKey $topOnAppKey")
 
             WebKMgr.init(context)
 

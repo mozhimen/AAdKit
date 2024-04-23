@@ -1,6 +1,7 @@
 package com.mozhimen.adk.topon.basic.impls
 
 import android.util.Log
+import com.mozhimen.basick.utilk.android.util.UtilKLogWrapper
 import androidx.lifecycle.ProcessLifecycleOwner
 import com.mozhimen.adk.basic.bases.BaseAdKOpenAdMgr
 import com.mozhimen.adk.topon.basic.bases.BaseATSplashExCallback

@@ -2,6 +2,7 @@
 //
 //import android.app.Activity
 //import android.util.Log
+import com.mozhimen.basick.utilk.android.util.UtilKLogWrapper
 //import androidx.lifecycle.LifecycleOwner
 //import com.google.android.gms.ads.AdError
 //import com.google.android.gms.ads.AdRequest
@@ -38,7 +39,7 @@
 //    private val _rewardedAdLoadCallback = object : RewardedAdLoadCallback() {
 //        override fun onAdLoaded(rewardedAd: RewardedAd) {
 //            super.onAdLoaded(rewardedAd)
-//            Log.i(TAG, "rewardedVideo onAdLoaded")
+//            UtilKLogWrapper.i(TAG, "rewardedVideo onAdLoaded")
 //            // 加载成功
 //            this@AdKGoogleRewardedSimpleProxy._rewardedAd = rewardedAd
 //            // 设置广告事件回调
@@ -53,7 +54,7 @@
 //        override fun onAdFailedToLoad(loadAdError: LoadAdError) {
 //            super.onAdFailedToLoad(loadAdError)
 //            // 加载失败
-//            Log.e(TAG, "rewardedVideo onAdFailedToLoad error:${loadAdError.message}")
+//            UtilKLogWrapper.e(TAG, "rewardedVideo onAdFailedToLoad error:${loadAdError.message}")
 //        }
 //    }
 //
@@ -61,19 +62,19 @@
 //        override fun onAdImpression() {
 //            super.onAdImpression()
 //            // 被记录为展示成功时调用
-//            Log.i(TAG, "rewardedVideo onAdImpression")
+//            UtilKLogWrapper.i(TAG, "rewardedVideo onAdImpression")
 //        }
 //
 //        override fun onAdShowedFullScreenContent() {
 //            super.onAdShowedFullScreenContent()
 //            // 显示时调用
-//            Log.i(TAG, "rewardedVideo onAdShowedFullScreenContent")
+//            UtilKLogWrapper.i(TAG, "rewardedVideo onAdShowedFullScreenContent")
 //        }
 //
 //        override fun onAdClicked() {
 //            super.onAdClicked()
 //            // 被点击时调用
-//            Log.i(TAG, "rewardedVideo onAdClicked")
+//            UtilKLogWrapper.i(TAG, "rewardedVideo onAdClicked")
 //        }
 //
 //        override fun onAdDismissedFullScreenContent() {
@@ -88,7 +89,7 @@
 //        override fun onAdFailedToShowFullScreenContent(adError: AdError) {
 //            super.onAdFailedToShowFullScreenContent(adError)
 //            // 展示失败时调用，此时销毁当前的激励视频广告对象，重新加载激励视频广告
-//            Log.e(TAG, "rewardedVideo onAdFailedToShowFullScreenContent error:${adError.message}")
+//            UtilKLogWrapper.e(TAG, "rewardedVideo onAdFailedToShowFullScreenContent error:${adError.message}")
 //            _rewardedAd = null
 ////            vdb.btnShowRewardedAd.applyInVisible()
 //            _adKGoogleRewardedListener?.onAdFailedToShowFullScreenContent()
@@ -102,7 +103,7 @@
 //        val type = it.type
 //        // 奖励的金额
 //        val amount = it.amount
-//        Log.i(TAG, "rewardedVideo onUserEarnedReward type:$type, amount:$amount")
+//        UtilKLogWrapper.i(TAG, "rewardedVideo onUserEarnedReward type:$type, amount:$amount")
 //    }
 //
 //    private var _adKGoogleRewardedListener: IAdKGoogleRewardedListener? = null

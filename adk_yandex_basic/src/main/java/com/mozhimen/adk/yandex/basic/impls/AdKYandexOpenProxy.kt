@@ -2,6 +2,7 @@ package com.mozhimen.adk.yandex.basic.impls
 
 import android.app.Activity
 import android.util.Log
+import com.mozhimen.basick.utilk.android.util.UtilKLogWrapper
 import androidx.lifecycle.LifecycleOwner
 import com.mozhimen.basick.elemk.androidx.lifecycle.bases.BaseWakeBefDestroyLifecycleObserver
 import com.mozhimen.basick.lintk.optins.OApiCall_BindLifecycle
@@ -54,7 +55,7 @@ class AdKYandexOpenProxy : BaseWakeBefDestroyLifecycleObserver(), IAdKOpenProxy,
         // load new Ad if there is no loaded Ad and new ad isn't loading
 //        if (_loadingInProgress.compareAndSet(false, true)) {
         _appOpenAdLoader?.loadAd(AdRequestConfiguration.Builder(_adUnitId).build()) ?: run {
-            Log.d(TAG, "loadOpenAd: null")
+            UtilKLogWrapper.d(TAG, "loadOpenAd: null")
         }
 //        }
     }
@@ -98,7 +99,7 @@ class AdKYandexOpenProxy : BaseWakeBefDestroyLifecycleObserver(), IAdKOpenProxy,
 ///////////////////////////////////////////////////////////////////////////////
 
     override fun onAdLoaded(appOpenAd: AppOpenAd) {
-        Log.d(TAG, "onAdLoaded: ")
+        UtilKLogWrapper.d(TAG, "onAdLoaded: ")
 //        _loadingInProgress.set(false)
         // save appOpenAd for future use
         _appOpenAd = appOpenAd
@@ -108,7 +109,7 @@ class AdKYandexOpenProxy : BaseWakeBefDestroyLifecycleObserver(), IAdKOpenProxy,
     }
 
     override fun onAdFailedToLoad(adRequestError: AdRequestError) {
-        Log.d(TAG, "onAdFailedToLoad: AdRequestError $adRequestError")
+        UtilKLogWrapper.d(TAG, "onAdFailedToLoad: AdRequestError $adRequestError")
 //        _loadingInProgress.set(false)
         // use your own reload logic
         // NOTE: avoid continuous reloading when load errors occur
@@ -118,32 +119,32 @@ class AdKYandexOpenProxy : BaseWakeBefDestroyLifecycleObserver(), IAdKOpenProxy,
 ///////////////////////////////////////////////////////////////////////////////
 
     override fun onAdShown() {
-        Log.d(TAG, "onAdShown: ")
+        UtilKLogWrapper.d(TAG, "onAdShown: ")
         // Called when an app open ad has been shown
         _appOpenAdEventListener?.onAdShown()
     }
 
     override fun onAdFailedToShow(p0: AdError) {
-        Log.d(TAG, "onAdFailedToShow: AdError $p0")
+        UtilKLogWrapper.d(TAG, "onAdFailedToShow: AdError $p0")
         // Called when an app open ad failed to show
         _appOpenAdEventListener?.onAdFailedToShow(p0)
     }
 
     override fun onAdDismissed() {
         // Called when an app open ad has been dismissed
-        Log.d(TAG, "onAdDismissed: ")
+        UtilKLogWrapper.d(TAG, "onAdDismissed: ")
         destroyOpenAd()
         _appOpenAdEventListener?.onAdDismissed()
     }
 
     override fun onAdClicked() {
-        Log.d(TAG, "onAdClicked: ")
+        UtilKLogWrapper.d(TAG, "onAdClicked: ")
         // Called when user clicked on the ad
         _appOpenAdEventListener?.onAdClicked()
     }
 
     override fun onAdImpression(p0: ImpressionData?) {
-        Log.d(TAG, "onAdImpression: ")
+        UtilKLogWrapper.d(TAG, "onAdImpression: ")
         // Called when an impression was observed
         _appOpenAdEventListener?.onAdImpression(p0)
     }

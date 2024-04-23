@@ -2,6 +2,7 @@ package com.mozhimen.adk.yandex.basic.impls
 
 import android.app.Activity
 import android.util.Log
+import com.mozhimen.basick.utilk.android.util.UtilKLogWrapper
 import androidx.lifecycle.LifecycleOwner
 import com.mozhimen.adk.basic.commons.IAdKInterstitialProxy
 import com.mozhimen.basick.elemk.androidx.lifecycle.bases.BaseWakeBefDestroyLifecycleObserver
@@ -52,7 +53,7 @@ class AdKYandexInterstitialProxy(
 
     override fun initInterstitialAd() {
         if (_activity != null) {
-            Log.d(TAG, "onCreate: InterstitialAdLoader")
+            UtilKLogWrapper.d(TAG, "onCreate: InterstitialAdLoader")
             _interstitialAdLoader = InterstitialAdLoader(_activity!!).apply {
                 setAdLoadListener(this@AdKYandexInterstitialProxy)
             }
@@ -67,7 +68,7 @@ class AdKYandexInterstitialProxy(
             AdRequestConfiguration.Builder(_adUnitId)
         }.build()
         _interstitialAdLoader?.loadAd(adRequest) ?: run {
-            Log.d(TAG, "loadInterstitialAd: null")
+            UtilKLogWrapper.d(TAG, "loadInterstitialAd: null")
         }
     }
 
@@ -117,43 +118,43 @@ class AdKYandexInterstitialProxy(
     //////////////////////////////////////////////////////////////////////
 
     override fun onAdLoaded(interstitialAd: InterstitialAd) {
-        Log.d(TAG, "onAdLoaded: ")
+        UtilKLogWrapper.d(TAG, "onAdLoaded: ")
         _interstitialAdLoadListener?.onAdLoaded(interstitialAd)
 
         _interstitialAd = interstitialAd
     }
 
     override fun onAdFailedToLoad(adRequestError: AdRequestError) {
-        Log.e(TAG, "onAdFailedToLoad: AdRequestError $adRequestError")
+        UtilKLogWrapper.e(TAG, "onAdFailedToLoad: AdRequestError $adRequestError")
         _interstitialAdLoadListener?.onAdFailedToLoad(adRequestError)
     }
 
     //////////////////////////////////////////////////////////////////////
 
     override fun onAdShown() {
-        Log.d(TAG, "onAdShown: ")
+        UtilKLogWrapper.d(TAG, "onAdShown: ")
         _interstitialAdEventListener?.onAdShown()
     }
 
     override fun onAdFailedToShow(p0: AdError) {
-        Log.e(TAG, "onAdFailedToShow: AdError $p0")
+        UtilKLogWrapper.e(TAG, "onAdFailedToShow: AdError $p0")
         _interstitialAdEventListener?.onAdFailedToShow(p0)
     }
 
     override fun onAdDismissed() {
-        Log.d(TAG, "onAdDismissed: ")
+        UtilKLogWrapper.d(TAG, "onAdDismissed: ")
         _interstitialAdEventListener?.onAdDismissed()
 
 //        destroyInterstitialAd()// Now you can preload the next interstitial ad.
     }
 
     override fun onAdClicked() {
-        Log.d(TAG, "onAdClicked: ")
+        UtilKLogWrapper.d(TAG, "onAdClicked: ")
         _interstitialAdEventListener?.onAdClicked()
     }
 
     override fun onAdImpression(p0: ImpressionData?) {
-        Log.d(TAG, "onAdImpression: ImpressionData $p0")
+        UtilKLogWrapper.d(TAG, "onAdImpression: ImpressionData $p0")
         _interstitialAdEventListener?.onAdImpression(p0)
     }
 }

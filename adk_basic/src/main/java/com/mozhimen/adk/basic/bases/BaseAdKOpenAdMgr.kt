@@ -1,6 +1,7 @@
 package com.mozhimen.adk.basic.bases
 
 import android.util.Log
+import com.mozhimen.basick.utilk.android.util.UtilKLogWrapper
 import com.mozhimen.basick.lintk.optins.OApiInit_ByLazy
 import com.mozhimen.basick.lintk.optins.OApiInit_InApplication
 import com.mozhimen.basick.lintk.optins.OApiUse_BaseApplication
@@ -36,7 +37,7 @@ open class BaseAdKOpenAdMgr(adUnitId: String) : IUtilK {
     }
 
     fun init() {
-        Log.d(TAG, "init: ")
+        UtilKLogWrapper.d(TAG, "init: ")
     }
 
     //////////////////////////////////////////////////////////////////////////////

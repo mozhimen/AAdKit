@@ -2,6 +2,7 @@ package com.mozhimen.adk.google
 
 import android.content.Context
 import android.util.Log
+import com.mozhimen.basick.utilk.android.util.UtilKLogWrapper
 import com.google.android.gms.ads.MobileAds
 import com.google.android.gms.ads.initialization.AdapterStatus
 import com.mozhimen.abilityk.google.android.gms.ads.optins.OMetaData_GMS_ADS_APPLICATION_ID
@@ -43,12 +44,12 @@ object AdKGoogleMgr : IUtilK {
             if (readyAdapter != null) {
                 // 适配器的名称
                 val adapterName = readyAdapter.key
-                Log.d(TAG, "初始化: success adapterName $adapterName")
+                UtilKLogWrapper.d(TAG, "初始化: success adapterName $adapterName")
                 CacheUtil.is_init_success = true
                 listener.invoke(true)
                 return@initialize
             }
-            Log.d(TAG, "初始化: fail")
+            UtilKLogWrapper.d(TAG, "初始化: fail")
             CacheUtil.is_init_success = false
             listener.invoke(false)
         }

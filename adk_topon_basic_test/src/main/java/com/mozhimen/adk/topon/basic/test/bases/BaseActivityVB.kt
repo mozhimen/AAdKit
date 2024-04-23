@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.text.TextUtils
 import android.text.method.ScrollingMovementMethod
 import android.util.Log
+import com.mozhimen.basick.utilk.android.util.UtilKLogWrapper
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
@@ -85,7 +86,7 @@ abstract class BaseActivityVDB<VB : ViewDataBinding> : BaseActivityVDB<VB>() {
 
     private fun initPlacementListAdapter(spinner: Spinner?) {
         if (spinner == null || mPlacementIdMap == null || mPlacementIdMap!!.size == 0) return
-        Log.d(TAG, "initPlacementListAdapter: mPlacementIdMap ${mPlacementIdMap!!.size}")
+        UtilKLogWrapper.d(TAG, "initPlacementListAdapter: mPlacementIdMap ${mPlacementIdMap!!.size}")
         val placementNameList: List<String> = ArrayList(mPlacementIdMap!!.keys)
         val adapter = ArrayAdapter(
             this, android.R.layout.simple_spinner_dropdown_item, placementNameList
@@ -116,7 +117,7 @@ abstract class BaseActivityVDB<VB : ViewDataBinding> : BaseActivityVDB<VB>() {
     private fun initViewWithCommonView(commonViewBean: CommonViewBean?) {
         mCommonViewBean = commonViewBean
         if (commonViewBean != null) {
-            Log.d(TAG, "initViewWithCommonView: ")
+            UtilKLogWrapper.d(TAG, "initViewWithCommonView: ")
             val titleBar: BarKTitle? = commonViewBean.getTitleBar()
             if (titleBar != null) {
                 setTitleBar(titleBar, commonViewBean.getTitleResId())

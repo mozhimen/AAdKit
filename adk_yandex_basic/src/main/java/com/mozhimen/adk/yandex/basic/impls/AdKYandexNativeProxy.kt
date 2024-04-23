@@ -2,6 +2,7 @@ package com.mozhimen.adk.yandex.basic.impls
 
 import android.app.Activity
 import android.util.Log
+import com.mozhimen.basick.utilk.android.util.UtilKLogWrapper
 import android.view.ViewGroup
 import androidx.lifecycle.LifecycleOwner
 import com.mozhimen.adk.basic.commons.IAdKNativeProxy
@@ -45,7 +46,7 @@ class AdKYandexNativeProxy :
     //////////////////////////////////////////////////////////////////
 
     fun initNativeAdListener(nativeAdListener: NativeAdLoadListener?, nativeAdLoadedListener: INativeAdLoadedListener?, nativeAdEventListener: NativeAdEventListener?) {
-        Log.d(TAG, "initNativeAdListener: ")
+        UtilKLogWrapper.d(TAG, "initNativeAdListener: ")
         _nativeAdLoadListener = nativeAdListener
         _nativeAdLoadedListener = nativeAdLoadedListener
         _nativeAdEventListener = nativeAdEventListener
@@ -122,7 +123,7 @@ class AdKYandexNativeProxy :
     //////////////////////////////////////////////////////////////////
 
     override fun onAdLoaded(p0: NativeAd) {
-        Log.d(TAG, "onAdLoaded: ")
+        UtilKLogWrapper.d(TAG, "onAdLoaded: ")
 
         _nativeAdLoadListener?.onAdLoaded(p0)
 
@@ -134,7 +135,7 @@ class AdKYandexNativeProxy :
     }
 
     override fun onAdFailedToLoad(p0: AdRequestError) {
-        Log.e(TAG, "onAdFailedToLoad: $p0")
+        UtilKLogWrapper.e(TAG, "onAdFailedToLoad: $p0")
 
         _nativeAdLoadListener?.onAdFailedToLoad(p0)
     }
@@ -142,25 +143,25 @@ class AdKYandexNativeProxy :
     //////////////////////////////////////////////////////////////////
 
     override fun onAdClicked() {
-        Log.d(TAG, "onAdClicked: ")
+        UtilKLogWrapper.d(TAG, "onAdClicked: ")
 
         _nativeAdEventListener?.onAdClicked()
     }
 
     override fun onLeftApplication() {
-        Log.d(TAG, "onLeftApplication: ")
+        UtilKLogWrapper.d(TAG, "onLeftApplication: ")
 
         _nativeAdEventListener?.onLeftApplication()
     }
 
     override fun onReturnedToApplication() {
-        Log.d(TAG, "onReturnedToApplication: ")
+        UtilKLogWrapper.d(TAG, "onReturnedToApplication: ")
 
         _nativeAdEventListener?.onReturnedToApplication()
     }
 
     override fun onImpression(data: ImpressionData?) {
-        Log.d(TAG, "onImpression: ")
+        UtilKLogWrapper.d(TAG, "onImpression: ")
 
         _nativeAdEventListener?.onImpression(data)
     }

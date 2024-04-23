@@ -3,6 +3,7 @@ package com.mozhimen.adk.topon.basic.test.utils
 import android.content.Context
 import android.text.TextUtils
 import android.util.Log
+import com.mozhimen.basick.utilk.android.util.UtilKLogWrapper
 import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
@@ -296,15 +297,15 @@ object SelfRenderViewUtil : IUtilK {
         if (adMaterial == null) return
         val adType = adMaterial.adType
         when (adType) {
-            CustomNativeAd.NativeAdConst.VIDEO_TYPE -> Log.i(TAG, "Ad source type: Video" + ", video duration: " + adMaterial.videoDuration)
-            CustomNativeAd.NativeAdConst.IMAGE_TYPE -> Log.i(TAG, "Ad source type: Image")
-            else -> Log.i(TAG, "Ad source type: Unknown")
+            CustomNativeAd.NativeAdConst.VIDEO_TYPE -> UtilKLogWrapper.i(TAG, "Ad source type: Video" + ", video duration: " + adMaterial.videoDuration)
+            CustomNativeAd.NativeAdConst.IMAGE_TYPE -> UtilKLogWrapper.i(TAG, "Ad source type: Image")
+            else -> UtilKLogWrapper.i(TAG, "Ad source type: Unknown")
         }
         when (adMaterial.nativeType) {
-            CustomNativeAd.NativeType.FEED -> Log.i(TAG, "Native type: Feed")
-            CustomNativeAd.NativeType.PATCH -> Log.i(TAG, "Native type: Patch")
+            CustomNativeAd.NativeType.FEED -> UtilKLogWrapper.i(TAG, "Native type: Feed")
+            CustomNativeAd.NativeType.PATCH -> UtilKLogWrapper.i(TAG, "Native type: Patch")
         }
-        Log.i(
+        UtilKLogWrapper.i(
             TAG, """
      show native material:
      adMaterial:$adMaterial

@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import com.mozhimen.basick.utilk.android.util.UtilKLogWrapper
 import android.view.View
 import android.widget.FrameLayout
 import android.widget.Toast
@@ -87,39 +88,39 @@ class SplashAdShowActivity : BaseActivityVDB<SplashAdShowBinding>(), ATSplashExL
 
         splashAd!!.setAdSourceStatusListener(object : ATAdSourceStatusListener {
             override fun onAdSourceBiddingAttempt(adInfo: ATAdInfo) {
-                Log.i(TAG, "onAdSourceBiddingAttempt: $adInfo")
+                UtilKLogWrapper.i(TAG, "onAdSourceBiddingAttempt: $adInfo")
             }
 
             override fun onAdSourceBiddingFilled(adInfo: ATAdInfo) {
-                Log.i(TAG, "onAdSourceBiddingFilled: $adInfo")
+                UtilKLogWrapper.i(TAG, "onAdSourceBiddingFilled: $adInfo")
             }
 
             override fun onAdSourceBiddingFail(adInfo: ATAdInfo, adError: AdError) {
-                Log.i(TAG, "onAdSourceBiddingFail Info: $adInfo")
-                Log.i(TAG, "onAdSourceBiddingFail error: " + adError.fullErrorInfo)
+                UtilKLogWrapper.i(TAG, "onAdSourceBiddingFail Info: $adInfo")
+                UtilKLogWrapper.i(TAG, "onAdSourceBiddingFail error: " + adError.fullErrorInfo)
             }
 
             override fun onAdSourceAttempt(adInfo: ATAdInfo) {
-                Log.i(TAG, "onAdSourceAttempt: $adInfo")
+                UtilKLogWrapper.i(TAG, "onAdSourceAttempt: $adInfo")
             }
 
             override fun onAdSourceLoadFilled(adInfo: ATAdInfo) {
-                Log.i(TAG, "onAdSourceLoadFilled: $adInfo")
+                UtilKLogWrapper.i(TAG, "onAdSourceLoadFilled: $adInfo")
             }
 
             override fun onAdSourceLoadFail(adInfo: ATAdInfo, adError: AdError) {
-                Log.i(TAG, "onAdSourceLoadFail Info: $adInfo")
-                Log.i(TAG, "onAdSourceLoadFail error: " + adError.fullErrorInfo)
+                UtilKLogWrapper.i(TAG, "onAdSourceLoadFail Info: $adInfo")
+                UtilKLogWrapper.i(TAG, "onAdSourceLoadFail error: " + adError.fullErrorInfo)
             }
         })
 
         if (splashAd!!.isAdReady()) {
-            Log.i(TAG, "SplashAd is ready to show.")
+            UtilKLogWrapper.i(TAG, "SplashAd is ready to show.")
             //splashAd.show(SplashAdShowActivity.this, container);
             //showAdWithCustomSkipView();//show with customSkipView
             splashAd!!.show(this@SplashAdShowActivity, container, AdConst.SCENARIO_ID.SPLASH_AD_SCENARIO)
         } else {
-            Log.i(TAG, "SplashAd isn't ready to show, start to request.")
+            UtilKLogWrapper.i(TAG, "SplashAd isn't ready to show, start to request.")
             splashAd!!.loadAd()
         }
     }
@@ -138,7 +139,7 @@ class SplashAdShowActivity : BaseActivityVDB<SplashAdShowBinding>(), ATSplashExL
 //
 //            @Override
 //            public void isSupportCustomSkipView(boolean isSupport) {
-//                Log.i(TAG, "isSupportCustomSkipView: " + isSupport);
+//                UtilKLogWrapper.i(TAG, "isSupportCustomSkipView: " + isSupport);
 //                if (isSupport) {
 //                    skipView.setVisibility(View.VISIBLE);
 //                }
@@ -150,7 +151,7 @@ class SplashAdShowActivity : BaseActivityVDB<SplashAdShowBinding>(), ATSplashExL
             }
 
             override fun isSupportCustomSkipView(isSupport: Boolean) {
-                Log.i(TAG, "isSupportCustomSkipView: $isSupport")
+                UtilKLogWrapper.i(TAG, "isSupportCustomSkipView: $isSupport")
                 if (isSupport) {
                     vdb.splashAdSkip.visibility = View.VISIBLE
                 }
@@ -159,13 +160,13 @@ class SplashAdShowActivity : BaseActivityVDB<SplashAdShowBinding>(), ATSplashExL
     }
 
     override fun onAdLoaded(isTimeout: Boolean) {
-        Log.i(TAG, "onAdLoaded---------isTimeout:$isTimeout")
+        UtilKLogWrapper.i(TAG, "onAdLoaded---------isTimeout:$isTimeout")
         if (!inForeBackground) {
             needShowSplashAd = true
             return
         }
         if (!splashAd!!.isAdReady) {
-            Log.e(TAG, "onAdLoaded: no cache")
+            UtilKLogWrapper.e(TAG, "onAdLoaded: no cache")
             jumpToMainActivity()
             return
         }
@@ -174,7 +175,7 @@ class SplashAdShowActivity : BaseActivityVDB<SplashAdShowBinding>(), ATSplashExL
 //            splashAd.show(this, container, "f628c7999265cd");
     }
     override fun onDeeplinkCallback(adInfo: ATAdInfo?, isSuccess: Boolean) {
-        Log.i(TAG, "onDeeplinkCallback:" + adInfo.toString() + "--status:" + isSuccess)
+        UtilKLogWrapper.i(TAG, "onDeeplinkCallback:" + adInfo.toString() + "--status:" + isSuccess)
     }
 
     fun jumpToMainActivity() {
@@ -192,7 +193,7 @@ class SplashAdShowActivity : BaseActivityVDB<SplashAdShowBinding>(), ATSplashExL
                         window.decorView
                     )
                 } catch (e: Throwable) {
-                    Log.e(TAG, "jumpToMainActivity: ------------------------------------------ error")
+                    UtilKLogWrapper.e(TAG, "jumpToMainActivity: ------------------------------------------ error")
                     e.printStackTrace()
                 }
                 val intent = Intent(this, TestMainActivity::class.java)
@@ -205,25 +206,25 @@ class SplashAdShowActivity : BaseActivityVDB<SplashAdShowBinding>(), ATSplashExL
     }
 
     override fun onAdLoadTimeout() {
-        Log.i(TAG, "onAdLoadTimeout---------")
+        UtilKLogWrapper.i(TAG, "onAdLoadTimeout---------")
         Toast.makeText(applicationContext, "onAdLoadTimeout", Toast.LENGTH_SHORT).show()
     }
 
     override fun onNoAdError(adError: AdError) {
-        Log.i(TAG, "onNoAdError---------:" + adError.fullErrorInfo)
+        UtilKLogWrapper.i(TAG, "onNoAdError---------:" + adError.fullErrorInfo)
         jumpToMainActivity()
     }
 
     override fun onAdShow(entity: ATAdInfo) {
-        Log.i(TAG, "onAdShow:\n$entity")
+        UtilKLogWrapper.i(TAG, "onAdShow:\n$entity")
     }
 
     override fun onAdClick(entity: ATAdInfo) {
-        Log.i(TAG, "onAdClick:\n$entity")
+        UtilKLogWrapper.i(TAG, "onAdClick:\n$entity")
     }
 
     override fun onAdDismiss(entity: ATAdInfo, splashAdExtraInfo: ATSplashAdExtraInfo) {
-        Log.i(TAG, """
+        UtilKLogWrapper.i(TAG, """
      onAdDismiss type:${splashAdExtraInfo.dismissType}
      $entity
      """.trimIndent()

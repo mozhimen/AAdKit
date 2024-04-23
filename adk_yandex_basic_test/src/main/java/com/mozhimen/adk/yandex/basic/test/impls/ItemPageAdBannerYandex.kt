@@ -1,6 +1,7 @@
 package com.mozhimen.adk.yandex.basic.test.impls
 
 import android.util.Log
+import com.mozhimen.basick.utilk.android.util.UtilKLogWrapper
 import android.widget.FrameLayout
 import com.mozhimen.adk.yandex.basic.bases.BaseBannerAdEventCallback
 import com.mozhimen.adk.yandex.basic.impls.AdKYandexBannerProxy
@@ -71,7 +72,7 @@ class ItemPageAdBannerYandex : BasePagingKVHKProvider<PageBundle>() {
     override fun onViewRecycled(holder: VHKRecycler, item: PageBundle?, position: Int?) {
         if (item != null && item is PageBundle_AdBannerYandex) {
             if (item.bannerAdView != null) {
-                Log.d(TAG, "onViewRecycled: item $item")
+                UtilKLogWrapper.d(TAG, "onViewRecycled: item $item")
                 item.bannerAdView = null
             }
         }

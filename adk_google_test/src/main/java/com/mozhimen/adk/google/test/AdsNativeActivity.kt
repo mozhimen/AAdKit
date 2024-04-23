@@ -2,6 +2,7 @@ package com.mozhimen.adk.google.test
 
 import android.os.Bundle
 import android.util.Log
+import com.mozhimen.basick.utilk.android.util.UtilKLogWrapper
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
@@ -80,28 +81,28 @@ class AdsNativeActivity : BaseActivityVDB<ActivityAdsNativeBinding>() {
                                 it.videoController.videoLifecycleCallbacks = object : VideoController.VideoLifecycleCallbacks() {
                                     override fun onVideoStart() {
                                         // 视频开始
-                                        Log.i(TAG, "onVideoStart")
+                                        UtilKLogWrapper.i(TAG, "onVideoStart")
                                     }
 
                                     override fun onVideoEnd() {
                                         // 视频结束，结束后可以刷新广告
-                                        Log.i(TAG, "onVideoEnd")
+                                        UtilKLogWrapper.i(TAG, "onVideoEnd")
                                     }
 
                                     override fun onVideoPlay() {
                                         // 视频播放
-                                        Log.i(TAG, "onVideoPlay")
+                                        UtilKLogWrapper.i(TAG, "onVideoPlay")
                                     }
 
                                     override fun onVideoPause() {
                                         // 视频暂停
-                                        Log.i(TAG, "onVideoPause")
+                                        UtilKLogWrapper.i(TAG, "onVideoPause")
                                     }
 
                                     override fun onVideoMute(mute: Boolean) {
                                         // 视频是否静音
                                         // mute true 静音 false 非静音
-                                        Log.i(TAG, "onVideoMute mute:$mute")
+                                        UtilKLogWrapper.i(TAG, "onVideoMute mute:$mute")
                                     }
                                 }
                             }

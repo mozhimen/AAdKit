@@ -1,6 +1,7 @@
 package com.mozhimen.adk.google.test.impls
 
 import android.util.Log
+import com.mozhimen.basick.utilk.android.util.UtilKLogWrapper
 import android.widget.FrameLayout
 import com.google.android.gms.ads.AdListener
 import com.mozhimen.adk.google.impls.AdKGoogleBannerProxy
@@ -70,7 +71,7 @@ class ItemPageAdBannerGoogle : BasePagingKVHKProvider<PageBundle>() {
     override fun onViewRecycled(holder: VHKRecycler, item: PageBundle?, position: Int?) {
         if (item != null && item is PageBundle_AdBannerGoogle) {
             if (item.bannerAdView != null) {
-                Log.d(TAG, "onViewRecycled: item $item")
+                UtilKLogWrapper.d(TAG, "onViewRecycled: item $item")
                 item.bannerAdView = null
             }
         }

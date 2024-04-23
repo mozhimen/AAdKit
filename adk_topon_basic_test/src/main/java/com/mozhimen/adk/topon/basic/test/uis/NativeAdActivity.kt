@@ -2,6 +2,7 @@ package com.mozhimen.adk.topon.basic.test.uis
 
 import android.annotation.SuppressLint
 import android.util.Log
+import com.mozhimen.basick.utilk.android.util.UtilKLogWrapper
 import android.view.KeyEvent
 import android.view.View
 import android.widget.TextView
@@ -121,7 +122,7 @@ class NativeAdActivity : BaseActivity(), View.OnClickListener {
                 } else if (action == CVideoAction.VIDEO_PROGRESS) {
                     if (mNativeAd != null) {
                         val tips = "video duration: " + mNativeAd!!.videoDuration + ", progress: " + mNativeAd!!.videoProgress
-                        Log.i(TAG, tips)
+                        UtilKLogWrapper.i(TAG, tips)
                         Toast.makeText(this@NativeAdActivity, tips, Toast.LENGTH_LONG).show()
                     }
                 }
@@ -133,12 +134,12 @@ class NativeAdActivity : BaseActivity(), View.OnClickListener {
     private fun initATNativeAd(placementId: String) {
         mATNative = ATNative(this, placementId, object : ATNativeNetworkListener {
             override fun onNativeAdLoaded() {
-                Log.i(TAG, "onNativeAdLoaded")
+                UtilKLogWrapper.i(TAG, "onNativeAdLoaded")
                 printLogOnUI("load success...")
             }
 
             override fun onNativeAdLoadFail(adError: AdError) {
-                Log.i(TAG, "onNativeAdLoadFail, " + adError.fullErrorInfo)
+                UtilKLogWrapper.i(TAG, "onNativeAdLoadFail, " + adError.fullErrorInfo)
                 printLogOnUI("load fail...：" + adError.fullErrorInfo)
             }
         })
@@ -156,13 +157,13 @@ class NativeAdActivity : BaseActivity(), View.OnClickListener {
 
     private fun isAdReady(): Boolean {
         val isReady = mATNative!!.checkAdStatus().isReady
-        Log.i(TAG, "isAdReady: $isReady")
+        UtilKLogWrapper.i(TAG, "isAdReady: $isReady")
         printLogOnUI("isAdReady：$isReady")
         val atAdInfoList = mATNative!!.checkValidAdCaches()
-        Log.i(TAG, "Valid Cahce size:" + (atAdInfoList?.size ?: 0))
+        UtilKLogWrapper.i(TAG, "Valid Cahce size:" + (atAdInfoList?.size ?: 0))
         if (atAdInfoList != null) {
             for (adInfo in atAdInfoList) {
-                Log.i(TAG, "\nCahce detail:$adInfo")
+                UtilKLogWrapper.i(TAG, "\nCahce detail:$adInfo")
             }
         }
         return isReady
@@ -178,38 +179,38 @@ class NativeAdActivity : BaseActivity(), View.OnClickListener {
             mNativeAd = nativeAd
             mNativeAd!!.setNativeEventListener(object : ATNativeEventExListener {
                 override fun onDeeplinkCallback(view: ATNativeAdView, adInfo: ATAdInfo, isSuccess: Boolean) {
-                    Log.i(TAG, "onDeeplinkCallback:$adInfo--status:$isSuccess")
+                    UtilKLogWrapper.i(TAG, "onDeeplinkCallback:$adInfo--status:$isSuccess")
                     printLogOnUI("onDeeplinkCallback")
                 }
 
                 override fun onAdImpressed(view: ATNativeAdView, entity: ATAdInfo) {
-                    Log.i(TAG, "native ad onAdImpressed:\n$entity")
+                    UtilKLogWrapper.i(TAG, "native ad onAdImpressed:\n$entity")
                     printLogOnUI("onAdImpressed")
                 }
 
                 override fun onAdClicked(view: ATNativeAdView, entity: ATAdInfo) {
-                    Log.i(TAG, "native ad onAdClicked:\n$entity")
+                    UtilKLogWrapper.i(TAG, "native ad onAdClicked:\n$entity")
                     printLogOnUI("onAdClicked")
                 }
 
                 override fun onAdVideoStart(view: ATNativeAdView) {
-                    Log.i(TAG, "native ad onAdVideoStart")
+                    UtilKLogWrapper.i(TAG, "native ad onAdVideoStart")
                     printLogOnUI("onAdVideoStart")
                 }
 
                 override fun onAdVideoEnd(view: ATNativeAdView) {
-                    Log.i(TAG, "native ad onAdVideoEnd")
+                    UtilKLogWrapper.i(TAG, "native ad onAdVideoEnd")
                     printLogOnUI("onAdVideoEnd")
                 }
 
                 override fun onAdVideoProgress(view: ATNativeAdView, progress: Int) {
-                    Log.i(TAG, "native ad onAdVideoProgress:$progress")
+                    UtilKLogWrapper.i(TAG, "native ad onAdVideoProgress:$progress")
                     printLogOnUI("onAdVideoProgress")
                 }
             })
             mNativeAd!!.setDislikeCallbackListener(object : ATNativeDislikeListener() {
                 override fun onAdCloseButtonClick(view: ATNativeAdView, entity: ATAdInfo) {
-                    Log.i(TAG, "native ad onAdCloseButtonClick")
+                    UtilKLogWrapper.i(TAG, "native ad onAdCloseButtonClick")
                     printLogOnUI("native ad onAdCloseButtonClick")
                     exitNativePanel()
                 }

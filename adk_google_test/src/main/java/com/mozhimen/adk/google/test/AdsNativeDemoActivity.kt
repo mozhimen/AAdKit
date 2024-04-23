@@ -19,6 +19,7 @@ import android.annotation.SuppressLint
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
+import com.mozhimen.basick.utilk.android.util.UtilKLogWrapper
 import android.view.View
 import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdLoader
@@ -48,7 +49,7 @@ class AdsNativeDemoActivity : BaseActivityVDB<ActivityAdsNativeDemoBinding>() {
 
     override fun initView(savedInstanceState: Bundle?) {
         // Log the Mobile Ads SDK version.
-        Log.d(TAG, "Google Mobile Ads SDK Version: " + MobileAds.getVersion())
+        UtilKLogWrapper.d(TAG, "Google Mobile Ads SDK Version: " + MobileAds.getVersion())
         initializeMobileAdsSdk()
 
         vdb.refreshButton.visibility = View.VISIBLE

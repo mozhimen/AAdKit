@@ -5,6 +5,7 @@ import android.app.Activity
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
+import com.mozhimen.basick.utilk.android.util.UtilKLogWrapper
 import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
@@ -59,14 +60,14 @@ class TestMainActivity : Activity(), IUtilK {
                     findViewById(R.id.content), object : SplashZoomOutManager.AnimationCallBack {
                         override fun animationStart(animationTime: Int) {}
                         override fun animationEnd() {
-                            Log.i(TAG, "animationEnd---------: eye")
+                            UtilKLogWrapper.i(TAG, "animationEnd---------: eye")
                             SplashEyeAdHolder.splashEyeAd?.onFinished()
                         }
                     })
             }
 
             override fun onAdDismiss(isSupportEyeSplash: Boolean, errorMsg: String) {
-                Log.i(TAG, "onAdDismiss---------: close eye ad")
+                UtilKLogWrapper.i(TAG, "onAdDismiss---------: close eye ad")
                 val zoomOutManager: SplashZoomOutManager = SplashZoomOutManager.getInstance(applicationContext)
                 zoomOutManager.clearStaticData()
                 SplashEyeAdHolder.splashEyeAd?.destroy()

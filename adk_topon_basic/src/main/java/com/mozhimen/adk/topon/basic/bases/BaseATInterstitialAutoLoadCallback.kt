@@ -1,6 +1,7 @@
 package com.mozhimen.adk.topon.basic.bases
 
 import android.util.Log
+import com.mozhimen.basick.utilk.android.util.UtilKLogWrapper
 import com.anythink.core.api.AdError
 import com.anythink.interstitial.api.ATInterstitialAutoLoadListener
 import com.mozhimen.basick.utilk.commons.IUtilK

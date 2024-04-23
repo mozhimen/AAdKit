@@ -2,6 +2,7 @@ package com.mozhimen.adk.topon.basic.bases
 
 import android.content.Context
 import android.util.Log
+import com.mozhimen.basick.utilk.android.util.UtilKLogWrapper
 import android.widget.ScrollView
 import com.anythink.banner.api.ATBannerExListener
 import com.anythink.core.api.ATAdInfo

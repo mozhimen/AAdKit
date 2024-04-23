@@ -11,6 +11,7 @@ package com.mozhimen.adk.yandex.basic.test
 
 import android.os.Bundle
 import android.util.Log
+import com.mozhimen.basick.utilk.android.util.UtilKLogWrapper
 import com.mozhimen.adk.yandex.basic.impls.AdKYandexInterstitialProxy
 import com.mozhimen.adk.yandex.basic.test.databinding.ActivityInterstitialAdBinding
 import com.mozhimen.adk.yandex.basic.test.network.Network
@@ -70,7 +71,7 @@ class InterstitialAdActivity : BaseActivityVB<ActivityInterstitialAdBinding>() {
 
     @OptIn(OApiInit_ByLazy::class, OApiCall_BindLifecycle::class, OApiCall_BindViewLifecycle::class)
     override fun initView(savedInstanceState: Bundle?) {
-        Log.d(TAG, "initView: ")
+        UtilKLogWrapper.d(TAG, "initView: ")
         _adKYandexInterstitialProxy.apply {
             initInterstitialAdListener(_interstitialAdLoadListener, _interstitialAdEventListener)
             initInterstitialAdParams(selectedNetwork.adUnitId)

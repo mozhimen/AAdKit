@@ -3,6 +3,7 @@ package com.mozhimen.adk.basic.bases
 import android.app.Activity
 import android.app.Application
 import android.util.Log
+import com.mozhimen.basick.utilk.android.util.UtilKLogWrapper
 import com.mozhimen.adk.basic.commons.IAdKOpenProxy
 import com.mozhimen.basick.elemk.android.app.bases.BaseActivityLifecycleCallbacks
 import com.mozhimen.basick.elemk.kotlin.properties.VarProperty_Set
@@ -30,7 +31,7 @@ abstract class BaseAdKOpenAdMgr2(application: Application, private val _keyWord:
     protected val _autoShowOpenAd = AtomicBoolean(false)
 
     protected var _activityRef: WeakReference<Activity>? by VarProperty_Set(null) { _, value ->
-        Log.d(TAG, "_activityRef: ")
+        UtilKLogWrapper.d(TAG, "_activityRef: ")
         if (value != null && _isAdLoad) {
             value.get()?.let {
                 showAppOpenAd(it)
@@ -76,7 +77,7 @@ abstract class BaseAdKOpenAdMgr2(application: Application, private val _keyWord:
     //////////////////////////////////////////////////////////////////////////////
 
     fun init() {
-        Log.d(TAG, "init: 开屏广告初始化")
+        UtilKLogWrapper.d(TAG, "init: 开屏广告初始化")
     }
 
     //////////////////////////////////////////////////////////////////////////////

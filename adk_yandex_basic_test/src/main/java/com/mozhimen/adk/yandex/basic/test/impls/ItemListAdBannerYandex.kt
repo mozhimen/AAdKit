@@ -1,6 +1,7 @@
 package com.mozhimen.adk.yandex.basic.test.impls
 
 import android.util.Log
+import com.mozhimen.basick.utilk.android.util.UtilKLogWrapper
 import android.widget.FrameLayout
 import com.chad.library.adapter3.provider.BaseItemProvider
 import com.chad.library.adapter3.viewholder.BaseViewHolder
@@ -71,7 +72,7 @@ class ItemListAdBannerYandex : BaseItemProvider<ListBundle>() {
     override fun onViewRecycled(holder: BaseViewHolder, item: ListBundle?, position: Int?) {
         if (item != null && item is ListBundle_AdBannerYandex) {
             if (item.bannerAdView != null) {
-                Log.d(TAG, "onViewRecycled: item $item")
+                UtilKLogWrapper.d(TAG, "onViewRecycled: item $item")
                 item.bannerAdView = null
             }
         }

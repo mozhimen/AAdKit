@@ -1,6 +1,7 @@
 package com.mozhimen.adk.google.impls
 
 import android.util.Log
+import com.mozhimen.basick.utilk.android.util.UtilKLogWrapper
 import android.view.ViewGroup
 import androidx.lifecycle.LifecycleOwner
 import com.google.android.gms.ads.AdListener
@@ -38,7 +39,7 @@ class AdKGoogleBannerProxy : BaseWakeBefDestroyLifecycleObserver(), IAdKBannerPr
     //////////////////////////////////////////////////////////////////////////////////
 
     fun initBannerAdListener(listener: AdListener) {
-        Log.d(TAG, "initBannerAdListener: ")
+        UtilKLogWrapper.d(TAG, "initBannerAdListener: ")
         _bannerAdListener = listener
     }
 
@@ -102,7 +103,7 @@ class AdKGoogleBannerProxy : BaseWakeBefDestroyLifecycleObserver(), IAdKBannerPr
     //////////////////////////////////////////////////////////////////////////////////
 
     override fun onCreate(owner: LifecycleOwner) {
-        Log.d(TAG, "onCreate: ")
+        UtilKLogWrapper.d(TAG, "onCreate: ")
         initBannerAd()
         loadBannerAd()
     }
@@ -116,7 +117,7 @@ class AdKGoogleBannerProxy : BaseWakeBefDestroyLifecycleObserver(), IAdKBannerPr
     }
 
     override fun onDestroy(owner: LifecycleOwner) {
-        Log.d(TAG, "onDestroy: ")
+        UtilKLogWrapper.d(TAG, "onDestroy: ")
 //        hideBanner()
         destroyBannerAd()
         _bannerAdListener = null
@@ -128,7 +129,7 @@ class AdKGoogleBannerProxy : BaseWakeBefDestroyLifecycleObserver(), IAdKBannerPr
     private inner class BannerAdListener : AdListener() {
         override fun onAdLoaded() {
             // 广告加载成功
-            Log.i(TAG, "banner onAdLoaded")
+            UtilKLogWrapper.i(TAG, "banner onAdLoaded")
 //            vdb.btnShowBannerAd.applyVisible()
 //            vdb.btnHideBannerAd.applyVisible()
             _bannerAdListener?.onAdLoaded()
@@ -136,31 +137,31 @@ class AdKGoogleBannerProxy : BaseWakeBefDestroyLifecycleObserver(), IAdKBannerPr
 
         override fun onAdFailedToLoad(loadAdError: LoadAdError) {
             // 广告加载失败
-            Log.e(TAG, "banner onAdFailedToLoad error:${loadAdError.message}")
+            UtilKLogWrapper.e(TAG, "banner onAdFailedToLoad error:${loadAdError.message}")
             _bannerAdListener?.onAdFailedToLoad(loadAdError)
         }
 
         override fun onAdImpression() {
             // 被记录为展示成功时调用
-            Log.i(TAG, "banner onAdImpression")
+            UtilKLogWrapper.i(TAG, "banner onAdImpression")
             _bannerAdListener?.onAdImpression()
         }
 
         override fun onAdClicked() {
             // 被点击时调用
-            Log.i(TAG, "banner onAdClicked")
+            UtilKLogWrapper.i(TAG, "banner onAdClicked")
             _bannerAdListener?.onAdClicked()
         }
 
         override fun onAdOpened() {
             // 广告落地页打开时调用
-            Log.i(TAG, "banner onAdOpened")
+            UtilKLogWrapper.i(TAG, "banner onAdOpened")
             _bannerAdListener?.onAdOpened()
         }
 
         override fun onAdClosed() {
             // 广告落地页关闭时调用
-            Log.i(TAG, "banner onAdClosed")
+            UtilKLogWrapper.i(TAG, "banner onAdClosed")
             _bannerAdListener?.onAdClosed()
         }
     }
