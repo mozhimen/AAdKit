@@ -41,6 +41,7 @@ class AdKTopOnNativeProxy :
     private var _aTNative: ATNative? = null
     private var _nativeAd: NativeAd? = null
     private var _aTNativeView: ATNativeAdView? = null
+    val atNativeAdView get() = _aTNativeView
     private var _placementId = ""
     private var _scenarioId: String = ""
     private var _nativeAdSize: MutableMap<String, Any>? = null
