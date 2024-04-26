@@ -133,12 +133,14 @@ class AdKTopOnNativeProxy :
         }
     }
 
-    override fun addNativeViewToContainer(container: ViewGroup) {
-        if (_aTNativeView != null) {
+    override fun addNativeViewToContainer(container: ViewGroup): Boolean {
+        return if (_aTNativeView != null) {
             UtilKLogWrapper.d(TAG, "addNativeViewToContainer")
             container.addView_ofMatchParent(_aTNativeView!!)// 把 Banner Ad 添加到根布局
+            true
         } else {
             UtilKLogWrapper.d(TAG, "addNativeViewToContainer _aTNativeView null")
+            false
         }
     }
 

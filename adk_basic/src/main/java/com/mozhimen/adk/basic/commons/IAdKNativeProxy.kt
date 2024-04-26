@@ -12,6 +12,6 @@ import android.view.ViewGroup
 interface IAdKNativeProxy {
     fun initNativeAd()
     fun loadNativeAd()
-    fun addNativeViewToContainer(container: ViewGroup)
+    fun addNativeViewToContainer(container: ViewGroup): Boolean
     fun destroyNativeAd()
 }
