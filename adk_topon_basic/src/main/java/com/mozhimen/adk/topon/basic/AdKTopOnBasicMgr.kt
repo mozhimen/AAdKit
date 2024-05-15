@@ -13,6 +13,7 @@ import com.mozhimen.abilityk.google.android.ump.optins.OMetaData_GMS_ADS_APPLICA
 import com.mozhimen.basick.elemk.commons.I_Listener
 import com.mozhimen.basick.lintk.optins.OApiInit_InApplication
 import com.mozhimen.basick.utilk.android.app.UtilKRunningAppProcessInfo
+import com.mozhimen.basick.utilk.android.content.UtilKContextWrapper
 import com.mozhimen.basick.utilk.commons.IUtilK
 import com.mozhimen.webk.basic.WebKMgr
 import java.util.concurrent.atomic.AtomicBoolean
@@ -91,7 +92,7 @@ object AdKTopOnBasicMgr : IUtilK {
 
             WebKMgr.init(context)
 
-            if (UtilKRunningAppProcessInfo.isMainProcess(context)) {
+            if (UtilKContextWrapper.isMainProcess(context)) {
                 if (isDebug) {
                     ATSDK.setNetworkLogDebug(true)
                     ATSDK.integrationChecking(context)
