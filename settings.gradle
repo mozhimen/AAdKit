@@ -17,7 +17,6 @@ dependencyResolutionManagement {
 
         google()
         mavenCentral()
-
         //Anythink(Core)
         maven { url "https://jfrog.anythinktech.com/artifactory/overseas_sdk" }
         //test
