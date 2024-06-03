@@ -41,12 +41,13 @@ include ':app'
 include ':adk_basic'
 include ':adk_google'
 include ':adk_google_test'
-include ':adk_topon_basic'
+include ':adk_topon'
+include ':adk_topon_mainland'
+include ':adk_topon_oversea'
 include ':adk_topon_basic_test'
 include ':adk_topon_basic_test2'
 include ':adk_yandex_basic'
 include ':adk_yandex_basic_test'
-
 //AXmlKit
 include ':AXmlKit'
 project(':AXmlKit').projectDir = new File("D:\\WorkSpace\\GitHub\\AXmlKit")
@@ -69,6 +70,5 @@ include ':AAbilityKit_Google'
 project(':AAbilityKit_Google').projectDir = new File("D:\\WorkSpace\\GitHub\\AAbilityKit_Google")
 include ':AAbilityKit_Google:android_gms_ads'
 include ':AAbilityKit_Google:android_ump'
-
 
 
