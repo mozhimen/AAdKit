@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace 'com.mozhimen.adk.google.test'
+    namespace 'com.mozhimen.adk.topon.test'
     compileSdk 34
 
     defaultConfig {
-        applicationId "com.mozhimen.adk.google.test"
+        applicationId "com.mozhimen.adk.topon.test"
         minSdk 21
         targetSdk 33
         versionCode 1
@@ -45,10 +45,13 @@ android {
 }
 
 dependencies {
+    implementation project(':AXmlKit:bark_title')
     implementation project(':SwiftKit:basick')
+    implementation project(':adk_topon')
     implementation project(':ADebugKit:debugk_leakcanary')
-    implementation project(':adk_google')
 
+    // Debugger UI Tools
+//    implementation 'com.anythink.sdk:debugger-ui:1.0.3'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
 
     testImplementation 'junit:junit:4.13.2'

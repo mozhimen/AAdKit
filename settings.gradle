@@ -44,10 +44,11 @@ include ':adk_google_test'
 include ':adk_topon'
 include ':adk_topon_mainland'
 include ':adk_topon_oversea'
-include ':adk_topon_basic_test'
-include ':adk_topon_basic_test2'
-include ':adk_yandex_basic'
-include ':adk_yandex_basic_test'
+include ':adk_topon_test'
+include ':adk_topon_test2'
+include ':adk_yandex'
+include ':adk_yandex_test'
+include ':adk_inmobi'
 //AXmlKit
 include ':AXmlKit'
 project(':AXmlKit').projectDir = new File("D:\\WorkSpace\\GitHub\\AXmlKit")
@@ -68,7 +69,16 @@ include ':AWebKit:webk_basic'
 //AAbilityKit_Google
 include ':AAbilityKit_Google'
 project(':AAbilityKit_Google').projectDir = new File("D:\\WorkSpace\\GitHub\\AAbilityKit_Google")
-include ':AAbilityKit_Google:android_gms_ads'
+include ':AAbilityKit_Google:android_gms_play_ads'
+include ':AAbilityKit_Google:android_gms_play_ads_identifier'
 include ':AAbilityKit_Google:android_ump'
-
-
+//AAbilityKit_Jetpack
+include ':AAbilityKit_Jetpack'
+project(':AAbilityKit_Jetpack').projectDir = new File("D:\\WorkSpace\\GitHub\\AAbilityKit_Jetpack")
+include ':AAbilityKit_Jetpack:viewpager'
+include ':AAbilityKit_Jetpack:browser'
+include ':AAbilityKit_Jetpack:recyclerview'
+//AAbilityKit_Squareup
+include ':AAbilityKit_Squareup'
+project(':AAbilityKit_Squareup').projectDir = new File("D:\\WorkSpace\\GitHub\\AAbilityKit_Squareup")
+include ':AAbilityKit_Squareup:picasso'

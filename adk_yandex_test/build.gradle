@@ -1,17 +1,16 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
-    id 'kotlin-kapt'
 }
 
 android {
-    namespace 'com.mozhimen.adk.google.test'
+    namespace 'com.mozhimen.adk.yandex.test'
     compileSdk 34
 
     defaultConfig {
-        applicationId "com.mozhimen.adk.google.test"
+        applicationId "com.mozhimen.adk.yandex.test"
         minSdk 21
-        targetSdk 33
+        targetSdk 34
         versionCode 1
         versionName "1.0"
 
@@ -39,17 +38,15 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
-    buildFeatures{
-        dataBinding true
+    buildFeatures {
+        viewBinding = true
     }
 }
 
 dependencies {
     implementation project(':SwiftKit:basick')
-    implementation project(':ADebugKit:debugk_leakcanary')
-    implementation project(':adk_google')
-
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation project(':SwiftKit:xmlk')
+    implementation project(':adk_yandex')
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'

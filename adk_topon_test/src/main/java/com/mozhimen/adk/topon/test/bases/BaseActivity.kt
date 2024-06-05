@@ -1,0 +1,157 @@
+package com.mozhimen.adk.topon.test.bases
+
+import android.app.Activity
+import android.os.Bundle
+import android.text.TextUtils
+import android.text.method.ScrollingMovementMethod
+import android.util.Log
+import com.mozhimen.basick.utilk.android.util.UtilKLogWrapper
+import android.view.View
+import android.view.Window
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.Spinner
+import android.widget.TextView
+import androidx.annotation.CallSuper
+import androidx.appcompat.app.AppCompatActivity
+import com.anythink.core.api.ATAdConst
+import com.anythink.core.api.ATAdInfo
+import com.anythink.core.api.ATAdSourceStatusListener
+import com.mozhimen.adk.topon.test.annors.AAdNativeType
+import com.mozhimen.adk.topon.test.annors.AnnotationAdType
+import com.mozhimen.adk.topon.test.mos.CommonViewBean
+import com.mozhimen.adk.topon.basic.test.utils.PlacementIdUtil
+import com.mozhimen.basick.utilk.android.widget.applyPrintLog
+import com.mozhimen.basick.utilk.commons.IUtilK
+import com.mozhimen.xmlk.bark.title.BarKTitle
+import java.lang.ref.WeakReference
+
+abstract class BaseActivity : AppCompatActivity(), IUtilK {
+    companion object {
+        private var mTVShowLogWR: WeakReference<TextView?>? = null
+
+        @JvmStatic
+        protected fun printLogOnUI(msg: String?) {
+            if (mTVShowLogWR == null || mTVShowLogWR!!.get() == null || TextUtils.isEmpty(msg)) return
+            msg?.let { mTVShowLogWR!!.get()!!.applyPrintLog(it) }
+        }
+    }
+
+    /////////////////////////////////////////////////////////////////
+
+    protected var mCurrentPlacementName: String? = null
+    protected var mCurrentPlacementId: String? = null
+    protected var mTVShowLog: TextView? = null
+
+    /////////////////////////////////////////////////////////////////
+
+    protected abstract val contentViewId: Int
+
+    @get:com.mozhimen.adk.topon.test.annors.AnnotationAdType
+    protected abstract val adType: Int
+
+    protected abstract fun onSelectPlacementId(placementId: String?)
+
+    /////////////////////////////////////////////////////////////////
+
+    @CallSuper
+    protected open fun initView() {
+        initViewWithCommonView(getCommonViewBean())
+    }
+
+    protected open fun initListener() {}
+
+    @CallSuper
+    protected fun initData() {
+        initPlacementIdMap(adType)
+        if (mCommonViewBean != null) {
+            initPlacementListAdapter(mCommonViewBean!!.getSpinnerSelectPlacement())
+        }
+    }
+
+    protected open fun getCommonViewBean(): com.mozhimen.adk.topon.test.mos.CommonViewBean? {
+        return null
+    }
+
+    protected open val nativeAdType: String
+        protected get() = com.mozhimen.adk.topon.test.annors.AAdNativeType.NATIVE_SELF_RENDER_TYPE
+
+    ////////////////////////////////////////////////////////////////////
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        requestWindowFeature(Window.FEATURE_NO_TITLE)
+        setContentView(contentViewId)
+        initView()
+        initListener()
+        initData()
+    }
+
+    ////////////////////////////////////////////////////////////////////
+
+    private var mPlacementIdMap: Map<String, String>? = null
+    private var mCommonViewBean: com.mozhimen.adk.topon.test.mos.CommonViewBean? = null
+
+    private fun setTitleBar(titleBar: BarKTitle?, titleResId: Int) {
+        if (titleBar != null && titleResId != 0) {
+            titleBar.setTitle(titleResId)
+            titleBar.setListener { v -> finish() }
+        }
+    }
+
+    private fun initViewWithCommonView(commonViewBean: com.mozhimen.adk.topon.test.mos.CommonViewBean?) {
+        mCommonViewBean = commonViewBean
+        if (commonViewBean != null) {
+            UtilKLogWrapper.d(TAG, "initViewWithCommonView: ")
+            val titleBar: BarKTitle? = commonViewBean.getTitleBar()
+            if (titleBar != null) {
+                setTitleBar(titleBar, commonViewBean.getTitleResId())
+            }
+            mTVShowLog = commonViewBean.getTvLogView()
+            if (mTVShowLog != null) {
+                mTVShowLogWR = WeakReference(mTVShowLog)
+                mTVShowLog!!.movementMethod = ScrollingMovementMethod.getInstance()
+            }
+        }
+    }
+
+    private fun initPlacementIdMap(@com.mozhimen.adk.topon.test.annors.AnnotationAdType adType: Int) {
+        when (adType) {
+            ATAdConst.ATMixedFormatAdType.SPLASH -> mPlacementIdMap = PlacementIdUtil.getSplashPlacements()
+            ATAdConst.ATMixedFormatAdType.NATIVE -> mPlacementIdMap =
+                if (nativeAdType == com.mozhimen.adk.topon.test.annors.AAdNativeType.NATIVE_SELF_RENDER_TYPE) PlacementIdUtil.getNativeSelfrenderPlacements() else PlacementIdUtil.getNativeExpressPlacements()
+
+            ATAdConst.ATMixedFormatAdType.BANNER -> mPlacementIdMap = PlacementIdUtil.getBannerPlacements()
+            ATAdConst.ATMixedFormatAdType.INTERSTITIAL -> mPlacementIdMap = PlacementIdUtil.getInterstitialPlacements()
+            ATAdConst.ATMixedFormatAdType.REWARDED_VIDEO -> mPlacementIdMap = PlacementIdUtil.getRewardedVideoPlacements()
+        }
+    }
+
+    private fun initPlacementListAdapter(spinner: Spinner?) {
+        if (spinner == null || mPlacementIdMap == null || mPlacementIdMap!!.size == 0) return
+        UtilKLogWrapper.d(TAG, "initPlacementListAdapter: mPlacementIdMap ${mPlacementIdMap!!.size}")
+        val placementNameList: List<String> = ArrayList(mPlacementIdMap!!.keys)
+        val adapter = ArrayAdapter(
+            this, android.R.layout.simple_spinner_dropdown_item, placementNameList
+        )
+        spinner.setAdapter(adapter)
+        spinner.onItemSelectedListener = PlacementSelectListenerImpl()
+    }
+
+    private inner class PlacementSelectListenerImpl : AdapterView.OnItemSelectedListener {
+        override fun onItemSelected(
+            parent: AdapterView<*>, view: View,
+            position: Int, id: Long
+        ) {
+            mCurrentPlacementName = parent.getSelectedItem().toString()
+            if (mPlacementIdMap != null && mPlacementIdMap!!.size > 0) {
+                mCurrentPlacementId = mPlacementIdMap!![mCurrentPlacementName!!]
+            }
+            if (!TextUtils.isEmpty(mCurrentPlacementId)) {
+                onSelectPlacementId(mCurrentPlacementId)
+            }
+        }
+
+        override fun onNothingSelected(parent: AdapterView<*>?) {}
+    }
+}
