@@ -31,7 +31,7 @@ android {
 }
 
 dependencies {
-    api 'com.inmobi.monetization:inmobi-ads:10.1.3'
+    api "com.inmobi.monetization:inmobi-ads-kotlin:10.6.7"
 
     implementation project(':AAbilityKit_Google:android_gms_play_ads_identifier')
     implementation project(':AAbilityKit_Squareup:picasso')

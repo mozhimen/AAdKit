@@ -1,10 +1,9 @@
 package com.mozhimen.adk.yandex.basic.test
 
 import android.os.Bundle
-import android.util.Log
 import com.mozhimen.basick.utilk.android.util.UtilKLogWrapper
 import com.mozhimen.adk.yandex.basic.commons.INativeAdLoadedListener
-import com.mozhimen.adk.yandex.basic.impls.AdKYandexNativeProxy
+import com.mozhimen.adk.yandex.impls.AdKYandexNativeProxy
 import com.mozhimen.adk.yandex.basic.test.databinding.ActivityCustomNativeAdBinding
 import com.mozhimen.basick.elemk.androidx.appcompat.bases.viewbinding.BaseActivityVB
 import com.mozhimen.basick.lintk.optins.OApiCall_BindLifecycle

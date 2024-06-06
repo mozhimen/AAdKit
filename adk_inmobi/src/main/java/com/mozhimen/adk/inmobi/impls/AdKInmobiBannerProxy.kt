@@ -7,12 +7,14 @@ import com.inmobi.ads.InMobiAdRequestStatus
 import com.inmobi.ads.InMobiBanner
 import com.inmobi.ads.listeners.BannerAdEventListener
 import com.mozhimen.adk.basic.commons.IAdKBannerProxy
+import com.mozhimen.adk.inmobi.AdkInmobiMgr
 import com.mozhimen.basick.elemk.androidx.lifecycle.bases.BaseWakeBefDestroyLifecycleObserver
 import com.mozhimen.basick.lintk.optins.OApiCall_BindLifecycle
 import com.mozhimen.basick.lintk.optins.OApiCall_BindViewLifecycle
 import com.mozhimen.basick.lintk.optins.OApiInit_ByLazy
 import com.mozhimen.basick.utilk.android.util.UtilKLogWrapper
-import com.mozhimen.basick.utilk.android.view.addView_ofMatchParent
+import com.mozhimen.basick.utilk.android.view.addViewSafe
+import com.mozhimen.basick.utilk.android.view.addViewSafe_ofMatchParent
 
 /**
  * @ClassName AdKInmobiBannerProxy
@@ -27,34 +29,53 @@ import com.mozhimen.basick.utilk.android.view.addView_ofMatchParent
 class AdKInmobiBannerProxy : BaseWakeBefDestroyLifecycleObserver(), IAdKBannerProxy {
     private var _bannerAdView: InMobiBanner? = null
     val bannerAdView get() = _bannerAdView
-    private var _adUnitId: String = ""
+    private var _adUnitId: Long = 0L
+    private var _enableAutoRefresh = false
+    private var _adSize: Pair<Int, Int>? = null
+    private var _bannerAdListener: BannerAdEventListener? = null
 
     //////////////////////////////////////////////////////////////////////////////////
 
-    fun initBannerAdListener(listener: AdListener) {
-        UtilKLogWrapper.d(TAG, "initBannerAdListener: ")
+    fun initBannerAdListener(listener: BannerAdEventListener) {
         _bannerAdListener = listener
     }
 
-    fun initBannerAdParams(adUnitId: String) {
+    override fun initBannerAdSize(width: Int, height: Int) {
+        _adSize = width to height
+    }
+
+    fun initBannerAdParams(adUnitId: Long) {
         _adUnitId = adUnitId
+    }
+
+    fun initBannerAdAutoRefresh(enableAutoRefresh: Boolean) {
+        _enableAutoRefresh = enableAutoRefresh
     }
 
     //////////////////////////////////////////////////////////////////////////////////
 
     override fun initBannerAd() {
+        // 获取页面的根布局
+        if (AdkInmobiMgr.isInitSuccess()) {
+            _bannerAdView = InMobiBanner(_context, _adUnitId).apply {
+                setAnimationType(InMobiBanner.AnimationType.ROTATE_HORIZONTAL_AXIS)
+                setEnableAutoRefresh(_enableAutoRefresh)
+                _adSize?.let {
+                    setBannerSize(it.first, it.second)
+                }
+                setListener(BannerAdEventCallback())
+            }
+        }
     }
 
     override fun loadBannerAd() {
-    }
-
-    override fun initBannerAdSize(width: Int, height: Int) {
+        _bannerAdView?.load()
     }
 
     override fun addBannerViewToContainer(container: ViewGroup) {
         UtilKLogWrapper.d(TAG, "addBannerViewToContainer: ")
         if (_bannerAdView != null) {
-            container.addView_ofMatchParent(_bannerAdView!!)
+            container.addViewSafe(_bannerAdView!!, _adSize?.first ?: ViewGroup.LayoutParams.MATCH_PARENT, _adSize?.second ?: ViewGroup.LayoutParams.MATCH_PARENT)
         }
     }
 
@@ -74,6 +95,7 @@ class AdKInmobiBannerProxy : BaseWakeBefDestroyLifecycleObserver(), IAdKBannerPr
 
     override fun onDestroy(owner: LifecycleOwner) {
         destroyBannerAd()
+        _bannerAdListener = null
         super.onDestroy(owner)
     }
 
@@ -82,55 +104,62 @@ class AdKInmobiBannerProxy : BaseWakeBefDestroyLifecycleObserver(), IAdKBannerPr
     private inner class BannerAdEventCallback() : BannerAdEventListener() {
         override fun onAdDismissed(p0: InMobiBanner) {
             UtilKLogWrapper.d(TAG, "onAdDismissed:")
+            _bannerAdListener?.onAdDismissed(p0)
         }
 
         override fun onAdDisplayed(p0: InMobiBanner) {
             UtilKLogWrapper.d(TAG, "onAdDisplayed:")
+            _bannerAdListener?.onAdDisplayed(p0)
         }
 
         override fun onUserLeftApplication(p0: InMobiBanner) {
             UtilKLogWrapper.d(TAG, "onUserLeftApplication:")
+            _bannerAdListener?.onUserLeftApplication(p0)
         }
 
         override fun onAdImpression(p0: InMobiBanner) {
             UtilKLogWrapper.d(TAG, "onAdImpression:")
+            _bannerAdListener?.onAdImpression(p0)
         }
 
         override fun onRequestPayloadCreated(p0: ByteArray?) {
             UtilKLogWrapper.d(TAG, "onRequestPayloadCreated:")
+            _bannerAdListener?.onRequestPayloadCreated(p0)
         }
 
         override fun onRequestPayloadCreationFailed(p0: InMobiAdRequestStatus) {
-            UtilKLogWrapper.d(TAG, "onRequestPayloadCreationFailed:")
+            UtilKLogWrapper.e(TAG, "onRequestPayloadCreationFailed: code ${p0.statusCode} message ${p0.message}")
+            _bannerAdListener?.onRequestPayloadCreationFailed(p0)
         }
 
         override fun onAdFetchFailed(p0: InMobiBanner, p1: InMobiAdRequestStatus) {
-            UtilKLogWrapper.d(TAG, "onAdFetchFailed:")
+            UtilKLogWrapper.e(TAG, "onAdFetchFailed: code ${p1.statusCode} message ${p1.message}")
+            _bannerAdListener?.onAdFetchFailed(p0, p1)
         }
 
         override fun onRewardsUnlocked(p0: InMobiBanner, p1: MutableMap<Any, Any>?) {
             UtilKLogWrapper.d(TAG, "onRewardsUnlocked:")
+            _bannerAdListener?.onRewardsUnlocked(p0, p1)
         }
 
         override fun onAdClicked(p0: InMobiBanner, p1: MutableMap<Any, Any>?) {
             UtilKLogWrapper.d(TAG, "onAdClicked:")
+            _bannerAdListener?.onAdClicked(p0, p1)
         }
 
         override fun onAdFetchSuccessful(p0: InMobiBanner, p1: AdMetaInfo) {
             UtilKLogWrapper.d(TAG, "onAdFetchSuccessful:")
+            _bannerAdListener?.onAdFetchSuccessful(p0, p1)
         }
 
         override fun onAdLoadFailed(p0: InMobiBanner, p1: InMobiAdRequestStatus) {
-            UtilKLogWrapper.d(TAG, "onAdLoadFailed:")
+            UtilKLogWrapper.e(TAG, "onAdLoadFailed: code ${p1.statusCode} message ${p1.message}")
+            _bannerAdListener?.onAdLoadFailed(p0, p1)
         }
 
         override fun onAdLoadSucceeded(p0: InMobiBanner, p1: AdMetaInfo) {
-            UtilKLogWrapper.d(TAG, "onAdLoadSucceeded:")
-        }
-
-        @Deprecated("Deprecated in Java")
-        override fun onAdLoadSucceeded(p0: InMobiBanner) {
-            UtilKLogWrapper.d(TAG, "onAdLoadSucceeded:")
+            UtilKLogWrapper.d(TAG, "onAdLoadSucceeded: with bid ${p1.bid}")
+            _bannerAdListener?.onAdLoadSucceeded(p0, p1)
         }
     }
 }

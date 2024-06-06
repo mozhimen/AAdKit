@@ -5,6 +5,8 @@ import androidx.annotation.Size
 import com.inmobi.sdk.InMobiSdk
 import com.inmobi.sdk.SdkInitializationListener
 import com.mozhimen.adk.inmobi.mos.ConsentObject
+import com.mozhimen.adk.inmobi.utils.CacheUtil
+import com.mozhimen.basick.elemk.commons.IAB_Listener
 import com.mozhimen.basick.utilk.android.content.isMainProcess
 import com.mozhimen.basick.utilk.android.util.UtilKLogWrapper
 import com.mozhimen.basick.utilk.commons.IUtilK
@@ -38,27 +40,32 @@ object AdkInmobiMgr : IUtilK {
      * 无论请求是否受 GDPR 法规的约束，与设定值的偏差（0 = 否，1 = 是）都表示未知实体。
      */
     @JvmStatic
-    fun init(context: Context, @Size(min = 32L, max = 36L) accountId: String, consentObject: ConsentObject, listener: SdkInitializationListener? = null) {
+    fun init(context: Context, @Size(min = 32L, max = 36L) accountId: String, consentObject: ConsentObject, listener: IAB_Listener<Boolean, Error?>? = null) {
+        UtilKLogWrapper.d(TAG, "init: ")
         if (!context.isMainProcess()) return
         val jsonObject: JSONObject? = consentObject.toConsentJSONObject()
         init(context, accountId, jsonObject, listener)
     }
 
     @JvmStatic
-    fun init(context: Context, @Size(min = 32L, max = 36L) accountId: String, consentObject: JSONObject? = null, listener: SdkInitializationListener? = null) {
+    fun init(context: Context, @Size(min = 32L, max = 36L) accountId: String, consentObject: JSONObject? = null, listener: IAB_Listener<Boolean, Error?>? = null) {
+        UtilKLogWrapper.d(TAG, "init: ")
         if (!context.isMainProcess()) return
         InMobiSdk.init(
-            context, accountId, consentObject, listener
-            /*SdkInitializationListener() {
-                @Override
-                fun onInitializationComplete(error: Error?) {
+            context, accountId, consentObject,
+            object : SdkInitializationListener {
+                override fun onInitializationComplete(error: java.lang.Error?) {
                     if (null != error) {
-                        Log.e(TAG, "InMobi Init failed -" + error.getMessage())
+                        UtilKLogWrapper.e(TAG, "InMobi Init failed -" + error.message)
+                        CacheUtil.is_init_success = false
+                        listener?.invoke(false, error)
                     } else {
-                        Log.d(TAG, "InMobi Init Successful")
+                        UtilKLogWrapper.d(TAG, "InMobi Init Successful")
+                        CacheUtil.is_init_success = true
+                        listener?.invoke(true, null)
                     }
                 }
-            }*/
+            }
         )
     }
 
@@ -76,4 +83,8 @@ object AdkInmobiMgr : IUtilK {
     fun updateGDPRConsent(consentObject: JSONObject) {
         InMobiSdk.updateGDPRConsent(consentObject);
     }
+
+    @JvmStatic
+    fun isInitSuccess(): Boolean =
+        CacheUtil.is_init_success
 }

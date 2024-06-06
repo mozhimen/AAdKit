@@ -38,8 +38,8 @@ import com.mozhimen.basick.utilk.android.view.addView_ofMatchParent
 class AdKGoogleNativeProxy :
     BaseWakeBefDestroyLifecycleObserver(), IAdKNativeProxy {
 
-    private var _nativeAd: NativeAd? = null
     private var _adLoader: AdLoader? = null
+    private var _nativeAd: NativeAd? = null
     private var _nativeAdView: NativeAdView? = null
     val nativeAdView get() = _nativeAdView
     private var _nativeAdOptions: NativeAdOptions? = NativeAdOptions.Builder()
@@ -52,7 +52,6 @@ class AdKGoogleNativeProxy :
     private var _nativeAdListener: AdListener? = null
     private var _nativeAdLoadedListener: INativeAdLoadedListener? = null
     private var _nativeAdMuteThisListener: MuteThisAdListener? = null
-
 
     ///////////////////////////////////////////////////////////////////////
 
@@ -113,6 +112,10 @@ class AdKGoogleNativeProxy :
     }
 
     override fun loadNativeAd() {
+
+    }
+
+    fun loadNativeAdView() {
         // 如果在页面销毁后触发此回调，需要销毁NativeAd避免内存泄漏
 //            if (_activity.isDestroyed || _activity.isFinishing || _activity.isChangingConfigurations) {
 //                nativeAd.destroy()
@@ -125,85 +128,88 @@ class AdKGoogleNativeProxy :
             if (nativeAd.isCustomMuteThisAdEnabled) {// 判断是否支持自定义不再显示广告
                 _muteThisAdReasons.addAll(nativeAd.muteThisAdReasons)// 获取不再显示广告的原因
             }
-/*//                vdb.btnStopNativeAd.visibility = if (nativeAd.isCustomMuteThisAdEnabled) View.VISIBLE else View.GONE
-            //            nativeAdView?.let { vdb.flNativeAdContainer.removeView(it) }
+            /*//                vdb.btnStopNativeAd.visibility = if (nativeAd.isCustomMuteThisAdEnabled) View.VISIBLE else View.GONE
+                        //            nativeAdView?.let { vdb.flNativeAdContainer.removeView(it) }
 
 
-//            (LayoutInflater.from(_activity).inflate(R.layout.layout_admob_native_ad, null) as? NativeAdView)?.run {
-//                iconView = findViewById<AppCompatImageView>(R.id.iv_ad_app_icon).apply {
-//                    nativeAd.icon?.let { setImageDrawable(it.drawable) }
-//                    visibility = if (nativeAd.icon != null) View.VISIBLE else View.GONE
-//                }
-//                headlineView = findViewById<AppCompatTextView>(R.id.tv_ad_headline).apply {
-//                    text = nativeAd.headline
-//                }
-//                advertiserView = findViewById<AppCompatTextView>(R.id.tv_advertiser).apply {
-//                    text = nativeAd.advertiser
-//                    visibility = if (nativeAd.advertiser != null) View.VISIBLE else View.INVISIBLE
-//                }
-//                starRatingView = findViewById<AppCompatRatingBar>(R.id.rb_ad_stars).apply {
-//                    nativeAd.starRating?.let { rating = it.toFloat() }
-//                    visibility = if (nativeAd.starRating != null) View.VISIBLE else View.INVISIBLE
-//                }
-//                bodyView = findViewById<AppCompatTextView>(R.id.tv_ad_body).apply {
-//                    text = nativeAd.body
-//                    visibility = if (nativeAd.body != null) View.VISIBLE else View.INVISIBLE
-//                }
-//                mediaView = findViewById<MediaView>(R.id.mv_ad_media).apply {
-//                    nativeAd.mediaContent?.let {
-//                        mediaContent = it
-//                        it.videoController.videoLifecycleCallbacks = object : VideoController.VideoLifecycleCallbacks() {
-//                            override fun onVideoStart() {
-//                                super.onVideoStart()
-//                                // 视频开始
-//                                UtilKLogWrapper.i(TAG, "onVideoStart")
-//                            }
-//
-//                            override fun onVideoEnd() {
-//                                super.onVideoEnd()
-//                                // 视频结束，结束后可以刷新广告
-//                                UtilKLogWrapper.i(TAG, "onVideoEnd")
-//                            }
-//
-//                            override fun onVideoPlay() {
-//                                super.onVideoPlay()
-//                                // 视频播放
-//                                UtilKLogWrapper.i(TAG, "onVideoPlay")
-//                            }
-//
-//                            override fun onVideoPause() {
-//                                super.onVideoPause()
-//                                // 视频暂停
-//                                UtilKLogWrapper.i(TAG, "onVideoPause")
-//                            }
-//
-//                            override fun onVideoMute(mute: Boolean) {
-//                                super.onVideoMute(mute)
-//                                // 视频是否静音
-//                                // mute true 静音 false 非静音
-//                                UtilKLogWrapper.i(TAG, "onVideoMute mute:$mute")
-//                            }
-//                        }
-//                    }
-//                }
-//                callToActionView = findViewById<AppCompatButton>(R.id.btn_ad_call_to_action).apply {
-//                    text = nativeAd.callToAction
-//                    visibility = if (nativeAd.callToAction != null) View.VISIBLE else View.INVISIBLE
-//                }
-//                priceView = findViewById<AppCompatTextView>(R.id.tv_ad_price).apply {
-//                    text = nativeAd.price
-//                    visibility = if (nativeAd.price != null) View.VISIBLE else View.INVISIBLE
-//                }
-//                storeView = findViewById<AppCompatTextView>(R.id.tv_ad_store).apply {
-//                    text = nativeAd.store
-//                    visibility = if (nativeAd.store != null) View.VISIBLE else View.INVISIBLE
-//                }
-//                layoutParams = FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.WRAP_CONTENT).apply {
-//                    gravity = Gravity.BOTTOM
-//                }
-//            }*/
+            //            (LayoutInflater.from(_activity).inflate(R.layout.layout_admob_native_ad, null) as? NativeAdView)?.run {
+            //                iconView = findViewById<AppCompatImageView>(R.id.iv_ad_app_icon).apply {
+            //                    nativeAd.icon?.let { setImageDrawable(it.drawable) }
+            //                    visibility = if (nativeAd.icon != null) View.VISIBLE else View.GONE
+            //                }
+            //                headlineView = findViewById<AppCompatTextView>(R.id.tv_ad_headline).apply {
+            //                    text = nativeAd.headline
+            //                }
+            //                advertiserView = findViewById<AppCompatTextView>(R.id.tv_advertiser).apply {
+            //                    text = nativeAd.advertiser
+            //                    visibility = if (nativeAd.advertiser != null) View.VISIBLE else View.INVISIBLE
+            //                }
+            //                starRatingView = findViewById<AppCompatRatingBar>(R.id.rb_ad_stars).apply {
+            //                    nativeAd.starRating?.let { rating = it.toFloat() }
+            //                    visibility = if (nativeAd.starRating != null) View.VISIBLE else View.INVISIBLE
+            //                }
+            //                bodyView = findViewById<AppCompatTextView>(R.id.tv_ad_body).apply {
+            //                    text = nativeAd.body
+            //                    visibility = if (nativeAd.body != null) View.VISIBLE else View.INVISIBLE
+            //                }
+            //                mediaView = findViewById<MediaView>(R.id.mv_ad_media).apply {
+            //                    nativeAd.mediaContent?.let {
+            //                        mediaContent = it
+            //                        it.videoController.videoLifecycleCallbacks = object : VideoController.VideoLifecycleCallbacks() {
+            //                            override fun onVideoStart() {
+            //                                super.onVideoStart()
+            //                                // 视频开始
+            //                                UtilKLogWrapper.i(TAG, "onVideoStart")
+            //                            }
+            //
+            //                            override fun onVideoEnd() {
+            //                                super.onVideoEnd()
+            //                                // 视频结束，结束后可以刷新广告
+            //                                UtilKLogWrapper.i(TAG, "onVideoEnd")
+            //                            }
+            //
+            //                            override fun onVideoPlay() {
+            //                                super.onVideoPlay()
+            //                                // 视频播放
+            //                                UtilKLogWrapper.i(TAG, "onVideoPlay")
+            //                            }
+            //
+            //                            override fun onVideoPause() {
+            //                                super.onVideoPause()
+            //                                // 视频暂停
+            //                                UtilKLogWrapper.i(TAG, "onVideoPause")
+            //                            }
+            //
+            //                            override fun onVideoMute(mute: Boolean) {
+            //                                super.onVideoMute(mute)
+            //                                // 视频是否静音
+            //                                // mute true 静音 false 非静音
+            //                                UtilKLogWrapper.i(TAG, "onVideoMute mute:$mute")
+            //                            }
+            //                        }
+            //                    }
+            //                }
+            //                callToActionView = findViewById<AppCompatButton>(R.id.btn_ad_call_to_action).apply {
+            //                    text = nativeAd.callToAction
+            //                    visibility = if (nativeAd.callToAction != null) View.VISIBLE else View.INVISIBLE
+            //                }
+            //                priceView = findViewById<AppCompatTextView>(R.id.tv_ad_price).apply {
+            //                    text = nativeAd.price
+            //                    visibility = if (nativeAd.price != null) View.VISIBLE else View.INVISIBLE
+            //                }
+            //                storeView = findViewById<AppCompatTextView>(R.id.tv_ad_store).apply {
+            //                    text = nativeAd.store
+            //                    visibility = if (nativeAd.store != null) View.VISIBLE else View.INVISIBLE
+            //                }
+            //                layoutParams = FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.WRAP_CONTENT).apply {
+            //                    gravity = Gravity.BOTTOM
+            //                }
+            //            }*/
 
-            UtilKLogWrapper.d(TAG, "loadNativeAd: headline(${nativeAd.headline}) advertiser(${nativeAd.advertiser}) starRating(${nativeAd.starRating}) body(${nativeAd.body}) starRating(${nativeAd.starRating}) callToAction(${nativeAd.callToAction}) price(${nativeAd.price}) store(${nativeAd.store})")
+            UtilKLogWrapper.d(
+                TAG,
+                "loadNativeAd: headline(${nativeAd.headline}) advertiser(${nativeAd.advertiser}) starRating(${nativeAd.starRating}) body(${nativeAd.body}) starRating(${nativeAd.starRating}) callToAction(${nativeAd.callToAction}) price(${nativeAd.price}) store(${nativeAd.store})"
+            )
             _nativeAdLoadedListener?.onNativeAdViewLoad(
                 nativeAd,
                 nativeAd.icon,
@@ -222,9 +228,13 @@ class AdKGoogleNativeProxy :
         }
     }
 
-    override fun addNativeViewToContainer(container: ViewGroup) {
+    override fun addNativeViewToContainer(container: ViewGroup): Boolean {
         if (_nativeAdView != null) {
             container.addView_ofMatchParent(_nativeAdView!!)// 把 Banner Ad 添加到根布局
+            return true
+        } else {
+            UtilKLogWrapper.d(TAG, "addNativeViewToContainer _nativeAdView null")
+            return false
         }
     }
 
@@ -248,6 +258,7 @@ class AdKGoogleNativeProxy :
 
     override fun onCreate(owner: LifecycleOwner) {
         initNativeAd()
+        loadNativeAd()
     }
 
     override fun onDestroy(owner: LifecycleOwner) {
@@ -277,7 +288,7 @@ class AdKGoogleNativeProxy :
 
             _nativeAd = p0
 
-            loadNativeAd()
+            loadNativeAdView()
 
             _nativeAdLoadedListener?.onNativeAdViewLoaded(p0)
         }

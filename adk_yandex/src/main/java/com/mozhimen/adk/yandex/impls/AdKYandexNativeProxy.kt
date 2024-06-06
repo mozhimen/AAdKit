@@ -1,7 +1,5 @@
-package com.mozhimen.adk.yandex.basic.impls
+package com.mozhimen.adk.yandex.impls
 
-import android.app.Activity
-import android.util.Log
 import com.mozhimen.basick.utilk.android.util.UtilKLogWrapper
 import android.view.ViewGroup
 import androidx.lifecycle.LifecycleOwner
@@ -11,7 +9,7 @@ import com.mozhimen.basick.elemk.androidx.lifecycle.bases.BaseWakeBefDestroyLife
 import com.mozhimen.basick.lintk.optins.OApiCall_BindLifecycle
 import com.mozhimen.basick.lintk.optins.OApiCall_BindViewLifecycle
 import com.mozhimen.basick.lintk.optins.OApiInit_ByLazy
-import com.mozhimen.basick.utilk.android.util.UtilKLogWrapper
+import com.mozhimen.basick.utilk.android.view.addView_ofMatchParent
 import com.yandex.mobile.ads.common.AdRequestError
 import com.yandex.mobile.ads.common.ImpressionData
 import com.yandex.mobile.ads.nativeads.NativeAd
@@ -89,7 +87,14 @@ class AdKYandexNativeProxy :
         }
     }
 
-    override fun addNativeViewToContainer(container: ViewGroup) {
+    override fun addNativeViewToContainer(container: ViewGroup): Boolean {
+        if (_nativeAdView != null) {
+            container.addView_ofMatchParent(_nativeAdView!!)// 把 Banner Ad 添加到根布局
+            return true
+        } else {
+            UtilKLogWrapper.d(TAG, "addNativeViewToContainer _nativeAdView null")
+            return false
+        }
     }
 
     fun destroyNativeAdLoader() {

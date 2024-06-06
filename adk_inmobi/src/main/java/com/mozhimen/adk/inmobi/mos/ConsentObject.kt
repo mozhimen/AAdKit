@@ -35,20 +35,24 @@ import org.json.JSONObject
  * 无论请求是否受 GDPR 法规的约束，与设定值的偏差（0 = 否，1 = 是）都表示未知实体。
  */
 data class ConsentObject(
-    val gdpr_consent: String,
     val gdpr_consent_available: Boolean,
-    val gdpr: Boolean
+    val gdpr_consent: String? = null,
+    val gdpr: Boolean? = null
 ) {
     fun toConsentJSONObject(): JSONObject? {
         val jsonObject: JSONObject?
         try {
             jsonObject = JSONObject()
-            // Provide user consent in IAB format
-            jsonObject.put(InMobiSdk.IM_GDPR_CONSENT_IAB, gdpr_consent/*"<< consent in IAB format >>"*/)
             // Provide correct consent value to sdk which is obtained by User
             jsonObject.put(InMobiSdk.IM_GDPR_CONSENT_AVAILABLE, gdpr_consent_available/*true*/)
-            // Provide 0 if GDPR is not applicable and 1 if applicable
-            jsonObject.put("gdpr", if (gdpr) "0" else "1"/*"0"*/)
+            gdpr_consent?.let {
+                // Provide user consent in IAB format
+                jsonObject.put(InMobiSdk.IM_GDPR_CONSENT_IAB, gdpr_consent/*"<< consent in IAB format >>"*/)
+            }
+            gdpr?.let {
+                // Provide 0 if GDPR is not applicable and 1 if applicable
+                jsonObject.put("gdpr", if (gdpr) "0" else "1"/*"0"*/)
+            }
             //
             return jsonObject
         } catch (e: JSONException) {

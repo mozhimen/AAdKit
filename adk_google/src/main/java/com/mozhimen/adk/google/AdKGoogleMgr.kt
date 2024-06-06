@@ -1,7 +1,6 @@
 package com.mozhimen.adk.google
 
 import android.content.Context
-import android.util.Log
 import com.mozhimen.basick.utilk.android.util.UtilKLogWrapper
 import com.google.android.gms.ads.MobileAds
 import com.google.android.gms.ads.initialization.AdapterStatus

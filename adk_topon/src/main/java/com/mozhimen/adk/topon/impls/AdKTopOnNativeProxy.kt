@@ -24,7 +24,7 @@ import com.mozhimen.basick.lintk.optins.OApiCall_BindLifecycle
 import com.mozhimen.basick.lintk.optins.OApiCall_BindViewLifecycle
 import com.mozhimen.basick.lintk.optins.OApiInit_ByLazy
 import com.mozhimen.basick.utilk.android.util.UtilKLogWrapper
-import com.mozhimen.basick.utilk.android.view.addView_ofMatchParent
+import com.mozhimen.basick.utilk.android.view.addViewSafe_ofMatchParent
 
 /**
  * @ClassName AdKTopOnNativeProxy
@@ -136,7 +136,7 @@ class AdKTopOnNativeProxy :
     override fun addNativeViewToContainer(container: ViewGroup): Boolean {
         return if (_aTNativeView != null) {
             UtilKLogWrapper.d(TAG, "addNativeViewToContainer")
-            container.addView_ofMatchParent(_aTNativeView!!)// 把 Banner Ad 添加到根布局
+            container.addViewSafe_ofMatchParent(_aTNativeView!!)// 把 Banner Ad 添加到根布局
             true
         } else {
             UtilKLogWrapper.d(TAG, "addNativeViewToContainer _aTNativeView null")

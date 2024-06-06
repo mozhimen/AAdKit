@@ -47,6 +47,8 @@ class AdKGoogleInterstitialProxy(
         _adUnitId = adUnitId
     }
 
+    //////////////////////////////////////////////////////////////////////////////////
+
     override fun initInterstitialAd() {
     }
 
