@@ -82,3 +82,4 @@ include ':AAbilityKit_Jetpack:recyclerview'
 include ':AAbilityKit_Squareup'
 project(':AAbilityKit_Squareup').projectDir = new File("D:\\WorkSpace\\GitHub\\AAbilityKit_Squareup")
 include ':AAbilityKit_Squareup:picasso'
+include ':adk_inmobi_test'
