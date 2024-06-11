@@ -49,6 +49,7 @@ include ':adk_topon_test2'
 include ':adk_yandex'
 include ':adk_yandex_test'
 include ':adk_inmobi'
+include ':adk_inmobi_test'
 //AXmlKit
 include ':AXmlKit'
 project(':AXmlKit').projectDir = new File("D:\\WorkSpace\\GitHub\\AXmlKit")
@@ -66,20 +67,19 @@ include ':ADebugKit:debugk_leakcanary'
 include ':AWebKit'
 project(':AWebKit').projectDir = new File("D:\\WorkSpace\\GitHub\\AWebKit")
 include ':AWebKit:webk_basic'
-//AAbilityKit_Google
-include ':AAbilityKit_Google'
-project(':AAbilityKit_Google').projectDir = new File("D:\\WorkSpace\\GitHub\\AAbilityKit_Google")
-include ':AAbilityKit_Google:android_gms_play_ads'
-include ':AAbilityKit_Google:android_gms_play_ads_identifier'
-include ':AAbilityKit_Google:android_ump'
-//AAbilityKit_Jetpack
-include ':AAbilityKit_Jetpack'
-project(':AAbilityKit_Jetpack').projectDir = new File("D:\\WorkSpace\\GitHub\\AAbilityKit_Jetpack")
-include ':AAbilityKit_Jetpack:viewpager'
-include ':AAbilityKit_Jetpack:browser'
-include ':AAbilityKit_Jetpack:recyclerview'
-//AAbilityKit_Squareup
-include ':AAbilityKit_Squareup'
-project(':AAbilityKit_Squareup').projectDir = new File("D:\\WorkSpace\\GitHub\\AAbilityKit_Squareup")
-include ':AAbilityKit_Squareup:picasso'
-include ':adk_inmobi_test'
+//ALibKit_Google
+include ':ALibKit_Google'
+project(':ALibKit_Google').projectDir = new File("D:\\WorkSpace\\GitHub\\ALibKit_Google")
+include ':ALibKit_Google:android_gms_play_ads'
+include ':ALibKit_Google:android_gms_play_ads_identifier'
+include ':ALibKit_Google:android_ump'
+//ALibKit_Jetpack
+include ':ALibKit_Jetpack'
+project(':ALibKit_Jetpack').projectDir = new File("D:\\WorkSpace\\GitHub\\ALibKit_Jetpack")
+include ':ALibKit_Jetpack:viewpager'
+include ':ALibKit_Jetpack:browser'
+include ':ALibKit_Jetpack:recyclerview'
+//ALibKit_Squareup
+include ':ALibKit_Squareup'
+project(':ALibKit_Squareup').projectDir = new File("D:\\WorkSpace\\GitHub\\ALibKit_Squareup")
+include ':ALibKit_Squareup:picasso'

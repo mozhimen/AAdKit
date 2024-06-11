@@ -39,7 +39,7 @@ dependencies {
     implementation project(':SwiftKit:xmlk')
     api project(project.path.replace(project.name, '') + ':adk_basic')
     implementation project(':AWebKit:webk_basic')
-    api project(':AAbilityKit_Google:android_ump')
+    api project(':ALibKit_Google:android_ump')
 
     api fileTree(include: ['*.jar', '*.aar'], dir: 'libs')
 

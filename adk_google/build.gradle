@@ -32,7 +32,7 @@ android {
 
 dependencies {
     implementation project(':SwiftKit:basick')
-    api project(':AAbilityKit_Google:android_gms_play_ads')
+    api project(':ALibKit_Google:android_gms_play_ads')
     api project(project.path.replace(project.name, '') +':adk_basic')
 
     testImplementation 'junit:junit:4.13.2'
