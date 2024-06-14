@@ -19,7 +19,7 @@ import com.mozhimen.basick.utilk.android.view.applyVisible
  */
 class AdsInterstitialActivity : BaseActivityVDB<ActivityAdsInterstitialBinding>() {
     @OptIn(OApiInit_ByLazy::class, OApiCall_BindLifecycle::class, OApiCall_BindViewLifecycle::class)
-    private val _adKGoogleInterstitialProxy by lazy { AdKGoogleInterstitialProxy(this) }
+    private val _adKGoogleInterstitialProxy by lazy_ofNone { AdKGoogleInterstitialProxy(this) }
 
     @OptIn(OApiInit_ByLazy::class, OApiCall_BindLifecycle::class, OApiCall_BindViewLifecycle::class)
     override fun initView(savedInstanceState: Bundle?) {

@@ -13,7 +13,7 @@ import java.lang.ref.WeakReference
 
 class AdsRewardedActivity : BaseActivityVDB<ActivityAdsRewardedBinding>() {
     @OptIn(OApiInit_ByLazy::class, OApiCall_BindLifecycle::class)
-    private val _adKGoogleRewardedSimpleProxy by lazy { AdKGoogleRewardedSimpleProxy(WeakReference(this), "ca-app-pub-3940256099942544/5224354917") }
+    private val _adKGoogleRewardedSimpleProxy by lazy_ofNone { AdKGoogleRewardedSimpleProxy(WeakReference(this), "ca-app-pub-3940256099942544/5224354917") }
 
     @OptIn(OApiInit_ByLazy::class, OApiCall_BindLifecycle::class)
     override fun initView(savedInstanceState: Bundle?) {

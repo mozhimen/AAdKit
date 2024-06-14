@@ -17,7 +17,7 @@ import com.mozhimen.basick.lintk.optins.OApiUse_BaseApplication
 @OApiUse_BaseApplication
 class AdKGoogleOpenAdMgr2(application: Application, keyWord: String, adUnitId: String) : BaseAdKOpenAdMgr2(application, keyWord, adUnitId) {
 
-    private val _adkGoogleOpenProxy by lazy { AdKGoogleOpenProxy() }
+    private val _adkGoogleOpenProxy by lazy_ofNone { AdKGoogleOpenProxy() }
 
     init {
         initOpenAdProxy(adUnitId)

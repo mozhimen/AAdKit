@@ -53,7 +53,7 @@ class InlineBannerAdActivity : AppCompatActivity(R.layout.activity_inline_banner
     private lateinit var binding: ActivityInlineBannerAdBinding
 
     @OptIn(OApiCall_BindViewLifecycle::class, OApiCall_BindLifecycle::class, OApiInit_ByLazy::class)
-    private val _adKYandexBannerProxy by lazy { AdKYandexBannerProxy() }
+    private val _adKYandexBannerProxy by lazy_ofNone { AdKYandexBannerProxy() }
 
     private val _bannerAdEventListener = object : BannerAdEventListener {
         override fun onAdLoaded() {

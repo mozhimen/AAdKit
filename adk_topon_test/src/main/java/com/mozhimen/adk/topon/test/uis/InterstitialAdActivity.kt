@@ -143,7 +143,7 @@ class InterstitialAdActivity : com.mozhimen.adk.topon.test.bases.BaseActivityVDB
         }
     }
     private val atAdSourceStatusListener = object : BaseATAdSourceStatusCallback() {}
-    private val _adkTopOnInterstitialProxy: AdKTopOnInterstitialProxy by lazy { AdKTopOnInterstitialProxy() }
+    private val _adkTopOnInterstitialProxy: AdKTopOnInterstitialProxy by lazy_ofNone { AdKTopOnInterstitialProxy() }
 
     @OptIn(OApiCall_ViewReady::class)
     override fun onSelectPlacementId(placementId: String?) {

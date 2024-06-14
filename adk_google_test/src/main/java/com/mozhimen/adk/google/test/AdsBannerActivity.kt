@@ -19,7 +19,7 @@ import com.mozhimen.basick.utilk.wrapper.UtilKScreen
  */
 class AdsBannerActivity : BaseActivityVDB<ActivityAdsBannerBinding>() {
     @OptIn(OApiInit_ByLazy::class, OApiCall_BindLifecycle::class, OApiCall_BindViewLifecycle::class)
-    private val _adKGoogleBannerProxy by lazy { AdKGoogleBannerProxy() }
+    private val _adKGoogleBannerProxy by lazy_ofNone { AdKGoogleBannerProxy() }
 
     @OptIn(OApiInit_ByLazy::class, OApiCall_BindLifecycle::class, OApiCall_BindViewLifecycle::class)
     override fun initView(savedInstanceState: Bundle?) {

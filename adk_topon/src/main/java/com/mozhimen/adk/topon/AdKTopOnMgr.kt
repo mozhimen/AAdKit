@@ -31,8 +31,8 @@ object AdKTopOnMgr : IUtilK {
 
     ////////////////////////////////////////////////////////////////////////////////
 
+    @OptIn(OApiInit_InApplication::class)
     @JvmStatic
-    @OApiInit_InApplication
     @OMetaData_GMS_ADS_APPLICATION_ID
     fun init_ofGDPR_ofUmp(activity: Activity, topOnAppId: String, topOnAppKey: String, isDebug: Boolean = true, onInitSuccess: I_Listener? = null) {
         if (_isNeedApplyGDPR.get() && ATSDK.getGDPRDataLevel(activity) == ATSDK.UNKNOWN) {

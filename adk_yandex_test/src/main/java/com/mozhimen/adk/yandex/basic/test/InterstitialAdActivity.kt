@@ -65,7 +65,7 @@ class InterstitialAdActivity : BaseActivityVB<ActivityInterstitialAdBinding>() {
     }
 
     @OptIn(OApiInit_ByLazy::class, OApiCall_BindLifecycle::class, OApiCall_BindViewLifecycle::class)
-    private val _adKYandexInterstitialProxy by lazy { AdKYandexInterstitialProxy(this) }
+    private val _adKYandexInterstitialProxy by lazy_ofNone { AdKYandexInterstitialProxy(this) }
 
     ////////////////////////////////////////////////////////////////
 

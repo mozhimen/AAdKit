@@ -30,7 +30,7 @@ import com.mozhimen.basick.utilk.android.view.applyVisible
 @OptIn(OApiCall_BindViewLifecycle::class, OApiCall_BindLifecycle::class, OApiInit_ByLazy::class)
 class BannerAdActivity : com.mozhimen.adk.topon.test.bases.BaseActivityVDB<ActivityBannerBinding>() {
 
-    private val _adKTopOnBannerProxy by lazy { AdKTopOnBannerProxy() }
+    private val _adKTopOnBannerProxy by lazy_ofNone { AdKTopOnBannerProxy() }
     private val _atBannerExListener = object : BaseATBannerExCallback() {
         override fun onBannerLoaded() {
             super.onBannerLoaded()

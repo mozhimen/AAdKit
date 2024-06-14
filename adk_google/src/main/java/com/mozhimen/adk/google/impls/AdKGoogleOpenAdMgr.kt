@@ -16,7 +16,7 @@ import com.mozhimen.basick.stackk.cb.StackKCb
 @OApiUse_BaseApplication
 class AdKGoogleOpenAdMgr(adUnitId: String) : BaseAdKOpenAdMgr(adUnitId) {
     @OptIn(OApiCall_BindLifecycle::class)
-    private val _adkGoogleOpenProxy by lazy { AdKGoogleOpenProxy() }
+    private val _adkGoogleOpenProxy by lazy_ofNone { AdKGoogleOpenProxy() }
 
     init {
         _adkGoogleOpenProxy.apply {

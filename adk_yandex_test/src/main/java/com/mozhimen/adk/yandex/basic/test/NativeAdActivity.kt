@@ -22,7 +22,7 @@ import com.yandex.mobile.ads.nativeads.NativeAdViewBinder
  */
 class NativeAdActivity : BaseActivityVB<ActivityCustomNativeAdBinding>() {
     @OptIn(OApiInit_ByLazy::class, OApiCall_BindLifecycle::class, OApiCall_BindViewLifecycle::class)
-    private val _adKYandexNativeAdProxy by lazy { AdKYandexNativeProxy() }
+    private val _adKYandexNativeAdProxy by lazy_ofNone { AdKYandexNativeProxy() }
 
     @OptIn(OApiInit_ByLazy::class, OApiCall_BindLifecycle::class, OApiCall_BindViewLifecycle::class)
     override fun initView(savedInstanceState: Bundle?) {
