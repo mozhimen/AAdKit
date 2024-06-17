@@ -2,7 +2,7 @@ package com.mozhimen.adk.basic.bases
 
 import android.app.Activity
 import android.app.Application
-import android.util.Log
+import androidx.annotation.CallSuper
 import com.mozhimen.basick.utilk.android.util.UtilKLogWrapper
 import com.mozhimen.adk.basic.commons.IAdKOpenProxy
 import com.mozhimen.basick.elemk.android.app.bases.BaseActivityLifecycleCallbacks
@@ -10,6 +10,7 @@ import com.mozhimen.basick.elemk.kotlin.properties.VarProperty_Set
 import com.mozhimen.basick.lintk.optins.OApiInit_ByLazy
 import com.mozhimen.basick.lintk.optins.OApiInit_InApplication
 import com.mozhimen.basick.lintk.optins.OApiUse_BaseApplication
+import com.mozhimen.basick.taskk.handler.TaskKIdleHandler
 import com.mozhimen.basick.utilk.commons.IUtilK
 import java.lang.ref.WeakReference
 import java.util.concurrent.atomic.AtomicBoolean
@@ -24,34 +25,39 @@ import java.util.concurrent.atomic.AtomicBoolean
 @OApiInit_InApplication
 @OApiInit_ByLazy
 @OApiUse_BaseApplication
-abstract class BaseAdKOpenAdMgr2(application: Application, private val _keyWord: String) : IUtilK {
+abstract class BaseAdKOpenAdMgr2(private val _keyWord: String) : IUtilK {
     //    private val _processLifecycleObserver = ActivityLifecycleObserver()
-    private val _appOpenAdActivityObserver = ActivityLifecycleCallbacks()
+    private val _appOpenAdActivityObserver by lazy { ActivityLifecycleCallbacks() }
 
     protected val _autoShowOpenAd = AtomicBoolean(false)
 
     protected var _activityRef: WeakReference<Activity>? by VarProperty_Set(null) { _, value ->
         UtilKLogWrapper.d(TAG, "_activityRef: ")
-        if (value != null && _isAdLoad) {
-            value.get()?.let {
-                showAppOpenAd(it)
-            }
+        if (value?.get() != null && _isAdLoad) {
+            showAppOpenAd(value.get()!!)
         }
         true
     }
 
     protected var _isAdLoad by VarProperty_Set(false) { _, value ->
-        if (value && _activityRef != null) {
-            _activityRef?.get()?.let {
-                showAppOpenAd(it)
-            }
+        UtilKLogWrapper.d(TAG, "_isAdLoad: ")
+        if (value && _activityRef?.get() != null) {
+            showAppOpenAd(_activityRef!!.get()!!)
         }
         true
     }
 
     //////////////////////////////////////////////////////////////////////////////
 
-    init {
+    abstract fun getAdkOpenProxy(): IAdKOpenProxy
+
+    protected abstract fun initOpenAdProxy(adUnitId: String)
+
+    //////////////////////////////////////////////////////////////////////////////
+
+    @CallSuper
+    open fun init(application: Application) {
+        UtilKLogWrapper.d(TAG, "init: 开屏广告初始化")
         // observe Process lifecycle to choose moment for AppOpenAd show
 //        ProcessLifecycleOwner.get().lifecycle.addObserver(_processLifecycleObserver)
         // observe Activity Callbacks to check if particular activity is started
@@ -70,27 +76,18 @@ abstract class BaseAdKOpenAdMgr2(application: Application, private val _keyWord:
 
     //////////////////////////////////////////////////////////////////////////////
 
-    abstract fun getAdkOpenProxy(): IAdKOpenProxy
-
-    abstract fun initOpenAdProxy(adUnitId: String)
-
-    //////////////////////////////////////////////////////////////////////////////
-
-    fun init() {
-        UtilKLogWrapper.d(TAG, "init: 开屏广告初始化")
-    }
-
-    //////////////////////////////////////////////////////////////////////////////
-
     protected open fun showAppOpenAd(activity: Activity) {
-        if (_autoShowOpenAd.compareAndSet(false, true)) {
-            getAdkOpenProxy().showOpenAd(activity)
-        }
+        TaskKIdleHandler.addTask {
+            if (_autoShowOpenAd.compareAndSet(false, true)) {
+                getAdkOpenProxy().showOpenAd(activity)
+            }
+        }.start()
     }
 
     private inner class ActivityLifecycleCallbacks : BaseActivityLifecycleCallbacks() {
         override fun onActivityStarted(activity: Activity) {
             // example of choosing specific Activity for show AppOpenAd
+            UtilKLogWrapper.d(TAG, "onActivityStarted activity ${activity.javaClass.simpleName}")
             if (activity.javaClass.simpleName.contains(_keyWord)) {
                 _activityRef = WeakReference(activity)
             }

@@ -47,13 +47,13 @@ class AdKTopOnOpenProxy : BaseWakeBefDestroyLifecycleObserver(), IAdKOpenProxy, 
 
     ///////////////////////////////////////////////////////////////////////////////
 
-
     fun initOpenAdListener(atSplashExListener: ATSplashExListener?, atAdSourceStatusListener: ATAdSourceStatusListener?) {
         _atSplashExListener = atSplashExListener
         _atAdSourceStatusListener = atAdSourceStatusListener
     }
 
     fun initOpenAdParams(placementId: String, scenarioId: String) {
+        UtilKLogWrapper.d(TAG, "initOpenAdParams: ")
         _placementId = placementId
         _scenarioId = scenarioId
     }
@@ -122,11 +122,13 @@ class AdKTopOnOpenProxy : BaseWakeBefDestroyLifecycleObserver(), IAdKOpenProxy, 
     ///////////////////////////////////////////////////////////////////////////////
 
     override fun onCreate(owner: LifecycleOwner) {
+        UtilKLogWrapper.d(TAG, "onCreate: ")
         initOpenAd()
         loadOpenAd()
     }
 
     override fun onDestroy(owner: LifecycleOwner) {
+        UtilKLogWrapper.d(TAG, "onDestroy: ")
         destroyOpenAd()
         _atSplashExListener = null
         _atAdSourceStatusListener = null

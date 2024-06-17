@@ -20,13 +20,16 @@ import com.mozhimen.basick.lintk.optins.OApiUse_BaseApplication
 @OApiInit_InApplication
 @OApiInit_ByLazy
 @OApiUse_BaseApplication
-class AdKTopOnOpenAdMgr2(application: Application, keyWord: String, adUnitId: String) : BaseAdKOpenAdMgr2(application, keyWord) {
+class AdKTopOnOpenAdMgr2(keyWord: String,private val _adUnitId: String) : BaseAdKOpenAdMgr2(keyWord) {
 
     @OptIn(OApiCall_BindLifecycle::class)
     private val _adkTopOnOpenProxy by lazy { AdKTopOnOpenProxy() }
 
-    init {
-        initOpenAdProxy(adUnitId)
+    /////////////////////////////////////////////////////////////////////
+
+    override fun init(application: Application) {
+        super.init(application)
+        initOpenAdProxy(_adUnitId)
     }
 
     override fun initOpenAdProxy(adUnitId: String) {
