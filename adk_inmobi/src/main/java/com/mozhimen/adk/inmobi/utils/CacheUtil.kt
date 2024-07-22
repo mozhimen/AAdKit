@@ -1,7 +1,7 @@
 package com.mozhimen.adk.inmobi.utils
 
-import com.mozhimen.basick.cachek.datastore.CacheKDS
-import com.mozhimen.basick.cachek.datastore.temps.CacheKDSVarPropertyBoolean
+import com.mozhimen.cachek.datastore.CacheKDS
+import com.mozhimen.cachek.datastore.temps.CacheKDSVarPropertyBoolean
 
 /**
  * @ClassName CacheUtil
