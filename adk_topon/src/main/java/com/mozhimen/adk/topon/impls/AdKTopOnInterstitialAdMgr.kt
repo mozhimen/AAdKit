@@ -26,9 +26,8 @@ object AdKTopOnInterstitialAdMgr {
     //////////////////////////////////////////////////////////////////
 
     @JvmStatic
-    fun isInit(): Boolean {
-        return _isInit.get()
-    }
+    fun isInit(): Boolean =
+        _isInit.get()
 
     @OptIn(OApiCall_BindViewLifecycle::class, OApiCall_BindLifecycle::class, OApiInit_ByLazy::class)
     @JvmStatic
@@ -45,7 +44,7 @@ object AdKTopOnInterstitialAdMgr {
     @JvmStatic
     @OptIn(OApiCall_BindViewLifecycle::class, OApiCall_BindLifecycle::class, OApiInit_ByLazy::class)
     fun isInterstitialAdReady(placementId: String): Boolean =
-        isInit()&& _adkTopOnInterstitialAutoLoadProxy.isInterstitialAdReady(placementId)
+        isInit() && _adkTopOnInterstitialAutoLoadProxy.isInterstitialAdReady(placementId)
 
     @JvmStatic
     @OptIn(OApiCall_BindViewLifecycle::class, OApiCall_BindLifecycle::class, OApiInit_ByLazy::class)
