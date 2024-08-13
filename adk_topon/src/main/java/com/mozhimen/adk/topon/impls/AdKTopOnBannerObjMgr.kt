@@ -11,7 +11,7 @@ import com.mozhimen.adk.topon.commons.IAdViewProvider
  * @Version 1.0
  */
 object AdKTopOnBannerObjMgr : IAdViewProvider {
-    private val _adViews = HashMap<View, Boolean>(3)
+    private val _adViews by lazy { ArrayList<View>() }
 
     override fun applyForAdView(): View? {
 
