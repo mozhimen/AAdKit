@@ -10,14 +10,14 @@ import com.mozhimen.adk.topon.commons.IAdViewProvider
  * @Date 2024/8/6
  * @Version 1.0
  */
-object AdKTopOnBannerObjMgr : IAdViewProvider {
-    private val _adViews by lazy { ArrayList<View>() }
-
-    override fun applyForAdView(): View? {
-
-    }
-
-    override fun giveBackAdView(view: View?) {
-
-    }
-}
+//object AdKTopOnBannerObjMgr : IAdViewProvider {
+////    private val _adViews by lazy { ArrayList<View>() }
+////
+////    override fun applyForAdView(): View? {
+////
+////    }
+////
+////    override fun giveBackAdView(view: View?) {
+////
+////    }
+//}

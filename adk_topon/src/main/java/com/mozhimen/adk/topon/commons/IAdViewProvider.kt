@@ -1,6 +1,8 @@
 package com.mozhimen.adk.topon.commons
 
 import android.view.View
+import com.mozhimen.basick.elemk.commons.IApplicable
+import com.mozhimen.basick.elemk.commons.IReturnable
 
 /**
  * @ClassName IListAdProvider
@@ -9,7 +11,4 @@ import android.view.View
  * @Date 2024/8/6
  * @Version 1.0
  */
-interface IAdViewProvider {
-    fun applyForAdView(): View?
-    fun giveBackAdView(view: View?)
-}
+interface IAdViewProvider : IApplicable<Nothing, View>, IReturnable<View>
