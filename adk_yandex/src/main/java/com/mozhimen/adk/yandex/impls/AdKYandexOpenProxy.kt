@@ -2,11 +2,11 @@ package com.mozhimen.adk.yandex.basic.impls
 
 import android.app.Activity
 import android.util.Log
-import com.mozhimen.basick.utilk.android.util.UtilKLogWrapper
+import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
 import androidx.lifecycle.LifecycleOwner
-import com.mozhimen.basick.elemk.androidx.lifecycle.bases.BaseWakeBefDestroyLifecycleObserver
-import com.mozhimen.basick.lintk.optins.OApiCall_BindLifecycle
-import com.mozhimen.basick.lintk.optins.OApiInit_ByLazy
+import com.mozhimen.basick.bases.BaseWakeBefDestroyLifecycleObserver
+import com.mozhimen.kotlin.lintk.optins.OApiCall_BindLifecycle
+import com.mozhimen.kotlin.lintk.optins.OApiInit_ByLazy
 import com.mozhimen.adk.basic.commons.IAdKOpenProxy
 import com.yandex.mobile.ads.appopenad.AppOpenAd
 import com.yandex.mobile.ads.appopenad.AppOpenAdEventListener

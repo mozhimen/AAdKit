@@ -4,9 +4,9 @@ import android.os.Bundle
 import com.mozhimen.adk.yandex.basic.impls.AdKYandexOpenProxy
 import com.mozhimen.adk.yandex.basic.bases.BaseAppOpenAdLoadCallback
 import com.mozhimen.adk.yandex.basic.test.databinding.ActivityOpenAdBinding
-import com.mozhimen.basick.elemk.androidx.appcompat.bases.viewbinding.BaseActivityVB
-import com.mozhimen.basick.lintk.optins.OApiCall_BindLifecycle
-import com.mozhimen.basick.lintk.optins.OApiInit_ByLazy
+import com.mozhimen.mvvmk.bases.activity.viewbinding.BaseActivityVB
+import com.mozhimen.kotlin.lintk.optins.OApiCall_BindLifecycle
+import com.mozhimen.kotlin.lintk.optins.OApiInit_ByLazy
 import com.yandex.mobile.ads.appopenad.AppOpenAd
 
 /**

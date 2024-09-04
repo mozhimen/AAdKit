@@ -4,10 +4,10 @@ import android.app.Activity
 import androidx.annotation.MainThread
 import androidx.lifecycle.ProcessLifecycleOwner
 import com.anythink.interstitial.api.ATInterstitialAutoEventListener
-import com.mozhimen.basick.lintk.optins.OApiCall_BindLifecycle
-import com.mozhimen.basick.lintk.optins.OApiCall_BindViewLifecycle
-import com.mozhimen.basick.lintk.optins.OApiInit_ByLazy
-import com.mozhimen.basick.utilk.kotlin.UtilKLazyJVM.lazy_ofNone
+import com.mozhimen.kotlin.lintk.optins.OApiCall_BindLifecycle
+import com.mozhimen.kotlin.lintk.optins.OApiCall_BindViewLifecycle
+import com.mozhimen.kotlin.lintk.optins.OApiInit_ByLazy
+import com.mozhimen.kotlin.utilk.kotlin.UtilKLazyJVM.lazy_ofNone
 import java.util.concurrent.atomic.AtomicBoolean
 
 /**

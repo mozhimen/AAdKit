@@ -3,7 +3,7 @@ package com.mozhimen.adk.topon.test.utils
 import android.content.Context
 import android.text.TextUtils
 import android.util.Log
-import com.mozhimen.basick.utilk.android.util.UtilKLogWrapper
+import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
 import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
@@ -17,7 +17,7 @@ import com.anythink.nativead.api.ATNativePrepareInfo
 import com.anythink.nativead.unitgroup.api.CustomNativeAd
 import com.mozhimen.adk.topon.basic.test.R
 import com.mozhimen.adk.topon.basic.widgets.LayoutKATImageGroup
-import com.mozhimen.basick.utilk.commons.IUtilK
+import com.mozhimen.kotlin.utilk.commons.IUtilK
 
 /**
  * @ClassName SelfRenderViewUtil

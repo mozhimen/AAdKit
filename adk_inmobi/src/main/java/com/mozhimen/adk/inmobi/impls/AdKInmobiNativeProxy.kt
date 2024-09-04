@@ -11,12 +11,12 @@ import com.inmobi.ads.listeners.VideoEventListener
 import com.mozhimen.adk.basic.commons.IAdKNativeProxy
 import com.mozhimen.adk.inmobi.AdkInmobiMgr
 import com.mozhimen.adk.inmobi.commons.INativeAdLoadedListener
-import com.mozhimen.basick.elemk.androidx.lifecycle.bases.BaseWakeBefDestroyLifecycleObserver
-import com.mozhimen.basick.lintk.optins.OApiCall_BindLifecycle
-import com.mozhimen.basick.lintk.optins.OApiCall_BindViewLifecycle
-import com.mozhimen.basick.lintk.optins.OApiInit_ByLazy
-import com.mozhimen.basick.utilk.android.util.UtilKLogWrapper
-import com.mozhimen.basick.utilk.android.view.addViewSafe_ofMatchParent
+import com.mozhimen.basick.bases.BaseWakeBefDestroyLifecycleObserver
+import com.mozhimen.kotlin.lintk.optins.OApiCall_BindLifecycle
+import com.mozhimen.kotlin.lintk.optins.OApiCall_BindViewLifecycle
+import com.mozhimen.kotlin.lintk.optins.OApiInit_ByLazy
+import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
+import com.mozhimen.kotlin.utilk.android.view.addViewSafe_ofMatchParent
 
 /**
  * @ClassName AdKInmobiNativeProxy

@@ -4,7 +4,7 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.ViewGroup
 import com.anythink.nativead.api.ATNativeImageView
-import com.mozhimen.basick.utilk.android.util.dp2px
+import com.mozhimen.kotlin.utilk.android.util.dp2px
 import com.mozhimen.xmlk.bases.BaseLayoutKLinear
 
 /**

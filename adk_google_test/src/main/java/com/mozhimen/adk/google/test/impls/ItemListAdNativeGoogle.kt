@@ -15,11 +15,11 @@ import com.google.android.gms.ads.nativead.NativeAd
 import com.google.android.gms.ads.nativead.NativeAdView
 import com.mozhimen.adk.google.commons.INativeAdLoadedListener
 import com.mozhimen.adk.google.impls.AdKGoogleNativeProxy
-import com.mozhimen.basick.lintk.optins.OApiCall_BindLifecycle
-import com.mozhimen.basick.lintk.optins.OApiCall_BindViewLifecycle
-import com.mozhimen.basick.lintk.optins.OApiInit_ByLazy
-import com.mozhimen.basick.utilk.android.util.dp2px
-import com.mozhimen.basick.utilk.android.view.applyMargin
+import com.mozhimen.kotlin.lintk.optins.OApiCall_BindLifecycle
+import com.mozhimen.kotlin.lintk.optins.OApiCall_BindViewLifecycle
+import com.mozhimen.kotlin.lintk.optins.OApiInit_ByLazy
+import com.mozhimen.kotlin.utilk.android.util.dp2px
+import com.mozhimen.kotlin.utilk.android.view.applyMargin
 import com.ty.lelejoy.fun_data.utils.loadImage
 import com.ty.lelejoy.fun_widget.R
 import com.ty.lelejoy.fun_widget.cons.ListBundle

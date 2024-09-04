@@ -1,10 +1,10 @@
 package com.mozhimen.adk.topon.bases
 
 import android.util.Log
-import com.mozhimen.basick.utilk.android.util.UtilKLogWrapper
+import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
 import com.anythink.core.api.ATAdInfo
 import com.anythink.core.api.ATAdSourceStatusListener
-import com.mozhimen.basick.utilk.commons.IUtilK
+import com.mozhimen.kotlin.utilk.commons.IUtilK
 
 /**
  * @ClassName ATAdSourceStatusListenerImpl

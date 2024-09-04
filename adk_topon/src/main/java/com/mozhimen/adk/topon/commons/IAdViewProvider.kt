@@ -1,8 +1,8 @@
 package com.mozhimen.adk.topon.commons
 
 import android.view.View
-import com.mozhimen.basick.elemk.commons.IApplicable
-import com.mozhimen.basick.elemk.commons.IReturnable
+import com.mozhimen.kotlin.elemk.commons.IApplicable
+import com.mozhimen.kotlin.elemk.commons.IReturnable
 
 /**
  * @ClassName IListAdProvider

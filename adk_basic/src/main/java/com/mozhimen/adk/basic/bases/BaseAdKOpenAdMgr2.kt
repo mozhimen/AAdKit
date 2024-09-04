@@ -3,15 +3,15 @@ package com.mozhimen.adk.basic.bases
 import android.app.Activity
 import android.app.Application
 import androidx.annotation.CallSuper
-import com.mozhimen.basick.utilk.android.util.UtilKLogWrapper
+import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
 import com.mozhimen.adk.basic.commons.IAdKOpenProxy
-import com.mozhimen.basick.elemk.android.app.bases.BaseActivityLifecycleCallbacks
-import com.mozhimen.basick.elemk.kotlin.properties.VarProperty_Set
-import com.mozhimen.basick.lintk.optins.OApiInit_ByLazy
-import com.mozhimen.basick.lintk.optins.OApiInit_InApplication
-import com.mozhimen.basick.lintk.optins.OApiUse_BaseApplication
-import com.mozhimen.basick.taskk.handler.TaskKIdleHandler
-import com.mozhimen.basick.utilk.commons.IUtilK
+import com.mozhimen.kotlin.elemk.android.app.bases.BaseActivityLifecycleCallbacks
+import com.mozhimen.kotlin.elemk.kotlin.properties.VarProperty_Set
+import com.mozhimen.kotlin.lintk.optins.OApiInit_ByLazy
+import com.mozhimen.kotlin.lintk.optins.OApiInit_InApplication
+import com.mozhimen.kotlin.lintk.optins.OApiUse_BaseApplication
+import com.mozhimen.taskk.handler.TaskKIdleHandler
+import com.mozhimen.kotlin.utilk.commons.IUtilK
 import java.lang.ref.WeakReference
 import java.util.concurrent.atomic.AtomicBoolean
 

@@ -1,7 +1,7 @@
 package com.mozhimen.adk.topon.test.uis
 
 import android.util.Log
-import com.mozhimen.basick.utilk.android.util.UtilKLogWrapper
+import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
@@ -24,8 +24,8 @@ import com.anythink.nativead.api.NativeAd
 import com.mozhimen.adk.topon.basic.test.R
 import com.mozhimen.adk.topon.test.mos.RecycleViewDataBean
 import com.mozhimen.adk.topon.basic.test.utils.SelfRenderViewUtil
-import com.mozhimen.basick.utilk.android.util.dp2px
-import com.mozhimen.basick.utilk.commons.IUtilK
+import com.mozhimen.kotlin.utilk.android.util.dp2px
+import com.mozhimen.kotlin.utilk.commons.IUtilK
 import java.util.concurrent.ConcurrentHashMap
 
 /**

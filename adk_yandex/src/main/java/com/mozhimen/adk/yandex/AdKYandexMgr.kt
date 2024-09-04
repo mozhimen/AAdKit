@@ -1,8 +1,8 @@
 package com.mozhimen.adk.yandex
 
 import android.content.Context
-import com.mozhimen.basick.elemk.commons.I_Listener
-import com.mozhimen.basick.lintk.optins.OApiInit_InApplication
+import com.mozhimen.kotlin.elemk.commons.I_Listener
+import com.mozhimen.kotlin.lintk.optins.OApiInit_InApplication
 import com.yandex.mobile.ads.common.MobileAds
 
 /**

@@ -16,11 +16,11 @@ import androidx.fragment.app.commit
 import com.mozhimen.adk.yandex.basic.impls.AdKYandexBannerProxy
 import com.mozhimen.adk.yandex.basic.test.databinding.ActivityInlineBannerAdBinding
 import com.mozhimen.adk.yandex.basic.test.network.Network
-import com.mozhimen.basick.lintk.optins.OApiCall_BindLifecycle
-import com.mozhimen.basick.lintk.optins.OApiCall_BindViewLifecycle
-import com.mozhimen.basick.lintk.optins.OApiInit_ByLazy
-import com.mozhimen.basick.utilk.android.util.dp2px
-import com.mozhimen.basick.utilk.wrapper.UtilKScreen
+import com.mozhimen.kotlin.lintk.optins.OApiCall_BindLifecycle
+import com.mozhimen.kotlin.lintk.optins.OApiCall_BindViewLifecycle
+import com.mozhimen.kotlin.lintk.optins.OApiInit_ByLazy
+import com.mozhimen.kotlin.utilk.android.util.dp2px
+import com.mozhimen.kotlin.utilk.wrapper.UtilKScreen
 import com.yandex.mobile.ads.banner.BannerAdEventListener
 import com.yandex.mobile.ads.common.AdRequestError
 import com.yandex.mobile.ads.common.ImpressionData

@@ -1,6 +1,6 @@
 package com.sq.adk.topon.test2
 
-import com.mozhimen.basick.elemk.androidx.appcompat.bases.databinding.BaseActivityVDB
+import com.mozhimen.basick.bases.databinding.BaseActivityVDB
 import com.sq.adk.topon.basic.test2.databinding.ActivityNativeAdBinding
 
 /**

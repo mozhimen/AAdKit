@@ -5,10 +5,10 @@ import androidx.lifecycle.ProcessLifecycleOwner
 import com.mozhimen.adk.basic.bases.BaseAdKOpenAdMgr2
 import com.mozhimen.adk.basic.commons.IAdKOpenProxy
 import com.mozhimen.adk.yandex.basic.bases.BaseAppOpenAdLoadCallback
-import com.mozhimen.basick.lintk.optins.OApiCall_BindLifecycle
-import com.mozhimen.basick.lintk.optins.OApiInit_ByLazy
-import com.mozhimen.basick.lintk.optins.OApiInit_InApplication
-import com.mozhimen.basick.lintk.optins.OApiUse_BaseApplication
+import com.mozhimen.kotlin.lintk.optins.OApiCall_BindLifecycle
+import com.mozhimen.kotlin.lintk.optins.OApiInit_ByLazy
+import com.mozhimen.kotlin.lintk.optins.OApiInit_InApplication
+import com.mozhimen.kotlin.lintk.optins.OApiUse_BaseApplication
 import com.yandex.mobile.ads.appopenad.AppOpenAd
 
 @OptIn(OApiCall_BindLifecycle::class)

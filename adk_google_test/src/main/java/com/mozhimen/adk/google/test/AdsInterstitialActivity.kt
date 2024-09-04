@@ -7,12 +7,12 @@ import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import com.mozhimen.adk.google.impls.AdKGoogleInterstitialProxy
 import com.mozhimen.adk.google.test.databinding.ActivityAdsInterstitialBinding
-import com.mozhimen.basick.elemk.androidx.appcompat.bases.databinding.BaseActivityVDB
-import com.mozhimen.basick.lintk.optins.OApiCall_BindLifecycle
-import com.mozhimen.basick.lintk.optins.OApiCall_BindViewLifecycle
-import com.mozhimen.basick.lintk.optins.OApiInit_ByLazy
-import com.mozhimen.basick.utilk.android.view.applyInVisible
-import com.mozhimen.basick.utilk.android.view.applyVisible
+import com.mozhimen.basick.bases.databinding.BaseActivityVDB
+import com.mozhimen.kotlin.lintk.optins.OApiCall_BindLifecycle
+import com.mozhimen.kotlin.lintk.optins.OApiCall_BindViewLifecycle
+import com.mozhimen.kotlin.lintk.optins.OApiInit_ByLazy
+import com.mozhimen.kotlin.utilk.android.view.applyInVisible
+import com.mozhimen.kotlin.utilk.android.view.applyVisible
 
 /**
  * 插页广告

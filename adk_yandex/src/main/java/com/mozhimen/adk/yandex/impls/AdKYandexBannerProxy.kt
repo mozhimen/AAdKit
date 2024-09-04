@@ -1,18 +1,18 @@
 package com.mozhimen.adk.yandex.basic.impls
 
 import android.util.Log
-import com.mozhimen.basick.utilk.android.util.UtilKLogWrapper
+import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
 import android.view.ViewGroup
 import androidx.annotation.Px
 import androidx.lifecycle.LifecycleOwner
 import com.mozhimen.adk.basic.commons.IAdKBannerProxy
-import com.mozhimen.basick.elemk.androidx.lifecycle.bases.BaseWakeBefDestroyLifecycleObserver
-import com.mozhimen.basick.lintk.optins.OApiCall_BindLifecycle
-import com.mozhimen.basick.lintk.optins.OApiCall_BindViewLifecycle
-import com.mozhimen.basick.lintk.optins.OApiInit_ByLazy
-import com.mozhimen.basick.utilk.android.util.px2dp
-import com.mozhimen.basick.utilk.wrapper.UtilKScreen
-import com.mozhimen.basick.utilk.android.view.addView_ofMatchParent
+import com.mozhimen.basick.bases.BaseWakeBefDestroyLifecycleObserver
+import com.mozhimen.kotlin.lintk.optins.OApiCall_BindLifecycle
+import com.mozhimen.kotlin.lintk.optins.OApiCall_BindViewLifecycle
+import com.mozhimen.kotlin.lintk.optins.OApiInit_ByLazy
+import com.mozhimen.kotlin.utilk.android.util.px2dp
+import com.mozhimen.kotlin.utilk.wrapper.UtilKScreen
+import com.mozhimen.kotlin.utilk.android.view.addView_ofMatchParent
 import com.yandex.mobile.ads.banner.BannerAdEventListener
 import com.yandex.mobile.ads.banner.BannerAdSize
 import com.yandex.mobile.ads.banner.BannerAdView

@@ -2,7 +2,7 @@ package com.mozhimen.adk.topon.test.uis
 
 import android.annotation.SuppressLint
 import android.util.Log
-import com.mozhimen.basick.utilk.android.util.UtilKLogWrapper
+import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
 import android.view.KeyEvent
 import android.view.View
 import android.widget.TextView

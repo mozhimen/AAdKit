@@ -3,7 +3,7 @@ package com.mozhimen.adk.topon.test.uis
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
-import com.mozhimen.basick.utilk.android.util.UtilKLogWrapper
+import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
 import com.anythink.core.api.ATAdConst
 import com.anythink.core.api.ATAdInfo
 import com.anythink.core.api.ATNetworkConfirmInfo
@@ -16,13 +16,13 @@ import com.mozhimen.adk.topon.basic.impls.AdKTopOnInterstitialProxy
 import com.mozhimen.adk.topon.basic.test.R
 import com.mozhimen.adk.topon.test.bases.BaseActivityVDB
 import com.mozhimen.adk.topon.test.mos.CommonViewBean
-import com.mozhimen.basick.lintk.optins.OApiCall_BindLifecycle
-import com.mozhimen.basick.lintk.optins.OApiCall_BindViewLifecycle
-import com.mozhimen.basick.lintk.optins.OApiCall_ViewReady
-import com.mozhimen.basick.lintk.optins.OApiInit_ByLazy
-import com.mozhimen.basick.utilk.android.view.applyGone
-import com.mozhimen.basick.utilk.android.view.applyVisible
-import com.mozhimen.basick.utilk.commons.IUtilK
+import com.mozhimen.kotlin.lintk.optins.OApiCall_BindLifecycle
+import com.mozhimen.kotlin.lintk.optins.OApiCall_BindViewLifecycle
+import com.mozhimen.kotlin.lintk.optins.OApiCall_ViewReady
+import com.mozhimen.kotlin.lintk.optins.OApiInit_ByLazy
+import com.mozhimen.kotlin.utilk.android.view.applyGone
+import com.mozhimen.kotlin.utilk.android.view.applyVisible
+import com.mozhimen.kotlin.utilk.commons.IUtilK
 
 /**
  * @ClassName InterstitialAdActivity

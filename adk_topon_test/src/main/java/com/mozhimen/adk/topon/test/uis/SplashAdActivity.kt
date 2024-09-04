@@ -4,7 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.util.Log
-import com.mozhimen.basick.utilk.android.util.UtilKLogWrapper
+import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
 import android.view.View
 import android.widget.RelativeLayout
 import android.widget.TextView
@@ -20,7 +20,7 @@ import com.mozhimen.adk.topon.basic.test.R
 import com.mozhimen.adk.topon.test.bases.BaseActivity
 import com.mozhimen.adk.topon.test.cons.AdConst
 import com.mozhimen.adk.topon.test.mos.CommonViewBean
-import com.mozhimen.basick.utilk.commons.IUtilK
+import com.mozhimen.kotlin.utilk.commons.IUtilK
 
 /**
  * @ClassName SplashAdActivity

@@ -2,9 +2,9 @@ package com.mozhimen.adk.topon.test.utils
 
 import android.text.TextUtils
 import android.util.Log
-import com.mozhimen.basick.utilk.android.util.UtilKLogWrapper
-import com.mozhimen.basick.utilk.commons.IUtilK
-import com.mozhimen.basick.utilk.kotlin.UtilKStrAsset
+import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
+import com.mozhimen.kotlin.utilk.commons.IUtilK
+import com.mozhimen.kotlin.utilk.kotlin.UtilKStrAsset
 import org.json.JSONObject
 
 /**

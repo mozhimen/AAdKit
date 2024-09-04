@@ -12,10 +12,10 @@ import android.widget.FrameLayout;
 import androidx.annotation.NonNull;
 import androidx.annotation.OptIn;
 
-import com.mozhimen.basick.lintk.optins.OApiUse_BaseApplication;
-import com.mozhimen.basick.utilk.android.util.UtilKDisplayMetricsWrapper;
-import com.mozhimen.basick.utilk.android.view.UtilKViewWrapper;
-import com.mozhimen.basick.utilk.wrapper.UtilKScreen;
+import com.mozhimen.kotlin.lintk.optins.OApiUse_BaseApplication;
+import com.mozhimen.kotlin.utilk.android.util.UtilKDisplayMetricsWrapper;
+import com.mozhimen.kotlin.utilk.android.view.UtilKViewWrapper;
+import com.mozhimen.kotlin.utilk.wrapper.UtilKScreen;
 
 
 /*

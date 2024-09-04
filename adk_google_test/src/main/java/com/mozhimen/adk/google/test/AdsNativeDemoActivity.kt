@@ -19,7 +19,7 @@ import android.annotation.SuppressLint
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
-import com.mozhimen.basick.utilk.android.util.UtilKLogWrapper
+import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
 import android.view.View
 import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdLoader
@@ -33,8 +33,8 @@ import com.google.android.gms.ads.nativead.NativeAdOptions
 import com.google.android.gms.ads.nativead.NativeAdView
 import com.mozhimen.adk.google.test.databinding.ActivityAdsNativeDemoBinding
 import com.mozhimen.adk.google.test.databinding.AdUnifiedBinding
-import com.mozhimen.basick.elemk.androidx.appcompat.bases.databinding.BaseActivityVDB
-import com.mozhimen.basick.utilk.android.widget.showToast
+import com.mozhimen.basick.bases.databinding.BaseActivityVDB
+import com.mozhimen.kotlin.utilk.android.widget.showToast
 import java.util.concurrent.atomic.AtomicBoolean
 
 

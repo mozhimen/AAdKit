@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.text.TextUtils
 import android.text.method.ScrollingMovementMethod
 import android.util.Log
-import com.mozhimen.basick.utilk.android.util.UtilKLogWrapper
+import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
 import android.view.View
 import android.view.Window
 import android.widget.AdapterView
@@ -21,8 +21,8 @@ import com.mozhimen.adk.topon.test.annors.AAdNativeType
 import com.mozhimen.adk.topon.test.annors.AnnotationAdType
 import com.mozhimen.adk.topon.test.mos.CommonViewBean
 import com.mozhimen.adk.topon.basic.test.utils.PlacementIdUtil
-import com.mozhimen.basick.utilk.android.widget.applyPrintLog
-import com.mozhimen.basick.utilk.commons.IUtilK
+import com.mozhimen.kotlin.utilk.android.widget.applyPrintLog
+import com.mozhimen.kotlin.utilk.commons.IUtilK
 import com.mozhimen.xmlk.bark.title.BarKTitle
 import java.lang.ref.WeakReference
 

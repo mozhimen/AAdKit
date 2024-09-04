@@ -2,7 +2,7 @@
 //
 //import android.app.Activity
 //import android.util.Log
-import com.mozhimen.basick.utilk.android.util.UtilKLogWrapper
+import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
 //import androidx.lifecycle.LifecycleOwner
 //import com.google.android.gms.ads.AdError
 //import com.google.android.gms.ads.AdRequest
@@ -12,10 +12,10 @@ import com.mozhimen.basick.utilk.android.util.UtilKLogWrapper
 //import com.google.android.gms.ads.rewarded.RewardedAd
 //import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback
 //import com.mozhimen.adk.google.AdKGoogleMgr
-//import com.mozhimen.basick.elemk.androidx.lifecycle.bases.BaseWakeBefDestroyLifecycleObserver
-//import com.mozhimen.basick.lintk.optins.OApiCall_BindLifecycle
-//import com.mozhimen.basick.lintk.optins.OApiInit_ByLazy
-//import com.mozhimen.basick.utilk.androidx.lifecycle.runOnMainThread
+//import com.mozhimen.basick.bases.BaseWakeBefDestroyLifecycleObserver
+//import com.mozhimen.kotlin.lintk.optins.OApiCall_BindLifecycle
+//import com.mozhimen.kotlin.lintk.optins.OApiInit_ByLazy
+//import com.mozhimen.kotlin.utilk.androidx.lifecycle.runOnMainThread
 //import java.lang.ref.WeakReference
 //
 ///**

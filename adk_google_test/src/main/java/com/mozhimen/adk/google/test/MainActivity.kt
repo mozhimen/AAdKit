@@ -2,15 +2,15 @@ package com.mozhimen.adk.google.test
 
 import android.os.Bundle
 import android.util.Log
-import com.mozhimen.basick.utilk.android.util.UtilKLogWrapper
+import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
 import android.view.View
 import com.mozhimen.adk.google.AdKGoogleMgr
 import com.mozhimen.adk.google.optins.OMetaData_GMS_ADS_APPLICATION_ID
 import com.mozhimen.adk.google.test.databinding.ActivityMainBinding
-import com.mozhimen.basick.elemk.androidx.appcompat.bases.databinding.BaseActivityVDB
-import com.mozhimen.basick.elemk.commons.I_Listener
-import com.mozhimen.basick.utilk.android.content.startContext
-import com.mozhimen.basick.utilk.android.widget.showToast
+import com.mozhimen.basick.bases.databinding.BaseActivityVDB
+import com.mozhimen.kotlin.elemk.commons.I_Listener
+import com.mozhimen.kotlin.utilk.android.content.startContext
+import com.mozhimen.kotlin.utilk.android.widget.showToast
 
 class MainActivity : BaseActivityVDB<ActivityMainBinding>() {
     private var _isInitSuccess = false

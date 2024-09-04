@@ -1,13 +1,13 @@
 package com.mozhimen.adk.google
 
 import android.content.Context
-import com.mozhimen.basick.utilk.android.util.UtilKLogWrapper
+import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
 import com.google.android.gms.ads.MobileAds
 import com.google.android.gms.ads.initialization.AdapterStatus
 import com.mozhimen.abilityk.google.android.gms.play.ads.optins.OMetaData_GMS_ADS_APPLICATION_ID
 import com.mozhimen.adk.google.utils.CacheUtil
-import com.mozhimen.basick.elemk.commons.IA_Listener
-import com.mozhimen.basick.utilk.commons.IUtilK
+import com.mozhimen.kotlin.elemk.commons.IA_Listener
+import com.mozhimen.kotlin.utilk.commons.IUtilK
 
 /**
  * @ClassName AdKGoogle

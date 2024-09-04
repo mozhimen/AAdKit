@@ -1,14 +1,14 @@
 package com.mozhimen.adk.yandex.basic.test
 
 import android.os.Bundle
-import com.mozhimen.basick.utilk.android.util.UtilKLogWrapper
+import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
 import com.mozhimen.adk.yandex.basic.commons.INativeAdLoadedListener
 import com.mozhimen.adk.yandex.impls.AdKYandexNativeProxy
 import com.mozhimen.adk.yandex.basic.test.databinding.ActivityCustomNativeAdBinding
-import com.mozhimen.basick.elemk.androidx.appcompat.bases.viewbinding.BaseActivityVB
-import com.mozhimen.basick.lintk.optins.OApiCall_BindLifecycle
-import com.mozhimen.basick.lintk.optins.OApiCall_BindViewLifecycle
-import com.mozhimen.basick.lintk.optins.OApiInit_ByLazy
+import com.mozhimen.mvvmk.bases.activity.viewbinding.BaseActivityVB
+import com.mozhimen.kotlin.lintk.optins.OApiCall_BindLifecycle
+import com.mozhimen.kotlin.lintk.optins.OApiCall_BindViewLifecycle
+import com.mozhimen.kotlin.lintk.optins.OApiInit_ByLazy
 import com.yandex.mobile.ads.nativeads.NativeAd
 import com.yandex.mobile.ads.nativeads.NativeAdView
 import com.yandex.mobile.ads.nativeads.NativeAdViewBinder

@@ -4,7 +4,7 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
-import com.mozhimen.basick.utilk.android.util.UtilKLogWrapper
+import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
 import android.view.View
 import com.anythink.core.api.ATSDK
 import com.mozhimen.adk.topon.basic.test.databinding.ActivityMainBinding
@@ -14,11 +14,11 @@ import com.mozhimen.adk.topon.basic.test.uis.NativeMainActivity
 import com.mozhimen.adk.topon.basic.test.uis.RewardVideoAdActivity
 import com.mozhimen.adk.topon.basic.test.uis.SplashAdActivity
 import com.mozhimen.adk.topon.basic.test.utils.PlacementIdUtil
-import com.mozhimen.basick.elemk.androidx.appcompat.bases.databinding.BaseActivityVDB
-import com.mozhimen.basick.utilk.android.content.UtilKClipboardManagerWrapper
-import com.mozhimen.basick.utilk.android.content.startContext
-import com.mozhimen.basick.utilk.android.widget.applyTextStyleBold
-import com.mozhimen.basick.utilk.android.widget.showToast
+import com.mozhimen.basick.bases.databinding.BaseActivityVDB
+import com.mozhimen.kotlin.utilk.android.content.UtilKClipboardManagerWrapper
+import com.mozhimen.kotlin.utilk.android.content.startContext
+import com.mozhimen.kotlin.utilk.android.widget.applyTextStyleBold
+import com.mozhimen.kotlin.utilk.android.widget.showToast
 import org.json.JSONObject
 
 class MainActivity : BaseActivityVDB<ActivityMainBinding>(), View.OnClickListener {

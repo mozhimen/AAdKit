@@ -5,7 +5,7 @@ import android.app.Activity
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
-import com.mozhimen.basick.utilk.android.util.UtilKLogWrapper
+import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
 import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
@@ -14,7 +14,7 @@ import android.widget.TextView
 import com.anythink.splashad.api.ATSplashEyeAdListener
 import com.mozhimen.adk.topon.basic.helpers.SplashZoomOutManager
 import com.mozhimen.adk.topon.test.helpers.SplashEyeAdHolder
-import com.mozhimen.basick.utilk.commons.IUtilK
+import com.mozhimen.kotlin.utilk.commons.IUtilK
 
 /**
  * @ClassName TestMainActivity

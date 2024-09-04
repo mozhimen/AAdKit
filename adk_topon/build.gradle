@@ -37,6 +37,7 @@ android {
 dependencies {
     implementation project(':SwiftKit:basick')
     implementation project(':SwiftKit:xmlk')
+    implementation project(':AStackKit:stackk_callback')
     api project(project.path.replace(project.name, '') + ':adk_basic')
     implementation project(':AWebKit:webk_basic')
     api project(':ALibKit_Google:android_ump')

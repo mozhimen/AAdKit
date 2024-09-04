@@ -4,11 +4,11 @@ import android.os.Bundle
 import com.mozhimen.adk.google.impls.AdKGoogleRewardedSimpleProxy
 import com.mozhimen.adk.google.impls.IAdKGoogleRewardedListener
 import com.mozhimen.adk.google.test.databinding.ActivityAdsRewardedBinding
-import com.mozhimen.basick.elemk.androidx.appcompat.bases.databinding.BaseActivityVDB
-import com.mozhimen.basick.lintk.optins.OApiCall_BindLifecycle
-import com.mozhimen.basick.lintk.optins.OApiInit_ByLazy
-import com.mozhimen.basick.utilk.android.view.applyInVisible
-import com.mozhimen.basick.utilk.android.view.applyVisible
+import com.mozhimen.basick.bases.databinding.BaseActivityVDB
+import com.mozhimen.kotlin.lintk.optins.OApiCall_BindLifecycle
+import com.mozhimen.kotlin.lintk.optins.OApiInit_ByLazy
+import com.mozhimen.kotlin.utilk.android.view.applyInVisible
+import com.mozhimen.kotlin.utilk.android.view.applyVisible
 import java.lang.ref.WeakReference
 
 class AdsRewardedActivity : BaseActivityVDB<ActivityAdsRewardedBinding>() {

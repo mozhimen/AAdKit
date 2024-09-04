@@ -6,10 +6,10 @@ import com.inmobi.sdk.InMobiSdk
 import com.inmobi.sdk.SdkInitializationListener
 import com.mozhimen.adk.inmobi.mos.ConsentObject
 import com.mozhimen.adk.inmobi.utils.CacheUtil
-import com.mozhimen.basick.elemk.commons.IAB_Listener
-import com.mozhimen.basick.utilk.android.content.isMainProcess
-import com.mozhimen.basick.utilk.android.util.UtilKLogWrapper
-import com.mozhimen.basick.utilk.commons.IUtilK
+import com.mozhimen.kotlin.elemk.commons.IAB_Listener
+import com.mozhimen.kotlin.utilk.android.content.isMainProcess
+import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
+import com.mozhimen.kotlin.utilk.commons.IUtilK
 import org.json.JSONObject
 
 /**

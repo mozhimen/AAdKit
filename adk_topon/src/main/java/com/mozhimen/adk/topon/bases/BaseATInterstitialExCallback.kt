@@ -2,12 +2,12 @@ package com.mozhimen.adk.topon.bases
 
 import android.content.Context
 import android.util.Log
-import com.mozhimen.basick.utilk.android.util.UtilKLogWrapper
+import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
 import com.anythink.core.api.ATAdInfo
 import com.anythink.core.api.ATNetworkConfirmInfo
 import com.anythink.core.api.AdError
 import com.anythink.interstitial.api.ATInterstitialExListener
-import com.mozhimen.basick.utilk.commons.IUtilK
+import com.mozhimen.kotlin.utilk.commons.IUtilK
 
 /**
  * @ClassName BaseATInterstitialExCallback

@@ -3,7 +3,7 @@ package com.mozhimen.adk.topon.test.uis
 import android.app.Activity
 import android.os.Bundle
 import android.util.Log
-import com.mozhimen.basick.utilk.android.util.UtilKLogWrapper
+import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -13,7 +13,7 @@ import com.anythink.nativead.api.ATNativeNetworkListener
 import com.mozhimen.adk.topon.basic.test.R
 import com.mozhimen.adk.topon.test.mos.RecycleViewDataBean
 import com.mozhimen.adk.topon.basic.test.utils.PlacementIdUtil
-import com.mozhimen.basick.utilk.commons.IUtilK
+import com.mozhimen.kotlin.utilk.commons.IUtilK
 
 /**
  * @ClassName NativeListActivity

@@ -5,7 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import com.mozhimen.basick.utilk.android.util.UtilKLogWrapper
+import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
 import android.view.View
 import android.widget.FrameLayout
 import android.widget.Toast
@@ -22,7 +22,7 @@ import com.mozhimen.adk.topon.basic.helpers.SplashZoomOutManager
 import com.mozhimen.adk.topon.test.cons.AdConst
 import com.mozhimen.adk.topon.basic.test.databinding.SplashAdShowBinding
 import com.mozhimen.adk.topon.test.helpers.SplashEyeAdHolder
-import com.mozhimen.basick.elemk.androidx.appcompat.bases.databinding.BaseActivityVDB
+import com.mozhimen.basick.bases.databinding.BaseActivityVDB
 
 /**
  * @ClassName SplashAdShowActivity
