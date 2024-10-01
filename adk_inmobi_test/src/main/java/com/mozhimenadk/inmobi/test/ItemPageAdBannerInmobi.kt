@@ -17,7 +17,7 @@
 //import com.mozhimen.kotlin.utilk.android.view.applyGone
 //import com.mozhimen.kotlin.utilk.android.view.applyMargin
 //import com.mozhimen.kotlin.utilk.android.view.applyVisible
-//import com.mozhimen.pagingk.paging3.data.bases.BasePagingKVHKProvider
+//import com.mozhimen.pagingk.paging3.data.bases.uis.BasePagingKVHKProvider
 //import com.mozhimen.xmlk.vhk.VHKRecycler
 //import com.ty.lelejoy.fun_widget.R
 //import com.ty.lelejoy.fun_widget.cons.PageBundle
