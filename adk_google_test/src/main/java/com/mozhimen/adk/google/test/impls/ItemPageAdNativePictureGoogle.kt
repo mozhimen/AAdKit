@@ -47,7 +47,7 @@ class ItemPageAdNativePictureGoogle : BasePagingKVHKProvider<PageBundle>() {
 
             val adKGoogleNativeProxy = AdKGoogleNativeProxy()
             adKGoogleNativeProxy.apply {
-                initNativeAdParams(com.ty.lelejoy.module_common.BuildConfig.gms_ad_placement_id_native)
+                initNativeAdParams(com.ty.lelejoy.common.BuildConfig.gms_ad_placement_id_native)
                 initNativeAdListener(
                     object : AdListener() {
                         override fun onAdFailedToLoad(p0: LoadAdError) {

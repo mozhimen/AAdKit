@@ -69,7 +69,7 @@
 //                    }
 //                })
 //                initBannerAdSize(320f.dp2pxI(), 50f.dp2pxI())
-//                initBannerAdParams(com.ty.lelejoy.module_common.BuildConfig.inmobi_placement_id_banner)
+//                initBannerAdParams(com.ty.lelejoy.common.BuildConfig.inmobi_placement_id_banner)
 //                bindLifecycle(holder)
 //            }
 //        }

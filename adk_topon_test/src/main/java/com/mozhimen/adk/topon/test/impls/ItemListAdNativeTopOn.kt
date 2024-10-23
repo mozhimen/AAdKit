@@ -49,7 +49,7 @@ class ItemListAdNativeTopOn : BaseItemProvider<ListBundle>() {
 
         val adKGoogleNativeProxy = AdKTopOnNativeProxy()
         adKGoogleNativeProxy.apply {
-            initNativeAdParams(com.ty.lelejoy.module_common.BuildConfig.topon_placement_id_native, "")
+            initNativeAdParams(com.ty.lelejoy.common.BuildConfig.topon_placement_id_native, "")
             initNativeAdListener(
                 object : BaseATNativeNetworkCallback() {
                     override fun onNativeAdLoadFail(p0: AdError?) {

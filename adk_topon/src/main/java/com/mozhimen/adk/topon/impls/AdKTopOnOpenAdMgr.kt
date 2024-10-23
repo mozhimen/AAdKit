@@ -7,6 +7,7 @@ import com.mozhimen.kotlin.lintk.optins.OApiCall_BindLifecycle
 import com.mozhimen.kotlin.lintk.optins.OApiInit_ByLazy
 import com.mozhimen.kotlin.lintk.optins.OApiInit_InApplication
 import com.mozhimen.kotlin.lintk.optins.OApiUse_BaseApplication
+import com.mozhimen.kotlin.utilk.kotlin.UtilKLazyJVM
 import com.mozhimen.stackk.callback.StackKCb
 
 /**
@@ -23,7 +24,7 @@ import com.mozhimen.stackk.callback.StackKCb
 class AdKTopOnOpenAdMgr(adUnitId: String) : BaseAdKOpenAdMgr(adUnitId) {
 
     @OptIn(OApiCall_BindLifecycle::class)
-    private val _adkTopOnOpenProxy by lazy { AdKTopOnOpenProxy() }
+    private val _adkTopOnOpenProxy by UtilKLazyJVM.lazy_ofNone { AdKTopOnOpenProxy() }
 
     //////////////////////////////////////////////////////////////////////////////
 

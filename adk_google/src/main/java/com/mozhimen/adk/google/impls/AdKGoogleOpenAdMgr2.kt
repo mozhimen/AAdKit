@@ -10,17 +10,21 @@ import com.mozhimen.kotlin.lintk.optins.OApiCall_BindLifecycle
 import com.mozhimen.kotlin.lintk.optins.OApiInit_ByLazy
 import com.mozhimen.kotlin.lintk.optins.OApiInit_InApplication
 import com.mozhimen.kotlin.lintk.optins.OApiUse_BaseApplication
+import com.mozhimen.kotlin.utilk.kotlin.UtilKLazyJVM
 
 @OptIn(OApiCall_BindLifecycle::class)
 @OApiInit_InApplication
 @OApiInit_ByLazy
 @OApiUse_BaseApplication
-class AdKGoogleOpenAdMgr2(application: Application, keyWord: String, adUnitId: String) : BaseAdKOpenAdMgr2(application, keyWord, adUnitId) {
+class AdKGoogleOpenAdMgr2(keyWord: String, private val _adUnitId: String) : BaseAdKOpenAdMgr2(keyWord) {
 
-    private val _adkGoogleOpenProxy by lazy_ofNone { AdKGoogleOpenProxy() }
+    private val _adkGoogleOpenProxy by UtilKLazyJVM.lazy_ofNone { AdKGoogleOpenProxy() }
 
-    init {
-        initOpenAdProxy(adUnitId)
+    /////////////////////////////////////////////////////////////////////
+
+    override fun init(application: Application) {
+        super.init(application)
+        initOpenAdProxy(_adUnitId)
     }
 
     override fun initOpenAdProxy(adUnitId: String) {

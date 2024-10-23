@@ -95,6 +95,8 @@ class AdKTopOnInterstitialProxy(
         _interstitialAdSize = localMap
     }
 
+    ////////////////////////////////////////////////////////////////////////////
+
     override fun initInterstitialAd() {
         _interstitialAd = ATInterstitial(_context, _placementId).apply {
             _interstitialAdSize?.let { setLocalExtra(it) }

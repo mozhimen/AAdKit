@@ -82,6 +82,8 @@ class AdKTopOnOpenProxy : BaseWakeBefDestroyLifecycleObserver(), IAdKOpenProxy, 
         _atOpenAd?.loadAd()
     }
 
+    ///////////////////////////////////////////////////////////////////////////////
+
     @Deprecated("use showOpenAd(activity: Activity?, viewGroup: ViewGroup)")
     override fun showOpenAd(activity: Activity?) {
         if (activity != null) {

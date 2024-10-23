@@ -47,7 +47,7 @@ class ItemListAdBannerGoogle : BaseItemProvider<ListBundle>() {
                     }
                 })
                 initBannerAdSize((UtilKScreen.getWidth_ofDisplayMetrics_ofSys().px2dp - 46f).toInt())
-                initBannerAdParams(com.ty.lelejoy.module_common.BuildConfig.gms_ad_placement_id_banner)
+                initBannerAdParams(com.ty.lelejoy.common.BuildConfig.gms_ad_placement_id_banner)
                 bindLifecycle(holder)
             }
         }

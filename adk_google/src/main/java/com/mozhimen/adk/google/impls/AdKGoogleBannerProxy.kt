@@ -1,6 +1,5 @@
 package com.mozhimen.adk.google.impls
 
-import android.util.Log
 import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
 import android.view.ViewGroup
 import androidx.lifecycle.LifecycleOwner
@@ -16,7 +15,7 @@ import com.mozhimen.kotlin.lintk.annors.Dp
 import com.mozhimen.kotlin.lintk.optins.OApiCall_BindLifecycle
 import com.mozhimen.kotlin.lintk.optins.OApiCall_BindViewLifecycle
 import com.mozhimen.kotlin.lintk.optins.OApiInit_ByLazy
-import com.mozhimen.kotlin.utilk.android.view.addView_ofMatchParent
+import com.mozhimen.kotlin.utilk.android.view.addViewSafe_ofMatchParent
 
 /**
  * @ClassName AdKGoogleBannerProxy
@@ -64,10 +63,16 @@ class AdKGoogleBannerProxy : BaseWakeBefDestroyLifecycleObserver(), IAdKBannerPr
                 // adUnitId为Admob后台创建的Banner广告的id
                 adUnitId = _adUnitId//"ca-app-pub-3940256099942544/6300978111"
                 // 设置广告事件回调
-                adListener = BannerAdListener()
+                adListener = BannerAdListenerImpl()
             }
         }
     }
+
+    override fun loadBannerAd() {
+        _bannerAdView?.loadAd(AdRequest.Builder().build())
+    }
+
+    //////////////////////////////////////////////////////////////////////////////////
 
     fun showBannerAd() {
         _bannerAdView?.alpha = 1f
@@ -75,10 +80,6 @@ class AdKGoogleBannerProxy : BaseWakeBefDestroyLifecycleObserver(), IAdKBannerPr
 
     fun hideBannerAd() {
         _bannerAdView?.alpha = 0f
-    }
-
-    override fun loadBannerAd() {
-        _bannerAdView?.loadAd(AdRequest.Builder().build())
     }
 
     //////////////////////////////////////////////////////////////////////////////////
@@ -89,7 +90,7 @@ class AdKGoogleBannerProxy : BaseWakeBefDestroyLifecycleObserver(), IAdKBannerPr
 //            // 设置显示在页面的底部中间
 //            bannerViewLayoutParams.gravity = Gravity.BOTTOM or Gravity.CENTER_HORIZONTAL
 //            layoutParams = bannerViewLayoutParams
-            container.addView_ofMatchParent(_bannerAdView!!)// 把 Banner Ad 添加到根布局
+            container.addViewSafe_ofMatchParent(_bannerAdView!!)// 把 Banner Ad 添加到根布局
         }
     }
 
@@ -126,7 +127,7 @@ class AdKGoogleBannerProxy : BaseWakeBefDestroyLifecycleObserver(), IAdKBannerPr
 
     //////////////////////////////////////////////////////////////////////////////////
 
-    private inner class BannerAdListener : AdListener() {
+    private inner class BannerAdListenerImpl : AdListener() {
         override fun onAdLoaded() {
             // 广告加载成功
             UtilKLogWrapper.i(TAG, "banner onAdLoaded")

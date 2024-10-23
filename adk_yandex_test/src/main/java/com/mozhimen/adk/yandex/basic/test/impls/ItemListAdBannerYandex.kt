@@ -47,7 +47,7 @@ class ItemListAdBannerYandex : BaseItemProvider<ListBundle>() {
                     }
                 })
                 initBannerAdSize(UtilKScreen.getWidth_ofDisplayMetrics_ofSys() - 46f.dp2px.toInt(), 50f.dp2px.toInt())
-                initBannerAdParams(com.ty.lelejoy.module_common.BuildConfig.yandex_placement_id_banner)
+                initBannerAdParams(com.ty.lelejoy.common.BuildConfig.yandex_placement_id_banner)
                 bindLifecycle(holder)
             }
         }

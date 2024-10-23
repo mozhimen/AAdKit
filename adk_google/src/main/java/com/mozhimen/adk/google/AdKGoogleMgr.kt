@@ -4,7 +4,7 @@ import android.content.Context
 import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
 import com.google.android.gms.ads.MobileAds
 import com.google.android.gms.ads.initialization.AdapterStatus
-import com.mozhimen.abilityk.google.android.gms.play.ads.optins.OMetaData_GMS_ADS_APPLICATION_ID
+import com.mozhimen.libk.google.android.gms.play.ads.optins.OMetaData_ANDROID_GMS_ADS_APPLICATION_ID
 import com.mozhimen.adk.google.utils.CacheUtil
 import com.mozhimen.kotlin.elemk.commons.IA_Listener
 import com.mozhimen.kotlin.utilk.commons.IUtilK
@@ -30,7 +30,7 @@ object AdKGoogleMgr : IUtilK {
 //    }
 
     @JvmStatic
-    @OMetaData_GMS_ADS_APPLICATION_ID
+    @OMetaData_ANDROID_GMS_ADS_APPLICATION_ID
     fun init(context: Context, listener: IA_Listener<Boolean>) {
         MobileAds.initialize(context) { initializationStatus ->
             val readyAdapter = initializationStatus.adapterStatusMap.entries.find {

@@ -32,6 +32,8 @@ android {
 
 dependencies {
     implementation project(':SwiftKit:basick')
+    implementation project(':AStackKit:stackk_callback')
+    implementation project(':ACacheKit:cachek_datastore')
     api project(':ALibKit_Google:android_gms_play_ads')
     api project(project.path.replace(project.name, '') +':adk_basic')
 

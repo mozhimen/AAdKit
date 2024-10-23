@@ -8,6 +8,7 @@ import com.mozhimen.kotlin.lintk.optins.OApiCall_BindLifecycle
 import com.mozhimen.kotlin.lintk.optins.OApiInit_ByLazy
 import com.mozhimen.kotlin.lintk.optins.OApiInit_InApplication
 import com.mozhimen.kotlin.lintk.optins.OApiUse_BaseApplication
+import com.mozhimen.kotlin.utilk.kotlin.UtilKLazyJVM
 import com.mozhimen.stackk.callback.StackKCb
 
 @OptIn(OApiCall_BindLifecycle::class)
@@ -16,7 +17,7 @@ import com.mozhimen.stackk.callback.StackKCb
 @OApiUse_BaseApplication
 class AdKGoogleOpenAdMgr(adUnitId: String) : BaseAdKOpenAdMgr(adUnitId) {
     @OptIn(OApiCall_BindLifecycle::class)
-    private val _adkGoogleOpenProxy by lazy_ofNone { AdKGoogleOpenProxy() }
+    private val _adkGoogleOpenProxy by UtilKLazyJVM.lazy_ofNone { AdKGoogleOpenProxy() }
 
     init {
         _adkGoogleOpenProxy.apply {
