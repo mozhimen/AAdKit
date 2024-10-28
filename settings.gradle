@@ -79,6 +79,7 @@ project(':ALibKit_Jetpack').projectDir = new File("D:\\WorkSpace\\GitHub\\ALibKi
 include ':ALibKit_Jetpack:viewpager'
 include ':ALibKit_Jetpack:browser'
 include ':ALibKit_Jetpack:recyclerview'
+include ':ALibKit_Jetpack:datastore'
 //ALibKit_Squareup
 include ':ALibKit_Squareup'
 project(':ALibKit_Squareup').projectDir = new File("D:\\WorkSpace\\GitHub\\ALibKit_Squareup")
@@ -93,3 +94,8 @@ include ':KUtilKit'
 project(':KUtilKit').projectDir = new File("D:\\WorkSpace\\GitHub\\KUtilKit")
 include ':KUtilKit:utilk_android'
 include ':KUtilKit:utilk_kotlin'
+//ACacheKit
+include ':ACacheKit'
+project(':ACacheKit').projectDir = new File("D:\\WorkSpace\\GitHub\\ACacheKit")
+include ':ACacheKit:cachek_datastore'
+include ':ACacheKit:cachek_basic'
