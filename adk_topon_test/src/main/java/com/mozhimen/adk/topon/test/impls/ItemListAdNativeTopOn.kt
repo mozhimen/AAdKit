@@ -26,7 +26,7 @@ import com.mozhimen.kotlin.utilk.android.util.dp2px
 import com.mozhimen.kotlin.utilk.android.view.applyMargin
 import com.ty.lelejoy.fun_data.utils.loadImage
 import com.ty.lelejoy.fun_widget.R
-import com.ty.lelejoy.fun_widget.cons.ListBundle
+import com.ty.lelejoy.common.mos.ListBundle
 import com.ty.lelejoy.fun_widget.cons.CItemExtras
 
 /**

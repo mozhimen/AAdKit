@@ -16,7 +16,7 @@ import com.mozhimen.kotlin.utilk.android.view.addView_ofMatchParent
 import com.mozhimen.kotlin.utilk.android.view.applyGone
 import com.mozhimen.kotlin.utilk.android.view.applyVisible
 import com.ty.lelejoy.fun_widget.R
-import com.ty.lelejoy.fun_widget.cons.ListBundle
+import com.ty.lelejoy.common.mos.ListBundle
 import com.ty.lelejoy.fun_widget.cons.ListBundle_AdBannerGoogle
 import com.ty.lelejoy.fun_widget.cons.CItemExtras
 

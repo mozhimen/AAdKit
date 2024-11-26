@@ -17,7 +17,7 @@ import com.mozhimen.kotlin.utilk.android.view.applyVisible
 import com.mozhimen.kotlin.utilk.wrapper.UtilKScreen
 import com.ty.lelejoy.fun_widget.R
 import com.ty.lelejoy.fun_widget.cons.CItemExtras
-import com.ty.lelejoy.fun_widget.cons.ListBundle
+import com.ty.lelejoy.common.mos.ListBundle
 import com.ty.lelejoy.fun_widget.cons.ListBundle_AdBannerYandex
 
 /**
