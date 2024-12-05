@@ -88,7 +88,7 @@ include ':ALibKit_Squareup:picasso'
 include ':AStackKit'
 project(':AStackKit').projectDir = new File("D:\\WorkSpace\\GitHub\\AStackKit")
 include ':AStackKit:stackk_callback'
-include ':AStackKit:basic'
+include ':AStackKit:stackk_basic'
 //KUtilKit
 include ':KUtilKit'
 project(':KUtilKit').projectDir = new File("D:\\WorkSpace\\GitHub\\KUtilKit")
