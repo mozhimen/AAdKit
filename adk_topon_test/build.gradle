@@ -46,7 +46,7 @@ android {
 
 dependencies {
     implementation project(':AXmlKit:bark_title')
-    implementation project(':SwiftKit:basick')
+    implementation project(':ASwiftKit:basick')
     implementation project(':adk_topon')
     implementation project(':ADebugKit:debugk_leakcanary')
 
