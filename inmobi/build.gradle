@@ -39,7 +39,7 @@ dependencies {
     implementation project(':ALibKit_Jetpack:viewpager')
     implementation project(':ALibKit_Jetpack:recyclerview')
     implementation project(':ASwiftKit:basick')
-    api project(project.path.replace(project.name, '') +':adk_basic')
+    api project(project.path.replace(project.name, '') +':basic')
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'

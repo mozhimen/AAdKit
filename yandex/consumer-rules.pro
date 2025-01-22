@@ -173,4 +173,3 @@
 #///////////////////////////////////////////////////
 # ysonetwork
 -keep class com.ysocorp.ysonetwork.** { *; }
-

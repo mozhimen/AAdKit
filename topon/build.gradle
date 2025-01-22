@@ -37,11 +37,11 @@ android {
 dependencies {
     implementation project(':ASwiftKit:basick')
     implementation project(':ASwiftKit:xmlk')
-    implementation project(':AStackKit:stackk_callback')
-    implementation project(':AWebKit:webk_basic')
+    implementation project(':AStackKit:callback')
+    implementation project(':AWebKit:basic')
 
-    api project(project.path.replace(project.name, '') + ':adk_basic')
-    api project(':ALibKit_Google:android_ump')
+    api project(project.path.replace(project.name, '') + ':basic')
+    api project(':ALibKit_Google:android_ump:user_messaging_platform')
 
     api fileTree(include: ['*.jar', '*.aar'], dir: 'libs')
 
@@ -50,9 +50,9 @@ dependencies {
     api "androidx.browser:browser:1.4.0"
 
     if (getGradle().getStartParameter().getTaskRequests().toString().contains("mainland")) {
-        api project(project.path.replace(project.name, '') +':adk_topon_mainland')
+        api project(project.path.replace(project.name, '') +':topon:mainland')
     } else {
-        api project(project.path.replace(project.name, '') +':adk_topon_oversea')
+        api project(project.path.replace(project.name, '') +':topon:oversea')
     }
 
 //    //UnityAds
