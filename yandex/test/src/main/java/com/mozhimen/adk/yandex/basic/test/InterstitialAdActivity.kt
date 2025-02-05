@@ -16,7 +16,7 @@ import com.mozhimen.adk.yandex.basic.impls.AdKYandexInterstitialProxy
 import com.mozhimen.adk.yandex.basic.test.databinding.ActivityInterstitialAdBinding
 import com.mozhimen.adk.yandex.basic.test.network.Network
 import com.mozhimen.adk.yandex.basic.test.network.NetworkAdapter
-import com.mozhimen.bindk.bases.activity.viewbinding.BaseActivityVB
+import com.mozhimen.uik.databinding.bases.activity.viewbinding.BaseActivityVB
 import com.mozhimen.kotlin.lintk.optins.OApiCall_BindLifecycle
 import com.mozhimen.kotlin.lintk.optins.OApiCall_BindViewLifecycle
 import com.mozhimen.kotlin.lintk.optins.OApiInit_ByLazy

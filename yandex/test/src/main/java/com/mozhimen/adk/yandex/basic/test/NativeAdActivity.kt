@@ -5,7 +5,7 @@ import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
 import com.mozhimen.adk.yandex.basic.commons.INativeAdLoadedListener
 import com.mozhimen.adk.yandex.impls.AdKYandexNativeProxy
 import com.mozhimen.adk.yandex.basic.test.databinding.ActivityCustomNativeAdBinding
-import com.mozhimen.bindk.bases.activity.viewbinding.BaseActivityVB
+import com.mozhimen.uik.databinding.bases.activity.viewbinding.BaseActivityVB
 import com.mozhimen.kotlin.lintk.optins.OApiCall_BindLifecycle
 import com.mozhimen.kotlin.lintk.optins.OApiCall_BindViewLifecycle
 import com.mozhimen.kotlin.lintk.optins.OApiInit_ByLazy

@@ -10,8 +10,8 @@ import com.mozhimen.kotlin.elemk.kotlin.properties.VarProperty_Set
 import com.mozhimen.kotlin.lintk.optins.OApiInit_ByLazy
 import com.mozhimen.kotlin.lintk.optins.OApiInit_InApplication
 import com.mozhimen.kotlin.lintk.optins.OApiUse_BaseApplication
-import com.mozhimen.taskk.handler.TaskKIdleHandler
 import com.mozhimen.kotlin.utilk.commons.IUtilK
+import com.mozhimen.taskk.helpers.TaskKIdleHandler
 import java.lang.ref.WeakReference
 import java.util.concurrent.atomic.AtomicBoolean
 

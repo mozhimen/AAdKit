@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import com.mozhimen.adk.yandex.basic.test.databinding.ActivityMainBinding
-import com.mozhimen.bindk.bases.activity.viewbinding.BaseActivityVB
+import com.mozhimen.uik.databinding.bases.activity.viewbinding.BaseActivityVB
 import com.mozhimen.kotlin.utilk.android.content.startContext
 
 class MainActivity : BaseActivityVB<ActivityMainBinding>() {
