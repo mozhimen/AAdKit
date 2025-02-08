@@ -19,7 +19,7 @@ import com.mozhimen.kotlin.lintk.optins.OApiInit_ByLazy
 import com.mozhimen.kotlin.utilk.android.util.dp2px
 import com.mozhimen.kotlin.utilk.android.view.applyMargin
 import com.mozhimen.pagingk.bases.BasePagingKVHKProvider
-import com.mozhimen.xmlk.vhk.VHKRecycler
+import com.mozhimen.xmlk.vhk.VHKLifecycle2
 import com.ty.lelejoy.fun_data.utils.loadImage
 import com.ty.lelejoy.fun_widget.R
 import com.ty.lelejoy.fun_widget.cons.PageBundle
@@ -39,7 +39,7 @@ class ItemPageAdNativeGoogle : BasePagingKVHKProvider<PageBundle>() {
         get() = R.layout.item_recycler_vertical_container
 
     @OptIn(OApiCall_BindViewLifecycle::class, OApiCall_BindLifecycle::class, OApiInit_ByLazy::class)
-    override fun onBindViewHolder(holder: VHKRecycler, item: PageBundle?, position: Int) {
+    override fun onBindViewHolder(holder: VHKLifecycle2, item: PageBundle?, position: Int) {
         super.onBindViewHolder(holder, item, position)
         if (item is PageBundle) {
             holder.findViewById<FrameLayout>(R.id.item_other_container).applyMargin(11f.dp2px.toInt(), 23f.dp2px.toInt())
@@ -106,7 +106,7 @@ class ItemPageAdNativeGoogle : BasePagingKVHKProvider<PageBundle>() {
         }
     }
 
-    override fun onViewRecycled(holder: VHKRecycler, item: PageBundle?, position: Int?) {
+    override fun onViewRecycled(holder: VHKLifecycle2, item: PageBundle?, position: Int?) {
         holder.findViewById<FrameLayout>(R.id.item_other_container).removeAllViews()
         super.onViewRecycled(holder, item, position)
     }

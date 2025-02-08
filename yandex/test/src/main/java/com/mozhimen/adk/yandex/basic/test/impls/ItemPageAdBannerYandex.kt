@@ -14,7 +14,7 @@ import com.mozhimen.kotlin.utilk.android.view.applyGone
 import com.mozhimen.kotlin.utilk.android.view.applyVisible
 import com.mozhimen.kotlin.utilk.wrapper.UtilKScreen
 import com.mozhimen.pagingk.bases.BasePagingKVHKProvider
-import com.mozhimen.xmlk.vhk.VHKRecycler
+import com.mozhimen.xmlk.vhk.VHKLifecycle2
 import com.ty.lelejoy.fun_widget.R
 import com.ty.lelejoy.fun_widget.cons.CItemExtras
 import com.ty.lelejoy.fun_widget.cons.PageBundle
@@ -34,7 +34,7 @@ class ItemPageAdBannerYandex : BasePagingKVHKProvider<PageBundle>() {
         get() = R.layout.item_recycler_vertical_ad_banner_change
 
     @OptIn(OApiCall_BindViewLifecycle::class, OApiCall_BindLifecycle::class, OApiInit_ByLazy::class)
-    override fun onBindViewHolder(holder: VHKRecycler, item: PageBundle?, position: Int) {
+    override fun onBindViewHolder(holder: VHKLifecycle2, item: PageBundle?, position: Int) {
         super.onBindViewHolder(holder, item, position)
         if (item is PageBundle_AdBannerYandex) {
             val adKYandexInlineBannerProxy = AdKYandexBannerProxy()
@@ -54,7 +54,7 @@ class ItemPageAdBannerYandex : BasePagingKVHKProvider<PageBundle>() {
 
     }
 
-    override fun onViewAttachedToWindow(holder: VHKRecycler, item: PageBundle?, position: Int?) {
+    override fun onViewAttachedToWindow(holder: VHKLifecycle2, item: PageBundle?, position: Int?) {
         super.onViewAttachedToWindow(holder, item, position)
         if (item != null && item is PageBundle_AdBannerYandex) {
             if (item.bannerAdView != null) {
@@ -64,12 +64,12 @@ class ItemPageAdBannerYandex : BasePagingKVHKProvider<PageBundle>() {
     }
 
 
-    override fun onViewDetachedFromWindow(holder: VHKRecycler, item: PageBundle?, position: Int?) {
+    override fun onViewDetachedFromWindow(holder: VHKLifecycle2, item: PageBundle?, position: Int?) {
         holder.findViewById<FrameLayout>(R.id.item_detail_container).removeAllViews()
         super.onViewDetachedFromWindow(holder, item, position)
     }
 
-    override fun onViewRecycled(holder: VHKRecycler, item: PageBundle?, position: Int?) {
+    override fun onViewRecycled(holder: VHKLifecycle2, item: PageBundle?, position: Int?) {
         if (item != null && item is PageBundle_AdBannerYandex) {
             if (item.bannerAdView != null) {
                 UtilKLogWrapper.d(TAG, "onViewRecycled: item $item")

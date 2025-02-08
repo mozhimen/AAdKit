@@ -18,7 +18,7 @@
 //import com.mozhimen.kotlin.utilk.android.view.applyMargin
 //import com.mozhimen.kotlin.utilk.android.view.applyVisible
 //import com.mozhimen.pagingk.paging3.data.bases.uis.BasePagingKVHKProvider
-//import com.mozhimen.xmlk.vhk.VHKRecycler
+//import com.mozhimen.xmlk.vhk.VHKLifecycle2
 //import com.ty.lelejoy.fun_widget.R
 //import com.ty.lelejoy.fun_widget.cons.PageBundle
 //import com.ty.lelejoy.fun_widget.cons.CItemExtras
@@ -32,16 +32,16 @@
 // * @Date 2024/2/28 0:22
 // * @Version 1.0
 // */
-//class ItemPageAdBannerInmobi : BasePagingKVHKProvider<PageBundle, VHKRecycler>() {
+//class ItemPageAdBannerInmobi : BasePagingKVHKProvider<PageBundle, VHKLifecycle2>() {
 //    override val itemViewType: Int
 //        get() = CItemExtras.ITEM_PAGE_AD_BANNER_INMOBI_CODE
 //
-//    override fun onCreateViewHolder(context: Context, parent: ViewGroup, viewType: Int): VHKRecycler {
-//        return VHKRecycler(parent, R.layout.item_recycler_vertical_ad_banner)
+//    override fun onCreateViewHolder(context: Context, parent: ViewGroup, viewType: Int): VHKLifecycle2 {
+//        return VHKLifecycle2(parent, R.layout.item_recycler_vertical_ad_banner)
 //    }
 //
 //    @OptIn(OApiCall_BindViewLifecycle::class, OApiCall_BindLifecycle::class, OApiInit_ByLazy::class)
-//    override fun onBindViewHolder(holder: VHKRecycler, item: PageBundle?, position: Int) {
+//    override fun onBindViewHolder(holder: VHKLifecycle2, item: PageBundle?, position: Int) {
 //        super.onBindViewHolder(holder, item, position)
 //        if (item is PageBundle_AdBannerInmobi) {
 //            val container = holder.findViewById<FrameLayout>(R.id.item_ad_container)
@@ -75,7 +75,7 @@
 //        }
 //    }
 //
-//    override fun onViewAttachedToWindow(holder: VHKRecycler, item: PageBundle?, position: Int?) {
+//    override fun onViewAttachedToWindow(holder: VHKLifecycle2, item: PageBundle?, position: Int?) {
 //        super.onViewAttachedToWindow(holder, item, position)
 //        if (item != null && item is PageBundle_AdBannerInmobi && item.bannerAdView != null) {
 //            holder.findViewById<FrameLayout>(R.id.item_ad_container).addViewSafe_ofMatchParent(item.bannerAdView!!)
@@ -83,12 +83,12 @@
 //    }
 //
 //
-//    override fun onViewDetachedFromWindow(holder: VHKRecycler, item: PageBundle?, position: Int?) {
+//    override fun onViewDetachedFromWindow(holder: VHKLifecycle2, item: PageBundle?, position: Int?) {
 //        holder.findViewById<FrameLayout>(R.id.item_ad_container).removeAllViews()
 //        super.onViewDetachedFromWindow(holder, item, position)
 //    }
 //
-//    override fun onViewRecycled(holder: VHKRecycler, item: PageBundle?, position: Int?) {
+//    override fun onViewRecycled(holder: VHKLifecycle2, item: PageBundle?, position: Int?) {
 //        if (item != null && item is PageBundle_AdBannerInmobi && item.bannerAdView != null) {
 //            item.bannerAdView = null
 //        }
