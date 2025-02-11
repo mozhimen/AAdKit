@@ -14,6 +14,7 @@ import com.mozhimen.adk.basic.commons.IAdKOpenProxy
 import com.mozhimen.adk.google.AdKGoogleMgr
 import com.mozhimen.basick.bases.BaseWakeBefDestroyLifecycleObserver
 import com.mozhimen.kotlin.lintk.optins.OApiCall_BindLifecycle
+import com.mozhimen.kotlin.lintk.optins.OApiCall_BindViewLifecycle
 import com.mozhimen.kotlin.lintk.optins.OApiInit_ByLazy
 
 /**
@@ -23,6 +24,7 @@ import com.mozhimen.kotlin.lintk.optins.OApiInit_ByLazy
  * @Date 2024/3/11
  * @Version 1.0
  */
+@OApiCall_BindViewLifecycle
 @OApiInit_ByLazy
 @OApiCall_BindLifecycle
 class AdKGoogleOpenProxy : BaseWakeBefDestroyLifecycleObserver(), IAdKOpenProxy {

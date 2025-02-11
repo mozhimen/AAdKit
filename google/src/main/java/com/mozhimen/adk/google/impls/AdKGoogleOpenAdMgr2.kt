@@ -7,11 +7,13 @@ import com.google.android.gms.ads.appopen.AppOpenAd.AppOpenAdLoadCallback
 import com.mozhimen.adk.basic.bases.BaseAdKOpenAdMgr2
 import com.mozhimen.adk.basic.commons.IAdKOpenProxy
 import com.mozhimen.kotlin.lintk.optins.OApiCall_BindLifecycle
+import com.mozhimen.kotlin.lintk.optins.OApiCall_BindViewLifecycle
 import com.mozhimen.kotlin.lintk.optins.OApiInit_ByLazy
 import com.mozhimen.kotlin.lintk.optins.OApiInit_InApplication
 import com.mozhimen.kotlin.lintk.optins.OApiUse_BaseApplication
 import com.mozhimen.kotlin.utilk.kotlin.UtilKLazyJVM
 
+@OApiCall_BindViewLifecycle
 @OptIn(OApiCall_BindLifecycle::class)
 @OApiInit_InApplication
 @OApiInit_ByLazy
