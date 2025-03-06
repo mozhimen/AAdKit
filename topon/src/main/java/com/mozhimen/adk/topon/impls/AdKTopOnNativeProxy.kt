@@ -24,7 +24,7 @@ import com.mozhimen.kotlin.lintk.optins.OApiCall_BindLifecycle
 import com.mozhimen.kotlin.lintk.optins.OApiCall_BindViewLifecycle
 import com.mozhimen.kotlin.lintk.optins.OApiInit_ByLazy
 import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
-import com.mozhimen.kotlin.utilk.android.view.addViewSafe_ofMatchParent
+import com.mozhimen.kotlin.utilk.android.view.addViewSafe_MATCH_MATCH
 
 /**
  * @ClassName AdKTopOnNativeProxy
@@ -136,7 +136,7 @@ class AdKTopOnNativeProxy :
     override fun addNativeViewToContainer(container: ViewGroup): Boolean {
         return if (_aTNativeView != null) {
             UtilKLogWrapper.d(TAG, "addNativeViewToContainer")
-            container.addViewSafe_ofMatchParent(_aTNativeView!!)// 把 Banner Ad 添加到根布局
+            container.addViewSafe_MATCH_MATCH(_aTNativeView!!)// 把 Banner Ad 添加到根布局
             true
         } else {
             UtilKLogWrapper.d(TAG, "addNativeViewToContainer _aTNativeView null")

@@ -15,7 +15,7 @@ import com.mozhimen.kotlin.lintk.annors.Dp
 import com.mozhimen.kotlin.lintk.optins.OApiCall_BindLifecycle
 import com.mozhimen.kotlin.lintk.optins.OApiCall_BindViewLifecycle
 import com.mozhimen.kotlin.lintk.optins.OApiInit_ByLazy
-import com.mozhimen.kotlin.utilk.android.view.addViewSafe_ofMatchParent
+import com.mozhimen.kotlin.utilk.android.view.addViewSafe_MATCH_MATCH
 
 /**
  * @ClassName AdKGoogleBannerProxy
@@ -90,7 +90,7 @@ class AdKGoogleBannerProxy : BaseWakeBefDestroyLifecycleObserver(), IAdKBannerPr
 //            // 设置显示在页面的底部中间
 //            bannerViewLayoutParams.gravity = Gravity.BOTTOM or Gravity.CENTER_HORIZONTAL
 //            layoutParams = bannerViewLayoutParams
-            container.addViewSafe_ofMatchParent(_bannerAdView!!)// 把 Banner Ad 添加到根布局
+            container.addViewSafe_MATCH_MATCH(_bannerAdView!!)// 把 Banner Ad 添加到根布局
         }
     }
 

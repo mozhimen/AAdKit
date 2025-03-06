@@ -16,7 +16,7 @@ import com.mozhimen.kotlin.lintk.optins.OApiCall_BindLifecycle
 import com.mozhimen.kotlin.lintk.optins.OApiCall_BindViewLifecycle
 import com.mozhimen.kotlin.lintk.optins.OApiInit_ByLazy
 import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
-import com.mozhimen.kotlin.utilk.android.view.addViewSafe_ofMatchParent
+import com.mozhimen.kotlin.utilk.android.view.addViewSafe_MATCH_MATCH
 
 /**
  * @ClassName BannerAdProxy
@@ -81,7 +81,7 @@ class AdKTopOnBannerProxy : BaseWakeBefDestroyLifecycleObserver(), ATBannerExLis
     override fun addBannerViewToContainer(container: ViewGroup) {
         UtilKLogWrapper.d(TAG, "addBannerViewToContainer: ")
         if (_atBannerView != null) {
-            container.addViewSafe_ofMatchParent(_atBannerView!!)
+            container.addViewSafe_MATCH_MATCH(_atBannerView!!)
         }
     }
 

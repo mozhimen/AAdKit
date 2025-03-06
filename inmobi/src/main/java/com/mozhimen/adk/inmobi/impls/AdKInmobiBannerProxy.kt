@@ -14,7 +14,6 @@ import com.mozhimen.kotlin.lintk.optins.OApiCall_BindViewLifecycle
 import com.mozhimen.kotlin.lintk.optins.OApiInit_ByLazy
 import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
 import com.mozhimen.kotlin.utilk.android.view.addViewSafe
-import com.mozhimen.kotlin.utilk.android.view.addViewSafe_ofMatchParent
 
 /**
  * @ClassName AdKInmobiBannerProxy
@@ -101,7 +100,7 @@ class AdKInmobiBannerProxy : BaseWakeBefDestroyLifecycleObserver(), IAdKBannerPr
 
     ///////////////////////////////////////////////////////////////////////
 
-    private inner class BannerAdEventCallback() : BannerAdEventListener() {
+    private inner class BannerAdEventCallback : BannerAdEventListener() {
         override fun onAdDismissed(p0: InMobiBanner) {
             UtilKLogWrapper.d(TAG, "onAdDismissed:")
             _bannerAdListener?.onAdDismissed(p0)

@@ -1,4 +1,4 @@
-package com.mozhimen.adk.yandex.basic.bases
+package com.mozhimen.adk.yandex.bases
 
 import android.util.Log
 import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper

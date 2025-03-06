@@ -31,14 +31,15 @@ android {
 }
 
 dependencies {
-    api "com.inmobi.monetization:inmobi-ads-kotlin:10.6.7"
+    api "com.inmobi.monetization:inmobi-ads-kotlin:10.8.2"
 
-    implementation project(':ALibKit_Google:android_gms_play_ads_identifier')
+    implementation project(':ALibKit_Google:android_gms:play_services_ads_identifier')
     implementation project(':ALibKit_Squareup:picasso')
     implementation project(':ALibKit_Jetpack:browser')
     implementation project(':ALibKit_Jetpack:viewpager')
     implementation project(':ALibKit_Jetpack:recyclerview')
     implementation project(':ASwiftKit:basick')
+    implementation project(':ACacheKit:datastore')
     api project(project.path.replace(project.name, '') +':basic')
 
     testImplementation 'junit:junit:4.13.2'

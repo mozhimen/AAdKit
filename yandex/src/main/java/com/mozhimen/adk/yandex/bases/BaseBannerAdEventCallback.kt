@@ -1,4 +1,4 @@
-package com.mozhimen.adk.yandex.basic.bases
+package com.mozhimen.adk.yandex.bases
 
 import com.yandex.mobile.ads.banner.BannerAdEventListener
 import com.yandex.mobile.ads.common.AdRequestError

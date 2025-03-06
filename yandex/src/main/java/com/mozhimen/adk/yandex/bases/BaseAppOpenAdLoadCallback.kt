@@ -1,4 +1,4 @@
-package com.mozhimen.adk.yandex.basic.bases
+package com.mozhimen.adk.yandex.bases
 
 import com.yandex.mobile.ads.appopenad.AppOpenAd
 import com.yandex.mobile.ads.appopenad.AppOpenAdLoadListener

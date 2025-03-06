@@ -1,8 +1,8 @@
-package com.mozhimen.adk.yandex.basic.impls
+package com.mozhimen.adk.yandex.impls
 
 import androidx.lifecycle.ProcessLifecycleOwner
 import com.mozhimen.adk.basic.bases.BaseAdKOpenAdMgr
-import com.mozhimen.adk.yandex.basic.bases.BaseAppOpenAdLoadCallback
+import com.mozhimen.adk.yandex.bases.BaseAppOpenAdLoadCallback
 import com.mozhimen.kotlin.lintk.optins.OApiCall_BindLifecycle
 import com.mozhimen.kotlin.lintk.optins.OApiInit_ByLazy
 import com.mozhimen.kotlin.lintk.optins.OApiInit_InApplication

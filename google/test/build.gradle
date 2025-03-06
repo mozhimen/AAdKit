@@ -46,7 +46,7 @@ android {
 
 dependencies {
     implementation project(':ASwiftKit:basick')
-    implementation project(':ADebugKit:debugk_leakcanary')
+    implementation project(':ADebugKit:leakcanary')
     implementation project(':google')
 
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'

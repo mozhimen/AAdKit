@@ -16,7 +16,7 @@ import com.mozhimen.kotlin.lintk.optins.OApiCall_BindLifecycle
 import com.mozhimen.kotlin.lintk.optins.OApiCall_BindViewLifecycle
 import com.mozhimen.kotlin.lintk.optins.OApiInit_ByLazy
 import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
-import com.mozhimen.kotlin.utilk.android.view.addViewSafe_ofMatchParent
+import com.mozhimen.kotlin.utilk.android.view.addViewSafe_MATCH_MATCH
 
 /**
  * @ClassName AdKInmobiNativeProxy
@@ -79,7 +79,7 @@ class AdKInmobiNativeProxy : BaseWakeBefDestroyLifecycleObserver(), IAdKNativePr
 
     override fun addNativeViewToContainer(container: ViewGroup): Boolean {
         if (_nativeAdView != null) {
-            container.addViewSafe_ofMatchParent(_nativeAdView!!)// 把 Banner Ad 添加到根布局
+            container.addViewSafe_MATCH_MATCH(_nativeAdView!!)// 把 Banner Ad 添加到根布局
             return true
         } else {
             UtilKLogWrapper.d(TAG, "addNativeViewToContainer _nativeAdView null")

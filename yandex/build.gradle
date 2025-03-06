@@ -35,6 +35,7 @@ android {
 
 dependencies {
     implementation project(':ASwiftKit:basick')
+    implementation project(':AStackKit:stackk')
     api project(project.path.replace(project.name, '') +':basic')
     api 'com.yandex.android:mobileads:6.4.1'
 //    api('com.yandex.android:mobileads-mediation:6.4.0.0') {

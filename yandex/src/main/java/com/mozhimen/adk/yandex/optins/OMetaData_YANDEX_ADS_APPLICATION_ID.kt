@@ -1,6 +1,6 @@
-package com.mozhimen.adk.yandex.basic.optins
+package com.mozhimen.adk.yandex.optins
 
-import com.mozhimen.adk.yandex.basic.cons.CMetaData
+import com.mozhimen.adk.yandex.cons.CMetaData
 import com.mozhimen.kotlin.lintk.annors.AManifestRequire
 
 /**

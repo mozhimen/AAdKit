@@ -1,6 +1,5 @@
-package com.mozhimen.adk.yandex.basic.impls
+package com.mozhimen.adk.yandex.impls
 
-import android.util.Log
 import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
 import android.view.ViewGroup
 import androidx.annotation.Px
@@ -10,9 +9,9 @@ import com.mozhimen.basick.bases.BaseWakeBefDestroyLifecycleObserver
 import com.mozhimen.kotlin.lintk.optins.OApiCall_BindLifecycle
 import com.mozhimen.kotlin.lintk.optins.OApiCall_BindViewLifecycle
 import com.mozhimen.kotlin.lintk.optins.OApiInit_ByLazy
-import com.mozhimen.kotlin.utilk.android.util.px2dp
+import com.mozhimen.kotlin.utilk.android.util.px2dpI
+import com.mozhimen.kotlin.utilk.android.view.addViewSafe_MATCH_MATCH
 import com.mozhimen.kotlin.utilk.wrapper.UtilKScreen
-import com.mozhimen.kotlin.utilk.android.view.addView_ofMatchParent
 import com.yandex.mobile.ads.banner.BannerAdEventListener
 import com.yandex.mobile.ads.banner.BannerAdSize
 import com.yandex.mobile.ads.banner.BannerAdView
@@ -68,7 +67,7 @@ class AdKYandexBannerProxy : BaseWakeBefDestroyLifecycleObserver(), BannerAdEven
         if (height > 0)
             adHeight = min(adHeight, height)
         UtilKLogWrapper.d(TAG, "initBannerAdSize: adWidth $adWidth adHeight $adHeight")
-        _bannerAdSize = BannerAdSize.inlineSize(_context, adWidth.px2dp.toInt(), adHeight.px2dp.toInt())
+        _bannerAdSize = BannerAdSize.inlineSize(_context, adWidth.px2dpI(), adHeight.px2dpI())
     }
 
     override fun initBannerAd() {
@@ -103,7 +102,7 @@ class AdKYandexBannerProxy : BaseWakeBefDestroyLifecycleObserver(), BannerAdEven
 //        }
 //        binding.root.addView(bannerAd, params)
         if (_bannerAdView != null) {
-            container.addView_ofMatchParent(_bannerAdView!!)
+            container.addViewSafe_MATCH_MATCH(_bannerAdView!!)
         }
     }
 

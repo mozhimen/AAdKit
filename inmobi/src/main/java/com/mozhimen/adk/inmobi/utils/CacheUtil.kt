@@ -12,5 +12,5 @@ import com.mozhimen.cachek.datastore.temps.CacheKDSVarPropertyBoolean
  */
 internal object CacheUtil {
     private val _cacheKDSProvider by lazy { CacheKDS.instance.with("adk_inmobi_ds") }
-    var is_init_success by CacheKDSVarPropertyBoolean(_cacheKDSProvider, "is_init_success", false)
+    var is_init_success by CacheKDSVarPropertyBoolean(_cacheKDSProvider, false)
 }

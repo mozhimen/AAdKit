@@ -2,7 +2,7 @@ package com.mozhimen.adk.yandex.basic.test
 
 import android.os.Bundle
 import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
-import com.mozhimen.adk.yandex.basic.commons.INativeAdLoadedListener
+import com.mozhimen.adk.yandex.commons.INativeAdLoadedListener
 import com.mozhimen.adk.yandex.impls.AdKYandexNativeProxy
 import com.mozhimen.adk.yandex.basic.test.databinding.ActivityCustomNativeAdBinding
 import com.mozhimen.uik.databinding.bases.activity.viewbinding.BaseActivityVB

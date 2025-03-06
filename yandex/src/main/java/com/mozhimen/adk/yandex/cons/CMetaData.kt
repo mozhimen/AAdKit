@@ -1,4 +1,4 @@
-package com.mozhimen.adk.yandex.basic.cons
+package com.mozhimen.adk.yandex.cons
 
 /**
  * @ClassName CBuild

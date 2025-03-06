@@ -10,9 +10,8 @@
 package com.mozhimen.adk.yandex.basic.test
 
 import android.os.Bundle
-import android.util.Log
 import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
-import com.mozhimen.adk.yandex.basic.impls.AdKYandexInterstitialProxy
+import com.mozhimen.adk.yandex.impls.AdKYandexInterstitialProxy
 import com.mozhimen.adk.yandex.basic.test.databinding.ActivityInterstitialAdBinding
 import com.mozhimen.adk.yandex.basic.test.network.Network
 import com.mozhimen.adk.yandex.basic.test.network.NetworkAdapter

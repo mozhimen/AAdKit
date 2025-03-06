@@ -1,4 +1,4 @@
-package com.mozhimen.adk.yandex.basic.commons
+package com.mozhimen.adk.yandex.commons
 
 import com.yandex.mobile.ads.nativeads.NativeAd
 import com.yandex.mobile.ads.nativeads.NativeAdView

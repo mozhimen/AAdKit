@@ -45,10 +45,10 @@ android {
 }
 
 dependencies {
-    implementation project(':AXmlKit:bark_title')
+    implementation project(':AXmlKit:bark:title')
     implementation project(':ASwiftKit:basick')
     implementation project(':topon')
-    implementation project(':ADebugKit:debugk_leakcanary')
+    implementation project(':ADebugKit:leakcanary')
 
     // Debugger UI Tools
 //    implementation 'com.anythink.sdk:debugger-ui:1.0.3'

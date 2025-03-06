@@ -13,7 +13,7 @@ import android.os.Bundle
 import android.view.ViewTreeObserver
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.commit
-import com.mozhimen.adk.yandex.basic.impls.AdKYandexBannerProxy
+import com.mozhimen.adk.yandex.impls.AdKYandexBannerProxy
 import com.mozhimen.adk.yandex.basic.test.databinding.ActivityInlineBannerAdBinding
 import com.mozhimen.adk.yandex.basic.test.network.Network
 import com.mozhimen.kotlin.lintk.optins.OApiCall_BindLifecycle

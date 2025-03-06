@@ -1,13 +1,13 @@
-package com.mozhimen.adk.yandex.basic.impls
+package com.mozhimen.adk.yandex.impls
 
 import android.app.Activity
-import android.util.Log
 import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
 import androidx.lifecycle.LifecycleOwner
 import com.mozhimen.basick.bases.BaseWakeBefDestroyLifecycleObserver
 import com.mozhimen.kotlin.lintk.optins.OApiCall_BindLifecycle
 import com.mozhimen.kotlin.lintk.optins.OApiInit_ByLazy
 import com.mozhimen.adk.basic.commons.IAdKOpenProxy
+import com.mozhimen.kotlin.lintk.optins.OApiCall_BindViewLifecycle
 import com.yandex.mobile.ads.appopenad.AppOpenAd
 import com.yandex.mobile.ads.appopenad.AppOpenAdEventListener
 import com.yandex.mobile.ads.appopenad.AppOpenAdLoadListener
@@ -24,6 +24,7 @@ import com.yandex.mobile.ads.common.ImpressionData
  * @Date 2024/3/11
  * @Version 1.0
  */
+@OApiCall_BindViewLifecycle
 @OApiInit_ByLazy
 @OApiCall_BindLifecycle
 class AdKYandexOpenProxy : BaseWakeBefDestroyLifecycleObserver(), IAdKOpenProxy, AppOpenAdLoadListener, AppOpenAdEventListener {

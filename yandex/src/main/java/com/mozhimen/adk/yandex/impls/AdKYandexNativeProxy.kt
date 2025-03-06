@@ -4,12 +4,12 @@ import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
 import android.view.ViewGroup
 import androidx.lifecycle.LifecycleOwner
 import com.mozhimen.adk.basic.commons.IAdKNativeProxy
-import com.mozhimen.adk.yandex.basic.commons.INativeAdLoadedListener
+import com.mozhimen.adk.yandex.commons.INativeAdLoadedListener
 import com.mozhimen.basick.bases.BaseWakeBefDestroyLifecycleObserver
 import com.mozhimen.kotlin.lintk.optins.OApiCall_BindLifecycle
 import com.mozhimen.kotlin.lintk.optins.OApiCall_BindViewLifecycle
 import com.mozhimen.kotlin.lintk.optins.OApiInit_ByLazy
-import com.mozhimen.kotlin.utilk.android.view.addView_ofMatchParent
+import com.mozhimen.kotlin.utilk.android.view.addViewSafe_MATCH_MATCH
 import com.yandex.mobile.ads.common.AdRequestError
 import com.yandex.mobile.ads.common.ImpressionData
 import com.yandex.mobile.ads.nativeads.NativeAd
@@ -89,7 +89,7 @@ class AdKYandexNativeProxy :
 
     override fun addNativeViewToContainer(container: ViewGroup): Boolean {
         if (_nativeAdView != null) {
-            container.addView_ofMatchParent(_nativeAdView!!)// 把 Banner Ad 添加到根布局
+            container.addViewSafe_MATCH_MATCH(_nativeAdView!!)// 把 Banner Ad 添加到根布局
             return true
         } else {
             UtilKLogWrapper.d(TAG, "addNativeViewToContainer _nativeAdView null")

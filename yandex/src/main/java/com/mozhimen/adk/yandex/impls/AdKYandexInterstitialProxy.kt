@@ -1,7 +1,6 @@
-package com.mozhimen.adk.yandex.basic.impls
+package com.mozhimen.adk.yandex.impls
 
 import android.app.Activity
-import android.util.Log
 import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
 import androidx.lifecycle.LifecycleOwner
 import com.mozhimen.adk.basic.commons.IAdKInterstitialProxy

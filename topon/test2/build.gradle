@@ -47,7 +47,7 @@ android {
 dependencies {
     implementation project(':ASwiftKit:basick')
     implementation project(':topon')
-    implementation project(':ADebugKit:debugk_leakcanary')
+    implementation project(':ADebugKit:leakcanary')
 
     // Debugger UI Tools
 //    implementation 'com.anythink.sdk:debugger-ui:1.0.3'

@@ -1,12 +1,11 @@
 package com.mozhimen.adk.yandex.basic.test.impls
 
-import android.util.Log
 import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
 import android.widget.FrameLayout
 import com.chad.library.adapter3.provider.BaseItemProvider
 import com.chad.library.adapter3.viewholder.BaseViewHolder
-import com.mozhimen.adk.yandex.basic.bases.BaseBannerAdEventCallback
-import com.mozhimen.adk.yandex.basic.impls.AdKYandexBannerProxy
+import com.mozhimen.adk.yandex.bases.BaseBannerAdEventCallback
+import com.mozhimen.adk.yandex.impls.AdKYandexBannerProxy
 import com.mozhimen.kotlin.lintk.optins.OApiCall_BindLifecycle
 import com.mozhimen.kotlin.lintk.optins.OApiCall_BindViewLifecycle
 import com.mozhimen.kotlin.lintk.optins.OApiInit_ByLazy
