@@ -90,7 +90,7 @@ class AdKGoogleOpenProxy : BaseWakeBefDestroyLifecycleObserver(), IAdKOpenProxy 
     // 插屏广告加载状态的回调
     private inner class AppOpenAdLoadListener : AppOpenAdLoadCallback() {
         override fun onAdLoaded(p0: AppOpenAd) {
-            UtilKLogWrapper.i(TAG, "open onAdLoaded")
+            UtilKLogWrapper.i(TAG, "onAdLoaded mediationAdapterClassName ${p0.responseInfo.mediationAdapterClassName}")
             // 加载成功
             _appOpenAd = p0
             _appOpenAdLoadCallback?.onAdLoaded(p0)//vdb.btnShowInterstitialAd.applyVisible()

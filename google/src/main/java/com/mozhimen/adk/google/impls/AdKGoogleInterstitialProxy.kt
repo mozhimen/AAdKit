@@ -93,7 +93,7 @@ class AdKGoogleInterstitialProxy(
     // 插屏广告加载状态的回调
     private inner class InterstitialAdLoadListener : InterstitialAdLoadCallback() {
         override fun onAdLoaded(interstitialAd: InterstitialAd) {
-            UtilKLogWrapper.i(TAG, "interstitial onAdLoaded")
+            UtilKLogWrapper.i(TAG, "onAdLoaded mediationAdapterClassName ${interstitialAd.responseInfo.mediationAdapterClassName}")
             _interstitialAdLoadCallback?.onAdLoaded(interstitialAd)//vdb.btnShowInterstitialAd.applyVisible()
 
             // 加载成功

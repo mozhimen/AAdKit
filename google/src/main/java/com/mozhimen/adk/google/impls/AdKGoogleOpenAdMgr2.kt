@@ -11,6 +11,7 @@ import com.mozhimen.kotlin.lintk.optins.OApiCall_BindViewLifecycle
 import com.mozhimen.kotlin.lintk.optins.OApiInit_ByLazy
 import com.mozhimen.kotlin.lintk.optins.OApiInit_InApplication
 import com.mozhimen.kotlin.lintk.optins.OApiUse_BaseApplication
+import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
 import com.mozhimen.kotlin.utilk.kotlin.UtilKLazyJVM
 
 @OApiCall_BindViewLifecycle
@@ -33,6 +34,7 @@ class AdKGoogleOpenAdMgr2(keyWord: String, private val _adUnitId: String) : Base
         _adkGoogleOpenProxy.apply {
             initOpenAdListener(object : AppOpenAdLoadCallback() {
                 override fun onAdLoaded(p0: AppOpenAd) {
+                    UtilKLogWrapper.d(TAG, "onAdLoaded: mediationAdapterClassName ${p0.responseInfo.mediationAdapterClassName}")
                     _isAdLoad = true
                 }
             }, null)

@@ -131,4 +131,4 @@ include ':AStackKit'
 project(':AStackKit').projectDir = new File("D:\\WorkSpace\\GitHub\\AStackKit")
 include ':AStackKit:stackk'
 include ':google:mediation'
-include ':google:mediation:anymanager'
+include ':google:mediation:anymind'
