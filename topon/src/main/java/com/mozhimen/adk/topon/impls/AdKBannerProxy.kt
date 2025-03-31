@@ -28,7 +28,7 @@ import com.mozhimen.kotlin.utilk.android.view.addViewSafe_MATCH_MATCH
 @OApiCall_BindViewLifecycle
 @OApiCall_BindLifecycle
 @OApiInit_ByLazy
-class AdKTopOnBannerProxy : BaseWakeBefDestroyLifecycleObserver(), ATBannerExListener, ATAdSourceStatusListener, IAdKBannerProxy {
+class AdKBannerProxy : BaseWakeBefDestroyLifecycleObserver(), ATBannerExListener, ATAdSourceStatusListener, IAdKBannerProxy {
     private var _atBannerView: ATBannerView? = null
     val bannerAdView get() = _atBannerView
 
@@ -63,8 +63,8 @@ class AdKTopOnBannerProxy : BaseWakeBefDestroyLifecycleObserver(), ATBannerExLis
         UtilKLogWrapper.d(TAG, "initBannerAd: ")
         _atBannerView = ATBannerView(_context).apply {//Loading and displaying ads should keep the container and BannerView visible all the time
             _bannerAdSize?.let { setLocalExtra(it) }
-            setBannerAdListener(this@AdKTopOnBannerProxy)
-            setAdSourceStatusListener(this@AdKTopOnBannerProxy)
+            setBannerAdListener(this@AdKBannerProxy)
+            setAdSourceStatusListener(this@AdKBannerProxy)
             setPlacementId(_placementId)
         }
         ATBannerView.entryAdScenario(_placementId, _scenarioId)

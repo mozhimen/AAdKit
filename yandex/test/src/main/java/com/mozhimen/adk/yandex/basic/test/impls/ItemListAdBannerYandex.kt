@@ -5,7 +5,7 @@ import android.widget.FrameLayout
 import com.chad.library.adapter3.provider.BaseItemProvider
 import com.chad.library.adapter3.viewholder.BaseViewHolder
 import com.mozhimen.adk.yandex.bases.BaseBannerAdEventCallback
-import com.mozhimen.adk.yandex.impls.AdKYandexBannerProxy
+import com.mozhimen.adk.yandex.impls.AdKBannerProxy
 import com.mozhimen.kotlin.lintk.optins.OApiCall_BindLifecycle
 import com.mozhimen.kotlin.lintk.optins.OApiCall_BindViewLifecycle
 import com.mozhimen.kotlin.lintk.optins.OApiInit_ByLazy
@@ -36,7 +36,7 @@ class ItemListAdBannerYandex : BaseItemProvider<ListBundle>() {
     override fun onBindViewHolder(holder: BaseViewHolder, item: ListBundle, position: Int?) {
         super.onBindViewHolder(holder, item, position)
         if (item is ListBundle_AdBannerYandex) {
-            val adKYandexInlineBannerProxy = AdKYandexBannerProxy()
+            val adKYandexInlineBannerProxy = AdKBannerProxy()
             adKYandexInlineBannerProxy.apply {
                 initBannerAdListener(object : BaseBannerAdEventCallback() {
                     override fun onAdLoaded() {

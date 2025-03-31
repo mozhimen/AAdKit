@@ -1,4 +1,4 @@
-package com.mozhimen.adk.google.impls
+package com.mozhimen.adk.google.admanager.impls
 
 import android.app.Activity
 import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper

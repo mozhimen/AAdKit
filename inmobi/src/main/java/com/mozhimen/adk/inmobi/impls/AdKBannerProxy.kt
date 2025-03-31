@@ -25,7 +25,7 @@ import com.mozhimen.kotlin.utilk.android.view.addViewSafe
 @OApiInit_ByLazy
 @OApiCall_BindLifecycle
 @OApiCall_BindViewLifecycle
-class AdKInmobiBannerProxy : BaseWakeBefDestroyLifecycleObserver(), IAdKBannerProxy {
+class AdKBannerProxy : BaseWakeBefDestroyLifecycleObserver(), IAdKBannerProxy {
     private var _bannerAdView: InMobiBanner? = null
     val bannerAdView get() = _bannerAdView
     private var _adUnitId: Long = 0L

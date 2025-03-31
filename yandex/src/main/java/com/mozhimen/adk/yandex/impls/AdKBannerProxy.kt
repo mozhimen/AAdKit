@@ -31,7 +31,7 @@ import kotlin.math.min
 @OApiCall_BindViewLifecycle
 @OApiCall_BindLifecycle
 @OApiInit_ByLazy
-class AdKYandexBannerProxy : BaseWakeBefDestroyLifecycleObserver(), BannerAdEventListener, IAdKBannerProxy {
+class AdKBannerProxy : BaseWakeBefDestroyLifecycleObserver(), BannerAdEventListener, IAdKBannerProxy {
     private var _bannerAdView: BannerAdView? = null
     val bannerAdView get() = _bannerAdView
     private var _bannerAdSize: BannerAdSize? = null
@@ -75,7 +75,7 @@ class AdKYandexBannerProxy : BaseWakeBefDestroyLifecycleObserver(), BannerAdEven
             _bannerAdView = BannerAdView(_context).apply {
                 setAdUnitId(_adUnitId)
                 setAdSize(_bannerAdSize!!)
-                setBannerAdEventListener(this@AdKYandexBannerProxy)
+                setBannerAdEventListener(this@AdKBannerProxy)
             }
         }
     }

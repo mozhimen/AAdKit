@@ -1,4 +1,4 @@
-package com.mozhimen.adk.google.mediation.anymind
+package com.mozhimen.adk.google.mediation.anymind.sample
 
 import android.content.Context
 import com.google.android.gms.ads.VersionInfo

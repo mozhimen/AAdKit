@@ -1,6 +1,5 @@
 package com.mozhimen.adk.google.test.impls
 
-import android.util.Log
 import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
 import android.widget.FrameLayout
 import com.chad.library.adapter3.provider.BaseItemProvider

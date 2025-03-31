@@ -4,13 +4,12 @@ plugins {
 }
 
 android {
-    namespace 'com.mozhimen.adk.google.mediation.anymind'
+    namespace 'com.mozhimen.adk.google.mediation.anymind.sample'
     compileSdk 34
 
     defaultConfig {
         minSdk 19
         multiDexEnabled true
-        buildConfigField("String", "ADAPTER_VERSION", "\"${versionName}\"")
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 //        consumerProguardFiles "consumer-rules.pro"
@@ -29,9 +28,6 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
-    buildFeatures {
-        buildConfig = true
-    }
 }
 
 dependencies {
@@ -41,7 +37,6 @@ dependencies {
         implementation project(':AAdKit:google:mediation')
     }
     implementation project(':KUtilKit:android')
-    implementation fileTree(include: ['AnyManagerMediation_v2.2.0.aar'], dir: 'libs')//Step 1
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.2.1'

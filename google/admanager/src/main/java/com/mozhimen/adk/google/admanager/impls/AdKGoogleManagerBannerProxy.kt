@@ -1,4 +1,4 @@
-package com.mozhimen.adk.google.impls
+package com.mozhimen.adk.google.admanager.impls
 
 import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
 import android.view.ViewGroup
@@ -6,8 +6,9 @@ import androidx.lifecycle.LifecycleOwner
 import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdSize
-import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.LoadAdError
+import com.google.android.gms.ads.admanager.AdManagerAdRequest
+import com.google.android.gms.ads.admanager.AdManagerAdView
 import com.mozhimen.adk.basic.commons.IAdKBannerProxy
 import com.mozhimen.adk.google.AdKGoogleMgr
 import com.mozhimen.basick.bases.BaseWakeBefDestroyLifecycleObserver
@@ -27,8 +28,8 @@ import com.mozhimen.kotlin.utilk.android.view.addViewSafe_MATCH_MATCH
 @OApiInit_ByLazy
 @OApiCall_BindLifecycle
 @OApiCall_BindViewLifecycle
-class AdKGoogleBannerProxy : BaseWakeBefDestroyLifecycleObserver(), IAdKBannerProxy {
-    private var _bannerAdView: AdView? = null
+class AdKGoogleManagerBannerProxy : BaseWakeBefDestroyLifecycleObserver(), IAdKBannerProxy {
+    private var _bannerAdView: AdManagerAdView? = null
     val bannerAdView get() = _bannerAdView
     private var _bannerAdSize: AdSize? = null
     private var _adUnitId: String = ""
@@ -57,7 +58,7 @@ class AdKGoogleBannerProxy : BaseWakeBefDestroyLifecycleObserver(), IAdKBannerPr
     override fun initBannerAd() {
         // 获取页面的根布局
         if (AdKGoogleMgr.isInitSuccess()) {
-            _bannerAdView = AdView(_context).apply {
+            _bannerAdView = AdManagerAdView(_context).apply {
                 // 设置Banner的尺寸
                 setAdSize(AdSize.BANNER)
                 // adUnitId为Admob后台创建的Banner广告的id
@@ -69,7 +70,7 @@ class AdKGoogleBannerProxy : BaseWakeBefDestroyLifecycleObserver(), IAdKBannerPr
     }
 
     override fun loadBannerAd() {
-        _bannerAdView?.loadAd(AdRequest.Builder().build())
+        _bannerAdView?.loadAd(AdManagerAdRequest.Builder().build())
     }
 
     //////////////////////////////////////////////////////////////////////////////////

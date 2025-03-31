@@ -1,4 +1,4 @@
-package com.mozhimen.adk.google.impls
+package com.mozhimen.adk.google.admanager.impls
 
 import android.app.Activity
 import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
@@ -7,6 +7,8 @@ import com.google.android.gms.ads.AdError
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.FullScreenContentCallback
 import com.google.android.gms.ads.LoadAdError
+import com.google.android.gms.ads.admanager.AdManagerAdRequest
+import com.google.android.gms.ads.admanager.AdManagerInterstitialAd
 import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import com.mozhimen.adk.basic.commons.IAdKInterstitialProxy
@@ -26,7 +28,7 @@ import com.mozhimen.kotlin.lintk.optins.OApiInit_ByLazy
 @OApiInit_ByLazy
 @OApiCall_BindLifecycle
 @OApiCall_BindViewLifecycle
-class AdKGoogleInterstitialProxy(
+class AdKGoogleManagerInterstitialProxy(
     private var _activity: Activity?,
 ) : BaseWakeBefDestroyLifecycleObserver(), IAdKInterstitialProxy {
     private var _interstitialAd: InterstitialAd? = null
@@ -57,7 +59,7 @@ class AdKGoogleInterstitialProxy(
     override fun loadInterstitialAd() {
         if (AdKGoogleMgr.isInitSuccess()) {
             // adUnitId为Admob后台创建的插屏广告的id
-            InterstitialAd.load(_context, _adUnitId/*"ca-app-pub-3940256099942544/1033173712"*/, AdRequest.Builder().build(), InterstitialAdLoadCallbackImpl())
+            AdManagerInterstitialAd.load(_context, _adUnitId/*"ca-app-pub-3940256099942544/1033173712"*/, AdManagerAdRequest.Builder().build(), InterstitialAdLoadCallbackImpl())
         }
     }
 

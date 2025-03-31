@@ -13,7 +13,7 @@ import android.os.Bundle
 import android.view.ViewTreeObserver
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.commit
-import com.mozhimen.adk.yandex.impls.AdKYandexBannerProxy
+import com.mozhimen.adk.yandex.impls.AdKBannerProxy
 import com.mozhimen.adk.yandex.basic.test.databinding.ActivityInlineBannerAdBinding
 import com.mozhimen.adk.yandex.basic.test.network.Network
 import com.mozhimen.kotlin.lintk.optins.OApiCall_BindLifecycle
@@ -53,7 +53,7 @@ class InlineBannerAdActivity : AppCompatActivity(R.layout.activity_inline_banner
     private lateinit var binding: ActivityInlineBannerAdBinding
 
     @OptIn(OApiCall_BindViewLifecycle::class, OApiCall_BindLifecycle::class, OApiInit_ByLazy::class)
-    private val _adKYandexBannerProxy by lazy_ofNone { AdKYandexBannerProxy() }
+    private val _adKYandexBannerProxy by lazy_ofNone { AdKBannerProxy() }
 
     private val _bannerAdEventListener = object : BannerAdEventListener {
         override fun onAdLoaded() {

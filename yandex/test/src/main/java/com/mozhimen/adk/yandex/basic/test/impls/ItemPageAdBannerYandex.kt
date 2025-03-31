@@ -3,7 +3,7 @@ package com.mozhimen.adk.yandex.basic.test.impls
 import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
 import android.widget.FrameLayout
 import com.mozhimen.adk.yandex.bases.BaseBannerAdEventCallback
-import com.mozhimen.adk.yandex.impls.AdKYandexBannerProxy
+import com.mozhimen.adk.yandex.impls.AdKBannerProxy
 import com.mozhimen.kotlin.lintk.optins.OApiCall_BindLifecycle
 import com.mozhimen.kotlin.lintk.optins.OApiCall_BindViewLifecycle
 import com.mozhimen.kotlin.lintk.optins.OApiInit_ByLazy
@@ -36,7 +36,7 @@ class ItemPageAdBannerYandex : BasePagingKVHKProvider<PageBundle>() {
     override fun onBindViewHolder(holder: VHKLifecycle2, item: PageBundle?, position: Int) {
         super.onBindViewHolder(holder, item, position)
         if (item is PageBundle_AdBannerYandex) {
-            val adKYandexInlineBannerProxy = AdKYandexBannerProxy()
+            val adKYandexInlineBannerProxy = AdKBannerProxy()
             adKYandexInlineBannerProxy.apply {
                 initBannerAdListener(object : BaseBannerAdEventCallback() {
                     override fun onAdLoaded() {

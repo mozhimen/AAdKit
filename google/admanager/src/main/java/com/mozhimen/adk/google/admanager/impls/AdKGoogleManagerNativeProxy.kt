@@ -1,4 +1,4 @@
-package com.mozhimen.adk.google.impls
+package com.mozhimen.adk.google.admanager.impls
 
 import android.content.Context
 import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
@@ -7,11 +7,11 @@ import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.LifecycleOwner
 import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdLoader
-import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.MuteThisAdListener
 import com.google.android.gms.ads.MuteThisAdReason
 import com.google.android.gms.ads.VideoOptions
+import com.google.android.gms.ads.admanager.AdManagerAdRequest
 import com.google.android.gms.ads.nativead.NativeAd
 import com.google.android.gms.ads.nativead.NativeAdOptions
 import com.google.android.gms.ads.nativead.NativeAdView
@@ -34,7 +34,7 @@ import com.mozhimen.kotlin.utilk.android.view.addViewSafe_MATCH_MATCH
 @OApiInit_ByLazy
 @OApiCall_BindLifecycle
 @OApiCall_BindViewLifecycle
-class AdKGoogleNativeProxy :
+class AdKGoogleManagerNativeProxy :
     BaseWakeBefDestroyLifecycleObserver(), IAdKNativeProxy {
 
     private var _adLoader: AdLoader? = null
@@ -106,7 +106,7 @@ class AdKGoogleNativeProxy :
                 }
                 .withAdListener(NativeAdCallback())
                 .build()
-            _adLoader?.loadAd(AdRequest.Builder().build())
+            _adLoader?.loadAd(AdManagerAdRequest.Builder().build())
         }
     }
 

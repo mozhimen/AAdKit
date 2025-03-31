@@ -37,19 +37,6 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "AAdKit"
-include ':app'
-include ':basic'
-include ':google'
-include ':google:test'
-include ':topon'
-include ':topon:mainland'
-include ':topon:oversea'
-include ':topon:test'
-include ':topon:test2'
-include ':yandex'
-include ':yandex:test'
-include ':inmobi'
-include ':inmobi:test'
 //ALibKit_Google
 include ':ALibKit_Google'
 project(':ALibKit_Google').projectDir = new File("D:\\WorkSpace\\GitHub\\ALibKit_Google")
@@ -130,5 +117,22 @@ include ':ATaskKit:taskk'
 include ':AStackKit'
 project(':AStackKit').projectDir = new File("D:\\WorkSpace\\GitHub\\AStackKit")
 include ':AStackKit:stackk'
+//
+include ':app'
+include ':basic'
+include ':google'
+include ':google:test'
 include ':google:mediation'
 include ':google:mediation:anymind'
+include ':topon'
+include ':topon:mainland'
+include ':topon:oversea'
+include ':topon:test'
+include ':topon:test2'
+include ':yandex'
+include ':yandex:test'
+include ':inmobi'
+include ':inmobi:test'
+
+include ':google:mediation:anymind:sample'
+include ':google:admanager'
