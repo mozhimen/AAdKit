@@ -1,22 +1,15 @@
 package com.mozhimen.adk.google.admanager.impls
 
-import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
-import android.view.ViewGroup
-import androidx.lifecycle.LifecycleOwner
-import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdSize
-import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.admanager.AdManagerAdRequest
 import com.google.android.gms.ads.admanager.AdManagerAdView
 import com.mozhimen.adk.basic.commons.IAdKBannerProxy
 import com.mozhimen.adk.google.AdKGoogleMgr
-import com.mozhimen.basick.bases.BaseWakeBefDestroyLifecycleObserver
-import com.mozhimen.kotlin.lintk.annors.Dp
+import com.mozhimen.adk.google.impls.AdKGoogleBannerProxy
 import com.mozhimen.kotlin.lintk.optins.OApiCall_BindLifecycle
 import com.mozhimen.kotlin.lintk.optins.OApiCall_BindViewLifecycle
 import com.mozhimen.kotlin.lintk.optins.OApiInit_ByLazy
-import com.mozhimen.kotlin.utilk.android.view.addViewSafe_MATCH_MATCH
 
 /**
  * @ClassName AdKGoogleBannerProxy
@@ -28,33 +21,7 @@ import com.mozhimen.kotlin.utilk.android.view.addViewSafe_MATCH_MATCH
 @OApiInit_ByLazy
 @OApiCall_BindLifecycle
 @OApiCall_BindViewLifecycle
-class AdKGoogleManagerBannerProxy : BaseWakeBefDestroyLifecycleObserver(), IAdKBannerProxy {
-    private var _bannerAdView: AdManagerAdView? = null
-    val bannerAdView get() = _bannerAdView
-    private var _bannerAdSize: AdSize? = null
-    private var _adUnitId: String = ""
-
-    private var _bannerAdListener: AdListener? = null
-
-    //////////////////////////////////////////////////////////////////////////////////
-
-    fun initBannerAdListener(listener: AdListener) {
-        UtilKLogWrapper.d(TAG, "initBannerAdListener: ")
-        _bannerAdListener = listener
-    }
-
-    fun initBannerAdParams(adUnitId: String) {
-        _adUnitId = adUnitId
-    }
-
-    fun initBannerAdSize(@Dp width: Int) {
-        initBannerAdSize(width, 0)
-    }
-
-    override fun initBannerAdSize(@Dp width: Int,@Dp height: Int) {
-        _bannerAdSize = AdSize.getCurrentOrientationInlineAdaptiveBannerAdSize(_context, width)
-    }
-
+class AdKGoogleManagerBannerProxy : AdKGoogleBannerProxy() {
     override fun initBannerAd() {
         // 获取页面的根布局
         if (AdKGoogleMgr.isInitSuccess()) {
@@ -69,102 +36,7 @@ class AdKGoogleManagerBannerProxy : BaseWakeBefDestroyLifecycleObserver(), IAdKB
         }
     }
 
-    override fun loadBannerAd() {
-        _bannerAdView?.loadAd(AdManagerAdRequest.Builder().build())
-    }
-
-    //////////////////////////////////////////////////////////////////////////////////
-
-    fun showBannerAd() {
-        _bannerAdView?.alpha = 1f
-    }
-
-    fun hideBannerAd() {
-        _bannerAdView?.alpha = 0f
-    }
-
-    //////////////////////////////////////////////////////////////////////////////////
-
-    override fun addBannerViewToContainer(container: ViewGroup) {
-        if (_bannerAdView != null) {
-//            val bannerViewLayoutParams = FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.WRAP_CONTENT)
-//            // 设置显示在页面的底部中间
-//            bannerViewLayoutParams.gravity = Gravity.BOTTOM or Gravity.CENTER_HORIZONTAL
-//            layoutParams = bannerViewLayoutParams
-            container.addViewSafe_MATCH_MATCH(_bannerAdView!!)// 把 Banner Ad 添加到根布局
-        }
-    }
-
-    //////////////////////////////////////////////////////////////////////////////////
-
-    override fun destroyBannerAd() {
-        _bannerAdView?.destroy()
-        _bannerAdView = null
-    }
-
-    //////////////////////////////////////////////////////////////////////////////////
-
-    override fun onCreate(owner: LifecycleOwner) {
-        UtilKLogWrapper.d(TAG, "onCreate: ")
-        initBannerAd()
-        loadBannerAd()
-    }
-
-    override fun onResume(owner: LifecycleOwner) {
-        _bannerAdView?.resume()
-    }
-
-    override fun onPause(owner: LifecycleOwner) {
-        _bannerAdView?.pause()
-    }
-
-    override fun onDestroy(owner: LifecycleOwner) {
-        UtilKLogWrapper.d(TAG, "onDestroy: ")
-//        hideBanner()
-        destroyBannerAd()
-        _bannerAdListener = null
-        super.onDestroy(owner)
-    }
-
-    //////////////////////////////////////////////////////////////////////////////////
-
-    private inner class BannerAdCallback : AdListener() {
-        override fun onAdLoaded() {
-            // 广告加载成功
-            UtilKLogWrapper.i(TAG, "banner onAdLoaded")
-//            vdb.btnShowBannerAd.applyVisible()
-//            vdb.btnHideBannerAd.applyVisible()
-            _bannerAdListener?.onAdLoaded()
-        }
-
-        override fun onAdFailedToLoad(loadAdError: LoadAdError) {
-            // 广告加载失败
-            UtilKLogWrapper.e(TAG, "banner onAdFailedToLoad error:${loadAdError.message}")
-            _bannerAdListener?.onAdFailedToLoad(loadAdError)
-        }
-
-        override fun onAdImpression() {
-            // 被记录为展示成功时调用
-            UtilKLogWrapper.i(TAG, "banner onAdImpression")
-            _bannerAdListener?.onAdImpression()
-        }
-
-        override fun onAdClicked() {
-            // 被点击时调用
-            UtilKLogWrapper.i(TAG, "banner onAdClicked")
-            _bannerAdListener?.onAdClicked()
-        }
-
-        override fun onAdOpened() {
-            // 广告落地页打开时调用
-            UtilKLogWrapper.i(TAG, "banner onAdOpened")
-            _bannerAdListener?.onAdOpened()
-        }
-
-        override fun onAdClosed() {
-            // 广告落地页关闭时调用
-            UtilKLogWrapper.i(TAG, "banner onAdClosed")
-            _bannerAdListener?.onAdClosed()
-        }
+    override fun getAdRequest(): AdRequest {
+        return AdManagerAdRequest.Builder().build()
     }
 }

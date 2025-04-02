@@ -26,14 +26,14 @@ import com.mozhimen.kotlin.lintk.optins.OApiInit_ByLazy
 @OApiInit_ByLazy
 @OApiCall_BindLifecycle
 @OApiCall_BindViewLifecycle
-class AdKGoogleInterstitialProxy(
+open class AdKGoogleInterstitialProxy(
     private var _activity: Activity?,
 ) : BaseWakeBefDestroyLifecycleObserver(), IAdKInterstitialProxy {
-    private var _interstitialAd: InterstitialAd? = null
-    private var _adUnitId: String = ""
+    protected var _interstitialAd: InterstitialAd? = null
+    protected var _adUnitId: String = ""
 
-    private var _interstitialAdLoadCallback: InterstitialAdLoadCallback? = null
-    private var _fullScreenContentCallback: FullScreenContentCallback? = null
+    protected var _interstitialAdLoadCallback: InterstitialAdLoadCallback? = null
+    protected var _fullScreenContentCallback: FullScreenContentCallback? = null
 
     //////////////////////////////////////////////////////////////////////////////////
 
@@ -57,9 +57,12 @@ class AdKGoogleInterstitialProxy(
     override fun loadInterstitialAd() {
         if (AdKGoogleMgr.isInitSuccess()) {
             // adUnitId为Admob后台创建的插屏广告的id
-            InterstitialAd.load(_context, _adUnitId/*"ca-app-pub-3940256099942544/1033173712"*/, AdRequest.Builder().build(), InterstitialAdLoadCallbackImpl())
+            InterstitialAd.load(_context, _adUnitId/*"ca-app-pub-3940256099942544/1033173712"*/, getAdRequest(), InterstitialAdLoadCallbackImpl())
         }
     }
+
+    open fun getAdRequest():AdRequest=
+        AdRequest.Builder().build()
 
     override fun showInterstitialAd() {
         if (_activity != null && _interstitialAd != null) {
@@ -93,7 +96,7 @@ class AdKGoogleInterstitialProxy(
     //////////////////////////////////////////////////////////////////////////////////
 
     // 插屏广告加载状态的回调
-    private inner class InterstitialAdLoadCallbackImpl : InterstitialAdLoadCallback() {
+    protected inner class InterstitialAdLoadCallbackImpl : InterstitialAdLoadCallback() {
         override fun onAdLoaded(interstitialAd: InterstitialAd) {
             UtilKLogWrapper.i(TAG, "onAdLoaded mediationAdapterClassName ${interstitialAd.responseInfo.mediationAdapterClassName}")
             _interstitialAdLoadCallback?.onAdLoaded(interstitialAd)//vdb.btnShowInterstitialAd.applyVisible()
@@ -113,7 +116,7 @@ class AdKGoogleInterstitialProxy(
     //////////////////////////////////////////////////////////////////////////////////
 
     // 插屏广告相关事件回调
-    private inner class FullScreenContentCallbackImpl : FullScreenContentCallback() {
+    protected inner class FullScreenContentCallbackImpl : FullScreenContentCallback() {
         override fun onAdImpression() {
             UtilKLogWrapper.i(TAG, "interstitial onAdImpression")// 被记录为展示成功时调用
             _fullScreenContentCallback?.onAdImpression()

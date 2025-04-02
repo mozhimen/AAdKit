@@ -1,6 +1,5 @@
 package com.mozhimen.adk.basic.bases
 
-import android.util.Log
 import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
 import com.mozhimen.kotlin.lintk.optins.OApiInit_ByLazy
 import com.mozhimen.kotlin.lintk.optins.OApiInit_InApplication
@@ -18,7 +17,7 @@ import java.util.concurrent.atomic.AtomicBoolean
 @OApiInit_InApplication
 @OApiInit_ByLazy
 @OApiUse_BaseApplication
-open class BaseAdKOpenAdMgr(adUnitId: String) : IUtilK {
+open class BaseAdKOpenAdMgr : IUtilK {
     //    private val _processLifecycleObserver = ActivityLifecycleObserver()
 //    private val _appOpenAdActivityObserver = ActivityLifecycleCallbacks()
 

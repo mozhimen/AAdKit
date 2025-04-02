@@ -30,7 +30,7 @@ import java.lang.ref.WeakReference
 @OApiCall_BindViewLifecycle
 @OApiInit_ByLazy
 @OApiCall_BindLifecycle
-class AdKGoogleRewardedProxy(
+open class AdKGoogleRewardedProxy(
     private var _activity: Activity?,
 ) : BaseWakeBefDestroyLifecycleObserver(), IAdKRewardedProxy {
     private var _rewardedAd: RewardedAd? = null
@@ -65,9 +65,12 @@ class AdKGoogleRewardedProxy(
     override fun loadRewardedAd() {
         if (AdKGoogleMgr.isInitSuccess()) {
             // adUnitId为Admob后台创建的激励视频广告的id
-            RewardedAd.load(_context, _adUnitId/*"ca-app-pub-3940256099942544/5224354917"*/, AdRequest.Builder().build(), RewardedAdLoadCallbackImpl())
+            RewardedAd.load(_context, _adUnitId/*"ca-app-pub-3940256099942544/5224354917"*/, getAdRequest(), RewardedAdLoadCallbackImpl())
         }
     }
+
+    open fun getAdRequest():AdRequest=
+        AdRequest.Builder().build()
 
     override fun showRewardedAd() {
         if (_activity != null && _rewardedAd != null) {
@@ -102,7 +105,7 @@ class AdKGoogleRewardedProxy(
 
     private inner class RewardedAdLoadCallbackImpl : RewardedAdLoadCallback() {
         override fun onAdLoaded(rewardedAd: RewardedAd) {
-            UtilKLogWrapper.i(TAG, "rewarded onAdLoaded")
+            UtilKLogWrapper.i(TAG, "rewarded onAdLoaded adapter class name: ${rewardedAd.responseInfo.mediationAdapterClassName}")
             _rewardedAdAdLoadCallback?.onAdLoaded(rewardedAd)
 
             // 加载成功

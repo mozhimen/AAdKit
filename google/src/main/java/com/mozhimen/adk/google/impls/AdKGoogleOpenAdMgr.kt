@@ -17,9 +17,11 @@ import com.mozhimen.stackk.callback.StackKCb
 @OApiInit_InApplication
 @OApiInit_ByLazy
 @OApiUse_BaseApplication
-class AdKGoogleOpenAdMgr(adUnitId: String) : BaseAdKOpenAdMgr(adUnitId) {
+open class AdKGoogleOpenAdMgr(adUnitId: String) : BaseAdKOpenAdMgr() {
     @OptIn(OApiCall_BindLifecycle::class, OApiCall_BindViewLifecycle::class)
-    private val _adkGoogleOpenProxy by UtilKLazyJVM.lazy_ofNone { AdKGoogleOpenProxy() }
+    protected open val _adkGoogleOpenProxy by UtilKLazyJVM.lazy_ofNone { AdKGoogleOpenProxy() }
+
+    //////////////////////////////////////////////////////////////////
 
     init {
         _adkGoogleOpenProxy.apply {

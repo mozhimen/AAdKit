@@ -26,7 +26,7 @@ import com.mozhimen.kotlin.lintk.optins.OApiInit_ByLazy
 @OApiCall_BindViewLifecycle
 @OApiInit_ByLazy
 @OApiCall_BindLifecycle
-class AdKGoogleOpenProxy : BaseWakeBefDestroyLifecycleObserver(), IAdKOpenProxy {
+open class AdKGoogleOpenProxy : BaseWakeBefDestroyLifecycleObserver(), IAdKOpenProxy {
     private var _appOpenAd: AppOpenAd? = null
     private var _adUnitId = ""
 
@@ -49,9 +49,12 @@ class AdKGoogleOpenProxy : BaseWakeBefDestroyLifecycleObserver(), IAdKOpenProxy 
 
     override fun loadOpenAd() {
         if (AdKGoogleMgr.isInitSuccess()) {
-            AppOpenAd.load(_context, _adUnitId, AdRequest.Builder().build(), AppOpenAdLoadCallbackImpl())
+            AppOpenAd.load(_context, _adUnitId, getAdRequest(), AppOpenAdLoadCallbackImpl())
         }
     }
+
+    open fun getAdRequest(): AdRequest =
+        AdRequest.Builder().build()
 
     ///////////////////////////////////////////////////////////////////////////////
 

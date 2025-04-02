@@ -19,9 +19,9 @@ import com.mozhimen.kotlin.utilk.kotlin.UtilKLazyJVM
 @OApiInit_InApplication
 @OApiInit_ByLazy
 @OApiUse_BaseApplication
-class AdKGoogleOpenAdMgr2(keyWord: String, private val _adUnitId: String) : BaseAdKOpenAdMgr2(keyWord) {
+open class AdKGoogleOpenAdMgr2(keyWord: String, private val _adUnitId: String) : BaseAdKOpenAdMgr2(keyWord) {
 
-    private val _adkGoogleOpenProxy by UtilKLazyJVM.lazy_ofNone { AdKGoogleOpenProxy() }
+    protected open val _adkGoogleOpenProxy by UtilKLazyJVM.lazy_ofNone { AdKGoogleOpenProxy() }
 
     /////////////////////////////////////////////////////////////////////
 

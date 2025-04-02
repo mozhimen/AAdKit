@@ -34,7 +34,7 @@ import com.mozhimen.kotlin.utilk.android.view.addViewSafe_MATCH_MATCH
 @OApiInit_ByLazy
 @OApiCall_BindLifecycle
 @OApiCall_BindViewLifecycle
-class AdKGoogleNativeProxy :
+open class AdKGoogleNativeProxy :
     BaseWakeBefDestroyLifecycleObserver(), IAdKNativeProxy {
 
     private var _adLoader: AdLoader? = null
@@ -106,9 +106,12 @@ class AdKGoogleNativeProxy :
                 }
                 .withAdListener(NativeAdCallback())
                 .build()
-            _adLoader?.loadAd(AdRequest.Builder().build())
+            _adLoader?.loadAd(getAdRequest())
         }
     }
+
+    open fun getAdRequest(): AdRequest =
+        AdRequest.Builder().build()
 
     override fun loadNativeAd() {
 
@@ -283,7 +286,7 @@ class AdKGoogleNativeProxy :
 
     private inner class NativeAdLoadedCallback : NativeAd.OnNativeAdLoadedListener {
         override fun onNativeAdLoaded(p0: NativeAd) {
-            UtilKLogWrapper.d(TAG, "onNativeAdLoaded: ")
+            UtilKLogWrapper.d(TAG, "onNativeAdLoaded: adapter class name: ${p0.responseInfo?.mediationAdapterClassName}")
 
             _nativeAd = p0
 

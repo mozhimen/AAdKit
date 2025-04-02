@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace 'com.mozhimen.adk.google.mediation.anymind'
+    namespace 'com.mozhimen.adk.google.mediation.anymanager'
     compileSdk 34
 
     defaultConfig {

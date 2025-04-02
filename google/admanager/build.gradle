@@ -37,6 +37,7 @@ dependencies {
         api project(':AAdKit:google')
     }
     implementation project(':ASwiftKit:basick')
+    implementation project(':AStackKit:callback')
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.2.1'

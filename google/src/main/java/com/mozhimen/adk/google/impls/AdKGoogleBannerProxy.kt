@@ -7,6 +7,7 @@ import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdSize
 import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.BaseAdView
 import com.google.android.gms.ads.LoadAdError
 import com.mozhimen.adk.basic.commons.IAdKBannerProxy
 import com.mozhimen.adk.google.AdKGoogleMgr
@@ -27,13 +28,12 @@ import com.mozhimen.kotlin.utilk.android.view.addViewSafe_MATCH_MATCH
 @OApiInit_ByLazy
 @OApiCall_BindLifecycle
 @OApiCall_BindViewLifecycle
-class AdKGoogleBannerProxy : BaseWakeBefDestroyLifecycleObserver(), IAdKBannerProxy {
-    private var _bannerAdView: AdView? = null
+open class AdKGoogleBannerProxy : BaseWakeBefDestroyLifecycleObserver(), IAdKBannerProxy {
+    protected var _bannerAdView: BaseAdView? = null
     val bannerAdView get() = _bannerAdView
-    private var _bannerAdSize: AdSize? = null
-    private var _adUnitId: String = ""
-
-    private var _bannerAdListener: AdListener? = null
+    protected var _bannerAdSize: AdSize? = null
+    protected var _adUnitId: String = ""
+    protected var _bannerAdListener: AdListener? = null
 
     //////////////////////////////////////////////////////////////////////////////////
 
@@ -50,7 +50,7 @@ class AdKGoogleBannerProxy : BaseWakeBefDestroyLifecycleObserver(), IAdKBannerPr
         initBannerAdSize(width, 0)
     }
 
-    override fun initBannerAdSize(@Dp width: Int,@Dp height: Int) {
+    override fun initBannerAdSize(@Dp width: Int, @Dp height: Int) {
         _bannerAdSize = AdSize.getCurrentOrientationInlineAdaptiveBannerAdSize(_context, width)
     }
 
@@ -69,8 +69,11 @@ class AdKGoogleBannerProxy : BaseWakeBefDestroyLifecycleObserver(), IAdKBannerPr
     }
 
     override fun loadBannerAd() {
-        _bannerAdView?.loadAd(AdRequest.Builder().build())
+        _bannerAdView?.loadAd(getAdRequest())
     }
+
+    open fun getAdRequest(): AdRequest =
+        AdRequest.Builder().build()
 
     //////////////////////////////////////////////////////////////////////////////////
 
@@ -127,10 +130,10 @@ class AdKGoogleBannerProxy : BaseWakeBefDestroyLifecycleObserver(), IAdKBannerPr
 
     //////////////////////////////////////////////////////////////////////////////////
 
-    private inner class BannerAdCallback : AdListener() {
+    protected inner class BannerAdCallback : AdListener() {
         override fun onAdLoaded() {
             // 广告加载成功
-            UtilKLogWrapper.i(TAG, "banner onAdLoaded")
+            UtilKLogWrapper.i(TAG, "banner onAdLoaded adapter class name: ${_bannerAdView?.responseInfo?.mediationAdapterClassName}")
 //            vdb.btnShowBannerAd.applyVisible()
 //            vdb.btnHideBannerAd.applyVisible()
             _bannerAdListener?.onAdLoaded()

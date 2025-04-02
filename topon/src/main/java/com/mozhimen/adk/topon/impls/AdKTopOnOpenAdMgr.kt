@@ -21,7 +21,7 @@ import com.mozhimen.stackk.callback.StackKCb
 @OApiInit_InApplication
 @OApiInit_ByLazy
 @OApiUse_BaseApplication
-class AdKTopOnOpenAdMgr(adUnitId: String) : BaseAdKOpenAdMgr(adUnitId) {
+class AdKTopOnOpenAdMgr(adUnitId: String) : BaseAdKOpenAdMgr() {
 
     @OptIn(OApiCall_BindLifecycle::class)
     private val _adkTopOnOpenProxy by UtilKLazyJVM.lazy_ofNone { AdKTopOnOpenProxy() }

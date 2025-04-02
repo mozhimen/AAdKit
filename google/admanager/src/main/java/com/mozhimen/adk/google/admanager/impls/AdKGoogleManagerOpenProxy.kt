@@ -2,22 +2,22 @@ package com.mozhimen.adk.google.admanager.impls
 
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.admanager.AdManagerAdRequest
-import com.mozhimen.adk.google.impls.AdKGoogleNativeProxy
+import com.mozhimen.adk.google.impls.AdKGoogleOpenProxy
 import com.mozhimen.kotlin.lintk.optins.OApiCall_BindLifecycle
 import com.mozhimen.kotlin.lintk.optins.OApiCall_BindViewLifecycle
 import com.mozhimen.kotlin.lintk.optins.OApiInit_ByLazy
 
 /**
- * @ClassName AdKGoogleNativeSimpleProxy
+ * @ClassName AdKYandexOpenProxy
  * @Description TODO
  * @Author Mozhimen & Kolin Zhao
- * @Date 2024/2/4
+ * @Date 2024/3/11
  * @Version 1.0
  */
+@OApiCall_BindViewLifecycle
 @OApiInit_ByLazy
 @OApiCall_BindLifecycle
-@OApiCall_BindViewLifecycle
-class AdKGoogleManagerNativeProxy : AdKGoogleNativeProxy() {
+class AdKGoogleManagerOpenProxy : AdKGoogleOpenProxy() {
     override fun getAdRequest(): AdRequest {
         return AdManagerAdRequest.Builder().build()
     }
