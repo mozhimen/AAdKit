@@ -6,7 +6,7 @@ import androidx.annotation.CallSuper
 import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
 import com.mozhimen.adk.basic.commons.IAdKOpenProxy
 import com.mozhimen.kotlin.elemk.android.app.bases.BaseActivityLifecycleCallbacks
-import com.mozhimen.kotlin.elemk.kotlin.properties.VarProperty_Set
+import com.mozhimen.kotlin.elemk.kotlin.impls.properties.VarProperty_Set
 import com.mozhimen.kotlin.lintk.optins.OApiInit_ByLazy
 import com.mozhimen.kotlin.lintk.optins.OApiInit_InApplication
 import com.mozhimen.kotlin.lintk.optins.OApiUse_BaseApplication

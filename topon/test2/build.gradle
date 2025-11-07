@@ -6,7 +6,7 @@ plugins {
 
 android {
     namespace 'com.sq.adk.topon.test2'
-    compileSdk 34
+    compileSdk 35
 
     defaultConfig {
         applicationId "com.sq.adk.topon.test2"

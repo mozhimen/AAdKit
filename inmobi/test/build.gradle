@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace 'com.mozhimenadk.inmobi.test'
-    compileSdk 34
+    compileSdk 35
 
     defaultConfig {
         applicationId "com.mozhimenadk.inmobi.test"
