@@ -1,4 +1,4 @@
-package com.mozhimenadk.inmobi.test
+package com.mozhimen.adk.inmobi.test
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge

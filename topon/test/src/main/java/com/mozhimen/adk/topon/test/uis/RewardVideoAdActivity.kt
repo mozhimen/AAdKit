@@ -17,8 +17,8 @@ import com.anythink.rewardvideo.api.ATRewardVideoAutoAd
 import com.anythink.rewardvideo.api.ATRewardVideoAutoEventListener
 import com.anythink.rewardvideo.api.ATRewardVideoAutoLoadListener
 import com.anythink.rewardvideo.api.ATRewardVideoExListener
-import com.mozhimen.adk.topon.basic.bases.BaseATAdSourceStatusCallback
-import com.mozhimen.adk.topon.basic.test.R
+import com.mozhimen.adk.topon.bases.BaseATAdSourceStatusCallback
+import com.mozhimen.adk.topon.test.R
 import com.mozhimen.adk.topon.test.bases.BaseActivity
 import com.mozhimen.adk.topon.test.cons.AdConst
 import com.mozhimen.adk.topon.test.mos.CommonViewBean

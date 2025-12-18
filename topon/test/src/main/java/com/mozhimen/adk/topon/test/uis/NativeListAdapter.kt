@@ -21,10 +21,10 @@ import com.anythink.nativead.api.ATNativeNetworkListener
 import com.anythink.nativead.api.ATNativePrepareInfo
 import com.anythink.nativead.api.ATNativeView
 import com.anythink.nativead.api.NativeAd
-import com.mozhimen.adk.topon.basic.test.R
-import com.mozhimen.adk.topon.test.mos.RecycleViewDataBean
-import com.mozhimen.adk.topon.basic.test.utils.SelfRenderViewUtil
+import com.mozhimen.adk.topon.test.R
+import com.mozhimen.adk.topon.test.utils.SelfRenderViewUtil
 import com.mozhimen.kotlin.utilk.android.util.dp2px
+import com.mozhimen.kotlin.utilk.android.util.dp2pxI
 import com.mozhimen.kotlin.utilk.commons.IUtilK
 import java.util.concurrent.ConcurrentHashMap
 
@@ -232,7 +232,7 @@ class NativeListAdapter(data: MutableList<com.mozhimen.adk.topon.test.mos.Recycl
             adViewHolder.mATNativeView.removeAllViews()
             if (nativeAd.isNativeExpress) {
                 //Ad rendering for templates
-                adViewHolder.mATNativeView.layoutParams.height = 300f.dp2px.toInt()
+                adViewHolder.mATNativeView.layoutParams.height = 300f.dp2pxI()
                 nativeAd.renderAdContainer(adViewHolder.mATNativeView, null)
                 adViewHolder.mSelfRenderView.visibility = View.GONE
             } else {

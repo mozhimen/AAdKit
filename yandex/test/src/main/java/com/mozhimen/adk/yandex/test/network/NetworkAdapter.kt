@@ -7,7 +7,7 @@
  * You may obtain a copy of the License at https://legal.yandex.com/partner_ch/
  */
 
-package com.mozhimen.adk.yandex.basic.test.network
+package com.mozhimen.adk.yandex.test.network
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -15,8 +15,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.core.content.ContextCompat
-import com.mozhimen.adk.yandex.basic.test.R
-import com.mozhimen.adk.yandex.basic.test.databinding.ListItemBinding
+import com.mozhimen.adk.yandex.test.databinding.ListItemBinding
+import com.mozhimen.adk.yandex.test.R
 
 class NetworkAdapter(
     context: Context,

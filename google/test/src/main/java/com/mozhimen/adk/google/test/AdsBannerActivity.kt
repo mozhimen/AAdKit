@@ -5,14 +5,15 @@ import android.view.ViewGroup
 import com.google.android.gms.ads.AdListener
 import com.mozhimen.adk.google.impls.AdKGoogleBannerProxy
 import com.mozhimen.adk.google.test.databinding.ActivityAdsBannerBinding
-import com.mozhimen.basick.bases.databinding.BaseActivityVDB
 import com.mozhimen.kotlin.lintk.optins.OApiCall_BindLifecycle
 import com.mozhimen.kotlin.lintk.optins.OApiCall_BindViewLifecycle
 import com.mozhimen.kotlin.lintk.optins.OApiInit_ByLazy
 import com.mozhimen.kotlin.utilk.android.util.px2dp
 import com.mozhimen.kotlin.utilk.android.view.addAndRemoveOnGlobalLayoutListener
 import com.mozhimen.kotlin.utilk.android.view.applyVisible
+import com.mozhimen.kotlin.utilk.kotlin.UtilKLazyJVM.lazy_ofNone
 import com.mozhimen.kotlin.utilk.wrapper.UtilKScreen
+import com.mozhimen.uik.databinding.bases.viewdatabinding.activity.BaseActivityVDB
 
 /**
  * 横幅广告
@@ -25,7 +26,7 @@ class AdsBannerActivity : BaseActivityVDB<ActivityAdsBannerBinding>() {
     override fun initView(savedInstanceState: Bundle?) {
         _adKGoogleBannerProxy.apply {
             initBannerAdParams("ca-app-pub-3940256099942544/9214589741")
-            initBannerAdSize((UtilKScreen.getWidth_ofDisplayMetrics_ofSys().px2dp - 46f).toInt())
+            initBannerAdSize((UtilKScreen.getWidth_ofDisplayMetrics_ofSys().px2dp() - 46f).toInt())
             initBannerAdListener(object : AdListener() {
                 override fun onAdLoaded() {
                     vdb.btnShowBannerAd.applyVisible()

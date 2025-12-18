@@ -3,7 +3,6 @@ package com.mozhimen.adk.topon.test.bases
 import android.os.Bundle
 import android.text.TextUtils
 import android.text.method.ScrollingMovementMethod
-import android.util.Log
 import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
 import android.view.View
 import android.widget.AdapterView
@@ -13,12 +12,9 @@ import android.widget.TextView
 import androidx.annotation.CallSuper
 import androidx.databinding.ViewDataBinding
 import com.anythink.core.api.ATAdConst
-import com.mozhimen.adk.topon.test.annors.AAdNativeType
-import com.mozhimen.adk.topon.test.annors.AnnotationAdType
-import com.mozhimen.adk.topon.test.mos.CommonViewBean
-import com.mozhimen.adk.topon.basic.test.utils.PlacementIdUtil
-import com.mozhimen.basick.bases.databinding.BaseActivityVDB
+import com.mozhimen.adk.topon.test.utils.PlacementIdUtil
 import com.mozhimen.kotlin.utilk.android.widget.UtilKTextViewWrapper
+import com.mozhimen.uik.databinding.bases.viewdatabinding.activity.BaseActivityVDB
 import com.mozhimen.xmlk.bark.title.BarKTitle
 import java.lang.ref.WeakReference
 
@@ -29,7 +25,7 @@ import java.lang.ref.WeakReference
  * @Date 2024/2/23
  * @Version 1.0
  */
-abstract class BaseActivityVDB<VB : ViewDataBinding> : BaseActivityVDB<VB>() {
+abstract class BaseActivityVDB2<VB : ViewDataBinding> : BaseActivityVDB<VB>() {
     companion object {
         private var mTVShowLogWR: WeakReference<TextView?>? = null
 

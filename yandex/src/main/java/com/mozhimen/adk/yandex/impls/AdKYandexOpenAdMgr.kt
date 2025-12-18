@@ -4,6 +4,7 @@ import androidx.lifecycle.ProcessLifecycleOwner
 import com.mozhimen.adk.basic.bases.BaseAdKOpenAdMgr
 import com.mozhimen.adk.yandex.bases.BaseAppOpenAdLoadCallback
 import com.mozhimen.kotlin.lintk.optins.OApiCall_BindLifecycle
+import com.mozhimen.kotlin.lintk.optins.OApiCall_BindViewLifecycle
 import com.mozhimen.kotlin.lintk.optins.OApiInit_ByLazy
 import com.mozhimen.kotlin.lintk.optins.OApiInit_InApplication
 import com.mozhimen.kotlin.lintk.optins.OApiUse_BaseApplication
@@ -14,14 +15,15 @@ import com.yandex.mobile.ads.appopenad.AppOpenAd
 @OApiInit_InApplication
 @OApiInit_ByLazy
 @OApiUse_BaseApplication
-class AdKYandexOpenAdMgr(adUnitId: String) : BaseAdKOpenAdMgr(adUnitId) {
+class AdKYandexOpenAdMgr : BaseAdKOpenAdMgr {
 
-    @OptIn(OApiCall_BindLifecycle::class)
+    @OptIn(OApiCall_BindLifecycle::class, OApiCall_BindViewLifecycle::class)
     private val _adkYandexOpenProxy by lazy { AdKYandexOpenProxy() }
 
     //////////////////////////////////////////////////////////////////////////////
 
-    init {
+    @OptIn(OApiCall_BindViewLifecycle::class)
+    constructor(adUnitId: String) {
         _adkYandexOpenProxy.apply {
             initOpenAdListener(object : BaseAppOpenAdLoadCallback() {
                 override fun onAdLoaded(p0: AppOpenAd) {

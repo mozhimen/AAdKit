@@ -7,7 +7,7 @@
  * You may obtain a copy of the License at https://legal.yandex.com/partner_ch/
  */
 
-package com.mozhimen.adk.yandex.basic.test
+package com.mozhimen.adk.yandex.test
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -15,9 +15,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import com.mozhimen.adk.yandex.basic.test.databinding.FragmentAdInfoBinding
-import com.mozhimen.adk.yandex.basic.test.network.Network
-import com.mozhimen.adk.yandex.basic.test.network.NetworkAdapter
+import com.mozhimen.adk.yandex.test.network.Network
+import com.mozhimen.adk.yandex.test.network.NetworkAdapter
+import com.mozhimen.adk.yandex.test.databinding.FragmentAdInfoBinding
 
 class AdInfoFragment : Fragment(R.layout.fragment_ad_info) {
 

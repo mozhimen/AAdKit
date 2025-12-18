@@ -7,7 +7,7 @@
  * You may obtain a copy of the License at https://legal.yandex.com/partner_ch/
  */
 
-package com.mozhimen.adk.yandex.basic.test.network
+package com.mozhimen.adk.yandex.test.network
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes

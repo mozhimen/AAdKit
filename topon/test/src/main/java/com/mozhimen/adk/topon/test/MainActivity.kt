@@ -2,30 +2,23 @@ package com.mozhimen.adk.topon.test
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.text.TextUtils
-import android.util.Log
-import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
 import android.view.View
 import com.anythink.core.api.ATSDK
-import com.mozhimen.adk.topon.basic.test.databinding.ActivityMainBinding
-import com.mozhimen.adk.topon.test.uis.BannerAdActivity
-import com.mozhimen.adk.topon.test.uis.InterstitialAdActivity
-import com.mozhimen.adk.topon.basic.test.uis.NativeMainActivity
-import com.mozhimen.adk.topon.basic.test.uis.RewardVideoAdActivity
-import com.mozhimen.adk.topon.basic.test.uis.SplashAdActivity
-import com.mozhimen.adk.topon.basic.test.utils.PlacementIdUtil
-import com.mozhimen.basick.bases.databinding.BaseActivityVDB
-import com.mozhimen.kotlin.utilk.android.content.UtilKClipboardManagerWrapper
+import com.mozhimen.adk.topon.test.databinding.ActivityMainBinding
+import com.mozhimen.adk.topon.test.uis.NativeMainActivity
+import com.mozhimen.adk.topon.test.uis.RewardVideoAdActivity
+import com.mozhimen.adk.topon.test.uis.SplashAdActivity
+import com.mozhimen.adk.topon.test.utils.PlacementIdUtil
 import com.mozhimen.kotlin.utilk.android.content.startContext
-import com.mozhimen.kotlin.utilk.android.widget.applyTextStyleBold
-import com.mozhimen.kotlin.utilk.android.widget.showToast
-import org.json.JSONObject
+import com.mozhimen.kotlin.utilk.android.widget.applyTypeface_BOLD
+import com.mozhimen.uik.databinding.bases.viewdatabinding.activity.BaseActivityVDB
 
 class MainActivity : BaseActivityVDB<ActivityMainBinding>(), View.OnClickListener {
     @SuppressLint("SetTextI18n")
     override fun initView(savedInstanceState: Bundle?) {
+        super.initView(savedInstanceState)
         vdb.tvVersion.text = getResources().getString(R.string.anythink_sdk_version, ATSDK.getSDKVersionName()) + PlacementIdUtil.MODE
-        vdb.tvSdkDemo.applyTextStyleBold()
+        vdb.tvSdkDemo.applyTypeface_BOLD()
 
         vdb.nativeBtn.setOnClickListener(this)
         vdb.splashBtn.setOnClickListener(this)

@@ -1,11 +1,11 @@
-package com.mozhimen.adk.yandex.basic.test
+package com.mozhimen.adk.yandex.test
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import com.mozhimen.adk.yandex.basic.test.databinding.ActivityMainBinding
-import com.mozhimen.uik.databinding.bases.activity.viewbinding.BaseActivityVB
+import com.mozhimen.adk.yandex.test.databinding.ActivityMainBinding
 import com.mozhimen.kotlin.utilk.android.content.startContext
+import com.mozhimen.uik.databinding.bases.viewbinding.activity.BaseActivityVB
 
 class MainActivity : BaseActivityVB<ActivityMainBinding>() {
 

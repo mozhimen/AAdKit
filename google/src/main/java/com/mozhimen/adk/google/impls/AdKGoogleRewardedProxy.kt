@@ -43,9 +43,9 @@ open class AdKGoogleRewardedProxy(
     //////////////////////////////////////////////////////////////////////////////
 
     fun initRewardedAdListener(
-        rewardedAdAdLoadCallback: RewardedAdLoadCallback,
-        fullScreenContentCallback: FullScreenContentCallback,
-        onUserEarnedRewardCallback: OnUserEarnedRewardCallback,
+        rewardedAdAdLoadCallback: RewardedAdLoadCallback?,
+        fullScreenContentCallback: FullScreenContentCallback?,
+        onUserEarnedRewardCallback: OnUserEarnedRewardCallback?,
     ) {
         _rewardedAdAdLoadCallback = rewardedAdAdLoadCallback
         _fullScreenContentCallback = fullScreenContentCallback

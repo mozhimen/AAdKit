@@ -1,12 +1,14 @@
-package com.mozhimen.adk.yandex.basic.test
+package com.mozhimen.adk.yandex.test
 
 import android.os.Bundle
 import com.mozhimen.adk.yandex.impls.AdKYandexOpenProxy
 import com.mozhimen.adk.yandex.bases.BaseAppOpenAdLoadCallback
-import com.mozhimen.adk.yandex.basic.test.databinding.ActivityOpenAdBinding
-import com.mozhimen.uik.databinding.bases.activity.viewbinding.BaseActivityVB
+import com.mozhimen.adk.yandex.test.databinding.ActivityOpenAdBinding
 import com.mozhimen.kotlin.lintk.optins.OApiCall_BindLifecycle
+import com.mozhimen.kotlin.lintk.optins.OApiCall_BindViewLifecycle
 import com.mozhimen.kotlin.lintk.optins.OApiInit_ByLazy
+import com.mozhimen.kotlin.utilk.kotlin.UtilKLazyJVM.lazy_ofNone
+import com.mozhimen.uik.databinding.bases.viewbinding.activity.BaseActivityVB
 import com.yandex.mobile.ads.appopenad.AppOpenAd
 
 /**
@@ -17,10 +19,10 @@ import com.yandex.mobile.ads.appopenad.AppOpenAd
  * @Version 1.0
  */
 class OpenAdActivity : BaseActivityVB<ActivityOpenAdBinding>() {
-    @OptIn(OApiInit_ByLazy::class, OApiCall_BindLifecycle::class)
+    @OptIn(OApiInit_ByLazy::class, OApiCall_BindLifecycle::class, OApiCall_BindViewLifecycle::class)
     private val _adKYandexOpenProxy: AdKYandexOpenProxy by lazy_ofNone { AdKYandexOpenProxy() }
 
-    @OptIn(OApiInit_ByLazy::class, OApiCall_BindLifecycle::class)
+    @OptIn(OApiInit_ByLazy::class, OApiCall_BindLifecycle::class, OApiCall_BindViewLifecycle::class)
     override fun initView(savedInstanceState: Bundle?) {
         _adKYandexOpenProxy.apply {
             initOpenAdListener(object : BaseAppOpenAdLoadCallback() {

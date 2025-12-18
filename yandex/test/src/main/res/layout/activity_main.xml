@@ -6,23 +6,23 @@
     android:layout_height="match_parent">
 
     <com.google.android.material.button.MaterialButton
-        style="@style/StyleK_MaterialBtn"
+        style="@style/StyleK_BtnK_Material"
         android:text="InterstitialAd"
         android:onClick="InterstitialAd"
         tools:ignore="HardcodedText,UsingOnClickInXml" />
 
     <com.google.android.material.button.MaterialButton
-        style="@style/StyleK_MaterialBtn"
+        style="@style/StyleK_BtnK_Material"
         android:text="InlineBannerAd"
         android:onClick="InlineBannerAd"
         tools:ignore="HardcodedText,UsingOnClickInXml" />
     <com.google.android.material.button.MaterialButton
-        style="@style/StyleK_MaterialBtn"
+        style="@style/StyleK_BtnK_Material"
         android:text="OpenAd"
         android:onClick="OpenAd"
         tools:ignore="HardcodedText,UsingOnClickInXml" />
     <com.google.android.material.button.MaterialButton
-        style="@style/StyleK_MaterialBtn"
+        style="@style/StyleK_BtnK_Material"
         android:text="NativeAd"
         android:onClick="NativeAd"
         tools:ignore="HardcodedText,UsingOnClickInXml" />

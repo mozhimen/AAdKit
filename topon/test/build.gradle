@@ -17,17 +17,17 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
-    signingConfigs{
-        signingConfig{
-            keyAlias 'mozhimen.keystore'
-            keyPassword 'android'
-            storeFile file('../mozhimen.keystore')
-            storePassword 'android'
-        }
-    }
+//    signingConfigs{
+//        signingConfig{
+//            keyAlias 'mozhimen.keystore'
+//            keyPassword 'android'
+//            storeFile file('../mozhimen.keystore')
+//            storePassword 'android'
+//        }
+//    }
     buildTypes {
         release {
-            signingConfig signingConfigs.signingConfig
+//            signingConfig signingConfigs.signingConfig
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
@@ -47,8 +47,12 @@ android {
 dependencies {
     implementation project(':AXmlKit:bark:title')
     implementation project(':ASwiftKit:basick')
+    implementation project(':ASwiftKit:uik')
+    implementation project(':ASwiftKit:uik:databinding')
     implementation project(':topon')
     implementation project(':ADebugKit:leakcanary')
+    implementation project(':AStackKit:stackk')
+    implementation project(':AXmlKit_BaseRecyclerViewAdapterHelper:library3')
 
     // Debugger UI Tools
 //    implementation 'com.anythink.sdk:debugger-ui:1.0.3'

@@ -22,14 +22,10 @@ import com.anythink.nativead.api.ATNativePrepareInfo
 import com.anythink.nativead.api.ATNativeView
 import com.anythink.nativead.api.NativeAd
 import com.anythink.nativead.unitgroup.api.CustomNativeAd
-import com.mozhimen.adk.topon.basic.bases.BaseATAdSourceStatusCallback
-import com.mozhimen.adk.topon.basic.cons.CVideoAction
-import com.mozhimen.adk.topon.basic.test.R
-import com.mozhimen.adk.topon.test.annors.AAdNativeType
-import com.mozhimen.adk.topon.test.bases.BaseActivity
-import com.mozhimen.adk.topon.test.cons.AdConst
-import com.mozhimen.adk.topon.test.mos.CommonViewBean
-import com.mozhimen.adk.topon.basic.test.utils.SelfRenderViewUtil
+import com.mozhimen.adk.topon.bases.BaseATAdSourceStatusCallback
+import com.mozhimen.adk.topon.cons.CVideoAction
+import com.mozhimen.adk.topon.test.R
+import com.mozhimen.adk.topon.test.utils.SelfRenderViewUtil
 
 /**
  * @ClassName NativeAdActivity

@@ -5,9 +5,9 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.view.Window
-import com.mozhimen.adk.topon.basic.test.R
-import com.mozhimen.adk.topon.basic.test.databinding.ActivityNativeMainBinding
-import com.mozhimen.basick.bases.databinding.BaseActivityVDB
+import com.mozhimen.adk.topon.test.R
+import com.mozhimen.adk.topon.test.databinding.ActivityNativeMainBinding
+import com.mozhimen.uik.databinding.bases.viewdatabinding.activity.BaseActivityVDB
 
 /**
  * @ClassName NativeMainActivity

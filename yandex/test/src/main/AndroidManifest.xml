@@ -9,7 +9,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AAdKit">
         <activity
-            android:name="com.mozhimen.adk.yandex.basic.test.MainActivity"
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -18,16 +18,16 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.mozhimen.adk.yandex.basic.test.InterstitialAdActivity"
+            android:name=".InterstitialAdActivity"
             android:exported="false" />
         <activity
-            android:name="com.mozhimen.adk.yandex.basic.test.InlineBannerAdActivity"
+            android:name=".InlineBannerAdActivity"
             android:exported="false" />
         <activity
-            android:name="com.mozhimen.adk.yandex.basic.test.OpenAdActivity"
+            android:name=".OpenAdActivity"
             android:exported="false" />
         <activity
-            android:name="com.mozhimen.adk.yandex.basic.test.NativeAdActivity"
+            android:name=".NativeAdActivity"
             android:exported="false" />
 
 <!--        <meta-data

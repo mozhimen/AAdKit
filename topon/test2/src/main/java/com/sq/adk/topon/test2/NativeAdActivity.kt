@@ -1,7 +1,8 @@
 package com.sq.adk.topon.test2
 
-import com.mozhimen.basick.bases.databinding.BaseActivityVDB
-import com.sq.adk.topon.basic.test2.databinding.ActivityNativeAdBinding
+import com.mozhimen.uik.databinding.bases.viewdatabinding.activity.BaseActivityVDB
+import com.sq.adk.topon.test2.databinding.ActivityNativeAdBinding
+
 
 /**
  * @ClassName NativeAdActivity

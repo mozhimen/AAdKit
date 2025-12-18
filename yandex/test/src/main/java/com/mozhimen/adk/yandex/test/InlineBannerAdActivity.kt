@@ -7,19 +7,21 @@
  * You may obtain a copy of the License at https://legal.yandex.com/partner_ch/
  */
 
-package com.mozhimen.adk.yandex.basic.test
+package com.mozhimen.adk.yandex.test
 
 import android.os.Bundle
 import android.view.ViewTreeObserver
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.commit
 import com.mozhimen.adk.yandex.impls.AdKBannerProxy
-import com.mozhimen.adk.yandex.basic.test.databinding.ActivityInlineBannerAdBinding
-import com.mozhimen.adk.yandex.basic.test.network.Network
+import com.mozhimen.adk.yandex.test.network.Network
+import com.mozhimen.adk.yandex.test.databinding.ActivityInlineBannerAdBinding
 import com.mozhimen.kotlin.lintk.optins.OApiCall_BindLifecycle
 import com.mozhimen.kotlin.lintk.optins.OApiCall_BindViewLifecycle
 import com.mozhimen.kotlin.lintk.optins.OApiInit_ByLazy
 import com.mozhimen.kotlin.utilk.android.util.dp2px
+import com.mozhimen.kotlin.utilk.android.util.dp2pxI
+import com.mozhimen.kotlin.utilk.kotlin.UtilKLazyJVM.lazy_ofNone
 import com.mozhimen.kotlin.utilk.wrapper.UtilKScreen
 import com.yandex.mobile.ads.banner.BannerAdEventListener
 import com.yandex.mobile.ads.common.AdRequestError
@@ -105,7 +107,7 @@ class InlineBannerAdActivity : AppCompatActivity(R.layout.activity_inline_banner
         _adKYandexBannerProxy.apply {
             initBannerAdListener(_bannerAdEventListener)
             initBannerAdParams(adInfoFragment.selectedNetwork.adUnitId)
-            initBannerAdSize(UtilKScreen.getWidth_ofDisplayMetrics_ofSys(), 90f.dp2px.toInt())
+            initBannerAdSize(UtilKScreen.getWidth_ofDisplayMetrics_ofSys(), 90f.dp2pxI())
             bindLifecycle(this@InlineBannerAdActivity)
         }
 

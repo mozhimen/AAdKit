@@ -7,7 +7,7 @@
  * You may obtain a copy of the License at https://legal.yandex.com/partner_ch/
  */
 
-package com.mozhimen.adk.yandex.basic.test
+package com.mozhimen.adk.yandex.test
 
 import android.content.Context
 import android.util.AttributeSet

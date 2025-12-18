@@ -18,11 +18,9 @@ import com.anythink.splashad.api.ATSplashAdExtraInfo
 import com.anythink.splashad.api.ATSplashExListener
 import com.anythink.splashad.api.ATSplashSkipAdListener
 import com.anythink.splashad.api.ATSplashSkipInfo
-import com.mozhimen.adk.topon.basic.helpers.SplashZoomOutManager
-import com.mozhimen.adk.topon.test.cons.AdConst
-import com.mozhimen.adk.topon.basic.test.databinding.SplashAdShowBinding
-import com.mozhimen.adk.topon.test.helpers.SplashEyeAdHolder
-import com.mozhimen.basick.bases.databinding.BaseActivityVDB
+import com.mozhimen.adk.topon.helpers.SplashZoomOutManager
+import com.mozhimen.adk.topon.test.databinding.SplashAdShowBinding
+import com.mozhimen.uik.databinding.bases.viewdatabinding.activity.BaseActivityVDB
 
 /**
  * @ClassName SplashAdShowActivity

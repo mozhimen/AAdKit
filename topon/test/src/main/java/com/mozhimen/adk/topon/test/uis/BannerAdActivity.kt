@@ -8,17 +8,16 @@ import android.widget.ScrollView
 import com.anythink.core.api.ATAdConst
 import com.anythink.core.api.ATAdInfo
 import com.anythink.core.api.AdError
-import com.mozhimen.adk.topon.basic.bases.BaseATAdSourceStatusCallback
-import com.mozhimen.adk.topon.basic.bases.BaseATBannerExCallback
-import com.mozhimen.adk.topon.basic.impls.AdKTopOnBannerProxy
-import com.mozhimen.adk.topon.basic.test.R
-import com.mozhimen.adk.topon.test.bases.BaseActivityVDB
-import com.mozhimen.adk.topon.basic.test.databinding.ActivityBannerBinding
-import com.mozhimen.adk.topon.test.mos.CommonViewBean
+import com.mozhimen.adk.topon.bases.BaseATBannerExCallback
+import com.mozhimen.adk.topon.bases.BaseATAdSourceStatusCallback
+import com.mozhimen.adk.topon.impls.AdKTopOnBannerProxy
+import com.mozhimen.adk.topon.test.R
+import com.mozhimen.adk.topon.test.databinding.ActivityBannerBinding
 import com.mozhimen.kotlin.lintk.optins.OApiCall_BindLifecycle
 import com.mozhimen.kotlin.lintk.optins.OApiCall_BindViewLifecycle
 import com.mozhimen.kotlin.lintk.optins.OApiInit_ByLazy
 import com.mozhimen.kotlin.utilk.android.view.applyVisible
+import com.mozhimen.kotlin.utilk.kotlin.UtilKLazyJVM.lazy_ofNone
 
 /**
  * @ClassName BannerAdActivity
@@ -28,7 +27,7 @@ import com.mozhimen.kotlin.utilk.android.view.applyVisible
  * @Version 1.0
  */
 @OptIn(OApiCall_BindViewLifecycle::class, OApiCall_BindLifecycle::class, OApiInit_ByLazy::class)
-class BannerAdActivity : com.mozhimen.adk.topon.test.bases.BaseActivityVDB<ActivityBannerBinding>() {
+class BannerAdActivity : com.mozhimen.adk.topon.test.bases.BaseActivityVDB2<ActivityBannerBinding>() {
 
     private val _adKTopOnBannerProxy by lazy_ofNone { AdKTopOnBannerProxy() }
     private val _atBannerExListener = object : BaseATBannerExCallback() {
@@ -92,8 +91,7 @@ class BannerAdActivity : com.mozhimen.adk.topon.test.bases.BaseActivityVDB<Activ
         //Loading and displaying ads should keep the container and BannerView visible all the time
         vdb.adviewContainer.applyVisible()
 
-        _adKTopOnBannerProxy.initBannerView(this, _atBannerExListener, BaseATAdSourceStatusCallback())
-
+//        _adKTopOnBannerProxy.initBannerView(this, _atBannerExListener, BaseATAdSourceStatusCallback())
 
         if (mTVShowLog != null) {
             mTVShowLog!!.setOnTouchListener(OnTouchListener { view, motionEvent ->

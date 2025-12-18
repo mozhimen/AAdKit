@@ -19,11 +19,12 @@ import com.google.android.gms.ads.nativead.NativeAdView
 import com.mozhimen.adk.google.commons.INativeAdLoadedListener
 import com.mozhimen.adk.google.impls.AdKGoogleNativeProxy
 import com.mozhimen.adk.google.test.databinding.ActivityAdsNativeBinding
-import com.mozhimen.basick.bases.databinding.BaseActivityVDB
 import com.mozhimen.kotlin.lintk.optins.OApiCall_BindLifecycle
 import com.mozhimen.kotlin.lintk.optins.OApiCall_BindViewLifecycle
 import com.mozhimen.kotlin.lintk.optins.OApiInit_ByLazy
 import com.mozhimen.kotlin.utilk.android.view.applyVisibleIf
+import com.mozhimen.kotlin.utilk.kotlin.UtilKLazyJVM.lazy_ofNone
+import com.mozhimen.uik.databinding.bases.viewdatabinding.activity.BaseActivityVDB
 
 /**
  * 原生广告

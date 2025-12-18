@@ -16,17 +16,17 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
-    signingConfigs{
-        signingConfig{
-            keyAlias 'mozhimen.keystore'
-            keyPassword 'android'
-            storeFile file('../mozhimen.keystore')
-            storePassword 'android'
-        }
-    }
+//    signingConfigs{
+//        signingConfig{
+//            keyAlias 'mozhimen.keystore'
+//            keyPassword 'android'
+//            storeFile file('../mozhimen.keystore')
+//            storePassword 'android'
+//        }
+//    }
     buildTypes {
         release {
-            signingConfig signingConfigs.signingConfig
+//            signingConfig signingConfigs.signingConfig
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
@@ -46,6 +46,8 @@ android {
 dependencies {
     implementation project(':ASwiftKit:basick')
     implementation project(':ASwiftKit:xmlk')
+    implementation project(':ASwiftKit:uik')
+    implementation project(':ASwiftKit:uik:databinding')
     implementation project(':yandex')
 
     testImplementation 'junit:junit:4.13.2'

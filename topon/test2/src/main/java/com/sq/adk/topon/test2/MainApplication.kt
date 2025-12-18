@@ -1,9 +1,9 @@
 package com.sq.adk.topon.test2
 
-import com.mozhimen.adk.topon.basic.AdKTopOnBasicMgr
-import com.mozhimen.stackk.bases.BaseApplication
+import com.mozhimen.adk.topon.AdKTopOnMgr
 import com.mozhimen.kotlin.lintk.optins.OApiInit_InApplication
 import com.mozhimen.kotlin.lintk.optins.OApiMultiDex_InApplication
+import com.mozhimen.stackk.bases.BaseApplication
 
 /**
  * @ClassName MainApplication
@@ -18,7 +18,6 @@ class MainApplication : BaseApplication() {
     override fun onCreate() {
         super.onCreate()
 
-        AdKTopOnBasicMgr.init(this, "a65d81b5cee116", "a432b4ef5762c2dd776fa8779ef0ebe26")
-
+        AdKTopOnMgr.init(this, "a65d81b5cee116", "a432b4ef5762c2dd776fa8779ef0ebe26")
     }
 }

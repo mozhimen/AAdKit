@@ -8,13 +8,14 @@ import com.anythink.core.api.ATAdConst
 import com.anythink.core.api.ATAdInfo
 import com.anythink.core.api.ATNetworkConfirmInfo
 import com.anythink.core.api.AdError
-import com.mozhimen.adk.topon.basic.bases.BaseATAdSourceStatusCallback
-import com.mozhimen.adk.topon.basic.bases.BaseATInterstitialAutoEventCallback
-import com.mozhimen.adk.topon.basic.bases.BaseATInterstitialAutoLoadCallback
-import com.mozhimen.adk.topon.basic.bases.BaseATInterstitialExCallback
-import com.mozhimen.adk.topon.basic.impls.AdKTopOnInterstitialProxy
-import com.mozhimen.adk.topon.basic.test.R
-import com.mozhimen.adk.topon.test.bases.BaseActivityVDB
+import com.mozhimen.adk.topon.bases.BaseATAdSourceStatusCallback
+import com.mozhimen.adk.topon.bases.BaseATInterstitialAutoEventCallback
+import com.mozhimen.adk.topon.bases.BaseATInterstitialAutoLoadCallback
+import com.mozhimen.adk.topon.bases.BaseATInterstitialExCallback
+import com.mozhimen.adk.topon.impls.AdKTopOnInterstitialProxy
+import com.mozhimen.adk.topon.test.R
+import com.mozhimen.adk.topon.test.bases.BaseActivityVDB2
+import com.mozhimen.adk.topon.test.databinding.ActivityInterstitialBinding
 import com.mozhimen.adk.topon.test.mos.CommonViewBean
 import com.mozhimen.kotlin.lintk.optins.OApiCall_BindLifecycle
 import com.mozhimen.kotlin.lintk.optins.OApiCall_BindViewLifecycle
@@ -23,6 +24,7 @@ import com.mozhimen.kotlin.lintk.optins.OApiInit_ByLazy
 import com.mozhimen.kotlin.utilk.android.view.applyGone
 import com.mozhimen.kotlin.utilk.android.view.applyVisible
 import com.mozhimen.kotlin.utilk.commons.IUtilK
+import com.mozhimen.kotlin.utilk.kotlin.UtilKLazyJVM.lazy_ofNone
 
 /**
  * @ClassName InterstitialAdActivity
@@ -32,7 +34,7 @@ import com.mozhimen.kotlin.utilk.commons.IUtilK
  * @Version 1.0
  */
 @OptIn(OApiCall_BindViewLifecycle::class, OApiCall_BindLifecycle::class, OApiInit_ByLazy::class)
-class InterstitialAdActivity : com.mozhimen.adk.topon.test.bases.BaseActivityVDB<com.mozhimen.adk.topon.basic.test.databinding.ActivityInterstitialBinding>(), IUtilK {
+class InterstitialAdActivity : BaseActivityVDB2<ActivityInterstitialBinding>(), IUtilK {
 
     override val contentViewId: Int
         get() = R.layout.activity_interstitial
@@ -147,13 +149,13 @@ class InterstitialAdActivity : com.mozhimen.adk.topon.test.bases.BaseActivityVDB
 
     @OptIn(OApiCall_ViewReady::class)
     override fun onSelectPlacementId(placementId: String?) {
-        val isAutoLoad = placementId?.let { _adkTopOnInterstitialProxy.isAutoLoad(it) } ?: false
+        val isAutoLoad = placementId?.let { _adkTopOnInterstitialProxy.isInterstitialAdAutoLoad(it) } ?: false
         vdb.includeSelectNet?.ckAutoLoad?.setChecked(isAutoLoad)
         if (placementId != null) {
             _adkTopOnInterstitialProxy.apply {
-                initInterstitialAd(this@InterstitialAdActivity, placementId, "", atInterstitialExCallback, atAdSourceStatusListener, atInterstitialAutoEventCallback)
-                loadAd()
-                showAd(this@InterstitialAdActivity)
+//                initInterstitialAd(this@InterstitialAdActivity, placementId, "", atInterstitialExCallback, atAdSourceStatusListener, atInterstitialAutoEventCallback)
+//                loadAd()
+//                showAd(this@InterstitialAdActivity)
             }
         }
     }
@@ -174,7 +176,7 @@ class InterstitialAdActivity : com.mozhimen.adk.topon.test.bases.BaseActivityVDB
         super.initView(savedInstanceState)
         _adkTopOnInterstitialProxy.apply {
             bindLifecycle(this@InterstitialAdActivity)
-            initAutoLoad(this@InterstitialAdActivity, atInterstitialAutoLoadCallback)
+            initInterstitialAdAutoLoad(this@InterstitialAdActivity, atInterstitialAutoLoadCallback)
         }
 
         vdb.includeSelectNet?.ckAutoLoad?.apply {
@@ -182,34 +184,34 @@ class InterstitialAdActivity : com.mozhimen.adk.topon.test.bases.BaseActivityVDB
             setOnCheckedChangeListener { buttonView, isChecked ->
                 if (isChecked) {
                     val curPlacementId: String = mCurrentPlacementId!!
-                    _adkTopOnInterstitialProxy.isAutoLoad(curPlacementId, true)
+                    _adkTopOnInterstitialProxy.isInterstitialAdAutoLoad(curPlacementId, true)
                     vdb.includeBtn?.loadAdBtn?.applyGone()
                 } else {
                     val curPlacementId: String = mCurrentPlacementId!!
-                    _adkTopOnInterstitialProxy.isAutoLoad(curPlacementId, false)
+                    _adkTopOnInterstitialProxy.isInterstitialAdAutoLoad(curPlacementId, false)
                     vdb.includeBtn?.loadAdBtn?.applyVisible()
                 }
             }
         }
 
         vdb.includeBtn?.loadAdBtn?.setOnClickListener {
-            if (!_adkTopOnInterstitialProxy.isInit()) {
+            if (!_adkTopOnInterstitialProxy.isInterstitialAdReady()) {
                 printLogOnUI("ATInterstitial is not init.")
                 return@setOnClickListener
             }
             printLogOnUI(getString(R.string.anythink_ad_status_loading))
-            _adkTopOnInterstitialProxy.loadAd()
+            _adkTopOnInterstitialProxy.loadInterstitialAd()
         }
 
         vdb.includeBtn?.isAdReadyBtn?.setOnClickListener {
             mCurrentPlacementId?.let { placementId ->
-                if (_adkTopOnInterstitialProxy.isAutoLoad(placementId)) {
-                    printLogOnUI("interstitial auto load ad ready status:" + _adkTopOnInterstitialProxy.isAutoLoadReady(placementId))
+                if (_adkTopOnInterstitialProxy.isInterstitialAdAutoLoad(placementId)) {
+                    printLogOnUI("interstitial auto load ad ready status:" + _adkTopOnInterstitialProxy.isInterstitialAdAutoLoadReady(placementId))
                 } else {
 //         boolean isReady = mInterstitialAd.isAdReady();
-                    val atAdStatusInfo = _adkTopOnInterstitialProxy.atInterstitial?.checkAdStatus()
+                    val atAdStatusInfo = _adkTopOnInterstitialProxy.interstitialAd?.checkAdStatus()
                     printLogOnUI("interstitial ad ready status:" + atAdStatusInfo?.isReady)
-                    val atAdInfoList = _adkTopOnInterstitialProxy.atInterstitial?.checkValidAdCaches()
+                    val atAdInfoList = _adkTopOnInterstitialProxy.interstitialAd?.checkValidAdCaches()
                     UtilKLogWrapper.i(TAG, "Valid Cahce size:" + (atAdInfoList?.size ?: 0))
                     if (atAdInfoList != null) {
                         for (adInfo in atAdInfoList) {
@@ -222,7 +224,7 @@ class InterstitialAdActivity : com.mozhimen.adk.topon.test.bases.BaseActivityVDB
 
         vdb.includeBtn?.showAdBtn?.setOnClickListener {
             mCurrentPlacementId?.let { placementId ->
-                _adkTopOnInterstitialProxy.showAd(this)
+                _adkTopOnInterstitialProxy.showInterstitialAd()
             }
         }
     }

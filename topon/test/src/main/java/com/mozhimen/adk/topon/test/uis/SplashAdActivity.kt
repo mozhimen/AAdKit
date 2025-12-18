@@ -15,8 +15,8 @@ import com.anythink.core.api.AdError
 import com.anythink.splashad.api.ATSplashAd
 import com.anythink.splashad.api.ATSplashAdExtraInfo
 import com.anythink.splashad.api.ATSplashExListener
-import com.mozhimen.adk.topon.basic.bases.BaseATAdSourceStatusCallback
-import com.mozhimen.adk.topon.basic.test.R
+import com.mozhimen.adk.topon.bases.BaseATAdSourceStatusCallback
+import com.mozhimen.adk.topon.test.R
 import com.mozhimen.adk.topon.test.bases.BaseActivity
 import com.mozhimen.adk.topon.test.cons.AdConst
 import com.mozhimen.adk.topon.test.mos.CommonViewBean

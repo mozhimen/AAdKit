@@ -10,9 +10,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.anythink.core.api.AdError
 import com.anythink.nativead.api.ATNative
 import com.anythink.nativead.api.ATNativeNetworkListener
-import com.mozhimen.adk.topon.basic.test.R
-import com.mozhimen.adk.topon.test.mos.RecycleViewDataBean
-import com.mozhimen.adk.topon.basic.test.utils.PlacementIdUtil
+import com.mozhimen.adk.topon.test.R
+import com.mozhimen.adk.topon.test.utils.PlacementIdUtil
 import com.mozhimen.kotlin.utilk.commons.IUtilK
 
 /**
@@ -61,7 +60,7 @@ class NativeListActivity : Activity(), IUtilK {
     private fun startRequestData() {
         val data: MutableList<com.mozhimen.adk.topon.test.mos.RecycleViewDataBean> = createMockData()
         if (mAdapter == null) {
-            mAdapter = _root_ide_package_.com.mozhimen.adk.topon.test.uis.NativeListAdapter(data, object : com.mozhimen.adk.topon.test.uis.NativeListAdapter.OnNativeListCallback {
+            mAdapter = NativeListAdapter(data, object : com.mozhimen.adk.topon.test.uis.NativeListAdapter.OnNativeListCallback {
                 override fun onClickLoadMore() {
                     startRequestData()
                 }

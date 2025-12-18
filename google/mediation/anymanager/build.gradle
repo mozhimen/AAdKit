@@ -41,7 +41,8 @@ dependencies {
         implementation project(':AAdKit:google:mediation')
     }
     implementation project(':KUtilKit:android')
-    implementation fileTree(include: ['AnyManagerMediation_v2.2.0.aar'], dir: 'libs')//Step 1
+//    implementation fileTree(include: ['AnyManagerMediation_v2.2.0.aar'], dir: 'libs')//Step 1
+    compileOnly fileTree(include: ['*.jar', '*.aar'], dir: 'libs')
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.2.1'

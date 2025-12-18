@@ -7,18 +7,19 @@
  * You may obtain a copy of the License at https://legal.yandex.com/partner_ch/
  */
 
-package com.mozhimen.adk.yandex.basic.test
+package com.mozhimen.adk.yandex.test
 
 import android.os.Bundle
 import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
 import com.mozhimen.adk.yandex.impls.AdKYandexInterstitialProxy
-import com.mozhimen.adk.yandex.basic.test.databinding.ActivityInterstitialAdBinding
-import com.mozhimen.adk.yandex.basic.test.network.Network
-import com.mozhimen.adk.yandex.basic.test.network.NetworkAdapter
-import com.mozhimen.uik.databinding.bases.activity.viewbinding.BaseActivityVB
+import com.mozhimen.adk.yandex.test.network.Network
+import com.mozhimen.adk.yandex.test.network.NetworkAdapter
+import com.mozhimen.adk.yandex.test.databinding.ActivityInterstitialAdBinding
 import com.mozhimen.kotlin.lintk.optins.OApiCall_BindLifecycle
 import com.mozhimen.kotlin.lintk.optins.OApiCall_BindViewLifecycle
 import com.mozhimen.kotlin.lintk.optins.OApiInit_ByLazy
+import com.mozhimen.kotlin.utilk.kotlin.UtilKLazyJVM.lazy_ofNone
+import com.mozhimen.uik.databinding.bases.viewbinding.activity.BaseActivityVB
 import com.yandex.mobile.ads.common.AdError
 import com.yandex.mobile.ads.common.AdRequestError
 import com.yandex.mobile.ads.common.ImpressionData

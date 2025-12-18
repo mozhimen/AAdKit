@@ -5,7 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.recyclerview.widget.RecyclerView
-import com.mozhimen.adk.topon.basic.test.R
+import com.mozhimen.adk.topon.test.R
 
 /**
  * @ClassName NativeVideoButtonAdapter

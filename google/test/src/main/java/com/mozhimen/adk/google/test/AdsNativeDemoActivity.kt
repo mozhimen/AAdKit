@@ -33,8 +33,8 @@ import com.google.android.gms.ads.nativead.NativeAdOptions
 import com.google.android.gms.ads.nativead.NativeAdView
 import com.mozhimen.adk.google.test.databinding.ActivityAdsNativeDemoBinding
 import com.mozhimen.adk.google.test.databinding.AdUnifiedBinding
-import com.mozhimen.basick.bases.databinding.BaseActivityVDB
 import com.mozhimen.kotlin.utilk.android.widget.showToast
+import com.mozhimen.uik.databinding.bases.viewdatabinding.activity.BaseActivityVDB
 import java.util.concurrent.atomic.AtomicBoolean
 
 

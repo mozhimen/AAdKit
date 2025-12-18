@@ -15,14 +15,9 @@ import android.widget.TextView
 import androidx.annotation.CallSuper
 import androidx.appcompat.app.AppCompatActivity
 import com.anythink.core.api.ATAdConst
-import com.anythink.core.api.ATAdInfo
-import com.anythink.core.api.ATAdSourceStatusListener
-import com.mozhimen.adk.topon.test.annors.AAdNativeType
-import com.mozhimen.adk.topon.test.annors.AnnotationAdType
-import com.mozhimen.adk.topon.test.mos.CommonViewBean
-import com.mozhimen.adk.topon.basic.test.utils.PlacementIdUtil
-import com.mozhimen.kotlin.utilk.android.widget.applyPrintLog
+import com.mozhimen.adk.topon.test.utils.PlacementIdUtil
 import com.mozhimen.kotlin.utilk.commons.IUtilK
+import com.mozhimen.kotlin.utilk.kotlin.io.printlog
 import com.mozhimen.xmlk.bark.title.BarKTitle
 import java.lang.ref.WeakReference
 
@@ -33,7 +28,7 @@ abstract class BaseActivity : AppCompatActivity(), IUtilK {
         @JvmStatic
         protected fun printLogOnUI(msg: String?) {
             if (mTVShowLogWR == null || mTVShowLogWR!!.get() == null || TextUtils.isEmpty(msg)) return
-            msg?.let { mTVShowLogWR!!.get()!!.applyPrintLog(it) }
+            msg?.let { mTVShowLogWR!!.get()!!.printlog(it) }
         }
     }
 

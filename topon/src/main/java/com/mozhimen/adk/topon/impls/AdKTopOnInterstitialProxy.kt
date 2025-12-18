@@ -34,6 +34,7 @@ class AdKTopOnInterstitialProxy(
     private var _activity: Activity? = null
 ) : BaseWakeBefDestroyLifecycleObserver(), ATInterstitialExListener, ATAdSourceStatusListener, IAdKInterstitialProxy {
     private var _interstitialAd: ATInterstitial? = null
+    val interstitialAd get() = _interstitialAd
     private val _autoLoadPlacementIdMap: MutableMap<String, Boolean> = HashMap()
     private var _placementId: String = ""
     private var _scenarioId: String = ""

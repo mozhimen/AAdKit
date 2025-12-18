@@ -5,17 +5,17 @@ import android.util.Log
 import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
 import android.view.View
 import com.mozhimen.adk.google.AdKGoogleMgr
-import com.mozhimen.adk.google.optins.OMetaData_GMS_ADS_APPLICATION_ID
 import com.mozhimen.adk.google.test.databinding.ActivityMainBinding
-import com.mozhimen.basick.bases.databinding.BaseActivityVDB
 import com.mozhimen.kotlin.elemk.commons.I_Listener
 import com.mozhimen.kotlin.utilk.android.content.startContext
 import com.mozhimen.kotlin.utilk.android.widget.showToast
+import com.mozhimen.libk.google.android.gms.play.ads.optins.OMetaData_ANDROID_GMS_ADS_APPLICATION_ID
+import com.mozhimen.uik.databinding.bases.viewdatabinding.activity.BaseActivityVDB
 
 class MainActivity : BaseActivityVDB<ActivityMainBinding>() {
     private var _isInitSuccess = false
 
-    @OptIn(OMetaData_GMS_ADS_APPLICATION_ID::class)
+    @OptIn(OMetaData_ANDROID_GMS_ADS_APPLICATION_ID::class)
     override fun initView(savedInstanceState: Bundle?) {
         AdKGoogleMgr.init(this) { res ->
             UtilKLogWrapper.d(TAG, "initView: isInitSuccess $res")

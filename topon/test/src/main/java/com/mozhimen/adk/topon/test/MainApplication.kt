@@ -1,7 +1,7 @@
 package com.mozhimen.adk.topon.test
 
-import com.mozhimen.adk.topon.basic.AdKTopOnBasicMgr
-import com.mozhimen.adk.topon.basic.test.utils.PlacementIdUtil
+import com.mozhimen.adk.topon.AdKTopOnMgr
+import com.mozhimen.adk.topon.test.utils.PlacementIdUtil
 import com.mozhimen.stackk.bases.BaseApplication
 import com.mozhimen.kotlin.lintk.optins.OApiInit_InApplication
 import com.mozhimen.kotlin.lintk.optins.OApiMultiDex_InApplication
@@ -19,7 +19,7 @@ class MainApplication : BaseApplication() {
     override fun onCreate() {
         super.onCreate()
 
-        AdKTopOnBasicMgr.init(this, PlacementIdUtil.getAppId(), PlacementIdUtil.getAppKey())
+        AdKTopOnMgr.init(this, PlacementIdUtil.getAppId(), PlacementIdUtil.getAppKey())
 
         //test
 //        ATDebuggerUITest.showDebuggerUI(this)

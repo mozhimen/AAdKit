@@ -17,17 +17,17 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
-    signingConfigs{
-        signingConfig{
-            keyAlias 'mozhimen.keystore'
-            keyPassword 'android'
-            storeFile file('../mozhimen.keystore')
-            storePassword 'android'
-        }
-    }
+//    signingConfigs{
+//        signingConfig{
+//            keyAlias 'mozhimen.keystore'
+//            keyPassword 'android'
+//            storeFile file('../mozhimen.keystore')
+//            storePassword 'android'
+//        }
+//    }
     buildTypes {
         release {
-            signingConfig signingConfigs.signingConfig
+//            signingConfig signingConfigs.signingConfig
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
@@ -46,10 +46,15 @@ android {
 
 dependencies {
     implementation project(':ASwiftKit:basick')
+    implementation project(':ASwiftKit:uik')
+    implementation project(':ASwiftKit:uik:databinding')
+    implementation project(':ASwiftKit:xmlk')
+    implementation project(':ASwiftKit:xmlk')
     implementation project(':ADebugKit:leakcanary')
     implementation project(':google')
-
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation project(':AXmlKit_BaseRecyclerViewAdapterHelper:library3')
+    implementation project(':AXmlKit:vhk')
+    implementation project(':APagingKit:paging3:data')
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'

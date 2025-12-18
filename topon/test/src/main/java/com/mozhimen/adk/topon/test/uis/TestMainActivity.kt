@@ -12,7 +12,7 @@ import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.TextView
 import com.anythink.splashad.api.ATSplashEyeAdListener
-import com.mozhimen.adk.topon.basic.helpers.SplashZoomOutManager
+import com.mozhimen.adk.topon.helpers.SplashZoomOutManager
 import com.mozhimen.adk.topon.test.helpers.SplashEyeAdHolder
 import com.mozhimen.kotlin.utilk.commons.IUtilK
 
