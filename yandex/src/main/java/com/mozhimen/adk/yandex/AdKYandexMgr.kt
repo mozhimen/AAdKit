@@ -2,7 +2,7 @@ package com.mozhimen.adk.yandex
 
 import android.content.Context
 import com.mozhimen.kotlin.elemk.commons.I_Listener
-import com.mozhimen.kotlin.lintk.optins.OApiInit_InApplication
+import com.mozhimen.kotlin.lintk.optins.api.OApiInit_InApplication
 import com.yandex.mobile.ads.common.MobileAds
 
 /**

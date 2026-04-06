@@ -15,9 +15,9 @@ import com.mozhimen.adk.yandex.impls.AdKYandexInterstitialProxy
 import com.mozhimen.adk.yandex.test.network.Network
 import com.mozhimen.adk.yandex.test.network.NetworkAdapter
 import com.mozhimen.adk.yandex.test.databinding.ActivityInterstitialAdBinding
-import com.mozhimen.kotlin.lintk.optins.OApiCall_BindLifecycle
-import com.mozhimen.kotlin.lintk.optins.OApiCall_BindViewLifecycle
-import com.mozhimen.kotlin.lintk.optins.OApiInit_ByLazy
+import com.mozhimen.kotlin.lintk.optins.api.OApiCall_BindLifecycle
+import com.mozhimen.kotlin.lintk.optins.api.OApiCall_BindViewLifecycle
+import com.mozhimen.kotlin.lintk.optins.api.OApiInit_ByLazy
 import com.mozhimen.kotlin.utilk.kotlin.UtilKLazyJVM.lazy_ofNone
 import com.mozhimen.uik.databinding.bases.viewbinding.activity.BaseActivityVB
 import com.yandex.mobile.ads.common.AdError

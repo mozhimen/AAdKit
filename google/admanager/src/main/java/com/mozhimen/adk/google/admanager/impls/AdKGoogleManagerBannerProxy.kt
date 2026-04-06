@@ -7,9 +7,9 @@ import com.google.android.gms.ads.admanager.AdManagerAdView
 import com.mozhimen.adk.basic.commons.IAdKBannerProxy
 import com.mozhimen.adk.google.AdKGoogleMgr
 import com.mozhimen.adk.google.impls.AdKGoogleBannerProxy
-import com.mozhimen.kotlin.lintk.optins.OApiCall_BindLifecycle
-import com.mozhimen.kotlin.lintk.optins.OApiCall_BindViewLifecycle
-import com.mozhimen.kotlin.lintk.optins.OApiInit_ByLazy
+import com.mozhimen.kotlin.lintk.optins.api.OApiCall_BindLifecycle
+import com.mozhimen.kotlin.lintk.optins.api.OApiCall_BindViewLifecycle
+import com.mozhimen.kotlin.lintk.optins.api.OApiInit_ByLazy
 
 /**
  * @ClassName AdKGoogleBannerProxy

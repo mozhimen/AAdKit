@@ -13,9 +13,9 @@ import com.mozhimen.adk.topon.bases.BaseATAdSourceStatusCallback
 import com.mozhimen.adk.topon.impls.AdKTopOnBannerProxy
 import com.mozhimen.adk.topon.test.R
 import com.mozhimen.adk.topon.test.databinding.ActivityBannerBinding
-import com.mozhimen.kotlin.lintk.optins.OApiCall_BindLifecycle
-import com.mozhimen.kotlin.lintk.optins.OApiCall_BindViewLifecycle
-import com.mozhimen.kotlin.lintk.optins.OApiInit_ByLazy
+import com.mozhimen.kotlin.lintk.optins.api.OApiCall_BindLifecycle
+import com.mozhimen.kotlin.lintk.optins.api.OApiCall_BindViewLifecycle
+import com.mozhimen.kotlin.lintk.optins.api.OApiInit_ByLazy
 import com.mozhimen.kotlin.utilk.android.view.applyVisible
 import com.mozhimen.kotlin.utilk.kotlin.UtilKLazyJVM.lazy_ofNone
 

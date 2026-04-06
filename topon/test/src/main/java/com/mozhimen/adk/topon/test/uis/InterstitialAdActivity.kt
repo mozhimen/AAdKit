@@ -17,10 +17,10 @@ import com.mozhimen.adk.topon.test.R
 import com.mozhimen.adk.topon.test.bases.BaseActivityVDB2
 import com.mozhimen.adk.topon.test.databinding.ActivityInterstitialBinding
 import com.mozhimen.adk.topon.test.mos.CommonViewBean
-import com.mozhimen.kotlin.lintk.optins.OApiCall_BindLifecycle
-import com.mozhimen.kotlin.lintk.optins.OApiCall_BindViewLifecycle
-import com.mozhimen.kotlin.lintk.optins.OApiCall_ViewReady
-import com.mozhimen.kotlin.lintk.optins.OApiInit_ByLazy
+import com.mozhimen.kotlin.lintk.optins.api.OApiCall_BindLifecycle
+import com.mozhimen.kotlin.lintk.optins.api.OApiCall_BindViewLifecycle
+import com.mozhimen.kotlin.lintk.optins.api.OApiCall_ViewReady
+import com.mozhimen.kotlin.lintk.optins.api.OApiInit_ByLazy
 import com.mozhimen.kotlin.utilk.android.view.applyGone
 import com.mozhimen.kotlin.utilk.android.view.applyVisible
 import com.mozhimen.kotlin.utilk.commons.IUtilK

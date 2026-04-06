@@ -10,7 +10,7 @@ import com.anythink.core.api.ATSDK
 import com.anythink.core.api.NetTrafficeCallback
 import com.mozhimen.libk.google.android.ump.optins.OMetaData_GMS_ADS_APPLICATION_ID
 import com.mozhimen.kotlin.elemk.commons.I_Listener
-import com.mozhimen.kotlin.lintk.optins.OApiInit_InApplication
+import com.mozhimen.kotlin.lintk.optins.api.OApiInit_InApplication
 import com.mozhimen.kotlin.utilk.android.content.UtilKContextWrapper
 import com.mozhimen.kotlin.utilk.commons.IUtilK
 import com.mozhimen.webk.basic.WebKMgr

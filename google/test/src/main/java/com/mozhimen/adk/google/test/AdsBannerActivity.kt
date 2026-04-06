@@ -5,9 +5,9 @@ import android.view.ViewGroup
 import com.google.android.gms.ads.AdListener
 import com.mozhimen.adk.google.impls.AdKGoogleBannerProxy
 import com.mozhimen.adk.google.test.databinding.ActivityAdsBannerBinding
-import com.mozhimen.kotlin.lintk.optins.OApiCall_BindLifecycle
-import com.mozhimen.kotlin.lintk.optins.OApiCall_BindViewLifecycle
-import com.mozhimen.kotlin.lintk.optins.OApiInit_ByLazy
+import com.mozhimen.kotlin.lintk.optins.api.OApiCall_BindLifecycle
+import com.mozhimen.kotlin.lintk.optins.api.OApiCall_BindViewLifecycle
+import com.mozhimen.kotlin.lintk.optins.api.OApiInit_ByLazy
 import com.mozhimen.kotlin.utilk.android.util.px2dp
 import com.mozhimen.kotlin.utilk.android.view.addAndRemoveOnGlobalLayoutListener
 import com.mozhimen.kotlin.utilk.android.view.applyVisible

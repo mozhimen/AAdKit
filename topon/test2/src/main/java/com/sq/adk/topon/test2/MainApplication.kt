@@ -1,8 +1,8 @@
 package com.sq.adk.topon.test2
 
 import com.mozhimen.adk.topon.AdKTopOnMgr
-import com.mozhimen.kotlin.lintk.optins.OApiInit_InApplication
-import com.mozhimen.kotlin.lintk.optins.OApiMultiDex_InApplication
+import com.mozhimen.kotlin.lintk.optins.api.OApiInit_InApplication
+import com.mozhimen.kotlin.lintk.optins.api.OApiMultiDex_InApplication
 import com.mozhimen.stackk.bases.BaseApplication
 
 /**
