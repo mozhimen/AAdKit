@@ -35,25 +35,26 @@ android {
 }
 
 dependencies {
-    implementation project(':ASwiftKit:basick')
-    implementation project(':ASwiftKit:xmlk')
-    implementation project(':AStackKit:callback')
-    implementation project(':AWebKit:basic')
-
     api project(project.path.replace(project.name, '') + ':basic')
-    api project(':ALibKit_Google:android_ump:user_messaging_platform')
-
-    api fileTree(include: ['*.jar', '*.aar'], dir: 'libs')
-
-    //Androidx (Necessary)
-    api "androidx.appcompat:appcompat:1.1.0"
-    api "androidx.browser:browser:1.4.0"
-
     if (getGradle().getStartParameter().getTaskRequests().toString().contains("mainland")) {
         api project(project.path.replace(project.name, '') +':topon:mainland')
     } else {
         api project(project.path.replace(project.name, '') +':topon:oversea')
     }
+    api fileTree(include: ['*.jar', '*.aar'], dir: 'libs')
+
+    //
+
+    implementation project(':ASwiftKit:basick')
+    implementation project(':ASwiftKit:xmlk')
+    implementation project(':AStackKit:callback')
+    implementation project(':AWebKit:basic')
+
+    api 'com.github.mozhimen.ALibKit_Google:android_ump-user_messaging_platform:0.0.5'
+
+    //Androidx (Necessary)
+    api "androidx.appcompat:appcompat:1.1.0"
+    api "androidx.browser:browser:1.4.0"
 
 //    //UnityAds
 //    api "com.anythink.sdk:adapter-unityads:6.2.98"
