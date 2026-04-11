@@ -43,19 +43,6 @@ project(':ALibKit_Google').projectDir = new File("D:\\WorkSpace\\GitHub\\ALibKit
 include ':ALibKit_Google:material'
 include ':ALibKit_Google:android_ump:user_messaging_platform'
 include ':ALibKit_Google:android_gms:play_services_ads_identifier'
-//ALibKit_Jetpack
-include ':ALibKit_Jetpack'
-project(':ALibKit_Jetpack').projectDir = new File("D:\\WorkSpace\\GitHub\\ALibKit_Jetpack")
-include ':ALibKit_Jetpack:databinding'
-include ':ALibKit_Jetpack:core'
-include ':ALibKit_Jetpack:annotation'
-include ':ALibKit_Jetpack:paging3'
-include ':ALibKit_Jetpack:room'
-include ':ALibKit_Jetpack:viewpager'
-include ':ALibKit_Jetpack:browser'
-include ':ALibKit_Jetpack:recyclerview'
-include ':ALibKit_Jetpack:datastore'
-include ':ALibKit_Jetpack:room_paging'
 //ALibKit_Jetbrains
 include ':ALibKit_Jetbrains'
 project(':ALibKit_Jetbrains').projectDir = new File("D:\\WorkSpace\\GitHub\\ALibKit_Jetbrains")

@@ -36,7 +36,7 @@ dependencies {
     } else {
         api project(':AAdKit:google')
     }
-    implementation project(':ASwiftKit:basick')
+    implementation 'com.github.mozhimen.ASwiftKit:basick:2.0.4'
     implementation project(':AStackKit:callback')
 
     testImplementation 'junit:junit:4.13.2'
