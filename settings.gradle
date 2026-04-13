@@ -37,35 +37,6 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "AAdKit"
-//ALibKit_Google
-include ':ALibKit_Google'
-project(':ALibKit_Google').projectDir = new File("D:\\WorkSpace\\GitHub\\ALibKit_Google")
-include ':ALibKit_Google:material'
-include ':ALibKit_Google:android_ump:user_messaging_platform'
-include ':ALibKit_Google:android_gms:play_services_ads_identifier'
-//ALibKit_Jetbrains
-include ':ALibKit_Jetbrains'
-project(':ALibKit_Jetbrains').projectDir = new File("D:\\WorkSpace\\GitHub\\ALibKit_Jetbrains")
-include ':ALibKit_Jetbrains:kotlin_stdlib'
-include ':ALibKit_Jetbrains:kotlinx_coroutines'
-//KUtilKit
-include ':KUtilKit'
-project(':KUtilKit').projectDir = new File("D:\\WorkSpace\\GitHub\\KUtilKit")
-include ':KUtilKit:android'
-include ':KUtilKit:kotlin'
-//ASwiftKit
-include ':ASwiftKit'
-project(':ASwiftKit').projectDir = new File("D:\\WorkSpace\\GitHub\\ASwiftKit")
-include ':ASwiftKit:basick'
-include ':ASwiftKit:xmlk'
-include ':ASwiftKit:uik'
-include ':ASwiftKit:uik:databinding'
-//AXmlKit
-include ':AXmlKit'
-project(':AXmlKit').projectDir = new File("D:\\WorkSpace\\GitHub\\AXmlKit")
-include ':AXmlKit:bark:title'
-include ':AXmlKit:drawablek:progress'
-include ':AXmlKit:recyclerk'
 //ADebugKit
 include ':ADebugKit'
 project(':ADebugKit').projectDir = new File("D:\\WorkSpace\\GitHub\\ADebugKit")
@@ -74,49 +45,6 @@ include ':ADebugKit:leakcanary'
 include ':AWebKit'
 project(':AWebKit').projectDir = new File("D:\\WorkSpace\\GitHub\\AWebKit")
 include ':AWebKit:basic'
-//ALibKit_Jetbrains
-include ':ALibKit_Jetbrains'
-project(':ALibKit_Jetbrains').projectDir = new File("D:\\WorkSpace\\GitHub\\ALibKit_Jetbrains")
-include ':ALibKit_Jetbrains:kotlin_stdlib'
-//ALibKit_Google
-include ':ALibKit_Google'
-project(':ALibKit_Google').projectDir = new File("D:\\WorkSpace\\GitHub\\ALibKit_Google")
-include ':ALibKit_Google:android_gms:play_services_ads'
-include ':ALibKit_Google:android_gms_play_ads_identifier'
-include ':ALibKit_Google:android_ump'
-//ALibKit_Squareup
-include ':ALibKit_Squareup'
-project(':ALibKit_Squareup').projectDir = new File("D:\\WorkSpace\\GitHub\\ALibKit_Squareup")
-include ':ALibKit_Squareup:picasso'
-include ':ALibKit_Squareup:leakcanary_android'
-//AStackKit
-include ':AStackKit'
-project(':AStackKit').projectDir = new File("D:\\WorkSpace\\GitHub\\AStackKit")
-include ':AStackKit:callback'
-include ':AStackKit:basic'
-include ':AStackKit:stackk'
-//ACacheKit
-include ':ACacheKit'
-project(':ACacheKit').projectDir = new File("D:\\WorkSpace\\GitHub\\ACacheKit")
-include ':ACacheKit:datastore'
-include ':ACacheKit:basic'
-//ATaskKit
-include ':ATaskKit'
-project(':ATaskKit').projectDir = new File("D:\\WorkSpace\\GitHub\\ATaskKit")
-include ':ATaskKit:taskk'
-//AXmlKit
-include ':AXmlKit'
-project(':AXmlKit').projectDir = new File("D:\\WorkSpace\\GitHub\\AXmlKit")
-include ':AXmlKit:vhk'
-//AXmlKit_BaseRecyclerViewAdapterHelper
-include ':AXmlKit_BaseRecyclerViewAdapterHelper'
-project(':AXmlKit_BaseRecyclerViewAdapterHelper').projectDir = new File("D:\\WorkSpace\\GitHub\\AXmlKit_BaseRecyclerViewAdapterHelper")
-include ':AXmlKit_BaseRecyclerViewAdapterHelper:library3'
-//APagingKit
-include ':APagingKit'
-project(':APagingKit').projectDir = new File("D:\\WorkSpace\\GitHub\\APagingKit")
-include ':APagingKit:paging3:data'
-include ':APagingKit:basic'
 //
 include ':app'
 include ':basic'

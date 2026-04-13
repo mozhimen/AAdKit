@@ -38,7 +38,7 @@ dependencies {
     implementation 'com.github.mozhimen.ALibKit_Jetpack:browser:0.0.7'
     implementation 'com.github.mozhimen.ALibKit_Jetpack:browser:0.0.7'
     implementation 'com.github.mozhimen.ALibKit_Jetpack:recyclerview:0.0.7'
-    implementation 'com.github.mozhimen.ASwiftKit:basick:2.0.4'
+    implementation 'com.github.mozhimen.ASwiftKit:basick:2.1.6'
     implementation project(':ACacheKit:datastore')
     api project(project.path.replace(project.name, '') +':basic')
 
