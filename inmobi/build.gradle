@@ -33,14 +33,14 @@ android {
 dependencies {
     api "com.inmobi.monetization:inmobi-ads-kotlin:10.8.2"
 
-    implementation project(':ALibKit_Google:android_gms:play_services_ads_identifier')
-    implementation project(':ALibKit_Squareup:picasso')
+    api project(project.path.replace(project.name, '') +':basic')
+    implementation 'com.github.mozhimen.ALibKit_Google:android_gms-play_services_ads_identifier:0.0.6'
+    implementation 'com.github.mozhimen.ALibKit_Squareup:picasso:0.0.1'
     implementation 'com.github.mozhimen.ALibKit_Jetpack:browser:0.0.7'
-    implementation 'com.github.mozhimen.ALibKit_Jetpack:browser:0.0.7'
+    implementation 'com.github.mozhimen.ALibKit_Jetpack:viewpager:0.0.7'
     implementation 'com.github.mozhimen.ALibKit_Jetpack:recyclerview:0.0.7'
     implementation 'com.github.mozhimen.ASwiftKit:basick:2.1.6'
-    implementation project(':ACacheKit:datastore')
-    api project(project.path.replace(project.name, '') +':basic')
+    implementation 'com.github.mozhimen.ACacheKit:datastore:0.0.1'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'

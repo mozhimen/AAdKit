@@ -9,8 +9,10 @@ import com.mozhimen.basick.bases.BaseWakeBefDestroyLifecycleObserver
 import com.mozhimen.kotlin.lintk.optins.api.OApiCall_BindLifecycle
 import com.mozhimen.kotlin.lintk.optins.api.OApiCall_BindViewLifecycle
 import com.mozhimen.kotlin.lintk.optins.api.OApiInit_ByLazy
+import com.mozhimen.kotlin.utilk.android.app.UtilKApplicationWrapper
 import com.mozhimen.kotlin.utilk.android.util.px2dpI
 import com.mozhimen.kotlin.utilk.android.view.addViewSafe_MATCH_MATCH
+import com.mozhimen.kotlin.utilk.kotlin.UtilKLazyJVM.lazy_ofNone
 import com.mozhimen.kotlin.utilk.wrapper.UtilKScreen
 import com.yandex.mobile.ads.banner.BannerAdEventListener
 import com.yandex.mobile.ads.banner.BannerAdSize
@@ -39,6 +41,7 @@ class AdKBannerProxy : BaseWakeBefDestroyLifecycleObserver(), BannerAdEventListe
     private var _adFoxRequestParameters: Map<String, String>? = null
 
     private var _bannerAdEventListener: BannerAdEventListener? = null
+    private val _context by lazy_ofNone { UtilKApplicationWrapper.instance.applicationContext }
 
     ///////////////////////////////////////////////////////////////////////
 

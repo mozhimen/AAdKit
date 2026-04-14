@@ -34,10 +34,10 @@ android {
 }
 
 dependencies {
-    implementation 'com.github.mozhimen.ASwiftKit:basick:2.1.6'
-    implementation project(':AStackKit:stackk')
     api project(project.path.replace(project.name, '') +':basic')
     api 'com.yandex.android:mobileads:6.4.1'
+    implementation 'com.github.mozhimen.ASwiftKit:basick:2.1.6'
+    implementation 'com.github.mozhimen.AStackKit:stackk:0.0.1'
 //    api('com.yandex.android:mobileads-mediation:6.4.0.0') {
 //        //adcolony
 ////        exclude group: 'com.adcolony', module: 'sdk'

@@ -15,6 +15,8 @@ import com.mozhimen.basick.bases.BaseWakeBefDestroyLifecycleObserver
 import com.mozhimen.kotlin.lintk.optins.api.OApiCall_BindLifecycle
 import com.mozhimen.kotlin.lintk.optins.api.OApiCall_BindViewLifecycle
 import com.mozhimen.kotlin.lintk.optins.api.OApiInit_ByLazy
+import com.mozhimen.kotlin.utilk.android.app.UtilKApplicationWrapper
+import com.mozhimen.kotlin.utilk.kotlin.UtilKLazyJVM.lazy_ofNone
 
 /**
  * @ClassName AdKYandexOpenProxy
@@ -32,6 +34,7 @@ open class AdKGoogleOpenProxy : BaseWakeBefDestroyLifecycleObserver(), IAdKOpenP
 
     private var _appOpenAdLoadCallback: AppOpenAdLoadCallback? = null
     private var _fullScreenContentCallback: FullScreenContentCallback? = null
+    private val _context by lazy_ofNone { UtilKApplicationWrapper.instance.applicationContext }
 
     ///////////////////////////////////////////////////////////////////////////////
 

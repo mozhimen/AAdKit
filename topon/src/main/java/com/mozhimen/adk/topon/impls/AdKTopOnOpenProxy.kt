@@ -23,7 +23,9 @@ import com.mozhimen.basick.bases.BaseWakeBefDestroyLifecycleObserver
 import com.mozhimen.kotlin.lintk.optins.api.OApiCall_BindLifecycle
 import com.mozhimen.kotlin.lintk.optins.api.OApiInit_ByLazy
 import com.mozhimen.kotlin.utilk.android.app.UtilKActivityWrapper
+import com.mozhimen.kotlin.utilk.android.app.UtilKApplicationWrapper
 import com.mozhimen.kotlin.utilk.android.app.isFinishingOrDestroyed
+import com.mozhimen.kotlin.utilk.kotlin.UtilKLazyJVM.lazy_ofNone
 import java.lang.ref.WeakReference
 
 /**
@@ -44,6 +46,7 @@ class AdKTopOnOpenProxy : BaseWakeBefDestroyLifecycleObserver(), IAdKOpenProxy, 
 
     private var _atSplashExListener: ATSplashExListener? = null
     private var _atAdSourceStatusListener: ATAdSourceStatusListener? = null
+    private val _context by lazy_ofNone { UtilKApplicationWrapper.instance.applicationContext }
 
     ///////////////////////////////////////////////////////////////////////////////
 

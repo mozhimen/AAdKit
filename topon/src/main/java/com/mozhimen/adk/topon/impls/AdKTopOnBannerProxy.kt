@@ -15,8 +15,10 @@ import com.mozhimen.basick.bases.BaseWakeBefDestroyLifecycleObserver
 import com.mozhimen.kotlin.lintk.optins.api.OApiCall_BindLifecycle
 import com.mozhimen.kotlin.lintk.optins.api.OApiCall_BindViewLifecycle
 import com.mozhimen.kotlin.lintk.optins.api.OApiInit_ByLazy
+import com.mozhimen.kotlin.utilk.android.app.UtilKApplicationWrapper
 import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
 import com.mozhimen.kotlin.utilk.android.view.addViewSafe_MATCH_MATCH
+import com.mozhimen.kotlin.utilk.kotlin.UtilKLazyJVM.lazy_ofNone
 
 /**
  * @ClassName BannerAdProxy
@@ -38,6 +40,7 @@ class AdKTopOnBannerProxy : BaseWakeBefDestroyLifecycleObserver(), ATBannerExLis
 
     private var _atBannerExListener: ATBannerExListener? = null
     private var _adSourceStatusListener: ATAdSourceStatusListener? = null
+    private val _context by lazy_ofNone { UtilKApplicationWrapper.instance.applicationContext }
 
     ///////////////////////////////////////////////////////////////////////
 

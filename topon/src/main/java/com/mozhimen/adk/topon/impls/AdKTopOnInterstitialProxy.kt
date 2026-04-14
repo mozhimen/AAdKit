@@ -18,7 +18,9 @@ import com.mozhimen.basick.bases.BaseWakeBefDestroyLifecycleObserver
 import com.mozhimen.kotlin.lintk.optins.api.OApiCall_BindLifecycle
 import com.mozhimen.kotlin.lintk.optins.api.OApiCall_BindViewLifecycle
 import com.mozhimen.kotlin.lintk.optins.api.OApiInit_ByLazy
+import com.mozhimen.kotlin.utilk.android.app.UtilKApplicationWrapper
 import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
+import com.mozhimen.kotlin.utilk.kotlin.UtilKLazyJVM.lazy_ofNone
 
 /**
  * @ClassName AdKTopOnInterstitialProxy
@@ -31,7 +33,7 @@ import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
 @OApiCall_BindLifecycle
 @OApiInit_ByLazy
 class AdKTopOnInterstitialProxy(
-    private var _activity: Activity? = null
+    private var _activity: Activity? = null,
 ) : BaseWakeBefDestroyLifecycleObserver(), ATInterstitialExListener, ATAdSourceStatusListener, IAdKInterstitialProxy {
     private var _interstitialAd: ATInterstitial? = null
     val interstitialAd get() = _interstitialAd
@@ -43,7 +45,9 @@ class AdKTopOnInterstitialProxy(
     private var _atInterstitialExListener: ATInterstitialExListener? = null
     private var _atAdSourceStatusListener: ATAdSourceStatusListener? = null
     private var _atInterstitialAutoEventListener: ATInterstitialAutoEventListener? = null
-//    private var _atInterstitialAutoEventCallback = ATInterstitialAutoEventCallback()
+
+    //    private var _atInterstitialAutoEventCallback = ATInterstitialAutoEventCallback()
+    private val _context by lazy_ofNone { UtilKApplicationWrapper.instance.applicationContext }
 
     ////////////////////////////////////////////////////////////////////////////
     //region # auto load
@@ -76,7 +80,7 @@ class AdKTopOnInterstitialProxy(
     fun initInterstitialAdListener(
         atInterstitialExListener: ATInterstitialExListener?,
         atAdSourceStatusListener: ATAdSourceStatusListener?,
-        atInterstitialAutoEventListener: ATInterstitialAutoEventListener? = null
+        atInterstitialAutoEventListener: ATInterstitialAutoEventListener? = null,
     ) {
         _atInterstitialExListener = atInterstitialExListener
         _atAdSourceStatusListener = atAdSourceStatusListener

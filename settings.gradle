@@ -1,7 +1,10 @@
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
-
+        google()
+        mavenCentral()
+        mavenLocal()
+        maven { url "https://jitpack.io" }
         maven { url 'https://maven.aliyun.com/repository/central' }
         maven { url 'https://maven.aliyun.com/repository/google' }
         maven { url 'https://maven.aliyun.com/repository/jcenter' }
@@ -12,11 +15,8 @@ dependencyResolutionManagement {
         maven { url 'https://gitee.com/liuchaoya/libcommon/raw/master/repository/' }
         maven { url "https://repo.eclipse.org/content/repositories/paho-snapshots/" }
         maven { url 'https://developer.huawei.com/repo/' }
-        maven { url "https://jitpack.io" }
         maven { url 'https://www.jitpack.io' }
 
-        google()
-        mavenCentral()
         //Anythink(Core)
         maven { url "https://jfrog.anythinktech.com/artifactory/overseas_sdk" }
         //test
@@ -37,29 +37,23 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "AAdKit"
-//ADebugKit
-include ':ADebugKit'
-project(':ADebugKit').projectDir = new File("D:\\WorkSpace\\GitHub\\ADebugKit")
-include ':ADebugKit:leakcanary'
-//AWebKit
-include ':AWebKit'
-project(':AWebKit').projectDir = new File("D:\\WorkSpace\\GitHub\\AWebKit")
-include ':AWebKit:basic'
 //
 include ':app'
 include ':basic'
 include ':google'
-include ':google:test'
-include ':google:mediation'
-include ':google:mediation:anymanager'
-include ':topon'
-include ':topon:mainland'
-include ':topon:oversea'
-include ':topon:test'
-include ':topon:test2'
-include ':yandex'
-include ':yandex:test'
+//include ':google:test'
+include ':google-admanager'
+include ':google-mediation'
+include ':google-mediation-anymanager'
+//include ':google-mediation-anymanager:sample'
 include ':inmobi'
-include ':inmobi:test'
-include ':google:mediation:anymind:sample'
-include ':google:admanager'
+//include ':inmobi:test'
+include ':topon'
+include ':topon-mainland'
+include ':topon-oversea'
+//include ':topon:test'
+//include ':topon:test2'
+include ':yandex'
+//include ':yandex:test'
+
+

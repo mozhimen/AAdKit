@@ -45,13 +45,13 @@ android {
 }
 
 dependencies {
+    implementation project(':topon')
     implementation 'com.github.mozhimen.ASwiftKit:xmlk:2.1.6'
     implementation 'com.github.mozhimen.ASwiftKit:uik:2.1.6'
     implementation 'com.github.mozhimen.ASwiftKit:uik-databinding:2.1.6'
     implementation 'com.github.mozhimen.ASwiftKit:basick:2.1.6'
-    implementation project(':topon')
-    implementation project(':ADebugKit:leakcanary')
-    implementation project(':AStackKit:stackk')
+    implementation 'com.github.mozhimen.ADebugKit:leakcanary:0.0.1'
+    implementation 'com.github.mozhimen.AStackKit:stackk:0.0.1'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'

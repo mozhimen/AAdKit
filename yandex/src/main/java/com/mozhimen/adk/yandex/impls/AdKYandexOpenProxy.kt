@@ -8,6 +8,8 @@ import com.mozhimen.kotlin.lintk.optins.api.OApiCall_BindLifecycle
 import com.mozhimen.kotlin.lintk.optins.api.OApiInit_ByLazy
 import com.mozhimen.adk.basic.commons.IAdKOpenProxy
 import com.mozhimen.kotlin.lintk.optins.api.OApiCall_BindViewLifecycle
+import com.mozhimen.kotlin.utilk.android.app.UtilKApplicationWrapper
+import com.mozhimen.kotlin.utilk.kotlin.UtilKLazyJVM.lazy_ofNone
 import com.yandex.mobile.ads.appopenad.AppOpenAd
 import com.yandex.mobile.ads.appopenad.AppOpenAdEventListener
 import com.yandex.mobile.ads.appopenad.AppOpenAdLoadListener
@@ -34,6 +36,7 @@ class AdKYandexOpenProxy : BaseWakeBefDestroyLifecycleObserver(), IAdKOpenProxy,
     private var _appOpenAdEventListener: AppOpenAdEventListener? = null
     private var _adUnitId = ""
     //    private var _loadingInProgress = AtomicBoolean(false)
+    private val _context by lazy_ofNone { UtilKApplicationWrapper.instance.applicationContext }
 
     ///////////////////////////////////////////////////////////////////////////////
 

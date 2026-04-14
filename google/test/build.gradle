@@ -45,16 +45,16 @@ android {
 }
 
 dependencies {
+    implementation project(':google')
     implementation 'com.github.mozhimen.ASwiftKit:basick:2.1.6'
     implementation 'com.github.mozhimen.ASwiftKit:uik:2.1.6'
     implementation 'com.github.mozhimen.ASwiftKit:uik-databinding:2.1.6'
     implementation 'com.github.mozhimen.ASwiftKit:xmlk:2.1.6'
     implementation 'com.github.mozhimen.ASwiftKit:xmlk:2.1.6'
-    implementation project(':ADebugKit:leakcanary')
-    implementation project(':google')
-    implementation project(':AXmlKit_BaseRecyclerViewAdapterHelper:library3')
+    implementation 'com.github.mozhimen.ADebugKit:leakcanary:0.0.1'
+    implementation 'com.github.mozhimen.AXmlKit_BaseRecyclerViewAdapterHelper:library3:0.0.2'
     implementation 'com.github.mozhimen.AXmlKit:vhk:0.0.5'
-    implementation project(':APagingKit:paging3:data')
+    implementation 'com.github.mozhimen.APagingKit:paging3-data:0.0.1'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'

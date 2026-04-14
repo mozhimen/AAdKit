@@ -37,9 +37,9 @@ android {
 dependencies {
     api project(project.path.replace(project.name, '') + ':basic')
     if (getGradle().getStartParameter().getTaskRequests().toString().contains("mainland")) {
-        api project(project.path.replace(project.name, '') +':topon:mainland')
+        api project(project.path.replace(project.name, '') +':topon-mainland')
     } else {
-        api project(project.path.replace(project.name, '') +':topon:oversea')
+        api project(project.path.replace(project.name, '') +':topon-oversea')
     }
     api fileTree(include: ['*.jar', '*.aar'], dir: 'libs')
 
@@ -47,8 +47,8 @@ dependencies {
 
     implementation 'com.github.mozhimen.ASwiftKit:basick:2.1.6'
     implementation 'com.github.mozhimen.ASwiftKit:xmlk:2.1.6'
-    implementation project(':AStackKit:callback')
-    implementation project(':AWebKit:basic')
+    implementation 'com.github.mozhimen.AStackKit:callback:0.0.1'
+    implementation 'com.github.mozhimen.AWebKit:basic:0.0.1'
 
     api 'com.github.mozhimen.ALibKit_Google:android_ump-user_messaging_platform:0.0.5'
 
